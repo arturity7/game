@@ -49,7 +49,7 @@ Um jogo para PC, com o estilo e os gráficos do Stardew Valley, em que o jogador
 | Vida zerada | O jogador **acorda num hospital ou clínica** (na cidade) e **perde dinheiro**. Sem game over. | ✅ | quantia a definir no balanceamento |
 | Energia | **Não existe.** O jogador tem só duas barras: fome e vida. O esforço (usar ferramentas, lutar) pesa apenas acelerando um pouco a fome (D-024). | ✅ | — |
 | Dormir / descansar | **Não é obrigatório** e não tem regras rígidas (sem horário limite nem desmaio). Dormir **faz a noite passar mais rápido**, o que ajuda a plantação a avançar. | ✅ | — |
-| Pesca | Existe. | ✅ | ❓ regras |
+| Pesca | **Simples, como no Minecraft:** joga a linha, espera e puxa na hora certa. Sem minigame. | ✅ | — |
 | Árvores e construção | Cortar árvores para obter material e **construir coisas novas** (ex.: cercados, pequenos lagos para irrigar a plantação) e **melhorar a fazenda**. | ✅ | ❓ o que mais dá para construir |
 | Loja e dinheiro | Uma **loja** onde o jogador **vende produtos da fazenda** e **compra equipamentos melhores** para enfrentar os monstros. Exemplo do dono: no **centro da cidade**. | ✅ | ❓ outros itens à venda |
 | Conquistas | Tela de **conquistas em forma de medalhas** (ex.: "terminou o livro X", "derrotou 100 monstros", "sobreviveu 365 dias"). É o único lugar onde a contagem de dias aparece. Cada livro novo traz suas próprias conquistas. | ✅ | — |
