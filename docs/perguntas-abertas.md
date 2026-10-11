@@ -10,7 +10,6 @@
 
 | # | Pergunta | Por que importa |
 |---|---|---|
-| Q7 | **Nome e link do repositório** no GitHub, quando estiver criado. | Para fazer o push. |
 
 ## 🟡 Importantes logo
 
