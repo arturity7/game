@@ -16,8 +16,7 @@
 | # | Pergunta |
 |---|---|
 | Q4b | Qual é a **missão/objetivo final** do jogo? (decidir depois da análise dos primeiros livros) |
-| Q8 | **Fome:** o que acontece quando chega a zero (perde vida, fica lento, desmaia, morre)? Cai com o tempo, com ações, ou os dois? |
-| Q9 | Além da fome, existem **energia** e **vida** separadas, como no Stardew? |
+| Q9 | Além de fome e vida, existe uma **energia** separada, como no Stardew (gasta ao usar ferramentas)? |
 | Q10 | **Dormir:** é obrigatório? Tem horário limite? O que acontece se não dormir? |
 | Q11 | **Combate:** em tempo real (como no Stardew) ou por turnos? |
 | Q12 | **Perguntas dos livros:** errar tem consequência? Quantas tentativas? Formato (múltipla escolha, digitar a resposta, escolher um item)? |

@@ -36,7 +36,7 @@
 - Energia **0** = exausto: anda mais devagar, usa ferramentas mais devagar. Em **−15** desmaia.
 - Comida restaura energia e vida. Não existe fome: comer é opcional, só para recuperar energia/vida.
 
-**Nosso jogo:** ✅ fome existe (diferença principal). ❓ se energia e vida também existem separadas da fome.
+**Nosso jogo:** ✅ fome existe (diferença principal): cai com o tempo, esforço acelera, e fome zerada tira vida aos poucos, como no Minecraft. ✅ vida existe. ❓ se existe energia separada.
 
 ## 4. Sono
 

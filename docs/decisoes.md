@@ -26,4 +26,5 @@
 | D-020 | 11/10/2026 | Protagonista sem motivo especial: mundo normal, ele começa a se aventurar, como no Minecraft. Objetivo final fica para depois dos primeiros livros (Q4b) | Dono |
 | D-021 | 11/10/2026 | Arte delegada à IA: busca pacotes nos sites que julgar melhores e gera por código o que faltar (Q5) | Dono → IA |
 | D-022 | 11/10/2026 | Engine Godot 4 + GDScript (delegado à IA). Requisitos: abrir no Windows (.exe) e ter save (Q6, Q20) | Dono → IA |
-| D-023 | 11/10/2026 | Repositório oficial: github.com/arturity7/game (Q7) | Dono |
+| D-023 | 11/10/2026 | Repositório oficial: github.com/arturity7/game, público (Q7) | Dono |
+| D-024 | 11/10/2026 | Fome cai com o tempo, e o esforço acelera um pouco. Com fome zerada, perde vida aos poucos, como no Minecraft (Q8) | Dono |

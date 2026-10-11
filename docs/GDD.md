@@ -41,7 +41,8 @@ Um jogo para PC, com o estilo e os gráficos do Stardew Valley, em que o jogador
 | Casa própria | Existe. Tem um local para dormir e descansar. | ✅ existe | ❓ upgrades, móveis, outros usos |
 | Fazenda / plantação | Existe. Serve para produzir comida. | ✅ existe | ❓ regras de plantio, estações, ferramentas |
 | Animais | Existem. Servem para produzir comida. | ✅ existe | ❓ quais animais, cuidados, produtos |
-| Fome | Existe. É a razão de ter fazenda e animais. | ✅ existe | ❓ como cai, o que acontece com fome zero, como comer |
+| Fome | Existe. É a razão de ter fazenda e animais. **Cai com o tempo**; esforço (trabalhar, lutar etc.) acelera um pouco a queda. **Com fome zerada, o jogador perde vida aos poucos**, como no Minecraft. | ✅ | ❓ como comer |
+| Vida | Existe (é o que cai quando a fome zera). | ✅ existe | ❓ outras fontes de dano e de recuperação |
 | Dormir / descansar | Existe. | ✅ existe | ❓ regras, horário, consequências |
 | "Outras coisas" | O dono citou "e outras coisas" ao listar o que a casa/fazenda precisa ter. | ❓ | ❓ quais são |
 
