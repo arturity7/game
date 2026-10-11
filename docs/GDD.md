@@ -58,6 +58,7 @@ Um jogo para PC, com o estilo e os gráficos do Stardew Valley, em que o jogador
 | Histórias paralelas | Baseadas nos livros. | ✅ existe · ❓ formato |
 | Locais do mapa | Podem ser lugares que aparecem em livros. | ✅ |
 | Fases | O dono usou a expressão "passar de fase". | ❓ o que é uma fase |
+| Missões | Existem. Cumprir missões rende itens como as chaves das dimensões. | ✅ existe · ❓ formato |
 
 Detalhes do processo em [`conteudo-dos-livros.md`](conteudo-dos-livros.md).
 
@@ -76,7 +77,7 @@ Como essas duas partes se encaixam no dia a dia do jogador (ordem, tempo gasto, 
 | Organização dos livros | ✅ Tudo num mesmo mundo, com **um bioma por livro** |
 | Histórias que se cruzam | ✅ Desbloquear um lugar de um livro pode exigir algo de outro livro (ex.: o lugar do livro 1 só abre com algo do livro 2) |
 | Dimensões | ✅ Livros **muito diferentes da vida real** (ex.: Harry Potter) ficam em uma **dimensão própria**, para onde o jogador viaja. Livros mais próximos da realidade viram bioma no mundo principal. A classificação de cada livro é feita na análise e registrada na ficha. |
-| Como viajar até as dimensões | ❓ |
+| Como viajar até as dimensões | ✅ Por um **portal fixo no mundo principal**. Para entrar, é preciso um item (algo como uma **chave**) conseguido cumprindo **outras missões**. ❓ uma chave por dimensão ou uma só |
 | Existe uma história principal que amarra os livros? | ❓ |
 | Quem é o protagonista e por que está ali? | ❓ |
 | Existe cidade / NPCs fora do conteúdo dos livros? | ❓ |
