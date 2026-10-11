@@ -60,3 +60,4 @@
 | D-054 | 11/10/2026 | Animais: galinha, vaca, porco, ovelha; pastam sozinhos e se reproduzem como no Minecraft. Predadores (ex.: lobos) obrigam a usar cercados. Ovo, leite, carne e lã podem ser vendidos ou usados (ex.: roupas de lã para locais frios) (Q32) | Dono |
 | D-055 | 11/10/2026 | Locais frios: dá para entrar sem roupa adequada, mas o jogador toma dano. Lobos atacam só os animais, não o jogador (Q44) | Dono |
 | D-056 | 11/10/2026 | Pesca simples, como no Minecraft: jogar a linha, esperar e puxar na hora certa (Q33) | Dono |
+| D-057 | 11/10/2026 | Construção por receitas pré-definidas com custo de material (estilo Minecraft), sem construção livre bloco a bloco. Casa ampliável com paredes e móveis, quase como o modo construção do The Sims 4. Construíveis: cercados, lagos, galinheiro, celeiro, baús, caminhos, cercas, pontes, fogão/fogueira, paredes, móveis (Q34, Q35) | Dono |

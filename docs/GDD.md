@@ -38,19 +38,19 @@ Um jogo para PC, com o estilo e os gráficos do Stardew Valley, em que o jogador
 
 | Sistema | O que já se sabe | Status | Pendências |
 |---|---|---|---|
-| Casa própria | Existe. Tem um local para dormir e descansar. | ✅ existe | ❓ upgrades, móveis, outros usos |
+| Casa própria | Tem cama para dormir e descansar. O jogador **amplia e reforma** a casa construindo paredes e móveis (estilo The Sims 4) e cozinha num **fogão ou fogueira** que ele mesmo constrói. | ✅ | — |
 | Fazenda / plantação | Serve para produzir comida. As plantas **precisam de água**: o jogador **rega**, ou **cria um pequeno lago ao lado** da plantação, que rega sozinho (como a água no Minecraft). Ferramentas: **enxada e regador**, com versões **melhores compradas na loja**. Sem estações. | ✅ | — |
 | Animais | **Galinha, vaca, porco e ovelha.** **Pastam sozinhos** (não precisa alimentar). **Reproduzem como no Minecraft.** Produzem **ovo, leite, carne e lã**, que podem ser vendidos ou usados pelo jogador. | ✅ | — |
 | Predadores | Existem predadores, como **lobos**. Eles **atacam só os animais**, nunca o jogador. Animais soltos ficam em perigo, então precisam ficar em **cercados**. | ✅ | — |
 | Roupas e ambientes | Produtos dos animais viram itens úteis, como **roupas de lã** para **locais frios**. O jogador **pode entrar** sem a roupa adequada, mas **toma dano** enquanto estiver lá. | ✅ | — |
 | Fome | Existe. É a razão de ter fazenda e animais. **Cai com o tempo**; esforço (trabalhar, lutar etc.) acelera um pouco a queda. **Com fome zerada, o jogador perde vida aos poucos**, como no Minecraft. | ✅ | — |
-| Comer e cozinhar | Dá para comer **cru** (enche pouco) ou **cozinhado** (enche mais). Existe culinária. | ✅ | ❓ onde se cozinha |
+| Comer e cozinhar | Dá para comer **cru** (enche pouco) ou **cozinhado** (enche mais). Existe culinária, feita no fogão ou fogueira construídos pelo jogador. | ✅ | — |
 | Vida | Cai com fome zerada, ataques de monstros, **veneno** e **ambientes hostis sem roupa adequada** (ex.: frio). Recupera **comendo** ou com **itens de cura comprados no hospital**. | ✅ | — |
 | Vida zerada | O jogador **acorda num hospital ou clínica** (na cidade) e **perde dinheiro**. Sem game over. | ✅ | quantia a definir no balanceamento |
 | Energia | **Não existe.** O jogador tem só duas barras: fome e vida. O esforço (usar ferramentas, lutar) pesa apenas acelerando um pouco a fome (D-024). | ✅ | — |
 | Dormir / descansar | **Não é obrigatório** e não tem regras rígidas (sem horário limite nem desmaio). Dormir **faz a noite passar mais rápido**, o que ajuda a plantação a avançar. | ✅ | — |
 | Pesca | **Simples, como no Minecraft:** joga a linha, espera e puxa na hora certa. Sem minigame. | ✅ | — |
-| Árvores e construção | Cortar árvores para obter material e **construir coisas novas** (ex.: cercados, pequenos lagos para irrigar a plantação) e **melhorar a fazenda**. | ✅ | ❓ o que mais dá para construir |
+| Árvores e construção | Cortar árvores para obter material e **construir** e **melhorar a fazenda**. Construção **por receitas pré-definidas**, como no Minecraft (ex.: cercado custa X de madeira), e **não** bloco a bloco livre. Na casa, funciona **quase como o modo construção do The Sims 4**: levantar paredes, ampliar cômodos e posicionar móveis. Itens construíveis: cercados, pequenos lagos de irrigação, galinheiro, celeiro, baús, caminhos, cercas decorativas, pontes, fogão/fogueira, paredes e móveis da casa. | ✅ | — |
 | Loja e dinheiro | Uma **loja** onde o jogador **vende produtos da fazenda** e **compra equipamentos melhores** para enfrentar os monstros. Exemplo do dono: no **centro da cidade**. | ✅ | ❓ outros itens à venda |
 | Conquistas | Tela de **conquistas em forma de medalhas** (ex.: "terminou o livro X", "derrotou 100 monstros", "sobreviveu 365 dias"). É o único lugar onde a contagem de dias aparece. Cada livro novo traz suas próprias conquistas. | ✅ | — |
 | Equipamentos | Existem níveis de equipamento; os melhores são comprados na loja e ajudam no combate. | ✅ | ❓ tipos (armas, armaduras…) |
