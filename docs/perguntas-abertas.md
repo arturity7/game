@@ -1,6 +1,7 @@
 # Perguntas abertas
 
 > Decisões que dependem do dono do projeto. Quando uma for respondida, ela sai daqui e vai para [`decisoes.md`](decisoes.md).
+> Rodada inicial de perguntas concluída em 11/10/2026. Novas dúvidas entram aqui conforme surgirem.
 >
 > 🔴 bloqueia o início · 🟡 importante logo · 🟢 pode esperar
 
@@ -8,8 +9,7 @@
 
 ## 🔴 Bloqueiam o início
 
-| # | Pergunta | Por que importa |
-|---|---|---|
+Nenhuma.
 
 ## 🟡 Importantes logo
 
@@ -19,6 +19,4 @@
 
 ## 🟢 Podem esperar
 
-| # | Pergunta |
-|---|---|
-| Q28 | Skill "caveman": não está disponível nesta sessão. Você instala, ou sigo só com respostas curtas? |
+Nenhuma.
