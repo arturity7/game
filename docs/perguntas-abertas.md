@@ -10,7 +10,7 @@
 
 | # | Pergunta | Por que importa |
 |---|---|---|
-| Q4 | Existe uma **história principal** que amarra os livros (quem é o protagonista, por que está ali, qual o objetivo final)? Ou cada livro é independente? | Define narrativa, começo e fim do jogo. |
+| Q4b | Qual é o **motivo** do protagonista estar ali e qual o **objetivo final**? Já tem ideia ou decide depois dos primeiros livros? | Define começo e fim do jogo. |
 | Q5 | **Quem faz a arte?** Opções: a IA gera pixel art por código (qualidade limitada), pacotes gratuitos no estilo (licença CC0), você ou um artista. | Sem arte não há jogo; impacta prazo e visual. |
 | Q6 | Ok com **Godot 4 + GDScript**? (ver [`tecnico.md`](tecnico.md)) | Base de todo o código. |
 | Q7 | **Nome e link do repositório** no GitHub, quando estiver criado. | Para fazer o push. |
@@ -43,6 +43,7 @@
 | Q24 | Duração esperada do jogo e quantos livros no total? |
 | Q25 | Salvar: só ao dormir (como no Stardew) ou a qualquer momento? |
 | Q26 | O jogo deve mostrar ao jogador em que capítulo está a resposta de uma pergunta (como dica)? |
+| Q4c | Depois de cumprir o objetivo final, o jogo continua (como no Minecraft) ou termina? |
 | Q2d | Portal das dimensões: **uma chave para cada dimensão** ou uma chave só que abre todas? |
 | Q27 | Nome do jogo: algum da lista em [`nomes.md`](nomes.md)? Em que idioma? |
 | Q28 | Skill "caveman": não está disponível nesta sessão. Você instala, ou sigo só com respostas curtas? |

@@ -22,3 +22,4 @@
 | D-016 | 11/10/2026 | Dimensões confirmadas: livros muito diferentes da vida real (ex.: Harry Potter) ficam numa dimensão própria; os demais viram bioma no mundo principal (Q2b) | Dono |
 | D-017 | 11/10/2026 | Viagem às dimensões por um portal fixo no mundo principal; para entrar é preciso um item tipo chave, conseguido cumprindo outras missões (Q2c) | Dono |
 | D-018 | 11/10/2026 | Sem fases formais. Progressão por desbloqueio: áreas e missões; desafios (pergunta, puzzle, boss) bloqueiam caminhos; conteúdo de cada bioma segue a ordem da história do livro; concluir um livro completa seu bioma/dimensão (Q3) | Dono pediu a mistura das sugestões da IA |
+| D-019 | 11/10/2026 | História principal leve: motivo simples para o protagonista estar ali + objetivo final; livros continuam o foco. Sem pressa nem prazo: o jogador pode crescer e melhorar a fazenda no próprio ritmo e cumprir a missão final quando quiser, como no Minecraft (Q4) | Dono |

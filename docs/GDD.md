@@ -17,6 +17,7 @@ Um jogo para PC, com o estilo e os gráficos do Stardew Valley, em que o jogador
 | P2 | **Lembrar é jogar.** Há desafios que só se resolve lembrando do livro — ou relendo-o. | ✅ |
 | P3 | **A vida no campo sustenta, não protagoniza.** Casa, fazenda, animais, fome e sono existem, mas não são o foco. | ✅ |
 | P4 | **Cara e sensação de Stardew Valley.** Pixel art e estilo de jogo inspirados nele. | ✅ |
+| P5 | **Sem pressa.** Existe um objetivo final, mas o jogador avança no próprio ritmo e pode passar o tempo que quiser melhorando e crescendo a fazenda (como no Minecraft). | ✅ |
 
 ## 3. O que o jogo é / não é
 
@@ -28,7 +29,8 @@ Um jogo para PC, com o estilo e os gráficos do Stardew Valley, em que o jogador
 - Um jogo cujo progresso principal vem de conteúdo baseado em livros ✅
 
 **Não é:**
-- Um jogo focado em fazenda. A fazenda existe por causa da fome, não como objetivo principal ✅
+- Um jogo focado em fazenda. A fazenda existe por causa da fome, não como objetivo principal ✅ — mas o jogador pode, se quiser, gastar o tempo que quiser melhorando e crescendo a fazenda ✅
+- Um jogo com pressa ou prazo para terminar a história ✅
 
 ## 4. Sistemas
 
@@ -89,8 +91,9 @@ Não existem fases formais. O jogo avança por **desbloqueio**:
 | Histórias que se cruzam | ✅ Desbloquear um lugar de um livro pode exigir algo de outro livro (ex.: o lugar do livro 1 só abre com algo do livro 2) |
 | Dimensões | ✅ Livros **muito diferentes da vida real** (ex.: Harry Potter) ficam em uma **dimensão própria**, para onde o jogador viaja. Livros mais próximos da realidade viram bioma no mundo principal. A classificação de cada livro é feita na análise e registrada na ficha. |
 | Como viajar até as dimensões | ✅ Por um **portal fixo no mundo principal**. Para entrar, é preciso um item (algo como uma **chave**) conseguido cumprindo **outras missões**. ❓ uma chave por dimensão ou uma só |
-| Existe uma história principal que amarra os livros? | ❓ |
-| Quem é o protagonista e por que está ali? | ❓ |
+| História principal | ✅ **Leve, de fundo:** um motivo simples para o protagonista estar ali e um objetivo final. Os livros continuam sendo o foco. |
+| Ritmo da história | ✅ **Sem pressa e sem prazo.** A história não empurra o jogador; ele pode crescer e melhorar a fazenda à vontade e seguir a missão final quando quiser (como no Minecraft). |
+| Motivo do protagonista e objetivo final | ❓ |
 | Existe cidade / NPCs fora do conteúdo dos livros? | ❓ |
 | Tempo, calendário e estações como no Stardew? | ❓ |
 
