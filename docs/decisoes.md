@@ -54,3 +54,4 @@
 | D-048 | 11/10/2026 | Uma chave para cada dimensão, cada uma conquistada numa missão diferente (Q2d) | Dono |
 | D-049 | 11/10/2026 | Nome do jogo: **Leaf & Lore** (Q27) | Dono |
 | D-050 | 11/10/2026 | Chat em estilo caveman (respostas telegráficas), sem a skill; documentos seguem em português normal (Q28) | Dono |
+| D-051 | 11/10/2026 | Comer cru enche pouco; comida cozinhada enche mais (Q29) | Dono |
