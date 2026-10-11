@@ -61,7 +61,7 @@ Um jogo para PC, com o estilo e os gráficos do Stardew Valley, em que o jogador
 | Batalhas | Baseadas nos livros. **Em tempo real**, como no Stardew e no Minecraft: o jogador enfrenta os inimigos direto no mapa. | ✅ |
 | Inimigos | Podem ser inimigos que aparecem nos livros. | ✅ |
 | Bosses | Baseados nos livros. | ✅ existe · ❓ formato |
-| Perguntas | Desafios em que, para responder, é preciso lembrar do livro ou relê-lo. Formatos: múltipla escolha e entregar o item certo; nunca digitar. Errar: pergunta simples não pune; pergunta de boss ou importante tem punição leve (perde um pouco de vida ou reabre no dia seguinte). | ✅ |
+| Perguntas | Desafios em que, para responder, é preciso lembrar do livro ou relê-lo. Formatos: múltipla escolha e entregar o item certo; nunca digitar. Errar: pergunta simples não pune; pergunta de boss ou importante tem punição leve (perde um pouco de vida ou reabre no dia seguinte). Dica: perguntas de memória não têm; perguntas de detalhe têm dica opcional com o capítulo. | ✅ |
 | Diálogos | Baseados nos livros; podem ser a forma de fazer as perguntas. | ✅ |
 | Histórias paralelas | Baseadas nos livros. | ✅ existe · ❓ formato |
 | Locais do mapa | Podem ser lugares que aparecem em livros. | ✅ |

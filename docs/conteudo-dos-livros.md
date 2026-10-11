@@ -77,7 +77,16 @@ Todo conteúdo criado guarda internamente de onde veio: **livro, capítulo e pá
 - conferir se a resposta de uma pergunta está correta;
 - revisar conteúdo quando um livro for reanalisado.
 
-❓ Se o jogo deve mostrar essa referência ao jogador (por exemplo, como dica) é decisão do dono.
+### Dicas para o jogador ✅ (D-044)
+
+O dono pediu uma mistura de "com dica", "sem dica" e "dica só nas difíceis":
+
+| Nível da pergunta | Dica |
+|---|---|
+| **Memória** (fatos marcantes) | Sem dica. |
+| **Releitura** (detalhes) | Dica **opcional**: o jogador escolhe pedir e recebe o capítulo onde está a resposta. Quem quiser o desafio puro simplesmente não pede. |
+
+Livros analisados só por pesquisa (sem PDF) têm apenas perguntas de nível Memória (ver §3), então não usam dica de capítulo.
 
 ## 5. Cuidados com direitos autorais
 

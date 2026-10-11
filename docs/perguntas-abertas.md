@@ -21,7 +21,6 @@
 
 | # | Pergunta |
 |---|---|
-| Q26 | O jogo deve mostrar ao jogador em que capítulo está a resposta de uma pergunta (como dica)? |
 | Q4c | Depois de cumprir o objetivo final, o jogo continua (como no Minecraft) ou termina? |
 | Q14b | **Conquistas:** existe uma tela de conquistas ou estatísticas (ex.: dias vividos, livros concluídos)? |
 | Q14c | Quanto dura um dia de jogo em tempo real? (no Stardew, ~14 min; no Minecraft, 20 min) |
