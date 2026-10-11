@@ -16,7 +16,7 @@
 | Tiles | 16×16 pixels, desenhados com zoom (padrão 4×) | Mesmo princípio |
 | Mapas | Editados no Tiled, formato xTile (`.tbin`/`.tmx`) | Mesmo princípio (editor de tiles) |
 | Conteúdo | Dados separados do código (itens, NPCs, diálogos, eventos em arquivos de dados) | Mesmo princípio — essencial para o conteúdo dos livros |
-| Salvamento | Só ao dormir, no início do dia seguinte | ❓ |
+| Salvamento | Só ao dormir, no início do dia seguinte | ✅ Diferente: a qualquer momento, pelo menu |
 
 ## 2. Tempo e dia
 

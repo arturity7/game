@@ -21,7 +21,6 @@
 
 | # | Pergunta |
 |---|---|
-| Q25 | Salvar: só ao dormir (como no Stardew) ou a qualquer momento? |
 | Q26 | O jogo deve mostrar ao jogador em que capítulo está a resposta de uma pergunta (como dica)? |
 | Q4c | Depois de cumprir o objetivo final, o jogo continua (como no Minecraft) ou termina? |
 | Q14b | **Conquistas:** existe uma tela de conquistas ou estatísticas (ex.: dias vividos, livros concluídos)? |

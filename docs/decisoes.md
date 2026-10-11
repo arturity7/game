@@ -46,3 +46,4 @@
 | D-040 | 11/10/2026 | Cerca de 15 livros de início; novos livros chegam ao longo do tempo e a IA cria e integra cada um no mundo e na história. Mundo expansível (Q24) | Dono |
 | D-041 | 11/10/2026 | Primeira versão jogável com pelo menos uns 10 livros (Q24b) | Dono |
 | D-042 | 11/10/2026 | Se o dono não tiver o PDF, passa só o título e a IA pesquisa o máximo possível sobre o livro | Dono |
+| D-043 | 11/10/2026 | Save a qualquer momento, pelo menu (Q25) | Dono |
