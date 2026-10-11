@@ -131,7 +131,7 @@ Não existem fases formais. O jogo avança por **desbloqueio**:
 
 ## 9. Livros do jogo
 
-✅ Cerca de **15 livros** de início. Depois, o dono continua mandando livros novos e a IA cria e encaixa cada um no mundo e na história (D-040). O mundo é **expansível**: biomas novos se conectam ao mapa e dimensões novas entram pelo portal, sem quebrar saves (`tecnico.md` §5).
+✅ A **primeira versão jogável** sai com **pelo menos uns 10 livros** (D-041); cerca de 15 no plano inicial. Livros sem PDF entram por pesquisa a partir do título (`conteudo-dos-livros.md` §3). Depois, o dono continua mandando livros novos e a IA cria e encaixa cada um no mundo e na história (D-040). O mundo é **expansível**: biomas novos se conectam ao mapa e dimensões novas entram pelo portal, sem quebrar saves (`tecnico.md` §5).
 
 | Livro | Autor | Ficha | Status |
 |---|---|---|---|

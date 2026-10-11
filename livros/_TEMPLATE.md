@@ -10,7 +10,9 @@
 | Título | |
 | Autor | |
 | Ano | |
-| Idioma do PDF | |
+| Fonte da análise | PDF / pesquisa (sem PDF) |
+| Fontes pesquisadas | (só se for pesquisa: lista de links) |
+| Idioma | |
 | Páginas | |
 | Domínio público? | sim / não |
 | Data da análise | |

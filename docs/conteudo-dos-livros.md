@@ -58,8 +58,13 @@ Os livros não ficam isolados (D-015): cada livro tem seu bioma, mas desbloquear
 
 ## 3. Processo por livro (pipeline)
 
-1. **Recebimento** — o dono envia o PDF. O PDF **não** entra no repositório (ver §5).
-2. **Extração** — texto extraído do PDF e separado por capítulo.
+1. **Recebimento** — o dono envia o PDF **ou só o título** (D-042). O PDF **não** entra no repositório (ver §5).
+2. **Extração ou pesquisa**
+   - **Com PDF:** texto extraído e separado por capítulo.
+   - **Sem PDF (só o título):** a IA pesquisa o máximo possível na internet (resumos, análises, wikis, guias de leitura) e monta a ficha a partir disso. Regras extras para não errar:
+     - só vira pergunta o que for confirmado por **mais de uma fonte**;
+     - perguntas ficam no nível **Memória** (fatos marcantes); detalhes miúdos ficam de fora, porque sem o texto não dá para garantir a exatidão;
+     - a ficha registra as fontes usadas e marca `Fonte da análise: pesquisa`.
 3. **Leitura e ficha** — leitura completa e preenchimento de `livros/<nome-do-livro>.md` a partir de [`livros/_TEMPLATE.md`](../livros/_TEMPLATE.md): resumo por capítulo, personagens, lugares, criaturas, objetos, eventos, mistérios e detalhes bons para perguntas — sempre com capítulo/página de referência.
 4. **Ganchos de jogo** — para cada elemento da ficha, qual tipo de conteúdo combina (tabela na própria ficha).
 5. **Criação direta** ✅ (D-035) — a IA decide e cria o conteúdo sozinha, **sem aprovação prévia**. O dono descobre tudo jogando, **sem spoilers**: nada de perguntas, respostas, inimigos ou ligações aparece no chat nem em mensagens de commit.
