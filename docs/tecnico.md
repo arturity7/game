@@ -67,6 +67,17 @@ Adicionar um livro = adicionar uma pasta de dados. Sem mexer no código.
 - Mensagens em português com prefixo: `docs:`, `feat:`, `fix:`, `conteudo:` (conteúdo de livro), `arte:`.
 - Arte e áudio pesados: Git LFS quando o projeto chegar lá.
 
-## 6. Decisões técnicas para depois
+## 6. Arte 🔵
+
+Delegada à IA pelo dono (D-021). Abordagem:
+
+1. **Base:** pacotes de pixel art gratuitos no estilo fazenda/aventura (fontes a avaliar: itch.io, OpenGameArt, Kenney), sempre conferindo a licença de cada pacote e registrando a origem em `game/assets/CREDITOS.md`.
+2. **Sob medida:** o que for específico dos livros (inimigos, bosses, lugares, itens) é gerado por código (scripts Python que desenham os sprites pixel a pixel), mantendo a mesma paleta e escala da base.
+3. **Consistência:** paleta de cores única definida no início, tiles de 16×16, personagens em 16×32.
+4. **Provisório primeiro:** arte simples para prototipar; refinada depois.
+
+Limitação: o ambiente de trabalho da IA pode não conseguir baixar arquivos de alguns sites. Nesse caso, a IA pede ao dono para baixar o pacote ou gera tudo por código.
+
+## 7. Decisões técnicas para depois
 
 Sistema de diálogo (próprio ou plugin), formato do save, organização de cenas, testes. Serão decididas quando a fase de código começar e dependem das respostas em [`perguntas-abertas.md`](perguntas-abertas.md).

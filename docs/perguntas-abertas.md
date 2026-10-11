@@ -10,7 +10,6 @@
 
 | # | Pergunta | Por que importa |
 |---|---|---|
-| Q5 | **Quem faz a arte?** Opções: a IA gera pixel art por código (qualidade limitada), pacotes gratuitos no estilo (licença CC0), você ou um artista. | Sem arte não há jogo; impacta prazo e visual. |
 | Q6 | Ok com **Godot 4 + GDScript**? (ver [`tecnico.md`](tecnico.md)) | Base de todo o código. |
 | Q7 | **Nome e link do repositório** no GitHub, quando estiver criado. | Para fazer o push. |
 
