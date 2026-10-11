@@ -43,7 +43,7 @@ Um jogo para PC, com o estilo e os gráficos do Stardew Valley, em que o jogador
 | Animais | Existem. Servem para produzir comida. | ✅ existe | ❓ quais animais, cuidados, produtos |
 | Fome | Existe. É a razão de ter fazenda e animais. **Cai com o tempo**; esforço (trabalhar, lutar etc.) acelera um pouco a queda. **Com fome zerada, o jogador perde vida aos poucos**, como no Minecraft. | ✅ | — |
 | Comer e cozinhar | Dá para comer **cru** (enche pouco) ou **cozinhado** (enche mais). Existe culinária. | ✅ | ❓ onde se cozinha |
-| Vida | Existe (é o que cai quando a fome zera). | ✅ existe | ❓ outras fontes de dano e de recuperação |
+| Vida | Cai com fome zerada, ataques de monstros e **veneno**. Recupera **comendo** ou com **itens de cura comprados no hospital**. | ✅ | — |
 | Vida zerada | O jogador **acorda num hospital ou clínica** (na cidade) e **perde dinheiro**. Sem game over. | ✅ | quantia a definir no balanceamento |
 | Energia | **Não existe.** O jogador tem só duas barras: fome e vida. O esforço (usar ferramentas, lutar) pesa apenas acelerando um pouco a fome (D-024). | ✅ | — |
 | Dormir / descansar | **Não é obrigatório** e não tem regras rígidas (sem horário limite nem desmaio). Dormir **faz a noite passar mais rápido**, o que ajuda a plantação a avançar. | ✅ | — |

@@ -12,7 +12,6 @@
 | # | Pergunta |
 |---|---|
 | Q4b | Qual é a **missão/objetivo final** do jogo? (decidir depois da análise dos primeiros livros) |
-| Q30 | **Vida:** além da fome e dos monstros, algo mais tira vida? Como recupera (comida, dormir, hospital, poção)? |
 | Q31 | **Plantação:** precisa regar todo dia? Quais ferramentas (enxada, regador…)? |
 | Q32 | **Animais:** quais (galinha, vaca…)? Precisam ser alimentados? O que produzem? |
 | Q33 | **Pesca:** como funciona (minigame como no Stardew, ou só esperar e puxar)? |
