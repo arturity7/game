@@ -31,3 +31,4 @@
 | D-025 | 11/10/2026 | Sem barra de energia: o jogador tem só fome e vida (Q9) | Dono |
 | D-026 | 11/10/2026 | Dormir não é obrigatório e não tem regras rígidas; serve para a noite passar mais rápido, o que ajuda a plantação a avançar. Existe ciclo de dia e noite (Q10) | Dono |
 | D-027 | 11/10/2026 | Combate em tempo real, direto no mapa (Q11) | Dono |
+| D-028 | 11/10/2026 | Perguntas dos livros: múltipla escolha e escolher/entregar o item certo, podendo combinar formatos. Nunca exigir digitar a resposta (Q12) | Dono |

@@ -20,7 +20,7 @@
 
 | Tipo | O que significa "vir do livro" | Regras de jogo |
 |---|---|---|
-| Pergunta / diálogo-desafio | A resposta depende de algo que acontece ou é dito no livro | ❓ tentativas, punição por erro, formato (múltipla escolha, digitar, escolher item…) |
+| Pergunta / diálogo-desafio | A resposta depende de algo que acontece ou é dito no livro | ✅ Formatos (D-028): **múltipla escolha** e **escolher/entregar o item certo** (ex.: "traga o objeto que o personagem X perdeu"). **Nunca digitar a resposta.** ❓ tentativas e consequência de errar |
 | Diálogo | Conversa com personagem ligada ao livro | ❓ personagens do livro viram NPCs? |
 | Puzzle | Enigma montado a partir de algo do livro | ❓ formato |
 | Inimigo | Criatura ou antagonista que existe no livro | Combate em tempo real (D-027) |

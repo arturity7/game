@@ -16,7 +16,7 @@
 | # | Pergunta |
 |---|---|
 | Q4b | Qual é a **missão/objetivo final** do jogo? (decidir depois da análise dos primeiros livros) |
-| Q12 | **Perguntas dos livros:** errar tem consequência? Quantas tentativas? Formato (múltipla escolha, digitar a resposta, escolher um item)? |
+| Q12b | **Perguntas dos livros:** errar tem consequência? Quantas tentativas? |
 | Q13 | Quais são as **"outras coisas"** da casa e da fazenda? (cozinhar, pescar, ferramentas, loja, dinheiro…) |
 | Q14 | Vai ter **calendário e estações** como no Stardew? (dia e noite já existem) |
 | Q15 | Vai ter **cidade e NPCs** fora dos livros? Personagens dos livros viram NPCs? Relacionamentos? |
