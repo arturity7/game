@@ -93,7 +93,8 @@ Não existem fases formais. O jogo avança por **desbloqueio**:
 | Como viajar até as dimensões | ✅ Por um **portal fixo no mundo principal**. Para entrar, é preciso um item (algo como uma **chave**) conseguido cumprindo **outras missões**. ❓ uma chave por dimensão ou uma só |
 | História principal | ✅ **Leve, de fundo:** um motivo simples para o protagonista estar ali e um objetivo final. Os livros continuam sendo o foco. |
 | Ritmo da história | ✅ **Sem pressa e sem prazo.** A história não empurra o jogador; ele pode crescer e melhorar a fazenda à vontade e seguir a missão final quando quiser (como no Minecraft). |
-| Motivo do protagonista e objetivo final | ❓ |
+| Motivo do protagonista | ✅ **Nenhum.** É um mundo normal e o protagonista simplesmente começa a se aventurar, como no Minecraft. |
+| Objetivo final | ❓ Existe, mas ainda não foi definido. A decidir depois da análise dos primeiros livros. |
 | Existe cidade / NPCs fora do conteúdo dos livros? | ❓ |
 | Tempo, calendário e estações como no Stardew? | ❓ |
 

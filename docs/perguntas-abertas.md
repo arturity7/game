@@ -10,7 +10,6 @@
 
 | # | Pergunta | Por que importa |
 |---|---|---|
-| Q4b | Qual é o **motivo** do protagonista estar ali e qual o **objetivo final**? Já tem ideia ou decide depois dos primeiros livros? | Define começo e fim do jogo. |
 | Q5 | **Quem faz a arte?** Opções: a IA gera pixel art por código (qualidade limitada), pacotes gratuitos no estilo (licença CC0), você ou um artista. | Sem arte não há jogo; impacta prazo e visual. |
 | Q6 | Ok com **Godot 4 + GDScript**? (ver [`tecnico.md`](tecnico.md)) | Base de todo o código. |
 | Q7 | **Nome e link do repositório** no GitHub, quando estiver criado. | Para fazer o push. |
@@ -19,6 +18,7 @@
 
 | # | Pergunta |
 |---|---|
+| Q4b | Qual é a **missão/objetivo final** do jogo? (decidir depois da análise dos primeiros livros) |
 | Q8 | **Fome:** o que acontece quando chega a zero (perde vida, fica lento, desmaia, morre)? Cai com o tempo, com ações, ou os dois? |
 | Q9 | Além da fome, existem **energia** e **vida** separadas, como no Stardew? |
 | Q10 | **Dormir:** é obrigatório? Tem horário limite? O que acontece se não dormir? |
