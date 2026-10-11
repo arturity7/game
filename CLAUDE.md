@@ -17,6 +17,9 @@ Leia antes de qualquer tarefa: `README.md`, `docs/GDD.md`, `docs/perguntas-abert
 8. Mensagens em português com prefixo: `docs:`, `feat:`, `fix:`, `conteudo:`, `arte:`.
 9. Decisão nova → `docs/decisoes.md`. Pergunta respondida → sai de `perguntas-abertas.md` e vai para `decisoes.md`.
 
+## Save
+10. Nenhuma alteração pode quebrar saves antigos. Seguir `docs/tecnico.md` §5: IDs nunca mudam, toda mudança de formato tem migração, testar com saves antigos antes de entregar.
+
 ## Comunicação
-10. Respostas no chat curtas e diretas (economia de tokens).
-11. Documentos em português claro e completo — eles são a referência do projeto.
+11. Respostas no chat curtas e diretas (economia de tokens).
+12. Documentos em português claro e completo — eles são a referência do projeto.

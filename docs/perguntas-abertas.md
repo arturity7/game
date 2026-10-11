@@ -16,10 +16,8 @@
 | # | Pergunta |
 |---|---|
 | Q4b | Qual é a **missão/objetivo final** do jogo? (decidir depois da análise dos primeiros livros) |
-| Q13 | Quais são as **"outras coisas"** da casa e da fazenda? (cozinhar, pescar, ferramentas, loja, dinheiro…) |
 | Q14 | Vai ter **calendário e estações** como no Stardew? (dia e noite já existem) |
-| Q15 | Vai ter **cidade e NPCs** fora dos livros? Personagens dos livros viram NPCs? Relacionamentos? |
-| Q16 | Vai ter **dinheiro / economia** (vender colheita, comprar sementes)? |
+| Q15 | **Cidade e NPCs:** a cidade existe (você citou o centro da cidade para a loja)? Tem moradores fora dos livros? Personagens dos livros viram NPCs? Relacionamentos? |
 | Q17 | **Idioma** do jogo: português? Os livros estão em que idioma? |
 | Q18 | Conteúdo criado a partir de um livro: **a IA implementa direto** ou **cada proposta passa por você** antes? |
 

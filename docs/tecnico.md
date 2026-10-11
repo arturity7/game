@@ -63,13 +63,26 @@ Adicionar um livro = adicionar uma pasta de dados. Sem mexer no código.
 - Tiles de **16×16 pixels**, como no Stardew.
 - Resolução interna baixa (ex.: 480×270) ampliada em **escala inteira** para 1920×1080 (4×). Mantém o pixel nítido.
 
-## 5. Git 🔵
+## 5. Save compatível entre atualizações ✅ (requisito do dono, D-031)
+
+O jogo vai receber atualizações e **nenhuma atualização pode quebrar ou apagar o save existente**. Como garantir 🔵:
+
+- **Save fora da pasta do jogo:** fica na pasta de dados do usuário do Windows (`user://` do Godot, em `%APPDATA%`). Substituir o `.exe` não toca no save.
+- **Save versionado:** todo arquivo de save guarda o número da versão do formato (`save_version`).
+- **Migração automática:** ao abrir um save antigo, o jogo aplica, em ordem, as migrações de cada versão até a atual (`v1 → v2 → v3…`). Nunca se descarta dado que não se reconhece.
+- **IDs estáveis:** todo item, missão, livro, área e pergunta tem um ID fixo (ex.: `livro_x.pergunta_03`). Um ID publicado **nunca muda nem é reaproveitado**; se algo sai do jogo, o ID fica reservado.
+- **Conteúdo novo entra "desbloqueável":** um livro novo aparece no save antigo como conteúdo ainda não visitado, sem exigir novo jogo.
+- **Backup automático:** antes de migrar, o jogo copia o save antigo (`save.bak`).
+- **Teste obrigatório:** cada atualização é testada carregando saves de versões anteriores guardados no repositório (`game/tests/saves/`).
+- **Formato legível:** save em JSON, fácil de inspecionar e consertar se algo der errado.
+
+## 6. Git 🔵
 
 - Um commit por alteração, com push logo em seguida (pedido do dono ✅).
 - Mensagens em português com prefixo: `docs:`, `feat:`, `fix:`, `conteudo:` (conteúdo de livro), `arte:`.
 - Arte e áudio pesados: Git LFS quando o projeto chegar lá.
 
-## 6. Arte 🔵
+## 7. Arte 🔵
 
 Delegada à IA pelo dono (D-021). Abordagem:
 
@@ -80,6 +93,6 @@ Delegada à IA pelo dono (D-021). Abordagem:
 
 Limitação: o ambiente de trabalho da IA pode não conseguir baixar arquivos de alguns sites. Nesse caso, a IA pede ao dono para baixar o pacote ou gera tudo por código.
 
-## 7. Decisões técnicas para depois
+## 8. Decisões técnicas para depois
 
 Sistema de diálogo (próprio ou plugin), formato do save, organização de cenas, testes. Serão decididas quando a fase de código começar e dependem das respostas em [`perguntas-abertas.md`](perguntas-abertas.md).

@@ -45,7 +45,10 @@ Um jogo para PC, com o estilo e os gráficos do Stardew Valley, em que o jogador
 | Vida | Existe (é o que cai quando a fome zera). | ✅ existe | ❓ outras fontes de dano e de recuperação |
 | Energia | **Não existe.** O jogador tem só duas barras: fome e vida. O esforço (usar ferramentas, lutar) pesa apenas acelerando um pouco a fome (D-024). | ✅ | — |
 | Dormir / descansar | **Não é obrigatório** e não tem regras rígidas (sem horário limite nem desmaio). Dormir **faz a noite passar mais rápido**, o que ajuda a plantação a avançar. | ✅ | — |
-| "Outras coisas" | O dono citou "e outras coisas" ao listar o que a casa/fazenda precisa ter. | ❓ | ❓ quais são |
+| Pesca | Existe. | ✅ | ❓ regras |
+| Árvores e construção | Cortar árvores para obter material e **construir coisas novas** (ex.: cercados) e **melhorar a fazenda**. | ✅ | ❓ o que dá para construir além de cercados |
+| Loja e dinheiro | Uma **loja** onde o jogador **vende produtos da fazenda** e **compra equipamentos melhores** para enfrentar os monstros. Exemplo do dono: no **centro da cidade**. | ✅ | ❓ outros itens à venda |
+| Equipamentos | Existem níveis de equipamento; os melhores são comprados na loja e ajudam no combate. | ✅ | ❓ tipos (armas, armaduras…) |
 
 > Observação: no Stardew Valley **não existe fome** — só energia e vida (ver [`referencia-stardew.md`](referencia-stardew.md)). A fome é uma diferença deste jogo.
 
@@ -107,7 +110,7 @@ Não existem fases formais. O jogo avança por **desbloqueio**:
 |---|---|
 | Pixel art no estilo do Stardew Valley | ✅ |
 | Arte original (não é permitido usar arte do Stardew Valley) | ✅ obrigatório por direitos autorais |
-| Quem produz a arte | ✅ **A IA**, delegado pelo dono: busca recursos nos sites que julgar melhores e gera por código o que faltar. Detalhes em `tecnico.md` §6. |
+| Quem produz a arte | ✅ **A IA**, delegado pelo dono: busca recursos nos sites que julgar melhores e gera por código o que faltar. Detalhes em `tecnico.md` §7. |
 | Música e efeitos sonoros | ❓ |
 
 ## 8. Plataforma e tecnologia
@@ -118,6 +121,7 @@ Não existem fases formais. O jogo avança por **desbloqueio**:
 | Linguagem/engine | ✅ Godot 4 + GDScript (escolha delegada à IA; ver [`tecnico.md`](tecnico.md)) |
 | Sistema operacional | ✅ Windows (o jogo abre como `.exe`) |
 | Save | ✅ O jogo salva o progresso. ❓ só ao dormir ou a qualquer momento |
+| Atualizações | ✅ O dono vai atualizar o jogo de tempos em tempos (novos livros, melhorias). **O save nunca pode ser perdido numa atualização.** Ver `tecnico.md` §5. |
 | Controles (teclado/mouse, controle) | ❓ |
 
 ## 9. Livros do jogo
