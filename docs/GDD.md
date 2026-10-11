@@ -41,11 +41,11 @@ Um jogo para PC, com o estilo e os gráficos do Stardew Valley, em que o jogador
 | Casa própria | Existe. Tem um local para dormir e descansar. | ✅ existe | ❓ upgrades, móveis, outros usos |
 | Fazenda / plantação | Serve para produzir comida. As plantas **precisam de água**: o jogador **rega**, ou **cria um pequeno lago ao lado** da plantação, que rega sozinho (como a água no Minecraft). Ferramentas: **enxada e regador**, com versões **melhores compradas na loja**. Sem estações. | ✅ | — |
 | Animais | **Galinha, vaca, porco e ovelha.** **Pastam sozinhos** (não precisa alimentar). **Reproduzem como no Minecraft.** Produzem **ovo, leite, carne e lã**, que podem ser vendidos ou usados pelo jogador. | ✅ | — |
-| Predadores | Existem predadores, como **lobos**. Animais soltos ficam em perigo, então precisam ficar em **cercados**. | ✅ | — |
-| Roupas | Produtos dos animais viram itens úteis, como **roupas de lã** para ir a **locais frios**. | ✅ | ❓ o que acontece sem a roupa adequada |
+| Predadores | Existem predadores, como **lobos**. Eles **atacam só os animais**, nunca o jogador. Animais soltos ficam em perigo, então precisam ficar em **cercados**. | ✅ | — |
+| Roupas e ambientes | Produtos dos animais viram itens úteis, como **roupas de lã** para **locais frios**. O jogador **pode entrar** sem a roupa adequada, mas **toma dano** enquanto estiver lá. | ✅ | — |
 | Fome | Existe. É a razão de ter fazenda e animais. **Cai com o tempo**; esforço (trabalhar, lutar etc.) acelera um pouco a queda. **Com fome zerada, o jogador perde vida aos poucos**, como no Minecraft. | ✅ | — |
 | Comer e cozinhar | Dá para comer **cru** (enche pouco) ou **cozinhado** (enche mais). Existe culinária. | ✅ | ❓ onde se cozinha |
-| Vida | Cai com fome zerada, ataques de monstros e **veneno**. Recupera **comendo** ou com **itens de cura comprados no hospital**. | ✅ | — |
+| Vida | Cai com fome zerada, ataques de monstros, **veneno** e **ambientes hostis sem roupa adequada** (ex.: frio). Recupera **comendo** ou com **itens de cura comprados no hospital**. | ✅ | — |
 | Vida zerada | O jogador **acorda num hospital ou clínica** (na cidade) e **perde dinheiro**. Sem game over. | ✅ | quantia a definir no balanceamento |
 | Energia | **Não existe.** O jogador tem só duas barras: fome e vida. O esforço (usar ferramentas, lutar) pesa apenas acelerando um pouco a fome (D-024). | ✅ | — |
 | Dormir / descansar | **Não é obrigatório** e não tem regras rígidas (sem horário limite nem desmaio). Dormir **faz a noite passar mais rápido**, o que ajuda a plantação a avançar. | ✅ | — |

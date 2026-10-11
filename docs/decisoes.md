@@ -58,3 +58,4 @@
 | D-052 | 11/10/2026 | Vida cai com fome zerada, monstros e veneno; recupera comendo ou com itens de cura comprados no hospital (Q30) | Dono |
 | D-053 | 11/10/2026 | Plantas precisam de água: regar à mão ou construir um pequeno lago ao lado que rega sozinho. Ferramentas: enxada e regador, com versões melhores compradas na loja (Q31) | Dono |
 | D-054 | 11/10/2026 | Animais: galinha, vaca, porco, ovelha; pastam sozinhos e se reproduzem como no Minecraft. Predadores (ex.: lobos) obrigam a usar cercados. Ovo, leite, carne e lã podem ser vendidos ou usados (ex.: roupas de lã para locais frios) (Q32) | Dono |
+| D-055 | 11/10/2026 | Locais frios: dá para entrar sem roupa adequada, mas o jogador toma dano. Lobos atacam só os animais, não o jogador (Q44) | Dono |
