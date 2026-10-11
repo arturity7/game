@@ -36,3 +36,4 @@
 | D-030 | 11/10/2026 | Atividades extras: pesca; cortar árvores para construir (cercados) e melhorar a fazenda; loja (ex.: no centro da cidade) para vender produtos da fazenda e comprar equipamentos melhores contra monstros. Existe dinheiro (Q13, Q16) | Dono |
 | D-031 | 11/10/2026 | O jogo será atualizado de tempos em tempos e o save nunca pode ser perdido numa atualização | Dono |
 | D-032 | 11/10/2026 | Sem estações e sem calendário na tela. Contagem de dias só interna (save e conquistas), sem interferir no jogo (Q14) | Dono |
+| D-033 | 11/10/2026 | Existe uma cidade com moradores (que podem ou não fazer parte da história); personagens dos livros podem aparecer nela com um papel. Sem sistema de amizade: NPCs servem para conversar e vender e, no máximo, dar pistas (ex.: como achar a chave de um portal) (Q15) | Dono |

@@ -21,7 +21,7 @@
 | Tipo | O que significa "vir do livro" | Regras de jogo |
 |---|---|---|
 | Pergunta / diálogo-desafio | A resposta depende de algo que acontece ou é dito no livro | ✅ Formatos (D-028): **múltipla escolha** e **escolher/entregar o item certo** (ex.: "traga o objeto que o personagem X perdeu"). **Nunca digitar a resposta.** Errar: ver §2.1 |
-| Diálogo | Conversa com personagem ligada ao livro | ❓ personagens do livro viram NPCs? |
+| Diálogo | Conversa com personagem ligada ao livro | ✅ Personagens dos livros podem morar ou aparecer na cidade e ter um papel lá (D-033). Conversas podem dar **pistas** (ex.: onde achar a chave de um portal). Sem sistema de amizade. |
 | Puzzle | Enigma montado a partir de algo do livro | ❓ formato |
 | Inimigo | Criatura ou antagonista que existe no livro | Combate em tempo real (D-027) |
 | Boss | Antagonista marcante do livro | Combate em tempo real (D-027) |

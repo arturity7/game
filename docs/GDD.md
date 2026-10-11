@@ -100,7 +100,9 @@ Não existem fases formais. O jogo avança por **desbloqueio**:
 | Ritmo da história | ✅ **Sem pressa e sem prazo.** A história não empurra o jogador; ele pode crescer e melhorar a fazenda à vontade e seguir a missão final quando quiser (como no Minecraft). |
 | Motivo do protagonista | ✅ **Nenhum.** É um mundo normal e o protagonista simplesmente começa a se aventurar, como no Minecraft. |
 | Objetivo final | ❓ Existe, mas ainda não foi definido. A decidir depois da análise dos primeiros livros. |
-| Existe cidade / NPCs fora do conteúdo dos livros? | ❓ |
+| Cidade | ✅ Existe, com a loja (ex.: no centro) e **moradores**, que podem ou não fazer parte da história. |
+| Personagens dos livros na cidade | ✅ Podem aparecer na cidade e **ter um papel** ali. |
+| Amizade / relacionamentos | ✅ **Não existe** sistema de amizade (nada de corações). Moradores servem para **conversar e vender**; no máximo, uma conversa dá uma **pista** (ex.: como achar a chave de um portal). |
 | Dia e noite | ✅ Existem. A plantação avança com a passagem do tempo; dormir acelera a noite. |
 | Calendário e estações | ✅ **Sem estações** e sem calendário na tela. Existe só uma **contagem de dias interna**, usada no save e em conquistas; não aparece na tela e não interfere no jogo. Sem estações, as plantas não dependem de época do ano. |
 
