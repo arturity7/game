@@ -97,7 +97,7 @@ Não existem fases formais. O jogo avança por **desbloqueio**:
 | Organização dos livros | ✅ Tudo num mesmo mundo, com **um bioma por livro** |
 | Histórias que se cruzam | ✅ Desbloquear um lugar de um livro pode exigir algo de outro livro (ex.: o lugar do livro 1 só abre com algo do livro 2) |
 | Dimensões | ✅ Livros **muito diferentes da vida real** (ex.: Harry Potter) ficam em uma **dimensão própria**, para onde o jogador viaja. Livros mais próximos da realidade viram bioma no mundo principal. A classificação de cada livro é feita na análise e registrada na ficha. |
-| Como viajar até as dimensões | ✅ Por um **portal fixo no mundo principal**. Para entrar, é preciso um item (algo como uma **chave**) conseguido cumprindo **outras missões**. ❓ uma chave por dimensão ou uma só |
+| Como viajar até as dimensões | ✅ Por um **portal fixo no mundo principal**. Para entrar, é preciso um item (algo como uma **chave**) conseguido cumprindo **outras missões**. **Uma chave para cada dimensão**, cada uma conquistada numa missão diferente. |
 | História principal | ✅ **Leve, de fundo:** um motivo simples para o protagonista estar ali e um objetivo final. Os livros continuam sendo o foco. |
 | Ritmo da história | ✅ **Sem pressa e sem prazo.** A história não empurra o jogador; ele pode crescer e melhorar a fazenda à vontade e seguir a missão final quando quiser (como no Minecraft). |
 | Motivo do protagonista | ✅ **Nenhum.** É um mundo normal e o protagonista simplesmente começa a se aventurar, como no Minecraft. |
