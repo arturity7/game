@@ -122,6 +122,7 @@ Não existem fases formais. O jogo avança por **desbloqueio**:
 | PC | ✅ |
 | Linguagem/engine | ✅ Godot 4 + GDScript (escolha delegada à IA; ver [`tecnico.md`](tecnico.md)) |
 | Sistema operacional | ✅ Windows (o jogo abre como `.exe`) |
+| Idioma | ✅ Tudo em **português**: textos, diálogos e menus. Os livros também são em português. |
 | Save | ✅ O jogo salva o progresso. ❓ só ao dormir ou a qualquer momento |
 | Atualizações | ✅ O dono vai atualizar o jogo de tempos em tempos (novos livros, melhorias). **O save nunca pode ser perdido numa atualização.** Ver `tecnico.md` §5. |
 | Controles (teclado/mouse, controle) | ❓ |

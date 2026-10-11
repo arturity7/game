@@ -16,7 +16,6 @@
 | # | Pergunta |
 |---|---|
 | Q4b | Qual é a **missão/objetivo final** do jogo? (decidir depois da análise dos primeiros livros) |
-| Q17 | **Idioma** do jogo: português? Os livros estão em que idioma? |
 | Q18 | Conteúdo criado a partir de um livro: **a IA implementa direto** ou **cada proposta passa por você** antes? |
 
 ## 🟢 Podem esperar
