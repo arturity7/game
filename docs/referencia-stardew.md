@@ -51,7 +51,7 @@
 
 Fluxo: preparar o solo com enxada → plantar semente → regar todo dia (chuva e irrigadores regam sozinhos) → a planta cresce em X dias → colher. Algumas plantas produzem de novo após a colheita. Plantas morrem na troca de estação, salvo as de várias estações.
 
-**Nosso jogo:** ✅ plantação existe. ❓ regras.
+**Nosso jogo:** ✅ regar à mão ou criar um pequeno lago ao lado que rega sozinho (no lugar dos irrigadores do Stardew). Enxada e regador, com versões melhores na loja. Sem estações, então nada morre na troca de época.
 
 ## 6. Animais
 

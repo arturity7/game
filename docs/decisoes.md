@@ -56,3 +56,4 @@
 | D-050 | 11/10/2026 | Chat em estilo caveman (respostas telegráficas), sem a skill; documentos seguem em português normal (Q28) | Dono |
 | D-051 | 11/10/2026 | Comer cru enche pouco; comida cozinhada enche mais (Q29) | Dono |
 | D-052 | 11/10/2026 | Vida cai com fome zerada, monstros e veneno; recupera comendo ou com itens de cura comprados no hospital (Q30) | Dono |
+| D-053 | 11/10/2026 | Plantas precisam de água: regar à mão ou construir um pequeno lago ao lado que rega sozinho. Ferramentas: enxada e regador, com versões melhores compradas na loja (Q31) | Dono |

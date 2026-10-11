@@ -39,7 +39,7 @@ Um jogo para PC, com o estilo e os gráficos do Stardew Valley, em que o jogador
 | Sistema | O que já se sabe | Status | Pendências |
 |---|---|---|---|
 | Casa própria | Existe. Tem um local para dormir e descansar. | ✅ existe | ❓ upgrades, móveis, outros usos |
-| Fazenda / plantação | Existe. Serve para produzir comida. | ✅ existe | ❓ regras de plantio, estações, ferramentas |
+| Fazenda / plantação | Serve para produzir comida. As plantas **precisam de água**: o jogador **rega**, ou **cria um pequeno lago ao lado** da plantação, que rega sozinho (como a água no Minecraft). Ferramentas: **enxada e regador**, com versões **melhores compradas na loja**. Sem estações. | ✅ | — |
 | Animais | Existem. Servem para produzir comida. | ✅ existe | ❓ quais animais, cuidados, produtos |
 | Fome | Existe. É a razão de ter fazenda e animais. **Cai com o tempo**; esforço (trabalhar, lutar etc.) acelera um pouco a queda. **Com fome zerada, o jogador perde vida aos poucos**, como no Minecraft. | ✅ | — |
 | Comer e cozinhar | Dá para comer **cru** (enche pouco) ou **cozinhado** (enche mais). Existe culinária. | ✅ | ❓ onde se cozinha |
@@ -48,7 +48,7 @@ Um jogo para PC, com o estilo e os gráficos do Stardew Valley, em que o jogador
 | Energia | **Não existe.** O jogador tem só duas barras: fome e vida. O esforço (usar ferramentas, lutar) pesa apenas acelerando um pouco a fome (D-024). | ✅ | — |
 | Dormir / descansar | **Não é obrigatório** e não tem regras rígidas (sem horário limite nem desmaio). Dormir **faz a noite passar mais rápido**, o que ajuda a plantação a avançar. | ✅ | — |
 | Pesca | Existe. | ✅ | ❓ regras |
-| Árvores e construção | Cortar árvores para obter material e **construir coisas novas** (ex.: cercados) e **melhorar a fazenda**. | ✅ | ❓ o que dá para construir além de cercados |
+| Árvores e construção | Cortar árvores para obter material e **construir coisas novas** (ex.: cercados, pequenos lagos para irrigar a plantação) e **melhorar a fazenda**. | ✅ | ❓ o que mais dá para construir |
 | Loja e dinheiro | Uma **loja** onde o jogador **vende produtos da fazenda** e **compra equipamentos melhores** para enfrentar os monstros. Exemplo do dono: no **centro da cidade**. | ✅ | ❓ outros itens à venda |
 | Conquistas | Tela de **conquistas em forma de medalhas** (ex.: "terminou o livro X", "derrotou 100 monstros", "sobreviveu 365 dias"). É o único lugar onde a contagem de dias aparece. Cada livro novo traz suas próprias conquistas. | ✅ | — |
 | Equipamentos | Existem níveis de equipamento; os melhores são comprados na loja e ajudam no combate. | ✅ | ❓ tipos (armas, armaduras…) |
