@@ -40,7 +40,9 @@ Um jogo para PC, com o estilo e os gráficos do Stardew Valley, em que o jogador
 |---|---|---|---|
 | Casa própria | Existe. Tem um local para dormir e descansar. | ✅ existe | ❓ upgrades, móveis, outros usos |
 | Fazenda / plantação | Serve para produzir comida. As plantas **precisam de água**: o jogador **rega**, ou **cria um pequeno lago ao lado** da plantação, que rega sozinho (como a água no Minecraft). Ferramentas: **enxada e regador**, com versões **melhores compradas na loja**. Sem estações. | ✅ | — |
-| Animais | Existem. Servem para produzir comida. | ✅ existe | ❓ quais animais, cuidados, produtos |
+| Animais | **Galinha, vaca, porco e ovelha.** **Pastam sozinhos** (não precisa alimentar). **Reproduzem como no Minecraft.** Produzem **ovo, leite, carne e lã**, que podem ser vendidos ou usados pelo jogador. | ✅ | — |
+| Predadores | Existem predadores, como **lobos**. Animais soltos ficam em perigo, então precisam ficar em **cercados**. | ✅ | — |
+| Roupas | Produtos dos animais viram itens úteis, como **roupas de lã** para ir a **locais frios**. | ✅ | ❓ o que acontece sem a roupa adequada |
 | Fome | Existe. É a razão de ter fazenda e animais. **Cai com o tempo**; esforço (trabalhar, lutar etc.) acelera um pouco a queda. **Com fome zerada, o jogador perde vida aos poucos**, como no Minecraft. | ✅ | — |
 | Comer e cozinhar | Dá para comer **cru** (enche pouco) ou **cozinhado** (enche mais). Existe culinária. | ✅ | ❓ onde se cozinha |
 | Vida | Cai com fome zerada, ataques de monstros e **veneno**. Recupera **comendo** ou com **itens de cura comprados no hospital**. | ✅ | — |

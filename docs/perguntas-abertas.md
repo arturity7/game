@@ -12,7 +12,7 @@
 | # | Pergunta |
 |---|---|
 | Q4b | Qual é a **missão/objetivo final** do jogo? (decidir depois da análise dos primeiros livros) |
-| Q32 | **Animais:** quais (galinha, vaca…)? Precisam ser alimentados? O que produzem? |
+| Q44 | **Locais frios (e outros ambientes):** sem a roupa certa, o jogador perde vida aos poucos ou nem consegue entrar? Lobos também atacam o jogador? |
 | Q33 | **Pesca:** como funciona (minigame como no Stardew, ou só esperar e puxar)? |
 | Q34 | **Construção:** o que dá para construir além de cercados (galinheiro, celeiro, ampliar a casa, móveis)? |
 | Q35 | **Casa:** dá para ampliar e decorar? Onde se cozinha (fogão na casa)? |

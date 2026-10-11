@@ -60,7 +60,7 @@ Fluxo: preparar o solo com enxada → plantar semente → regar todo dia (chuva 
 - Comem capim do pasto ou feno do silo.
 - Carinho diário e alimentação aumentam a amizade, que melhora os produtos (ovo, leite, lã…).
 
-**Nosso jogo:** ✅ animais existem. ❓ quais e como funcionam.
+**Nosso jogo:** ✅ diferente do Stardew: galinha, vaca, porco e ovelha pastam sozinhos e se reproduzem como no Minecraft. Lobos ameaçam animais soltos, por isso o cercado é necessário. Produtos (ovo, leite, carne, lã) são vendidos ou usados, como lã para roupas de frio.
 
 ## 7. Combate
 
