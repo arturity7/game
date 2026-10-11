@@ -28,3 +28,4 @@
 | D-022 | 11/10/2026 | Engine Godot 4 + GDScript (delegado à IA). Requisitos: abrir no Windows (.exe) e ter save (Q6, Q20) | Dono → IA |
 | D-023 | 11/10/2026 | Repositório oficial: github.com/arturity7/game, público (Q7) | Dono |
 | D-024 | 11/10/2026 | Fome cai com o tempo, e o esforço acelera um pouco. Com fome zerada, perde vida aos poucos, como no Minecraft (Q8) | Dono |
+| D-025 | 11/10/2026 | Sem barra de energia: o jogador tem só fome e vida (Q9) | Dono |
