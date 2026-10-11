@@ -49,6 +49,7 @@ Um jogo para PC, com o estilo e os gráficos do Stardew Valley, em que o jogador
 | Pesca | Existe. | ✅ | ❓ regras |
 | Árvores e construção | Cortar árvores para obter material e **construir coisas novas** (ex.: cercados) e **melhorar a fazenda**. | ✅ | ❓ o que dá para construir além de cercados |
 | Loja e dinheiro | Uma **loja** onde o jogador **vende produtos da fazenda** e **compra equipamentos melhores** para enfrentar os monstros. Exemplo do dono: no **centro da cidade**. | ✅ | ❓ outros itens à venda |
+| Conquistas | Tela de **conquistas em forma de medalhas** (ex.: "terminou o livro X", "derrotou 100 monstros", "sobreviveu 365 dias"). É o único lugar onde a contagem de dias aparece. Cada livro novo traz suas próprias conquistas. | ✅ | — |
 | Equipamentos | Existem níveis de equipamento; os melhores são comprados na loja e ajudam no combate. | ✅ | ❓ tipos (armas, armaduras…) |
 
 > Observação: no Stardew Valley **não existe fome** — só energia e vida (ver [`referencia-stardew.md`](referencia-stardew.md)). A fome é uma diferença deste jogo.

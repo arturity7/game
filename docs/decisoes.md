@@ -49,3 +49,4 @@
 | D-043 | 11/10/2026 | Save a qualquer momento, pelo menu (Q25) | Dono |
 | D-044 | 11/10/2026 | Dicas: perguntas de memória sem dica; perguntas de detalhe (releitura) com dica opcional do capítulo, que o jogador escolhe pedir (Q26) | Dono pediu a mistura das opções da IA |
 | D-045 | 11/10/2026 | Após o objetivo final o jogo continua; não há fim definitivo, porque livros novos sempre serão adicionados (Q4c) | Dono |
+| D-046 | 11/10/2026 | Conquistas em forma de medalhas (ex.: terminou o livro X, derrotou 100 monstros, sobreviveu 365 dias) (Q14b) | Dono |

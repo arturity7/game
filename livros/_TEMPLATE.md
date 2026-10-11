@@ -77,6 +77,10 @@
 
 Ambiente, clima e lugares principais do bioma:
 
-## 13. Conteúdo criado
+## 13. Conquistas do livro
+
+Medalhas ligadas a este livro (ex.: concluir o livro, derrotar o boss).
+
+## 14. Conteúdo criado
 
 Lista do que foi criado com este livro (ID estável, tipo, onde fica no mundo) e status (criado / implementado).
