@@ -62,7 +62,7 @@ Os livros não ficam isolados (D-015): cada livro tem seu bioma, mas desbloquear
 2. **Extração** — texto extraído do PDF e separado por capítulo.
 3. **Leitura e ficha** — leitura completa e preenchimento de `livros/<nome-do-livro>.md` a partir de [`livros/_TEMPLATE.md`](../livros/_TEMPLATE.md): resumo por capítulo, personagens, lugares, criaturas, objetos, eventos, mistérios e detalhes bons para perguntas — sempre com capítulo/página de referência.
 4. **Ganchos de jogo** — para cada elemento da ficha, qual tipo de conteúdo combina (tabela na própria ficha).
-5. **Proposta** — lista do conteúdo que será criado com aquele livro. ❓ Se cada proposta passa pela aprovação do dono antes de virar jogo, ou se a IA segue direto.
+5. **Criação direta** ✅ (D-035) — a IA decide e cria o conteúdo sozinha, **sem aprovação prévia**. O dono descobre tudo jogando, **sem spoilers**: nada de perguntas, respostas, inimigos ou ligações aparece no chat nem em mensagens de commit.
 6. **Implementação** — o conteúdo vira **arquivos de dados** (diálogos, perguntas, inimigos, mapas). Adicionar um livro novo não deve exigir mexer no código do jogo (ver [`tecnico.md`](tecnico.md)).
 7. **Registro** — o livro entra na tabela do [`GDD.md`](GDD.md) §9 e o commit é feito.
 

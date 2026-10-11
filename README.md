@@ -22,6 +22,10 @@ Jogo para PC, em pixel art no estilo visual e de jogabilidade do Stardew Valley.
 | [`livros/_TEMPLATE.md`](livros/_TEMPLATE.md) | Modelo de ficha de análise de cada livro |
 | [`CLAUDE.md`](CLAUDE.md) | Regras de trabalho para a IA que desenvolve o projeto |
 
+## ⚠️ Spoilers
+
+As pastas `livros/` e `game/content/` contêm as perguntas, respostas e segredos do jogo. Abrir esses arquivos estraga a surpresa.
+
 ## Regra de ouro
 
 Ideias de jogo vêm de duas fontes apenas: **o dono do projeto** e **os livros**.

@@ -75,6 +75,6 @@
 
 Ambiente, clima e lugares principais do bioma:
 
-## 13. Proposta de conteúdo
+## 13. Conteúdo criado
 
-Lista do que será criado com este livro e status (proposto / aprovado / implementado).
+Lista do que foi criado com este livro (ID estável, tipo, onde fica no mundo) e status (criado / implementado).

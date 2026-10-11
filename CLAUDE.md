@@ -11,6 +11,7 @@ Leia antes de qualquer tarefa: `README.md`, `docs/GDD.md`, `docs/perguntas-abert
 4. Seguir o processo de `docs/conteudo-dos-livros.md`. Uma ficha por livro em `livros/`, a partir de `livros/_TEMPLATE.md`.
 5. **Nunca** commitar PDFs ou texto integral de livros. Citações curtas; preferir paráfrase.
 6. Todo conteúdo criado guarda a referência (livro, capítulo, página).
+6a. Conteúdo dos livros é criado direto, sem pedir aprovação. **Sem spoilers:** no chat e nas mensagens de commit, só dizer qual livro entrou no jogo (ex.: `conteudo: adiciona livro X`), nunca perguntas, respostas, inimigos, bosses ou ligações.
 
 ## Git
 7. Toda alteração: commit + push.
