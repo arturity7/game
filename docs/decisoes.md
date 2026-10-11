@@ -48,3 +48,4 @@
 | D-042 | 11/10/2026 | Se o dono não tiver o PDF, passa só o título e a IA pesquisa o máximo possível sobre o livro | Dono |
 | D-043 | 11/10/2026 | Save a qualquer momento, pelo menu (Q25) | Dono |
 | D-044 | 11/10/2026 | Dicas: perguntas de memória sem dica; perguntas de detalhe (releitura) com dica opcional do capítulo, que o jogador escolhe pedir (Q26) | Dono pediu a mistura das opções da IA |
+| D-045 | 11/10/2026 | Após o objetivo final o jogo continua; não há fim definitivo, porque livros novos sempre serão adicionados (Q4c) | Dono |
