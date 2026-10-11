@@ -59,4 +59,5 @@ Todo conteúdo criado guarda internamente de onde veio: **livro, capítulo e pá
 
 - **PDFs nunca vão para o repositório** (o `.gitignore` bloqueia). Só as fichas de análise.
 - Citações dos livros dentro do jogo e das fichas: **curtas**. Perguntas e diálogos usam paráfrase sempre que possível.
-- Usar personagens, lugares e criaturas de livros protegidos por direitos autorais é tranquilo para **uso pessoal**. Para **publicar ou vender**, isso precisa de outra estratégia (livros em domínio público, autorização, ou só inspiração). ❓ Qual é o caso deste projeto.
+- ✅ **Projeto pessoal** (D-014): personagens, lugares e criaturas dos livros podem ser usados livremente. Se um dia o projeto for publicado, esta regra precisa ser revista.
+- Recomendação: repositório **privado** no GitHub, já que as fichas trazem análises detalhadas de livros protegidos.

@@ -10,7 +10,6 @@
 
 | # | Pergunta | Por que importa |
 |---|---|---|
-| Q1 | O jogo é **só para você** ou pretende **publicar/vender**? | Personagens e lugares de livros com direitos autorais só podem ser usados livremente em projeto pessoal. Também define se o repositório pode ser público. |
 | Q2 | Como os livros se organizam no mundo? Uma região por livro, um mundo único misturando todos, capítulos em sequência? | Define o mapa inteiro e como o conteúdo é encaixado. |
 | Q3 | O que é uma **"fase"**? (você usou "passar de fase") | Define a estrutura de progressão. |
 | Q4 | Existe uma **história principal** que amarra os livros (quem é o protagonista, por que está ali, qual o objetivo final)? Ou cada livro é independente? | Define narrativa, começo e fim do jogo. |

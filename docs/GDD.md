@@ -22,6 +22,7 @@ Um jogo para PC, com o estilo e os gráficos do Stardew Valley, em que o jogador
 
 **É:**
 - Jogo para PC ✅
+- Projeto pessoal, sem publicação nem venda ✅
 - Pixel art no estilo do Stardew Valley ✅
 - Um jogo com casa e fazenda próprias, animais, plantação, fome e descanso ✅
 - Um jogo cujo progresso principal vem de conteúdo baseado em livros ✅
