@@ -10,7 +10,8 @@
 
 | # | Pergunta | Por que importa |
 |---|---|---|
-| Q2 | Como os livros se organizam no mundo? Uma região por livro, um mundo único misturando todos, capítulos em sequência? | Define o mapa inteiro e como o conteúdo é encaixado. |
+| Q2b | **Dimensões:** a ideia está confirmada ou é um talvez? Qual o critério para um livro ir para uma dimensão em vez do mundo principal? | Define se o mundo tem uma ou várias camadas. |
+| Q2c | Se houver dimensões: **como o jogador viaja** até elas? | Define a ligação entre mundo principal e dimensões. |
 | Q3 | O que é uma **"fase"**? (você usou "passar de fase") | Define a estrutura de progressão. |
 | Q4 | Existe uma **história principal** que amarra os livros (quem é o protagonista, por que está ali, qual o objetivo final)? Ou cada livro é independente? | Define narrativa, começo e fim do jogo. |
 | Q5 | **Quem faz a arte?** Opções: a IA gera pixel art por código (qualidade limitada), pacotes gratuitos no estilo (licença CC0), você ou um artista. | Sem arte não há jogo; impacta prazo e visual. |

@@ -37,6 +37,14 @@
 
 ❓ Proporção entre os dois níveis e se a releitura é sempre opcional ou às vezes obrigatória.
 
+## 2.1 Ligações entre livros ✅
+
+Os livros não ficam isolados (D-015): cada livro tem seu bioma, mas desbloquear um lugar de um livro pode exigir algo vindo de outro livro. Por isso, toda ficha lista **possíveis ligações com outros livros** (personagens, objetos, temas ou lugares que conversam entre si), e o mapa de dependências entre livros fica registrado aqui conforme os livros chegam.
+
+| Para desbloquear… (livro / lugar) | Precisa de… (livro / elemento) | Status |
+|---|---|---|
+| — | — | Aguardando livros |
+
 ## 3. Processo por livro (pipeline)
 
 1. **Recebimento** — o dono envia o PDF. O PDF **não** entra no repositório (ver §5).

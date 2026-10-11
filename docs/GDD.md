@@ -73,7 +73,9 @@ Como essas duas partes se encaixam no dia a dia do jogador (ordem, tempo gasto, 
 
 | Tema | Status |
 |---|---|
-| Os livros ficam em regiões separadas ou num mundo único misturado? | ❓ |
+| Organização dos livros | ✅ Tudo num mesmo mundo, com **um bioma por livro** |
+| Histórias que se cruzam | ✅ Desbloquear um lugar de um livro pode exigir algo de outro livro (ex.: o lugar do livro 1 só abre com algo do livro 2) |
+| Dimensões para livros muito ficcionais | ❓ Ideia do dono ("talvez"): livros muito de ficção ficariam em dimensões para onde se viaja |
 | Existe uma história principal que amarra os livros? | ❓ |
 | Quem é o protagonista e por que está ali? | ❓ |
 | Existe cidade / NPCs fora do conteúdo dos livros? | ❓ |

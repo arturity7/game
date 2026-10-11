@@ -61,6 +61,15 @@
 | Elemento do livro | Tipo de conteúdo (pergunta, puzzle, inimigo, boss, local, diálogo, história paralela) | Observação | Ref. |
 |---|---|---|---|
 
-## 11. Proposta de conteúdo
+## 11. Ligações com outros livros
+
+| Elemento deste livro | Livro relacionado | Possível ligação (ex.: este item desbloqueia aquele lugar) | Ref. |
+|---|---|---|---|
+
+## 12. Bioma
+
+Como o livro vira bioma: ambiente, clima, lugares principais, e se é candidato a dimensão (ver GDD §6).
+
+## 13. Proposta de conteúdo
 
 Lista do que será criado com este livro e status (proposto / aprovado / implementado).

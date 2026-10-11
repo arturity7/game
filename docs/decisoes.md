@@ -18,3 +18,4 @@
 | D-012 | 11/10/2026 | Arte do jogo será original (não pode usar arte do Stardew Valley) | Obrigação legal |
 | D-013 | 11/10/2026 | PDFs dos livros não entram no repositório | Obrigação legal |
 | D-014 | 11/10/2026 | Projeto pessoal, sem publicação nem venda. Personagens, lugares e criaturas dos livros podem ser usados livremente (Q1) | Dono |
+| D-015 | 11/10/2026 | Um mundo único com um bioma por livro. Histórias se cruzam: desbloquear um lugar de um livro pode exigir algo de outro livro. Dimensões para livros muito ficcionais ficam como possibilidade (Q2) | Dono |
