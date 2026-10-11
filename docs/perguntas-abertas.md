@@ -16,11 +16,10 @@
 | # | Pergunta |
 |---|---|
 | Q4b | Qual é a **missão/objetivo final** do jogo? (decidir depois da análise dos primeiros livros) |
-| Q10 | **Dormir:** é obrigatório? Tem horário limite? O que acontece se não dormir? |
 | Q11 | **Combate:** em tempo real (como no Stardew) ou por turnos? |
 | Q12 | **Perguntas dos livros:** errar tem consequência? Quantas tentativas? Formato (múltipla escolha, digitar a resposta, escolher um item)? |
 | Q13 | Quais são as **"outras coisas"** da casa e da fazenda? (cozinhar, pescar, ferramentas, loja, dinheiro…) |
-| Q14 | Vai ter **relógio, calendário e estações** como no Stardew? |
+| Q14 | Vai ter **calendário e estações** como no Stardew? (dia e noite já existem) |
 | Q15 | Vai ter **cidade e NPCs** fora dos livros? Personagens dos livros viram NPCs? Relacionamentos? |
 | Q16 | Vai ter **dinheiro / economia** (vender colheita, comprar sementes)? |
 | Q17 | **Idioma** do jogo: português? Os livros estão em que idioma? |

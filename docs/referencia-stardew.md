@@ -45,7 +45,7 @@
 - Ir dormir exausto corta a recuperação pela metade.
 - Sempre acorda às 6h.
 
-**Nosso jogo:** ✅ existe local para dormir e descansar. ❓ regras.
+**Nosso jogo:** ✅ diferente do Stardew: dormir não é obrigatório, não há horário limite nem desmaio. Dormir só faz a noite passar mais rápido (ajuda a plantação), como no Minecraft.
 
 ## 5. Plantação
 
