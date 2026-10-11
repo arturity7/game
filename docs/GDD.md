@@ -126,6 +126,7 @@ Não existem fases formais. O jogo avança por **desbloqueio**:
 | Idioma | ✅ Tudo em **português**: textos, diálogos e menus. Os livros também são em português. |
 | Save | ✅ O jogo salva o progresso. ❓ só ao dormir ou a qualquer momento |
 | Atualizações | ✅ O dono vai atualizar o jogo de tempos em tempos (novos livros, melhorias). **O save nunca pode ser perdido numa atualização.** Ver `tecnico.md` §5. |
+| Jogadores | ✅ **Um jogador só**, por enquanto. Multiplayer não está descartado para o futuro. |
 | Controles | ✅ **Teclado e mouse**, como no Stardew no PC: WASD para andar, mouse para usar ferramentas e atacar. |
 
 ## 9. Livros do jogo

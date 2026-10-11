@@ -36,6 +36,10 @@ O jogo vai crescer **livro por livro**. Então:
 
 Adicionar um livro = adicionar uma pasta de dados. Sem mexer no código.
 
+### Pensando num multiplayer futuro 🔵
+
+O jogo é single-player por enquanto (D-038), mas o dono não descartou multiplayer. Sem escrever nada de rede agora, o código mantém o **estado do jogo separado da tela** (dados do mundo, inventário e progresso não ficam dentro dos nós visuais) e toda mudança de estado passa por funções centrais. Isso não custa mais agora e evita reescrever tudo se o multiplayer vier.
+
 ## 3. Estrutura do repositório 🔵
 
 ```
