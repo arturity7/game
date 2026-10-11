@@ -1,0 +1,16 @@
+# Livros (direitos autorais) — nunca versionar
+*.pdf
+*.epub
+*.mobi
+livros/pdf/
+livros/texto/
+
+# Godot
+.godot/
+*.translation
+export_presets.cfg
+builds/
+
+# Sistema
+.DS_Store
+Thumbs.db
