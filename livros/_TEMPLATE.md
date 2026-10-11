@@ -68,7 +68,12 @@
 
 ## 12. Bioma
 
-Como o livro vira bioma: ambiente, clima, lugares principais, e se é candidato a dimensão (ver GDD §6).
+| Campo | Valor |
+|---|---|
+| Onde fica | Mundo principal / Dimensão própria |
+| Justificativa | Dimensão = livro muito diferente da vida real (ex.: Harry Potter). Mundo principal = livro próximo da realidade. |
+
+Ambiente, clima e lugares principais do bioma:
 
 ## 13. Proposta de conteúdo
 

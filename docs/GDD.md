@@ -75,7 +75,8 @@ Como essas duas partes se encaixam no dia a dia do jogador (ordem, tempo gasto, 
 |---|---|
 | Organização dos livros | ✅ Tudo num mesmo mundo, com **um bioma por livro** |
 | Histórias que se cruzam | ✅ Desbloquear um lugar de um livro pode exigir algo de outro livro (ex.: o lugar do livro 1 só abre com algo do livro 2) |
-| Dimensões para livros muito ficcionais | ❓ Ideia do dono ("talvez"): livros muito de ficção ficariam em dimensões para onde se viaja |
+| Dimensões | ✅ Livros **muito diferentes da vida real** (ex.: Harry Potter) ficam em uma **dimensão própria**, para onde o jogador viaja. Livros mais próximos da realidade viram bioma no mundo principal. A classificação de cada livro é feita na análise e registrada na ficha. |
+| Como viajar até as dimensões | ❓ |
 | Existe uma história principal que amarra os livros? | ❓ |
 | Quem é o protagonista e por que está ali? | ❓ |
 | Existe cidade / NPCs fora do conteúdo dos livros? | ❓ |
