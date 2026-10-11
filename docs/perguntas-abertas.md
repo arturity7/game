@@ -10,7 +10,6 @@
 
 | # | Pergunta | Por que importa |
 |---|---|---|
-| Q6 | Ok com **Godot 4 + GDScript**? (ver [`tecnico.md`](tecnico.md)) | Base de todo o código. |
 | Q7 | **Nome e link do repositório** no GitHub, quando estiver criado. | Para fazer o push. |
 
 ## 🟡 Importantes logo
@@ -35,7 +34,6 @@
 | # | Pergunta |
 |---|---|
 | Q19 | Controles: teclado e mouse, controle (gamepad), ou os dois? |
-| Q20 | PC = só Windows, ou também Linux e Mac? |
 | Q21 | Morte / game over: existe? O que acontece? |
 | Q22 | Single-player só, ou multiplayer? |
 | Q23 | Música e efeitos sonoros: quem faz / de onde vêm? |

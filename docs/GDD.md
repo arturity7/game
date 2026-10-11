@@ -112,8 +112,9 @@ Não existem fases formais. O jogo avança por **desbloqueio**:
 | Tema | Status |
 |---|---|
 | PC | ✅ |
-| Linguagem/engine: escolha delegada à IA | ✅ delegado · 🔵 proposta: Godot 4 + GDScript ([`tecnico.md`](tecnico.md)) |
-| Só Windows ou também Linux/Mac | ❓ |
+| Linguagem/engine | ✅ Godot 4 + GDScript (escolha delegada à IA; ver [`tecnico.md`](tecnico.md)) |
+| Sistema operacional | ✅ Windows (o jogo abre como `.exe`) |
+| Save | ✅ O jogo salva o progresso. ❓ só ao dormir ou a qualquer momento |
 | Controles (teclado/mouse, controle) | ❓ |
 
 ## 9. Livros do jogo

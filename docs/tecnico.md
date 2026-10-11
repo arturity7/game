@@ -1,10 +1,12 @@
 # Técnico — engine, linguagem e arquitetura
 
-> O dono do projeto delegou a escolha de linguagem à IA. Tudo aqui é 🔵 **proposta**, aguardando ok.
+> O dono do projeto delegou a escolha de linguagem à IA. Itens marcados 🔵 são propostas da IA que podem mudar quando a fase de código começar.
 
 ---
 
-## 1. Engine e linguagem: Godot 4 + GDScript 🔵
+## 1. Engine e linguagem: Godot 4 + GDScript ✅
+
+Requisitos do dono (D-022): abrir no **Windows** e ter **save**. Entrega: executável `.exe` para Windows.
 
 ### Por quê
 

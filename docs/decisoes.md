@@ -25,3 +25,4 @@
 | D-019 | 11/10/2026 | História principal leve: motivo simples para o protagonista estar ali + objetivo final; livros continuam o foco. Sem pressa nem prazo: o jogador pode crescer e melhorar a fazenda no próprio ritmo e cumprir a missão final quando quiser, como no Minecraft (Q4) | Dono |
 | D-020 | 11/10/2026 | Protagonista sem motivo especial: mundo normal, ele começa a se aventurar, como no Minecraft. Objetivo final fica para depois dos primeiros livros (Q4b) | Dono |
 | D-021 | 11/10/2026 | Arte delegada à IA: busca pacotes nos sites que julgar melhores e gera por código o que faltar (Q5) | Dono → IA |
+| D-022 | 11/10/2026 | Engine Godot 4 + GDScript (delegado à IA). Requisitos: abrir no Windows (.exe) e ter save (Q6, Q20) | Dono → IA |
