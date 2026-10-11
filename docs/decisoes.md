@@ -43,3 +43,4 @@
 | D-037 | 11/10/2026 | Vida zerada: acorda num hospital ou clínica e perde dinheiro (Q21) | Dono |
 | D-038 | 11/10/2026 | Single-player por enquanto; multiplayer não descartado no futuro (Q22) | Dono |
 | D-039 | 11/10/2026 | Música e sons a cargo da IA: recursos gratuitos de sites para jogos + efeitos simples gerados por código (Q23) | Dono → IA |
+| D-040 | 11/10/2026 | Cerca de 15 livros de início; novos livros chegam ao longo do tempo e a IA cria e integra cada um no mundo e na história. Mundo expansível (Q24) | Dono |

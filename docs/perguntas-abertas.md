@@ -21,7 +21,7 @@
 
 | # | Pergunta |
 |---|---|
-| Q24 | Duração esperada do jogo e quantos livros no total? |
+| Q24b | A primeira versão jogável precisa ter os ~15 livros, ou pode sair com poucos livros e os outros entram nas atualizações? |
 | Q25 | Salvar: só ao dormir (como no Stardew) ou a qualquer momento? |
 | Q26 | O jogo deve mostrar ao jogador em que capítulo está a resposta de uma pergunta (como dica)? |
 | Q4c | Depois de cumprir o objetivo final, o jogo continua (como no Minecraft) ou termina? |
