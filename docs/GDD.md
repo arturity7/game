@@ -106,7 +106,7 @@ Não existem fases formais. O jogo avança por **desbloqueio**:
 | Cidade | ✅ Existe, com a loja (ex.: no centro), um **hospital/clínica** e **moradores**, que podem ou não fazer parte da história. |
 | Personagens dos livros na cidade | ✅ Podem aparecer na cidade e **ter um papel** ali. |
 | Amizade / relacionamentos | ✅ **Não existe** sistema de amizade (nada de corações). Moradores servem para **conversar e vender**; no máximo, uma conversa dá uma **pista** (ex.: como achar a chave de um portal). |
-| Dia e noite | ✅ Existem. A plantação avança com a passagem do tempo; dormir acelera a noite. |
+| Dia e noite | ✅ Existem. Um dia completo dura **~15 a 20 minutos reais** (valor exato ajustado nos testes). A plantação avança com a passagem do tempo; dormir acelera a noite. |
 | Calendário e estações | ✅ **Sem estações** e sem calendário na tela. Existe só uma **contagem de dias interna**, usada no save e em conquistas; não aparece na tela e não interfere no jogo. Sem estações, as plantas não dependem de época do ano. |
 
 ## 7. Arte e som
