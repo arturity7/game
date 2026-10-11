@@ -1,7 +1,7 @@
 # Sugestões de nome
 
-> Pedido do dono do projeto. Nenhum escolhido ainda. ❓
-> Antes de fechar: conferir se o nome já existe na Steam/itch.io e se o domínio está livre.
+> ✅ **Escolhido: Leaf & Lore** (D-049). Lista mantida como registro.
+> Como o projeto é pessoal, não há necessidade de checar marca registrada.
 
 | Nome | Idioma | Ideia por trás |
 |---|---|---|
@@ -14,6 +14,5 @@
 | **Biblioterra** | PT | Biblioteca + terra. |
 | **Inkwood** | EN | Bosque de tinta. |
 
-Favoritos da IA: **Entre Folhas**, **Ex Libris** e **Leaf & Lore**.
+Favoritos da IA: **Entre Folhas**, **Ex Libris** e **Leaf & Lore**. Escolhido pelo dono: **Leaf & Lore**.
 
-❓ O nome será em português, inglês ou outro idioma?

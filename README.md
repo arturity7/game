@@ -1,12 +1,13 @@
-# Projeto sem nome — jogo de livros no estilo Stardew Valley
+# Leaf & Lore — jogo de livros no estilo Stardew Valley
 
 > **Status:** fase de documentação. Nenhuma linha de código ainda.
-> **Nome:** provisório. Sugestões em [`docs/nomes.md`](docs/nomes.md).
+> **Nome:** Leaf & Lore ("leaf" = folha de planta e folha de livro; "lore" = saber, história). Escolhido pelo dono (D-049).
 
 Jogo para PC, em pixel art no estilo visual e de jogabilidade do Stardew Valley.
 
-- **Suporte (não é o foco):** casa própria, fazenda, plantação, animais, fome, dormir/descansar.
-- **Núcleo do jogo:** puzzles, batalhas, bosses, perguntas, diálogos e histórias paralelas criados a partir de livros que o dono do projeto já leu. Inimigos, locais do mapa e desafios vêm desses livros. Para passar de fase, o jogador precisa lembrar do livro — ou relê-lo.
+- **Suporte (não é o foco):** casa própria, fazenda, plantação, animais, pesca, construção, loja na cidade, fome e vida.
+- **Núcleo do jogo:** puzzles, batalhas, bosses, perguntas, diálogos e histórias paralelas criados a partir de livros que o dono do projeto já leu. Cada livro vira um bioma no mundo (ou uma dimensão, se for muito fantasioso). Para avançar, o jogador precisa lembrar do livro — ou relê-lo.
+- **Ritmo livre:** sem pressa e sem fim definitivo; novos livros entram a cada atualização, sem perder o save.
 
 ## Documentos
 

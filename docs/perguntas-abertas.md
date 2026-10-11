@@ -21,5 +21,4 @@
 
 | # | Pergunta |
 |---|---|
-| Q27 | Nome do jogo: algum da lista em [`nomes.md`](nomes.md)? Em que idioma? |
 | Q28 | Skill "caveman": não está disponível nesta sessão. Você instala, ou sigo só com respostas curtas? |

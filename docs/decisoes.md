@@ -52,3 +52,4 @@
 | D-046 | 11/10/2026 | Conquistas em forma de medalhas (ex.: terminou o livro X, derrotou 100 monstros, sobreviveu 365 dias) (Q14b) | Dono |
 | D-047 | 11/10/2026 | Um dia completo dura ~15 a 20 minutos reais (Q14c) | Dono |
 | D-048 | 11/10/2026 | Uma chave para cada dimensão, cada uma conquistada numa missão diferente (Q2d) | Dono |
+| D-049 | 11/10/2026 | Nome do jogo: **Leaf & Lore** (Q27) | Dono |

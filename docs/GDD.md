@@ -1,6 +1,6 @@
-# GDD — Documento de Design do Jogo
+# Leaf & Lore — Documento de Design do Jogo (GDD)
 
-> Versão 0.1 · 11/10/2026 · Status: rascunho inicial
+> Versão 0.2 · 11/10/2026 · Status: rodada inicial de perguntas concluída
 > Este documento registra **somente** o que o dono do projeto definiu. Tudo que ainda não foi decidido aparece como ❓ e tem pergunta correspondente em [`perguntas-abertas.md`](perguntas-abertas.md).
 
 ---
