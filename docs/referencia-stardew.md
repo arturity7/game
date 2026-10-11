@@ -27,7 +27,7 @@
 - **4 estações de 28 dias.**
 - Às **2h** o personagem desmaia: se estiver fora de casa, perde 10% do dinheiro (máx. 1.000g) e acorda em casa.
 
-**Nosso jogo:** ❓ se terá relógio, calendário e estações.
+**Nosso jogo:** ✅ tem dia e noite, mas **sem estações** e sem calendário na tela. A contagem de dias é só interna (save e conquistas). ❓ duração do dia.
 
 ## 3. Energia e vida
 

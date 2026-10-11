@@ -102,7 +102,7 @@ Não existem fases formais. O jogo avança por **desbloqueio**:
 | Objetivo final | ❓ Existe, mas ainda não foi definido. A decidir depois da análise dos primeiros livros. |
 | Existe cidade / NPCs fora do conteúdo dos livros? | ❓ |
 | Dia e noite | ✅ Existem. A plantação avança com a passagem do tempo; dormir acelera a noite. |
-| Calendário e estações | ❓ |
+| Calendário e estações | ✅ **Sem estações** e sem calendário na tela. Existe só uma **contagem de dias interna**, usada no save e em conquistas; não aparece na tela e não interfere no jogo. Sem estações, as plantas não dependem de época do ano. |
 
 ## 7. Arte e som
 

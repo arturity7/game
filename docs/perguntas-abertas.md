@@ -16,7 +16,6 @@
 | # | Pergunta |
 |---|---|
 | Q4b | Qual é a **missão/objetivo final** do jogo? (decidir depois da análise dos primeiros livros) |
-| Q14 | Vai ter **calendário e estações** como no Stardew? (dia e noite já existem) |
 | Q15 | **Cidade e NPCs:** a cidade existe (você citou o centro da cidade para a loja)? Tem moradores fora dos livros? Personagens dos livros viram NPCs? Relacionamentos? |
 | Q17 | **Idioma** do jogo: português? Os livros estão em que idioma? |
 | Q18 | Conteúdo criado a partir de um livro: **a IA implementa direto** ou **cada proposta passa por você** antes? |
@@ -33,6 +32,8 @@
 | Q25 | Salvar: só ao dormir (como no Stardew) ou a qualquer momento? |
 | Q26 | O jogo deve mostrar ao jogador em que capítulo está a resposta de uma pergunta (como dica)? |
 | Q4c | Depois de cumprir o objetivo final, o jogo continua (como no Minecraft) ou termina? |
+| Q14b | **Conquistas:** existe uma tela de conquistas ou estatísticas (ex.: dias vividos, livros concluídos)? |
+| Q14c | Quanto dura um dia de jogo em tempo real? (no Stardew, ~14 min; no Minecraft, 20 min) |
 | Q2d | Portal das dimensões: **uma chave para cada dimensão** ou uma chave só que abre todas? |
 | Q27 | Nome do jogo: algum da lista em [`nomes.md`](nomes.md)? Em que idioma? |
 | Q28 | Skill "caveman": não está disponível nesta sessão. Você instala, ou sigo só com respostas curtas? |
