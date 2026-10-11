@@ -10,7 +10,6 @@
 
 | # | Pergunta | Por que importa |
 |---|---|---|
-| Q3 | O que é uma **"fase"**? (você usou "passar de fase") | Define a estrutura de progressão. |
 | Q4 | Existe uma **história principal** que amarra os livros (quem é o protagonista, por que está ali, qual o objetivo final)? Ou cada livro é independente? | Define narrativa, começo e fim do jogo. |
 | Q5 | **Quem faz a arte?** Opções: a IA gera pixel art por código (qualidade limitada), pacotes gratuitos no estilo (licença CC0), você ou um artista. | Sem arte não há jogo; impacta prazo e visual. |
 | Q6 | Ok com **Godot 4 + GDScript**? (ver [`tecnico.md`](tecnico.md)) | Base de todo o código. |

@@ -21,3 +21,4 @@
 | D-015 | 11/10/2026 | Um mundo único com um bioma por livro. Histórias se cruzam: desbloquear um lugar de um livro pode exigir algo de outro livro. Dimensões para livros muito ficcionais ficam como possibilidade (Q2) | Dono |
 | D-016 | 11/10/2026 | Dimensões confirmadas: livros muito diferentes da vida real (ex.: Harry Potter) ficam numa dimensão própria; os demais viram bioma no mundo principal (Q2b) | Dono |
 | D-017 | 11/10/2026 | Viagem às dimensões por um portal fixo no mundo principal; para entrar é preciso um item tipo chave, conseguido cumprindo outras missões (Q2c) | Dono |
+| D-018 | 11/10/2026 | Sem fases formais. Progressão por desbloqueio: áreas e missões; desafios (pergunta, puzzle, boss) bloqueiam caminhos; conteúdo de cada bioma segue a ordem da história do livro; concluir um livro completa seu bioma/dimensão (Q3) | Dono pediu a mistura das sugestões da IA |

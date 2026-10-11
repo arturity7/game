@@ -57,7 +57,7 @@ Um jogo para PC, com o estilo e os gráficos do Stardew Valley, em que o jogador
 | Diálogos | Baseados nos livros; podem ser a forma de fazer as perguntas. | ✅ |
 | Histórias paralelas | Baseadas nos livros. | ✅ existe · ❓ formato |
 | Locais do mapa | Podem ser lugares que aparecem em livros. | ✅ |
-| Fases | O dono usou a expressão "passar de fase". | ❓ o que é uma fase |
+| Progressão | Não há fases formais ("passar de fase" foi modo de dizer). Ver §5. | ✅ |
 | Missões | Existem. Cumprir missões rende itens como as chaves das dimensões. | ✅ existe · ❓ formato |
 
 Detalhes do processo em [`conteudo-dos-livros.md`](conteudo-dos-livros.md).
@@ -68,7 +68,18 @@ Detalhes do processo em [`conteudo-dos-livros.md`](conteudo-dos-livros.md).
 - O jogador precisa se manter vivo/alimentado e descansado usando casa, fazenda e animais.
 - O jogador avança resolvendo conteúdo baseado nos livros.
 
-Como essas duas partes se encaixam no dia a dia do jogador (ordem, tempo gasto, recompensas) ainda não foi definido.
+### 5.1 Progressão ✅ (D-018)
+
+Não existem fases formais. O jogo avança por **desbloqueio**:
+- **Áreas e missões:** o mundo abre aos poucos; missões rendem itens que liberam lugares (inclusive as chaves das dimensões).
+- **Desafios como bloqueio:** uma pergunta, um puzzle ou um boss pode fechar um caminho; vencê-lo libera a área seguinte.
+- **Ordem da história:** dentro de cada bioma ou dimensão, o conteúdo segue a ordem da história do livro.
+- **Marco de livro:** concluir todo o conteúdo de um livro completa o seu bioma ou dimensão.
+- **Cruzamento entre livros:** o que se conquista em um livro pode ser necessário em outro (D-015).
+
+### 5.2 Dia a dia
+
+❓ Como a vida no campo e a progressão se encaixam no dia a dia do jogador (ordem, tempo gasto, recompensas) ainda não foi definido.
 
 ## 6. Mundo e história
 
