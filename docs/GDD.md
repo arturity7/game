@@ -88,7 +88,7 @@ Não existem fases formais. O jogo avança por **desbloqueio**:
 
 ### 5.2 Dia a dia
 
-❓ Como a vida no campo e a progressão se encaixam no dia a dia do jogador (ordem, tempo gasto, recompensas) ainda não foi definido.
+✅ O jogador decide (D-019): sem pressa e sem prazo, ele divide o tempo como quiser entre cuidar da fazenda e avançar nos livros. A fome garante que a fazenda nunca seja ignorada por completo.
 
 ## 6. Mundo e história
 
