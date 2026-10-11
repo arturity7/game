@@ -54,7 +54,7 @@ Um jogo para PC, com o estilo e os gráficos do Stardew Valley, em que o jogador
 | Sistema | O que já se sabe | Status |
 |---|---|---|
 | Puzzles | Baseados nos livros. | ✅ existe · ❓ formato |
-| Batalhas | Baseadas nos livros. | ✅ existe · ❓ estilo de combate |
+| Batalhas | Baseadas nos livros. **Em tempo real**, como no Stardew e no Minecraft: o jogador enfrenta os inimigos direto no mapa. | ✅ |
 | Inimigos | Podem ser inimigos que aparecem nos livros. | ✅ |
 | Bosses | Baseados nos livros. | ✅ existe · ❓ formato |
 | Perguntas | Desafios em que, para responder, é preciso lembrar do livro ou relê-lo para passar de fase. | ✅ |

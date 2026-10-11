@@ -16,7 +16,6 @@
 | # | Pergunta |
 |---|---|
 | Q4b | Qual é a **missão/objetivo final** do jogo? (decidir depois da análise dos primeiros livros) |
-| Q11 | **Combate:** em tempo real (como no Stardew) ou por turnos? |
 | Q12 | **Perguntas dos livros:** errar tem consequência? Quantas tentativas? Formato (múltipla escolha, digitar a resposta, escolher um item)? |
 | Q13 | Quais são as **"outras coisas"** da casa e da fazenda? (cozinhar, pescar, ferramentas, loja, dinheiro…) |
 | Q14 | Vai ter **calendário e estações** como no Stardew? (dia e noite já existem) |

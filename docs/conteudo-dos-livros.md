@@ -23,8 +23,8 @@
 | Pergunta / diálogo-desafio | A resposta depende de algo que acontece ou é dito no livro | ❓ tentativas, punição por erro, formato (múltipla escolha, digitar, escolher item…) |
 | Diálogo | Conversa com personagem ligada ao livro | ❓ personagens do livro viram NPCs? |
 | Puzzle | Enigma montado a partir de algo do livro | ❓ formato |
-| Inimigo | Criatura ou antagonista que existe no livro | ❓ depende do estilo de combate |
-| Boss | Antagonista marcante do livro | ❓ depende do estilo de combate |
+| Inimigo | Criatura ou antagonista que existe no livro | Combate em tempo real (D-027) |
+| Boss | Antagonista marcante do livro | Combate em tempo real (D-027) |
 | Local do mapa | Lugar descrito no livro vira área do jogo | ❓ como os locais de livros diferentes se conectam |
 | História paralela | Linha de história baseada em trama do livro | ❓ formato (missões, cadeia de diálogos…) |
 
