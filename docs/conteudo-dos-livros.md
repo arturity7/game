@@ -20,7 +20,7 @@
 
 | Tipo | O que significa "vir do livro" | Regras de jogo |
 |---|---|---|
-| Pergunta / diálogo-desafio | A resposta depende de algo que acontece ou é dito no livro | ✅ Formatos (D-028): **múltipla escolha** e **escolher/entregar o item certo** (ex.: "traga o objeto que o personagem X perdeu"). **Nunca digitar a resposta.** ❓ tentativas e consequência de errar |
+| Pergunta / diálogo-desafio | A resposta depende de algo que acontece ou é dito no livro | ✅ Formatos (D-028): **múltipla escolha** e **escolher/entregar o item certo** (ex.: "traga o objeto que o personagem X perdeu"). **Nunca digitar a resposta.** Errar: ver §2.1 |
 | Diálogo | Conversa com personagem ligada ao livro | ❓ personagens do livro viram NPCs? |
 | Puzzle | Enigma montado a partir de algo do livro | ❓ formato |
 | Inimigo | Criatura ou antagonista que existe no livro | Combate em tempo real (D-027) |
@@ -37,7 +37,18 @@
 
 ❓ Proporção entre os dois níveis e se a releitura é sempre opcional ou às vezes obrigatória.
 
-## 2.1 Ligações entre livros ✅
+## 2.1 Errar uma pergunta ✅ (D-029)
+
+A consequência depende do peso do desafio:
+
+| Tipo de desafio | Ao errar |
+|---|---|
+| Pergunta simples | **Sem punição.** Tenta de novo. |
+| Pergunta de boss ou de desafio importante | **Punição leve:** perde um pouco de vida, **ou** o desafio só reabre no dia seguinte (dando tempo de reler o livro). |
+
+Ao criar cada pergunta, a IA registra o tipo dela e qual das punições leves se aplica.
+
+## 2.2 Ligações entre livros ✅
 
 Os livros não ficam isolados (D-015): cada livro tem seu bioma, mas desbloquear um lugar de um livro pode exigir algo vindo de outro livro. Por isso, toda ficha lista **possíveis ligações com outros livros** (personagens, objetos, temas ou lugares que conversam entre si), e o mapa de dependências entre livros fica registrado aqui conforme os livros chegam.
 

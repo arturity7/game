@@ -32,3 +32,4 @@
 | D-026 | 11/10/2026 | Dormir não é obrigatório e não tem regras rígidas; serve para a noite passar mais rápido, o que ajuda a plantação a avançar. Existe ciclo de dia e noite (Q10) | Dono |
 | D-027 | 11/10/2026 | Combate em tempo real, direto no mapa (Q11) | Dono |
 | D-028 | 11/10/2026 | Perguntas dos livros: múltipla escolha e escolher/entregar o item certo, podendo combinar formatos. Nunca exigir digitar a resposta (Q12) | Dono |
+| D-029 | 11/10/2026 | Errar pergunta: simples = sem punição; de boss ou importante = punição leve (perde um pouco de vida ou o desafio reabre no dia seguinte) (Q12b) | Dono |
