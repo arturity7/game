@@ -43,6 +43,7 @@ Um jogo para PC, com o estilo e os gráficos do Stardew Valley, em que o jogador
 | Animais | Existem. Servem para produzir comida. | ✅ existe | ❓ quais animais, cuidados, produtos |
 | Fome | Existe. É a razão de ter fazenda e animais. **Cai com o tempo**; esforço (trabalhar, lutar etc.) acelera um pouco a queda. **Com fome zerada, o jogador perde vida aos poucos**, como no Minecraft. | ✅ | ❓ como comer |
 | Vida | Existe (é o que cai quando a fome zera). | ✅ existe | ❓ outras fontes de dano e de recuperação |
+| Vida zerada | O jogador **acorda num hospital ou clínica** (na cidade) e **perde dinheiro**. Sem game over. | ✅ | quantia a definir no balanceamento |
 | Energia | **Não existe.** O jogador tem só duas barras: fome e vida. O esforço (usar ferramentas, lutar) pesa apenas acelerando um pouco a fome (D-024). | ✅ | — |
 | Dormir / descansar | **Não é obrigatório** e não tem regras rígidas (sem horário limite nem desmaio). Dormir **faz a noite passar mais rápido**, o que ajuda a plantação a avançar. | ✅ | — |
 | Pesca | Existe. | ✅ | ❓ regras |
@@ -100,7 +101,7 @@ Não existem fases formais. O jogo avança por **desbloqueio**:
 | Ritmo da história | ✅ **Sem pressa e sem prazo.** A história não empurra o jogador; ele pode crescer e melhorar a fazenda à vontade e seguir a missão final quando quiser (como no Minecraft). |
 | Motivo do protagonista | ✅ **Nenhum.** É um mundo normal e o protagonista simplesmente começa a se aventurar, como no Minecraft. |
 | Objetivo final | ❓ Existe, mas ainda não foi definido. A decidir depois da análise dos primeiros livros. |
-| Cidade | ✅ Existe, com a loja (ex.: no centro) e **moradores**, que podem ou não fazer parte da história. |
+| Cidade | ✅ Existe, com a loja (ex.: no centro), um **hospital/clínica** e **moradores**, que podem ou não fazer parte da história. |
 | Personagens dos livros na cidade | ✅ Podem aparecer na cidade e **ter um papel** ali. |
 | Amizade / relacionamentos | ✅ **Não existe** sistema de amizade (nada de corações). Moradores servem para **conversar e vender**; no máximo, uma conversa dá uma **pista** (ex.: como achar a chave de um portal). |
 | Dia e noite | ✅ Existem. A plantação avança com a passagem do tempo; dormir acelera a noite. |

@@ -21,7 +21,6 @@
 
 | # | Pergunta |
 |---|---|
-| Q21 | Morte / game over: existe? O que acontece? |
 | Q22 | Single-player só, ou multiplayer? |
 | Q23 | Música e efeitos sonoros: quem faz / de onde vêm? |
 | Q24 | Duração esperada do jogo e quantos livros no total? |

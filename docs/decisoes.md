@@ -40,3 +40,4 @@
 | D-034 | 11/10/2026 | Jogo inteiro em português; livros também em português (Q17) | Dono |
 | D-035 | 11/10/2026 | A IA cria o conteúdo de cada livro direto, sem aprovação prévia; o dono descobre jogando, sem spoilers no chat nem nos commits (Q18) | Dono |
 | D-036 | 11/10/2026 | Controles: teclado e mouse (WASD para andar, mouse para ferramentas e ataque) (Q19) | Dono |
+| D-037 | 11/10/2026 | Vida zerada: acorda num hospital ou clínica e perde dinheiro (Q21) | Dono |
