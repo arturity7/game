@@ -39,3 +39,4 @@
 | D-033 | 11/10/2026 | Existe uma cidade com moradores (que podem ou não fazer parte da história); personagens dos livros podem aparecer nela com um papel. Sem sistema de amizade: NPCs servem para conversar e vender e, no máximo, dar pistas (ex.: como achar a chave de um portal) (Q15) | Dono |
 | D-034 | 11/10/2026 | Jogo inteiro em português; livros também em português (Q17) | Dono |
 | D-035 | 11/10/2026 | A IA cria o conteúdo de cada livro direto, sem aprovação prévia; o dono descobre jogando, sem spoilers no chat nem nos commits (Q18) | Dono |
+| D-036 | 11/10/2026 | Controles: teclado e mouse (WASD para andar, mouse para ferramentas e ataque) (Q19) | Dono |

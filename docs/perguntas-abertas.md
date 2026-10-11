@@ -21,7 +21,6 @@
 
 | # | Pergunta |
 |---|---|
-| Q19 | Controles: teclado e mouse, controle (gamepad), ou os dois? |
 | Q21 | Morte / game over: existe? O que acontece? |
 | Q22 | Single-player só, ou multiplayer? |
 | Q23 | Música e efeitos sonoros: quem faz / de onde vêm? |
