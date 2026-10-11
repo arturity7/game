@@ -42,3 +42,4 @@
 | D-036 | 11/10/2026 | Controles: teclado e mouse (WASD para andar, mouse para ferramentas e ataque) (Q19) | Dono |
 | D-037 | 11/10/2026 | Vida zerada: acorda num hospital ou clínica e perde dinheiro (Q21) | Dono |
 | D-038 | 11/10/2026 | Single-player por enquanto; multiplayer não descartado no futuro (Q22) | Dono |
+| D-039 | 11/10/2026 | Música e sons a cargo da IA: recursos gratuitos de sites para jogos + efeitos simples gerados por código (Q23) | Dono → IA |

@@ -95,6 +95,8 @@ Delegada à IA pelo dono (D-021). Abordagem:
 3. **Consistência:** paleta de cores única definida no início, tiles de 16×16, personagens em 16×32.
 4. **Provisório primeiro:** arte simples para prototipar; refinada depois.
 
+**Som e música** (D-039): mesma abordagem. Músicas e sons gratuitos de sites de recursos para jogos (licença conferida e creditada em `CREDITOS.md`), mais efeitos simples (passos, golpes, coleta) gerados por código.
+
 Limitação: o ambiente de trabalho da IA pode não conseguir baixar arquivos de alguns sites. Nesse caso, a IA pede ao dono para baixar o pacote ou gera tudo por código.
 
 ## 8. Decisões técnicas para depois

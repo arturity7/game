@@ -114,7 +114,7 @@ Não existem fases formais. O jogo avança por **desbloqueio**:
 | Pixel art no estilo do Stardew Valley | ✅ |
 | Arte original (não é permitido usar arte do Stardew Valley) | ✅ obrigatório por direitos autorais |
 | Quem produz a arte | ✅ **A IA**, delegado pelo dono: busca recursos nos sites que julgar melhores e gera por código o que faltar. Detalhes em `tecnico.md` §7. |
-| Música e efeitos sonoros | ❓ |
+| Música e efeitos sonoros | ✅ **A IA cuida**: músicas e sons gratuitos de sites de recursos para jogos, mais efeitos simples gerados por código. Ver `tecnico.md` §7. |
 
 ## 8. Plataforma e tecnologia
 
