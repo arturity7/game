@@ -257,7 +257,7 @@ Observações para não usar em perguntas:
 | Pão e água, vida simples, necessidades naturais | Carta a Meneceu (Epicuro) | Thoreau e Epicuro vivem do pouco; o Jardim e a cabana | Caps. 1, 11 |
 | "Riqueza é o que se pode deixar em paz"; comprar fazendas só na imaginação | De Quanta Terra (Tolstói) | O oposto de Pahom | Cap. 2 |
 | O Rum como demônio que chega como amigo; "o diabo é legião" | Cartas de um Diabo | O diabo que se disfarça de amigo | Caps. 5, 14 |
-| Ilíada, Aquiles e Pátroclo, Hércules e a hidra, Faetonte, Estige ("lago sem fundo" seria a entrada do mundo dos mortos) | Percy Jackson (a confirmar na análise) | A lenda do lago sem fundo como pista falsa para o mundo inferior | Caps. 1, 3, 6, 16 |
+| Ilíada, Aquiles e Pátroclo, Hércules e a hidra, Faetonte, Estige ("lago sem fundo" seria a entrada do mundo dos mortos) | Percy Jackson e o Ladrão de Raios | A lenda do lago sem fundo como pista falsa para o mundo inferior; a entrada verdadeira fica em Los Angeles, e o Estige é `percy_1.local.rio_estige` | Caps. 1, 3, 6, 16 |
 | O lenhador que "nunca ficou cansado"; banho no lago gelado | Goggins (a confirmar) | Resistência física | Caps. 2, 6 |
 | "Respiro a meu próprio modo"; calma; solidão | Rickson Gracie (a confirmar) | Respiração e serenidade | Desobediência civil |
 | Servir ao público com o que se tem | Seja Útil (a confirmar) | Ser útil | Woolf |
