@@ -24,7 +24,7 @@
 | 14 | O Homem Mais Rico da Babilônia | George S. Clason | AZW3 | Português | 📝 |
 | 15 | Nada Pode Me Ferir | David Goggins | AZW3 | Português | 📥 |
 | 16 | Nunca É Hora de Parar | David Goggins | EPUB | Português | 📥 |
-| 17 | Respire: uma vida em movimento | Rickson Gracie e Peter Maguire | PDF | Português | 📥 |
+| 17 | Respire: uma vida em movimento | Rickson Gracie e Peter Maguire | PDF | Português | 📝 |
 | 18 | Conforto na Escuridão: o poder do jiu-jítsu invisível | Rickson Gracie e Peter Maguire | EPUB | Português | 📝 |
 | 19 | Inabalável: princípios do jiu-jitsu aplicados à vida | Fabio Gurgel | EPUB | Português | 📥 |
 | 20 | Seja Útil: 7 ferramentas pra vida | Arnold Schwarzenegger | EPUB | Português | 📥 |

@@ -15,7 +15,7 @@ Ordem e status:
 | homem-mais-rico-da-babilonia | 5 | 5 | ✅ |
 | walden | 13 | 13 | ✅ |
 | rickson-conforto-na-escuridao | 6 | 6 | ✅ |
-| rickson-respire | 7 | 0 | |
+| rickson-respire | 7 | 7 | ✅ |
 | inabalavel | 7 | 0 | |
 | seja-util | 7 | 0 | |
 | goggins-nada-pode-me-ferir | 13 | 0 | |

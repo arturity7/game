@@ -133,3 +133,105 @@ Ganchos p/ parte 03:
 - Choque cultural nos EUA: pranchas voaram na autoestrada sobre o carro de um policial de folga; Coyote pôs a mão no ombro dele; perdeu a carta (R). **Fila na farmácia**: "Aguarde um momento, senhor" — aprendeu o valor das formalidades (R) — gancho cômico (fila na loja do jogo?).
 - **Guaraná**: Rockson escondeu, Kaulin bebeu e recolocou a garrafa; "Não minta p/ o papai" → confessou; sinceridade > castigo (R) — gancho puzzle (quem bebeu?).
 - Rockson inseguro na escola (equipamento de futebol americano sob a camiseta) (R; tom sensível leve).
+
+## Parte 05 (cap. 6 fim; cap. 7 A terra do sol nascente; cap. 8 Mudança de paradigmas início)
+- **Mark Schultz** (Utah, academia de Pedro Sauer): triângulo rápido; 2ª luta, deixou Schultz por cima ~10 min "em banho-maria" até cansar, depois estrangulou; "em wrestling seria outro resultado" (R) — mesma lição "mudar as regras".
+- UFC 1 (nov/1993, McNichols Arena, Denver): Royce 80 kg, menor de 8; sumô samoano **Teila Tuli** (~200 kg): "já assinei, vim lutar"; 3 regras reais (sem morder, olhos, virilha) (R). Rickson a Royce: "Respire. O trabalho duro acabou. Nenhum deles vai ser pior que treinar comigo" (R); Hélio correndo ao lado gritando instruções: "Uma vez general, sempre general" (R). Royce venceu Art Jimmerson, Ken Shamrock (<1 min), Gerard Gordeau (mordeu a orelha) (R). Faixas que mudavam de cor ao chegar aos EUA: "em terra de cego, quem tem olho é rei" (R).
+- **Cap. 7**: público americano vaiava luta no chão; japonês dizia "Ohhh" "Ahhh" como no tênis (R). Shooto ofereceu 3 mil dólares; Kim negociou **50 mil + 50 mil** (R). Hélio recusou ser corner; Royler enfrentou Rorion p/ ajudar (R). Rickson como **ronin**. UFC 3: Kimo (tatuagem de cruz); Royce puxou o rabo de cavalo e venceu mas não voltou (R). **Bushido**: retidão, coragem, compaixão, respeito, honestidade, honra, lealdade (lista deste livro) (R).
+- Solidão do treino; **dunas de Point Mugu** "só com o carro de testemunha" (R). **Cabana de Yori Nakamura em Karuizawa, perto de Nagano** (R). Entalhar galho / **cortar bambu com faca**; gravetos iam p/ a pilha da fogueira final (R). Rio congelante com snorkel: choque, dor, "pronto p/ morrer"; controlando a respiração o frio some e a dor fica boa; sai quente, sem arrepio (R). **Fogueira final**: não alimentou o fogo, olhou os 30 min, viu a vida passar, rezou, livrou-se de dúvidas (R).
+- Coletiva: "Onde você esteve?" — "nas montanhas, conectar com o espírito samurai"; estratégia: "impossível dizer" (R). Vale Tudo Japan: luvas, rounds de 20 min, 8 lutadores, 3 lutas/noite (R). Cochilo; "dia perfeito p/ morrer"; **manto imaginário** que protege de emoções externas (R) — gancho: "visualizar um manto" (lição).
+- "Se você está desconfortável, está perdendo." Lema dos atiradores "um tiro, uma morte" (R).
+- **Lutas da noite** (Arena p/ 50 mil): **Yoshinori Nishi** (judoca, parecia ler manual; andou "como quem passeia no parque", clinch, <3 min); **David Levicki** (1,95 m, 120 kg, wing tsun; "se pegar meu braço, não o quebre"; caíram p/ fora do ringue; joelhada na nuca); **Bud Smith** (chute frontal fraco, pegou a perna, 20 socos) — total <6 min (R). Curvou-se aos 4 lados sem sorrir: "samurais não celebram vitórias" (M/R). Agradeceu em japonês (R).
+- **Fiji, ilha Tavarua, onda "Cloudbreak"** (2 semanas de surfe) (R).
+- Anjo (7/dez/1994 — aqui "35 anos" de Pearl Harbor; Conforto diz 33 → CONFLITO, não usar): termo de responsabilidade — "esqueça os papéis; o vencedor fica com as filmagens"; luta de calça de moletom de dormir; **"se luto por dinheiro, paro quando o árbitro manda; se é por honra, paro quando você disser chega"** (R); dedo como anzol na bochecha; National Geographic "Fight Science": **2.600 Newton** no atlas (R). Anjo voltou com flores, **elmo samurai** e carta (R). Comunicado à imprensa (R).
+- **Cap. 8**: Rorion e Royce ficaram com o dinheiro prometido do treino (UFC 1 e 2) (R). Pediu **1 milhão de dólares** ao UFC (R).
+- Campeão que só confia em habilidades estagna; **Federer** reinventou-se batendo mais perto do chão; Senna nunca satisfeito (R).
+- **Última derrota: aos 14 anos, faixa laranja** — estrangulado por um menino forte; revanche venceu só por decisão; 3ª vez (faixas verdes) aguentou a chave e estrangulou (R) — gancho: rival de infância (3 encontros).
+- Desafio: alunos em fila, quem durar 3 min vence; ele só podia usar **chave de braço com o braço esquerdo**; "gosto da derrota na boca" (R) — conquista "com restrição" (já no Conforto).
+- Treinar só o que sabe contra quem vence = estagnar. Lutar = arte + ciência; não basta decorar **Sun Tzu ou Miyamoto Musashi** (R). "No ringue nunca penso, sinto"; sentia o **cheiro do medo** (R).
+- Ronda Rousey (xadrez × damas; perdeu o foco com a fama) — opinião sobre pessoa real (não usar). Royce × **Wallid Ismail** (Wallid acordava no escuro, corria na praia; ficou 5 min roxo num triângulo sem bater) (R). Treinador que humilha ("não seja maricas") = errado (R).
+- (SENSÍVEL — Rockson: furtos, "me bata em vez de falar" — não usar.)
+
+Ganchos p/ parte 05:
+- Ritual do campo de treino (cortar bambu, gravetos p/ a pilha, rio gelado, fogueira final de 30 min sem alimentar).
+- "Por dinheiro × por honra" (regra de parar a luta).
+- Não celebrar vitória (curvar-se aos 4 lados) — conquista/gesto.
+- Rival de infância (3 encontros).
+
+## Parte 06 (cap. 8 fim; cap. 9 Devastação início)
+- Japão: atenção aos detalhes (cercas, jardins, trigo → macarrão); espadas samurais antigas entre as melhores lâminas (R).
+- **2º Vale Tudo Japan (1995)**: Yamamoto agarrava as cordas, guilhotina usando a corda; 1º a passar de 1 round; no 3º R ficou no centro e esperou ele vir (R) — lição "dono do centro". **Kimura**: queda de uma perna; R aproveitou a energia do adversário p/ girar no ar e cair de pé (R) — gancho puzzle "usar a força do outro". **Yūki Nakai** (70 kg): cego de um olho na 1ª luta e mesmo assim venceu 2 lutas; R decidiu NÃO socar um guerreiro ferido, fez luta técnica de 5 min — "verdadeira força nem sempre é demonstrada pela vitória"; "o samurai moderno daquela noite" (R). → gancho escolha moral: vencer sem machucar o adversário ferido (pessoa real viva: só como lição).
+- Cada vitória dobrava o preço; Royler venceu Asahi e R ajudou o perdedor a levantar (R) — gesto.
+- Mark Kerr × Fábio Gurgel (vídeo): R treinou na **garagem** c/ alguém 35 kg mais leve por baixo; erro = **costas retas sem criar ângulos**; 40 min de tatame e "teria uma chance que não existia ontem" (R). → puzzle "criar ângulo" sob adversário pesado.
+- Pride: regras p/ servir aos lutadores, não aos fãs; árbitro não pode levantar luta no chão sem critério (R).
+- Treino: bicicleta pela orla até Santa Mônica (R).
+- **Estatueta de elefante na areia** (praia Will Rogers State): cavou algo branco; levou p/ casa; construiu **casinha com chão de madeira e telhado de folhas de palmeira** (R). "Não acredito em sorte ou coincidência: sinais" ; pena de falcão no jardim = bênção (R). Depois **casa nova inspirada nos templos de Kyoto, madeira de pinho vermelho**, gerânios brancos ao redor; "para pedir algo, primeiro presentear" (já tinha dado, sem saber) (R). Voltou após 1 mês: **gerânios todos ficaram vermelhos** (R). → gancho missão "achado na areia" (usar estatueta genérica de elefante da sorte; sem rito religioso detalhado).
+- (Cirurgia espiritual / macumba / galinhas — NÃO USAR: alegação médica e religião.)
+- (Yakuza: financiamento, apostas, motorista sem dedos, etimologia 8-9-3 — NÃO USAR: crime organizado.)
+- Takada 1 (11/out/1997, 1º Pride, Tokyo Dome, 47 mil): pro wrestling = coreografado × vale-tudo real; ficou no centro esperando; agarrou as cordas; <5 min (R).
+- Presente de um anfitrião: espada samurai de 350 anos; **tempurá** "uma das coisas mais gostosas" (R).
+- **Washoku** = "harmonia da comida japonesa", em torno das estações: primavera peras verdes e mexilhão; verão pimenta shishito e peixes; outono cogumelos e enguias; inverno folhas verdes e outros peixes; arroz do começo do outono é o melhor; pratos/tigelas p/ cada estação (R). → gancho receita "prato da harmonia" (combinar ingredientes de áreas diferentes; jogo sem estações — D-067).
+- **Templos com encaixes em vez de pregos**; carpinteiro tratava a madeira como viva (R). → puzzle carpintaria de encaixe (sem pregos).
+- Monge em Kyoto deu um cordão de meditação; R sem nada p/ retribuir deu a camiseta (R) — gesto troca de presentes.
+- Orlando Cani: "isso não foi um acidente" (R).
+- Vida cara nos EUA (registro, seguro, multas) (R).
+- **Takada 2**: costas machucadas 3,5 meses antes; fisioterapia (piscina, gelo, massagem); na montanha treinou só agarrado no chão, sem quedas (R). **Águia-real** (envergadura >1,80 m) sobrevoava as corridas dia sim dia não; no último dia pousou num pinheiro a ~20 m; olharam-se ~1 min; foi buscar câmera e ela sumiu — "presente só p/ mim" (R). → gancho animal raro: águia que só aparece a quem treina na montanha; foto impossível.
+- Takada mais preparado (lembrava Hugo Duarte 2ª luta); ~6 min de clinch → peito pesado; erro: tentou chave de tornozelo; chave de braço (R). Discurso: fundador = **Conde Koma (Mitsuyo Maeda)**, japonês que ensinou a família no começo do século; "trago de volta o espírito samurai… especialmente com a comida" (R). → Conde Koma = figura histórica (†1941), pode ser NPC/lenda (D-066).
+- 1999: costas, quadril cedendo — "não posso lutar para sempre" (R).
+- **"MMA é um jogo; vale-tudo é uma guerra"**; rounds de 5 min = estratégia em torno da pausa; Royce × Dan Severn (UFC 4: 16 min por baixo, triângulo) (R). Ambiente preferido: sem peso, sem tempo, sem regras; "só preciso de um erro" (R).
+- **Cap. 9 Devastação**: filhos com paixões próprias (skate, liderança/esportes, dança/música); nunca forçou as filhas a competir (R). Rejeita a visão do pai sobre mulheres na cozinha (R). "Planta a semente, nutre; vão voar quando as asas estiverem prontas; aceitar os filhos pelo que são" (R) — lição.
+- (Rockson imprudente: pulo do telhado, desafio ao segurança — NÃO USAR.)
+- Royler × Sakuraba (nov/1999): árbitro parou sem bater, contra a regra (R). (Yakuza na porta — NÃO USAR.)
+- Fãs japoneses torciam p/ R por representar o Bushido (R).
+- **Funaki** (Colosseum 2000, Tokyo Dome, 40 mil + 30 milhões na TV): entrou de quimono samurai azul-marinho, ergueu a espada, oração, lâmina na testa (R). Aos 9 min golpe quebrou a órbita do olho → **lutou cego**: ficou no chão absorvendo >30 chutes, sem tocar o olho p/ não mostrar a dor, esperando a visão voltar; voltou num olho, chute no joelho p/ ganhar distância, levantou, estrangulou; adversário nunca bateu; **R parou o estrangulamento sozinho** ("segunda chance de viver") (R). **Kakutougi**: "se perde, morre" (R). → gancho mini-jogo "lutar às cegas" (tela escura, guiar-se por som/respiração).
+- (TODO o resto da parte — morte do filho, overdose, investigação, Potter's Field, luto, a plataforma na árvore como memorial — NÃO USAR. O gaio-azul já está na ficha do Conforto sem esse contexto.)
+- Lições genéricas aproveitáveis (sem o contexto): Hélio "nada é 100% positivo ou 100% negativo" (R); "não há amanhã garantido; não desperdiçar o tempo" (R); suprimir emoção = máscara forte por fora e vazia por dentro (R).
+
+Ganchos p/ parte 06:
+- Puzzle carpintaria de encaixe (templo sem pregos).
+- Missão "achado na areia": estatueta de elefante → casinha de palmeira → casinha de pinho vermelho + flores brancas → flores ficam vermelhas.
+- Águia-real da montanha (aparição rara; foto impossível).
+- Mini-jogo luta às cegas (Funaki).
+- Escolha moral: adversário ferido (vencer sem machucar).
+- Receita "harmonia" (washoku) + tempurá.
+- Conde Koma (figura histórica) — lenda da Academia.
+
+## Parte 07 (cap. 9 fim; cap. 10 Renascimento; Epílogo; Glossário) — FIM
+- Filho mais novo (vivo, não-NPC): observador, perguntava sobre **pressão, medo e coragem**; "quando percebeu que o resultado de uma luta não o definia, melhorou da noite p/ o dia"; ganhando/perdendo, segunda-feira de volta ao treino como se nada; 51 vitórias seguidas por finalização (roxa/marrom); nunca lutou por pontos (R).
+- Hélio morreu dormindo em 2009, aos 95 (R); no mesmo dia o neto venceu o Europeu e curvou-se ao mural do avô (R). Hélio velho: memória das lutas, cavalos loucos e cães sempre viva; "Ninguém pode ganhar de você!" (R).
+- **Renascimento**: 5 anos reconstruindo; 3 razões p/ ser feliz: filhos, família, jiu-jitsu (R). Casa enorme vazia: "O que estou fazendo aqui?" — sobrevivendo, não vivendo (R). **"Felicidade não é estática: trabalha-se nela enfrentando desafios"** (R). (Divórcio: vida pessoal — NÃO USAR.)
+- **Dinheiro**: promessa de não gastar mais do que ganha; "ganha 1 milhão, gasta 1,2 → nunca sai do buraco"; Malibu → Porsche dos vizinhos → escola cara → **"as coisas que você possui é que vão te possuir"**; "dinheiro traz liberdade e também dor e ansiedade; achar o equilíbrio" (R). Depois: carro barato, apê perto da praia, **gastava só 5% do que ganhava** → deu entrada numa casinha perto da praia favorita; 1 seminário pagava 6 meses (R). → LIGAÇÕES: Babilônia (gastar menos que ganha), Walden (as posses possuem o dono).
+- Pensou em barraquinha de peixe na praia / academia / última luta: "coisas que já conhecia, que preencheriam o tempo, mas não inspiravam"; mente, coração e espírito alinhados (R).
+- **Seminários**: cair de paraquedas e ganhar a atenção de quem nunca viu; poucos no começo p/ recarregar; administrar egos (fãs, desconfiados, hostis); questionário rápido; humildes e curiosos são os mais fáceis; "difícil ensinar quem faz errado há décadas; se o espírito quiser, mente e corpo seguem"; **mostrar, não dizer** (R).
+- Alabama: grandalhão camuflado entrou no tatame **de botas**, arranhou o rosto → chave sem dizer palavra (R). Paris: judoca olímpico emburrado 3 h; escolheu os 30 mais durões, deixou-o por último; chave de braço <10 s; pediu revanche: "vá se sentar" (R). **"Sempre posso farejar os tigres, não importa o quanto escondam as presas"** (R). Não responder arrogância na mesma moeda; "defini os termos do conflito" (R).
+- **"Jiu-jitsu invisível"**: só aprende quem SENTE base e conexão; muitos faziam o **upa (ponte)** errado por décadas — pequenos ajustes = arma nova (R).
+- Competição moderna: pontuar e enrolar até o tempo acabar; perdeu-se o movimento fluido (R).
+- **Autodefesa**: multidão contra você = **retirada estratégica**; aos 17, no carnaval no sul, 20 caras o perseguiram, um pedaço de madeira na cabeça (bloqueou c/ o braço); "correndo e lutando, até a multidão cansar" (R). Todo faixa azul deve saber: bloquear soco, clinch, derrubar, controlar, guarda contra socos e cabeçadas (R).
+- **Pergunta-filtro: "Por que estou fazendo isso? Vale minha energia?"** Se não → desconecta e vai dar comida aos animais do quintal ou passear com os cães (R).
+- (Encontro com a esposa atual — vida pessoal, pessoa viva: NÃO USAR.)
+- Federação: unir a comunidade; regras, padronizar técnicas e exames de faixa (R). Discurso: **"nosso sistema é desenhado para os fracos se defenderem dos fortes"**; medalhas e cambalhotas ≠ vida real; "se não sabe autodefesa, não sabe jiu-jitsu"; defender soco, mata-leão, abraço de urso (R). Egos e dinheiro atrapalharam; mudou p/ "servir às pessoas" (R).
+- Perto dos 60: hérnias, ombro, **prótese de quadril** → fisioterapia como trabalho de tempo integral; → jiu-jitsu acessível a todos, não só atletas (R). **Hélio dava aula particular antes da turma**: jiu-jitsu é mais construir confiança do que aprender a lutar; academia de hoje afasta justamente os fracos e inseguros (R).
+- Tecnologia: criança antes passava o dia na rua; hoje sozinha no quarto; coisas impossíveis numa tela: **pular num rio gelado, surfar uma onda grande, andar na chuva** (R). (Citação de pessoa viva sobre redes sociais — NÃO USAR.)
+- **Treino cooperativo**: o parceiro está ali p/ ajudar, não lutar; base, tempo, distribuição de peso, conexão (R). → mini-jogo cooperativo.
+- **Triângulo do jiu-jitsu Gracie**: empurro uma bola → rola; empurro uma pirâmide → fica; arremesso a pirâmide → cai sempre sobre a base; com base e conexão o oponente "me segue como o rabo de um cometa" (R). → PUZZLE bola × pirâmide.
+- **Reumanizar**: respirar, conectar-se fisicamente, engatar, destacar, desengatar — confiar nos sentidos mais que nos pensamentos (R). Sentir a energia de um lugar cheio (R).
+- **Gato Ruivo** (Palos Verdes): fez amizade c/ esquilos, guaxinins, corvos, gaios-azuis; inimigo: gato feroz que caçava os passarinhos; mangueira não adiantava (gato esperto); inverno chuvoso: esposa pôs a **caixa de transporte do cachorro** como abrigo; gato com **pata ferida (briga c/ guaxinim)** → veterinário → **buraco na porta da garagem** p/ se recuperar dentro; curado, parou de atacar os passarinhos; virou melhor amigo; nome **Ruivo** (R). → MISSÃO de animal na fazenda.
+- **Ichi-go ichi-e** = "uma única vez na vida" (encontro, refeição, dia de surfe); hoje pararia o carro e perderia o voo p/ ouvir a filha (R).
+- Japão: pais levam bebês p/ ele pôr a mão na cabeça (R). Jornalista: **"Como lutaria contra um urso polar?"** — "não tenho estratégia… mas no fim teria um ótimo casaco, muita carne e um colar de dentes" (R) → fala engraçada do Mestre.
+- Programa de TV: médico aperta um ponto do pé; aguentar 30 s; ninguém tinha vencido; rotina de respiração → modo luta; "você é meu adversário"; venceu sem um ruído; mal andou até o elevador (R). → mini-jogo respiração/resistência (opcional).
+- "Hoje sou 5% do lutador que fui; o poder invisível transcende o físico" (R). Jiu-jitsu "me fez mais forte p/ perdoar e mais confiante p/ lutar pelo que acredito" (R).
+- **Epílogo**: irmão mais velho ainda age como se ele tivesse 5 anos e pudesse enganá-lo p/ **polir a fivela do cinto e os sapatos** (R). Hélio andava a cavalo ao lado dos trilhos do trem c/ um bebê a tiracolo; Teresópolis (R).
+- 2017, seminário em Las Vegas: surpresa, entregaram a **faixa vermelha**; recusou: tradição exige 40 anos de faixa preta — **"não quero ser exceção, quero ser como o resto"**; guardou no **cofre** até os 65; chorou (R). "Faixas pretas a serviço dos mais fracos" (R). Não sabe contar as lutas: "o número não faz diferença" (R).
+- **Glossário** (bom p/ perguntas): 7 faixas = branca, azul, roxa, marrom, preta, coral, vermelha; americana; baiana (double leg); barra/chave de braço; base = equilíbrio; bater = desistir; ganchos; clinch; controle lateral; escape; guarda; guilhotina; **kimura** (nome do japonês Masahiko Kimura, que a usou em Hélio); manivela (proibida/antiesportiva); montada; passar a guarda; raspagem (ex. tesoura); mata-leão (hadaka jime); rolamento = sparring; single leg; sprawl; suplê; triângulo (pernas); underhook; **upa = ponte** (R).
+- (Páginas finais = propaganda de outros livros: ignorar.)
+
+Ganchos p/ parte 07:
+- Puzzle "bola × pirâmide" (empurrar objetos; pirâmide sempre cai na base).
+- Missão animal: gato arisco que caça passarinhos → abrigo → pata ferida → portinha na garagem → amigo; para de caçar.
+- Faixa vermelha no cofre (item que não se equipa; humildade).
+- Mini-jogo treino cooperativo.
+- Pergunta-filtro "vale minha energia?".
+- Fala do urso polar; fivela polida (irmão mais velho trapaceiro → anônimo).
+- Seminário: farejar os tigres (escolher o oponente escondido).
+- Autodefesa: retirada estratégica de multidão (fugir correndo e lutando).
+- Ligações: Babilônia + Walden (dinheiro/posses), ichi-go ichi-e.
