@@ -18,7 +18,7 @@ Ordem e status:
 | rickson-respire | 7 | 7 | ✅ |
 | inabalavel | 7 | 7 | ✅ |
 | seja-util | 7 | 7 | ✅ |
-| goggins-nada-pode-me-ferir | 13 | 0 | |
+| goggins-nada-pode-me-ferir | 13 | 13 | ✅ |
 | goggins-nunca-e-hora-de-parar | 10 | 0 | |
 | dunkirk | 12 | 0 | |
 | maze-runner-1-correr-ou-morrer | 13 | 0 | |

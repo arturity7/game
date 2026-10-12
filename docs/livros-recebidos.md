@@ -22,7 +22,7 @@
 | 12 | Carta a Meneceu sobre a felicidade e outras cartas | Epicuro | EPUB | Português | 📝 |
 | 13 | Cartas de um Diabo a seu Aprendiz | C. S. Lewis | EPUB | Português | 📝 |
 | 14 | O Homem Mais Rico da Babilônia | George S. Clason | AZW3 | Português | 📝 |
-| 15 | Nada Pode Me Ferir | David Goggins | AZW3 | Português | 📥 |
+| 15 | Nada Pode Me Ferir | David Goggins | AZW3 | Português | 📝 |
 | 16 | Nunca É Hora de Parar | David Goggins | EPUB | Português | 📥 |
 | 17 | Respire: uma vida em movimento | Rickson Gracie e Peter Maguire | PDF | Português | 📝 |
 | 18 | Conforto na Escuridão: o poder do jiu-jítsu invisível | Rickson Gracie e Peter Maguire | EPUB | Português | 📝 |
