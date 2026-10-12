@@ -10,7 +10,7 @@
 |---|---|---|---|---|---|
 | 1 | Dinheiro Sujo (Jack Reacher #1) | Lee Child | EPUB | Português | 📝 |
 | 2 | Acerto de Contas (Jack Reacher #7) | Lee Child | EPUB | Português | 📝 |
-| 3 | Bad Luck and Trouble (Jack Reacher #11) | Lee Child | EPUB | Inglês | 📥 |
+| 3 | Bad Luck and Trouble (Jack Reacher #11) | Lee Child | EPUB | Inglês | 📝 |
 | 4 | Make Me (Jack Reacher #20) | Lee Child | FB2 | Inglês | 📥 |
 | 5 | Maze Runner: Correr ou Morrer (vol. 1) | James Dashner | EPUB | Português | 📝 |
 | 6 | Maze Runner: Prova de Fogo (vol. 2) | James Dashner | PDF | Português | 📝 |
