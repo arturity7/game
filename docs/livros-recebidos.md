@@ -18,7 +18,7 @@
 | 8 | Percy Jackson e os Olimpianos (box com 5 livros: O Ladrão de Raios, O Mar de Monstros, A Maldição do Titã, A Batalha do Labirinto, O Último Olimpiano) | Rick Riordan | EPUB | Português | 📥 |
 | 9 | Dunkirk | Joshua Levine | PDF | Inglês | 📥 |
 | 10 | Walden, ou a Vida nos Bosques | Henry David Thoreau | EPUB | Português | 📥 |
-| 11 | De Quanta Terra Precisa um Homem? e outras histórias | Liev Tolstói | EPUB | Português | 📥 |
+| 11 | De Quanta Terra Precisa um Homem? e outras histórias | Liev Tolstói | EPUB | Português | 📝 |
 | 12 | Carta a Meneceu sobre a felicidade e outras cartas | Epicuro | EPUB | Português | 📥 |
 | 13 | Cartas de um Diabo a seu Aprendiz | C. S. Lewis | EPUB | Português | 📥 |
 | 14 | O Homem Mais Rico da Babilônia | George S. Clason | AZW3 | Português | 📥 |
