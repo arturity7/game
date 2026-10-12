@@ -67,7 +67,7 @@ Fluxo: preparar o solo com enxada → plantar semente → regar todo dia (chuva 
 - Em **tempo real**, visto de cima, com armas corpo a corpo (espadas, adagas, porretes) e estilingue.
 - Principal área de combate: as minas, com andares e monstros que mudam por profundidade.
 
-**Nosso jogo:** ✅ batalhas e bosses existem, **em tempo real** como no Stardew. ❓ armas.
+**Nosso jogo:** ✅ batalhas e bosses existem, **em tempo real** como no Stardew. Armas: espada e arco. Sem armadura e sem magia para o jogador.
 
 ## 8. Diálogos e relacionamentos
 

@@ -62,3 +62,4 @@
 | D-056 | 11/10/2026 | Pesca simples, como no Minecraft: jogar a linha, esperar e puxar na hora certa (Q33) | Dono |
 | D-057 | 11/10/2026 | Construção por receitas pré-definidas com custo de material (estilo Minecraft), sem construção livre bloco a bloco. Casa ampliável com paredes e móveis, quase como o modo construção do The Sims 4. Construíveis: cercados, lagos, galinheiro, celeiro, baús, caminhos, cercas, pontes, fogão/fogueira, paredes, móveis (Q34, Q35) | Dono |
 | D-058 | 11/10/2026 | Poucas lojas (nem uma, nem muitas) vendendo sementes, animais, comida, materiais, ferramentas e equipamentos. Proposta: Mercado + Ferreiro, além do hospital (Q36) | Dono (divisão proposta pela IA) |
+| D-059 | 11/10/2026 | Armas: espada e arco. Sem armadura por enquanto. Jogador sem magia (protagonista humano); inimigos de outras dimensões podem ter magia (Q37) | Dono |

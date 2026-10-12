@@ -12,7 +12,6 @@
 | # | Pergunta |
 |---|---|
 | Q4b | Qual é a **missão/objetivo final** do jogo? (decidir depois da análise dos primeiros livros) |
-| Q37 | **Equipamentos:** tipos de arma (espada, arco, magia…)? Tem armadura? |
 | Q38 | **Missões:** de onde vêm (moradores, quadro de avisos, personagens dos livros)? |
 | Q39 | **Puzzles, bosses e histórias paralelas:** formato definido por você ou a IA decide livro a livro? |
 | Q40 | **Mineração e outras atividades do Stardew** (cavernas, minérios, artesanato de máquinas): entram? |
