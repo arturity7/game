@@ -22,11 +22,11 @@
 |---|---|---|
 | Pergunta / diálogo-desafio | A resposta depende de algo que acontece ou é dito no livro | ✅ Formatos (D-028): **múltipla escolha** e **escolher/entregar o item certo** (ex.: "traga o objeto que o personagem X perdeu"). **Nunca digitar a resposta.** Errar: ver §2.1 |
 | Diálogo | Conversa com personagem ligada ao livro | ✅ Personagens dos livros podem morar ou aparecer na cidade e ter um papel lá (D-033). Conversas podem dar **pistas** (ex.: onde achar a chave de um portal). Sem sistema de amizade. |
-| Puzzle | Enigma montado a partir de algo do livro | ❓ formato |
+| Puzzle | Enigma montado a partir de algo do livro | IA decide o formato livro a livro, conforme a história (D-061) |
 | Inimigo | Criatura ou antagonista que existe no livro | Combate em tempo real (D-027) |
 | Boss | Antagonista marcante do livro | Combate em tempo real (D-027) |
 | Local do mapa | Lugar descrito no livro vira área do jogo | ❓ como os locais de livros diferentes se conectam |
-| História paralela | Linha de história baseada em trama do livro | ❓ formato (missões, cadeia de diálogos…) |
+| História paralela | Linha de história baseada em trama do livro | IA decide o formato livro a livro, conforme a história (D-061) |
 
 ### Dois níveis de dificuldade nas perguntas (a partir do que o dono descreveu)
 

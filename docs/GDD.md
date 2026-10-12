@@ -61,13 +61,13 @@ Um jogo para PC, com o estilo e os gráficos do Stardew Valley, em que o jogador
 
 | Sistema | O que já se sabe | Status |
 |---|---|---|
-| Puzzles | Baseados nos livros. | ✅ existe · ❓ formato |
+| Puzzles | Baseados nos livros. Formato decidido pela IA livro a livro (D-061). | ✅ |
 | Batalhas | Baseadas nos livros. **Em tempo real**, como no Stardew e no Minecraft: o jogador enfrenta os inimigos direto no mapa. | ✅ |
 | Inimigos | Podem ser inimigos que aparecem nos livros. | ✅ |
-| Bosses | Baseados nos livros. | ✅ existe · ❓ formato |
+| Bosses | Baseados nos livros. Formato decidido pela IA livro a livro (D-061). | ✅ |
 | Perguntas | Desafios em que, para responder, é preciso lembrar do livro ou relê-lo. Formatos: múltipla escolha e entregar o item certo; nunca digitar. Errar: pergunta simples não pune; pergunta de boss ou importante tem punição leve (perde um pouco de vida ou reabre no dia seguinte). Dica: perguntas de memória não têm; perguntas de detalhe têm dica opcional com o capítulo. | ✅ |
 | Diálogos | Baseados nos livros; podem ser a forma de fazer as perguntas. | ✅ |
-| Histórias paralelas | Baseadas nos livros. | ✅ existe · ❓ formato |
+| Histórias paralelas | Baseadas nos livros. Formato decidido pela IA livro a livro (D-061). | ✅ |
 | Locais do mapa | Podem ser lugares que aparecem em livros. | ✅ |
 | Progressão | Não há fases formais ("passar de fase" foi modo de dizer). Ver §5. | ✅ |
 | Missões | Cumprir missões rende itens como as chaves das dimensões. Vêm de **várias fontes**: moradores da cidade, quadro de avisos, personagens dos livros. Um **diário** reúne as missões ativas. | ✅ |

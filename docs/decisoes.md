@@ -64,3 +64,4 @@
 | D-058 | 11/10/2026 | Poucas lojas (nem uma, nem muitas) vendendo sementes, animais, comida, materiais, ferramentas e equipamentos. Proposta: Mercado + Ferreiro, além do hospital (Q36) | Dono (divisão proposta pela IA) |
 | D-059 | 11/10/2026 | Armas: espada e arco. Sem armadura por enquanto. Jogador sem magia (protagonista humano); inimigos de outras dimensões podem ter magia (Q37) | Dono |
 | D-060 | 11/10/2026 | Missões vêm de moradores, quadro de avisos e personagens dos livros; um diário reúne as missões ativas (Q38) | Dono |
+| D-061 | 11/10/2026 | Formato de puzzles, bosses e histórias paralelas decidido pela IA livro a livro, conforme cada história (Q39) | Dono → IA |
