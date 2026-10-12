@@ -82,7 +82,7 @@ Fluxo: preparar o solo com enxada → plantar semente → regar todo dia (chuva 
 
 Pesca, mineração, culinária, artesanato, lojas e dinheiro, missões do quadro de avisos, coleções (museu, centro comunitário), habilidades com níveis, casamento, multiplayer.
 
-**Nosso jogo:** ✅ pesca, corte de árvores para construir (cercados, melhorias da fazenda), loja com dinheiro (vender produtos, comprar equipamentos). ❓ os demais.
+**Nosso jogo:** ✅ pesca, corte de árvores para construir (cercados, melhorias da fazenda), loja com dinheiro (vender produtos, comprar equipamentos), culinária, mineração (minérios para vender) e máquinas compradas que automatizam a fazenda. ✅ **Sem** amizade, casamento ou fabricação de máquinas.
 
 ---
 

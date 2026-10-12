@@ -12,7 +12,6 @@
 | # | Pergunta |
 |---|---|
 | Q4b | Qual é a **missão/objetivo final** do jogo? (decidir depois da análise dos primeiros livros) |
-| Q40 | **Mineração e outras atividades do Stardew** (cavernas, minérios, artesanato de máquinas): entram? |
 
 ## 🟢 Podem esperar
 
