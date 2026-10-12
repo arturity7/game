@@ -19,7 +19,7 @@
 | 9 | Dunkirk | Joshua Levine | PDF | Inglês | 📥 |
 | 10 | Walden, ou a Vida nos Bosques | Henry David Thoreau | EPUB | Português | 📥 |
 | 11 | De Quanta Terra Precisa um Homem? e outras histórias | Liev Tolstói | EPUB | Português | 📝 |
-| 12 | Carta a Meneceu sobre a felicidade e outras cartas | Epicuro | EPUB | Português | 📥 |
+| 12 | Carta a Meneceu sobre a felicidade e outras cartas | Epicuro | EPUB | Português | 📝 |
 | 13 | Cartas de um Diabo a seu Aprendiz | C. S. Lewis | EPUB | Português | 📥 |
 | 14 | O Homem Mais Rico da Babilônia | George S. Clason | AZW3 | Português | 📥 |
 | 15 | Nada Pode Me Ferir | David Goggins | AZW3 | Português | 📥 |
