@@ -18,6 +18,7 @@ Jogo para PC, em pixel art no estilo visual e de jogabilidade do Stardew Valley.
 | [`docs/referencia-stardew.md`](docs/referencia-stardew.md) | Estudo de como o Stardew Valley funciona por dentro |
 | [`docs/tecnico.md`](docs/tecnico.md) | Proposta de engine, linguagem e arquitetura |
 | [`docs/nomes.md`](docs/nomes.md) | Sugestões de nome |
+| [`docs/livros-recebidos.md`](docs/livros-recebidos.md) | **Lista dos livros já enviados e status de cada um (sem spoilers)** |
 | [`docs/perguntas-abertas.md`](docs/perguntas-abertas.md) | Decisões que dependem do dono do projeto |
 | [`docs/decisoes.md`](docs/decisoes.md) | Registro de tudo que já foi decidido |
 | [`livros/_TEMPLATE.md`](livros/_TEMPLATE.md) | Modelo de ficha de análise de cada livro |

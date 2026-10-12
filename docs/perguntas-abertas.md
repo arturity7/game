@@ -15,7 +15,7 @@ Nenhuma.
 
 | # | Pergunta |
 |---|---|
-| Q4b | Qual é a **missão/objetivo final** do jogo? (decidir depois da análise dos primeiros livros) |
+| Q4b | Qual é a **missão/objetivo final** do jogo? (decidir depois da análise do lote 1) |
 
 ## 🟢 Podem esperar
 
