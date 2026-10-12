@@ -17,5 +17,4 @@
 
 | # | Pergunta |
 |---|---|
-| Q42 | Moradores têm rotina (andam pela cidade em horários diferentes) ou ficam parados? |
 | Q43 | Como os biomas se ligam no mapa (caminhos, estradas a partir da cidade…): a IA decide? |

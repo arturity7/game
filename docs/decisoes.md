@@ -67,3 +67,4 @@
 | D-061 | 11/10/2026 | Formato de puzzles, bosses e histórias paralelas decidido pela IA livro a livro, conforme cada história (Q39) | Dono → IA |
 | D-062 | 11/10/2026 | Mineração com picareta; minérios servem principalmente para vender. Máquinas são compradas e servem para melhorar a fazenda e automatizar processos (Q40) | Dono |
 | D-063 | 11/10/2026 | Proporção entre perguntas de memória e de releitura decidida pela IA em cada livro (Q41) | Dono → IA |
+| D-064 | 11/10/2026 | Moradores com rotina e lojas com horário de funcionamento, como no Stardew (Q42) | Dono |

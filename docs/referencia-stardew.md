@@ -76,7 +76,7 @@ Fluxo: preparar o solo com enxada → plantar semente → regar todo dia (chuva 
 - Eventos (cenas) disparam ao entrar em certos lugares com certo nível de amizade.
 - NPCs têm rotina por horário e dia da semana.
 
-**Nosso jogo:** ✅ diálogos existem e podem ser desafios ou pistas. ✅ cidade com moradores, incluindo personagens dos livros. ✅ **sem** amizade/corações nem casamento. ❓ rotinas dos NPCs.
+**Nosso jogo:** ✅ diálogos existem e podem ser desafios ou pistas. ✅ cidade com moradores, incluindo personagens dos livros. ✅ **sem** amizade/corações nem casamento. ✅ moradores com rotina e lojas com horário, como no Stardew.
 
 ## 9. Outros sistemas do Stardew
 

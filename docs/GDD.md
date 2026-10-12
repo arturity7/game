@@ -108,7 +108,7 @@ Não existem fases formais. O jogo avança por **desbloqueio**:
 | Motivo do protagonista | ✅ **Nenhum.** É um mundo normal e o protagonista simplesmente começa a se aventurar, como no Minecraft. |
 | Objetivo final | ❓ Existe, mas ainda não foi definido. A decidir depois da análise dos primeiros livros. |
 | Depois do objetivo final | ✅ **O jogo continua**, como no Minecraft depois do dragão: fazenda, exploração e livros novos seguem normalmente. O jogo **nunca tem um fim definitivo**, porque sempre vão entrar livros novos. |
-| Cidade | ✅ Existe, com a loja (ex.: no centro), um **hospital/clínica** e **moradores**, que podem ou não fazer parte da história. |
+| Cidade | ✅ Existe, com lojas (ex.: no centro), um **hospital/clínica** e **moradores**, que podem ou não fazer parte da história. Moradores têm **rotina** como no Stardew: andam pela cidade e as lojas abrem e fecham em horários certos. |
 | Personagens dos livros na cidade | ✅ Podem aparecer na cidade e **ter um papel** ali. |
 | Amizade / relacionamentos | ✅ **Não existe** sistema de amizade (nada de corações). Moradores servem para **conversar e vender**; no máximo, uma conversa dá uma **pista** (ex.: como achar a chave de um portal). |
 | Dia e noite | ✅ Existem. Um dia completo dura **~15 a 20 minutos reais** (valor exato ajustado nos testes). A plantação avança com a passagem do tempo; dormir acelera a noite. |
