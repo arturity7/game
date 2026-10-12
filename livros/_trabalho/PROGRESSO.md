@@ -23,7 +23,7 @@ Ordem e status:
 | dunkirk | 12 | 12 | ✅ |
 | maze-runner-1-correr-ou-morrer | 13 | 13 | ✅ |
 | maze-runner-2-prova-de-fogo | 12 | 12 | ✅ |
-| maze-runner-3-cura-mortal | 11 | 0 | |
+| maze-runner-3-cura-mortal | 11 | 11 | ✅ |
 | reacher-dinheiro-sujo | 17 | 0 | |
 | reacher-acerto-de-contas | 16 | 0 | |
 | reacher-bad-luck-and-trouble | 12 | 0 | |
