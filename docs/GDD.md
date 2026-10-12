@@ -70,7 +70,7 @@ Um jogo para PC, com o estilo e os gráficos do Stardew Valley, em que o jogador
 | Histórias paralelas | Baseadas nos livros. | ✅ existe · ❓ formato |
 | Locais do mapa | Podem ser lugares que aparecem em livros. | ✅ |
 | Progressão | Não há fases formais ("passar de fase" foi modo de dizer). Ver §5. | ✅ |
-| Missões | Existem. Cumprir missões rende itens como as chaves das dimensões. | ✅ existe · ❓ formato |
+| Missões | Cumprir missões rende itens como as chaves das dimensões. Vêm de **várias fontes**: moradores da cidade, quadro de avisos, personagens dos livros. Um **diário** reúne as missões ativas. | ✅ |
 
 Detalhes do processo em [`conteudo-dos-livros.md`](conteudo-dos-livros.md).
 
