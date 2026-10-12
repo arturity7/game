@@ -35,7 +35,7 @@
 | **Memória** | Quem leu o livro consegue lembrar | Acontecimento central, personagem importante |
 | **Releitura** | Exige voltar ao livro | Detalhe pequeno, ordem de eventos, nome secundário |
 
-❓ Proporção entre os dois níveis e se a releitura é sempre opcional ou às vezes obrigatória.
+✅ A proporção entre os dois níveis é decidida pela IA em cada livro (D-063).
 
 ## 2.1 Errar uma pergunta ✅ (D-029)
 
