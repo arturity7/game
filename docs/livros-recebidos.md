@@ -26,7 +26,7 @@
 | 16 | Nunca É Hora de Parar | David Goggins | EPUB | Português | 📥 |
 | 17 | Respire: uma vida em movimento | Rickson Gracie e Peter Maguire | PDF | Português | 📝 |
 | 18 | Conforto na Escuridão: o poder do jiu-jítsu invisível | Rickson Gracie e Peter Maguire | EPUB | Português | 📝 |
-| 19 | Inabalável: princípios do jiu-jitsu aplicados à vida | Fabio Gurgel | EPUB | Português | 📥 |
+| 19 | Inabalável: princípios do jiu-jitsu aplicados à vida | Fabio Gurgel | EPUB | Português | 📝 |
 | 20 | Seja Útil: 7 ferramentas pra vida | Arnold Schwarzenegger | EPUB | Português | 📥 |
 
 **Total:** 20 arquivos, 24 livros (o box de Percy Jackson tem 5).

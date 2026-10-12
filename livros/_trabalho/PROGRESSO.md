@@ -16,7 +16,7 @@ Ordem e status:
 | walden | 13 | 13 | ✅ |
 | rickson-conforto-na-escuridao | 6 | 6 | ✅ |
 | rickson-respire | 7 | 7 | ✅ |
-| inabalavel | 7 | 0 | |
+| inabalavel | 7 | 7 | ✅ |
 | seja-util | 7 | 0 | |
 | goggins-nada-pode-me-ferir | 13 | 0 | |
 | goggins-nunca-e-hora-de-parar | 10 | 0 | |
