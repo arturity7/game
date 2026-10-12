@@ -25,7 +25,7 @@ Ordem e status:
 | maze-runner-2-prova-de-fogo | 12 | 12 | ✅ |
 | maze-runner-3-cura-mortal | 11 | 11 | ✅ |
 | reacher-dinheiro-sujo | 17 | 17 | ✅ |
-| reacher-acerto-de-contas | 16 | 0 | |
+| reacher-acerto-de-contas | 16 | 16 | ✅ |
 | reacher-bad-luck-and-trouble | 12 | 0 | |
 | reacher-make-me | 13 | 0 | |
 | percy-jackson-box | 48 | 0 | |
