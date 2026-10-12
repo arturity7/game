@@ -1,6 +1,6 @@
 # Leaf & Lore — Documento de Design do Jogo (GDD)
 
-> Versão 0.2 · 11/10/2026 · Status: rodada inicial de perguntas concluída
+> Versão 0.3 · 11/10/2026 · Status: duas rodadas de perguntas concluídas
 > Este documento registra **somente** o que o dono do projeto definiu. Tudo que ainda não foi decidido aparece como ❓ e tem pergunta correspondente em [`perguntas-abertas.md`](perguntas-abertas.md).
 
 ---
@@ -78,9 +78,9 @@ Detalhes do processo em [`conteudo-dos-livros.md`](conteudo-dos-livros.md).
 
 ## 5. Loop de jogo
 
-❓ **Em aberto.** O que já se sabe:
-- O jogador precisa se manter vivo/alimentado e descansado usando casa, fazenda e animais.
-- O jogador avança resolvendo conteúdo baseado nos livros.
+✅ Duas partes que o jogador alterna no próprio ritmo:
+- **Sobreviver e crescer:** manter a fome em dia com plantação, animais, pesca e culinária; vender produtos e minérios; construir e ampliar a fazenda e a casa.
+- **Avançar nos livros:** explorar biomas e dimensões, responder perguntas, resolver puzzles, cumprir missões e vencer inimigos e bosses.
 
 ### 5.1 Progressão ✅ (D-018)
 
@@ -99,7 +99,7 @@ Não existem fases formais. O jogo avança por **desbloqueio**:
 
 | Tema | Status |
 |---|---|
-| Organização dos livros | ✅ Tudo num mesmo mundo, com **um bioma por livro** |
+| Organização dos livros | ✅ Tudo num mesmo mundo, com **um bioma por livro**. O desenho do mapa e as ligações entre biomas ficam a cargo da IA (D-065). |
 | Histórias que se cruzam | ✅ Desbloquear um lugar de um livro pode exigir algo de outro livro (ex.: o lugar do livro 1 só abre com algo do livro 2) |
 | Dimensões | ✅ Livros **muito diferentes da vida real** (ex.: Harry Potter) ficam em uma **dimensão própria**, para onde o jogador viaja. Livros mais próximos da realidade viram bioma no mundo principal. A classificação de cada livro é feita na análise e registrada na ficha. |
 | Como viajar até as dimensões | ✅ Por um **portal fixo no mundo principal**. Para entrar, é preciso um item (algo como uma **chave**) conseguido cumprindo **outras missões**. **Uma chave para cada dimensão**, cada uma conquistada numa missão diferente. |

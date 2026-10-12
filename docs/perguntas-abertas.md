@@ -1,11 +1,15 @@
 # Perguntas abertas
 
 > Decisões que dependem do dono do projeto. Quando uma for respondida, ela sai daqui e vai para [`decisoes.md`](decisoes.md).
-> Rodada inicial concluída em 11/10/2026. Abaixo, a segunda rodada: detalhes dos sistemas.
+> Duas rodadas de perguntas concluídas em 11/10/2026. Novas dúvidas entram aqui conforme surgirem no desenvolvimento.
 >
 > 🔴 bloqueia o início · 🟡 importante logo · 🟢 pode esperar
 
 ---
+
+## 🔴 Bloqueiam o início
+
+Nenhuma.
 
 ## 🟡 Importantes logo
 
@@ -15,6 +19,4 @@
 
 ## 🟢 Podem esperar
 
-| # | Pergunta |
-|---|---|
-| Q43 | Como os biomas se ligam no mapa (caminhos, estradas a partir da cidade…): a IA decide? |
+Nenhuma.

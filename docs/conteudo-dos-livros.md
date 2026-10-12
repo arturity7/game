@@ -25,7 +25,7 @@
 | Puzzle | Enigma montado a partir de algo do livro | IA decide o formato livro a livro, conforme a história (D-061) |
 | Inimigo | Criatura ou antagonista que existe no livro | Combate em tempo real (D-027) |
 | Boss | Antagonista marcante do livro | Combate em tempo real (D-027) |
-| Local do mapa | Lugar descrito no livro vira área do jogo | ❓ como os locais de livros diferentes se conectam |
+| Local do mapa | Lugar descrito no livro vira área do jogo | IA decide como os biomas se ligam no mapa (D-065) |
 | História paralela | Linha de história baseada em trama do livro | IA decide o formato livro a livro, conforme a história (D-061) |
 
 ### Dois níveis de dificuldade nas perguntas (a partir do que o dono descreveu)
