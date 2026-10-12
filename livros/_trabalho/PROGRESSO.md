@@ -22,7 +22,7 @@ Ordem e status:
 | goggins-nunca-e-hora-de-parar | 10 | 10 | ✅ |
 | dunkirk | 12 | 12 | ✅ |
 | maze-runner-1-correr-ou-morrer | 13 | 13 | ✅ |
-| maze-runner-2-prova-de-fogo | 12 | 0 | |
+| maze-runner-2-prova-de-fogo | 12 | 12 | ✅ |
 | maze-runner-3-cura-mortal | 11 | 0 | |
 | reacher-dinheiro-sujo | 17 | 0 | |
 | reacher-acerto-de-contas | 16 | 0 | |
