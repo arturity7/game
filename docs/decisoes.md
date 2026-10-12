@@ -69,3 +69,5 @@
 | D-063 | 11/10/2026 | Proporção entre perguntas de memória e de releitura decidida pela IA em cada livro (Q41) | Dono → IA |
 | D-064 | 11/10/2026 | Moradores com rotina e lojas com horário de funcionamento, como no Stardew (Q42) | Dono |
 | D-065 | 11/10/2026 | Desenho do mapa e ligação entre biomas decididos pela IA conforme os livros chegam (Q43) | Dono → IA |
+| D-066 | 11/10/2026 | Pessoas reais e vivas citadas nos livros (autores e personagens de não ficção, como Rickson Gracie) não viram personagens do jogo com o nome real nem recebem falas inventadas. O conteúdo vira mestres, moradores e lugares **inspirados** nas lições do livro, com paráfrase. Perguntas factuais sobre o que o livro conta continuam valendo. Figuras históricas (ex.: Thoreau, Epicuro) podem aparecer | IA (cuidado com pessoas reais) |
+| D-067 | 11/10/2026 | Conteúdo de livro que depende de inverno (gelo, neve) vai para uma área fria permanente do bioma, já que o jogo não tem estações (ex.: no Walden, o lago de Flint congelado) | IA (D-061, D-065) |
