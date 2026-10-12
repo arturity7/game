@@ -20,7 +20,7 @@ Ordem e status:
 | seja-util | 7 | 7 | ✅ |
 | goggins-nada-pode-me-ferir | 13 | 13 | ✅ |
 | goggins-nunca-e-hora-de-parar | 10 | 10 | ✅ |
-| dunkirk | 12 | 0 | |
+| dunkirk | 12 | 12 | ✅ |
 | maze-runner-1-correr-ou-morrer | 13 | 0 | |
 | maze-runner-2-prova-de-fogo | 12 | 0 | |
 | maze-runner-3-cura-mortal | 11 | 0 | |
