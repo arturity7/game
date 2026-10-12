@@ -180,7 +180,7 @@
 | Onde fica | **Dimensão própria** |
 | Justificativa | Inferno e demônios: muito diferente da vida real |
 
-Ambiente: um Inferno de **escritórios e corredores** (poeira, cascalho, sede e irritação, como Lewis descreve), com barulho constante, a Academia de Treinamento, a Casa de Correção e um grande salão de banquete. A entrada da dimensão desce por uma **ladeira suave, sem placas**.
+Ambiente: um Inferno de **escritórios e corredores** (poeira, cascalho, sede e irritação, como Lewis descreve), com barulho constante, a Academia de Treinamento, a Casa de Correção e um grande salão de banquete. A entrada da dimensão desce por uma **ladeira suave, sem placas**. Para entrar, o portal fixo pede a chave do Inferno, que fica com o jogador depois de vencer o Diabo atrás do forno, em De Quanta Terra Precisa um Homem? (ver `_MUNDO.md` §5).
 
 ## 13. Conquistas do livro
 

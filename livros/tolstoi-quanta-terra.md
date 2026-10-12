@@ -181,6 +181,7 @@
 | Riqueza e economia | O Homem Mais Rico da Babilônia | Comprar terra com dívida × pagar-se primeiro | §2 |
 | O Diabo que tenta | Cartas de um Diabo a seu Aprendiz | Ambos mostram o Diabo agindo por trás das tentações cotidianas | §1 |
 | Correr até o limite do corpo | Goggins | Pahom não sabe parar; Goggins ensina a ir além, mas por um propósito | §9 |
+| O Diabo atrás do forno | Cartas de um Diabo a seu Aprendiz | Quem vence o Diabo fica com a chave do Inferno (`lewis_cartas.dimensao.inferno`; ver `_MUNDO.md` §5) | §1, §7 |
 
 ## 12. Bioma
 

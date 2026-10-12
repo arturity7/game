@@ -461,7 +461,7 @@ O prazo é do livro, mas o jogo não pune com perda. Se o jogador desmaia (vida 
 | Toda a série | Correr ou Morrer | Continuação direta: dormitório, besouros, Verdugos, "CRUEL é bom", Ava Paige, Grupo B | Todo o livro |
 | O quarto branco, Brenda no sonho | A Cura Mortal | Próximo volume | Caps. 64–65 |
 | A marcha de cem milhas pelo deserto | Nunca É Hora de Parar | A travessia das rochas vermelhas: trilha longa e sem sinalização | Caps. 11–49 |
-| O Cáustico, área quente | Nada Pode Me Ferir | A "travessia quente" condicional (a confirmar no `_MUNDO.md`) | Caps. 17–22 |
+| O Cáustico, área quente | Nada Pode Me Ferir | A travessia quente do deserto do sul (`goggins_nada.local.travessia_quente`; ver `_MUNDO.md` §4) | Caps. 17–22 |
 | O túnel escuro e o quarto branco: não entrar em pânico | Conforto na Escuridão | O desafio do tapete: ficar no escuro só respirando | Caps. 14, 65 |
 | Quebrar todos os bulbos até a criatura apagar | Inabalável | Não afrouxar antes do fim | Cap. 59 |
 | Jorge: passar de fininho em vez de lutar | Inabalável | Mude o jogo | Cap. 28 |

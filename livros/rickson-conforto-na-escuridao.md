@@ -212,9 +212,9 @@ Fora das perguntas: a morte do filho, a depressão, a doença de Parkinson, medi
 | Não lutar pela fama; aceitar a morte para viver | Carta a Meneceu | Medo da morte e serenidade | Caps. 6, 14 |
 | Dívida grande = desvantagem contra si mesmo | O Homem Mais Rico da Babilônia | Alavancagem financeira | Cap. 2 |
 | Respiração e a vida do mesmo autor | Respire (Rickson) | Mesma academia e mesmo Mestre no jogo | Todo o livro |
-| Ir além do limite no frio e na dor | Goggins (a confirmar) | Rio gelado, dunas | Cap. 11 |
-| Princípios do jiu-jítsu para a vida | Inabalável (a confirmar) | Mesma arte, outro professor | Todo o livro |
-| Guerreiros, guerra, Sun Tzu | Dunkirk (a confirmar) | Medo em batalha | Caps. 6, 7 |
+| Ir além do limite no frio e na dor | Nada Pode Me Ferir | A regra dos 40% (`goggins_nada.mecanica.regra_40`) no rio gelado e nas dunas | Cap. 11 |
+| Princípios do jiu-jítsu para a vida | Inabalável | Mesma arte, outro professor, na mesma Academia do Tatame (`inabalavel.trilha.virtudes`) | Todo o livro |
+| Guerreiros, guerra, Sun Tzu | Dunkirk | O medo que cresce antes da batalha (`dunkirk.licao.sirene_imaginada`) | Caps. 6, 7 |
 
 ## 12. Bioma
 

@@ -429,7 +429,7 @@ Ambiente: **O Labirinto**.
 
 Clima: nunca chove, nunca neva, nunca faz calor nem frio demais; o sol parece laranja demais. É perfeito para um jogo sem estações. Depois do Término, o céu fica cinza para sempre e as plantas começam a desbotar.
 
-Entrada: pelo portal, com a chave da dimensão (D-017, D-048). Do outro lado, o jogador desce pela **Caixa**. A missão que dá a chave fica para o `_MUNDO.md`. Os volumes 2 e 3 continuam a partir do dormitório.
+Entrada: pelo portal, com a chave da dimensão (D-017, D-048). Do outro lado, o jogador desce pela **Caixa**. A chave vem do Corredor da Montanha, no fim do treinamento da área fria (ver `_MUNDO.md` §5). Os volumes 2 e 3 continuam a partir do dormitório.
 
 ## 13. Conquistas do livro
 

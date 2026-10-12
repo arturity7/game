@@ -301,9 +301,9 @@ Proporção (D-063): cerca de 40% memória e 60% releitura.
 | Quanto mais se tem, mais se precisa (casa, carro, escola…) | Quanta terra precisa um homem? (Tolstói) | A ambição sem fim | Cap. 10 |
 | *Ichi-go ichi-e*: viver o momento único | Cartas de um Diabo | O diabo quer o homem preso ao futuro; aqui, o presente é tudo | Cap. 10 |
 | "Dia perfeito para morrer"; aceitar a morte para viver | Carta a Meneceu | Serenidade diante da morte | Cap. 7 |
-| Rio gelado, dor suportada, atravessar o rio | Goggins (a confirmar) | Ir além do limite | Caps. 4, 7, 10 |
-| Resgate de um homem ao mar | Dunkirk (a confirmar) | Barcos, pânico e coragem no mar | Cap. 1 |
-| Jiu-jítsu para a vida | Inabalável (a confirmar) | Mesma arte, outro professor | Todo o livro |
+| Rio gelado, dor suportada, atravessar o rio | Nada Pode Me Ferir | Ir além do limite: a regra dos 40% (`goggins_nada.mecanica.regra_40`) | Caps. 4, 7, 10 |
+| Resgate de um homem ao mar | Dunkirk | Tirar gente da água para o barco: o transbordo (`dunkirk.mecanica.transbordo`) | Cap. 1 |
+| Jiu-jítsu para a vida | Inabalável | Mesma arte, outro professor, na mesma Academia do Tatame (`inabalavel.trilha.virtudes`) | Todo o livro |
 
 ## 12. Bioma
 

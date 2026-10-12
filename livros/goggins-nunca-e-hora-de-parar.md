@@ -349,7 +349,7 @@ Proporção (D-063): cerca de 35% memória e 65% releitura.
 | Humildade treinada | Missões (Exercício 5) | Lavar pratos, grelhar no Mercado, varrer o salão, separar correspondência: aprender todas as partes de um negócio (liga com o "rei das latrinas") | Exercício 5 |
 | O Zelador | NPC + missão | Um zelador tímido que limpa a biblioteca. Num jornal velho, o jogador descobre que ele fez um ato de grande coragem no passado; ele continua limpando o chão | Exercício 5 |
 | Raso e fundo | Mecânica (se houver natação) | Treinar no raso sem parar no meio; só depois enfrentar a parte funda do lago | Cap. 6 |
-| A travessia das rochas vermelhas | Evento (se houver área de rochas vermelhas) | Trilha longa sem sinalização, com o mapa mostrando um triângulo que deve ficar na linha pontilhada, kit obrigatório e uma trilha estreita à beira de uma cratera | Cap. 6 |
+| A travessia das rochas vermelhas | Evento (deserto do sul) | Trilha longa sem sinalização, com o mapa mostrando um triângulo que deve ficar na linha pontilhada, kit obrigatório e uma trilha estreita à beira de uma cratera | Cap. 6 |
 | Consciência situacional | Mecânica | Em expedições: conferir onde está no mapa (percepção), olhar os pontos cegos (360°) e prever o próximo trecho (projeção). Seguir pegadas sem conferir leva para fora do caminho | Cap. 6 |
 | Inspeção pontual | Mecânica | Antes de sair com um companheiro, conferir se ele tem os itens certos (mapa, lanterna, água) | Caps. 6–7 |
 | "Eu voltei!" | Mecânica | Um desafio abandonado pode ser retomado do ponto em que parou; o mapa feito na primeira tentativa fica guardado | Cap. 6 |
@@ -410,7 +410,7 @@ Proporção (D-063): cerca de 35% memória e 65% releitura.
 | Abrir o próprio caminho na mata | Walden | A trilha de quem não segue a estrada | Cap. 2 |
 | A voz carinhosa da desculpa | Cartas de um Diabo a seu Aprendiz | As vozes que empurram para a complacência | Caps. 1, 8 |
 | "Nunca é hora de parar" | Quanta terra precisa um homem? | Contraponto: ele diz que o objetivo nunca foi ter mais, e sim despertar o melhor de si | Cap. 9 |
-| O labirinto | Maze Runner (a confirmar) | A estrada do sucesso como labirinto | Cap. 9 |
+| O labirinto | Maze Runner: Correr ou Morrer | A estrada do sucesso como labirinto; no fim do treinamento da área fria, o Corredor entrega a chave do Labirinto (`maze_runner_1.local.labirinto`; ver `_MUNDO.md` §5) | Cap. 9 |
 
 ## 12. Bioma
 
@@ -425,7 +425,7 @@ Sem bioma próprio. Acrescenta ao mundo principal:
 - **O arco do pedágio** na entrada do clube.
 - **A Base dos Bombeiros da Floresta** na montanha, com a torre de 6 m.
 - **A floresta zumbi** e a **montanha das falsas cumeeiras**.
-- **O deserto de rochas vermelhas** e o **pântano**, só se o mundo tiver essas áreas (a definir no `_MUNDO.md`).
+- **O deserto de rochas vermelhas**, no deserto do sul, e o **pântano**, em Margrave (ver `_MUNDO.md` §4).
 
 ## 13. Conquistas do livro
 
@@ -464,8 +464,8 @@ Sem bioma próprio. Acrescenta ao mundo principal:
 | `goggins_nunca.local.base_bombeiros` | Local | Montanha | Criado (ficha) |
 | `goggins_nunca.local.floresta_zumbi` | Local | Montanha | Criado (ficha) |
 | `goggins_nunca.local.montanha_falsos_picos` | Local | Montanha | Criado (ficha) |
-| `goggins_nunca.local.rochas_vermelhas` | Local (condicional) | A definir | Criado (ficha) |
-| `goggins_nunca.local.pantano` | Local (condicional) | A definir | Criado (ficha) |
+| `goggins_nunca.local.rochas_vermelhas` | Local | Deserto do sul (`_MUNDO.md` §4) | Criado (ficha) |
+| `goggins_nunca.local.pantano` | Local | Margrave (`_MUNDO.md` §4) | Criado (ficha) |
 | `goggins_nunca.trilha.exercicios_taticos` | Trilha de lições | Quadro de avisos | Criado (ficha) |
 | `goggins_nunca.trilha.sargento` | Trilha (lista diária) | Casa do Sargento | Criado (ficha) |
 | `goggins_nunca.missao.segunda_ordem` | Missão | Quadro de avisos | Criado (ficha) |
@@ -485,7 +485,7 @@ Sem bioma próprio. Acrescenta ao mundo principal:
 | `goggins_nunca.mecanica.isca` | Regra de provas | Provas longas | Criado (ficha) |
 | `goggins_nunca.mecanica.lista_que_some` | Progressão | Casa do Sargento | Criado (ficha) |
 | `goggins_nunca.mecanica.flexoes_ao_acordar` | Hábito | Casa do jogador | Criado (ficha) |
-| `goggins_nunca.mecanica.raso_e_fundo` | Mecânica (condicional) | Lago | Criado (ficha) |
+| `goggins_nunca.mecanica.raso_e_fundo` | Mecânica (condicional: Q45, natação) | Lago | Criado (ficha) |
 | `goggins_nunca.mecanica.consciencia_situacional` | Mecânica | Expedições | Criado (ficha) |
 | `goggins_nunca.mecanica.inspecao_pontual` | Mecânica | Expedições | Criado (ficha) |
 | `goggins_nunca.mecanica.eu_voltei` | Mecânica | Desafios abandonados | Criado (ficha) |
@@ -503,7 +503,7 @@ Sem bioma próprio. Acrescenta ao mundo principal:
 | `goggins_nunca.evento.sementes_luz` | Evento de fazenda | Fazenda | Criado (ficha) |
 | `goggins_nunca.evento.falsos_picos` | Evento | Montanha | Criado (ficha) |
 | `goggins_nunca.evento.fanfarrao` | Evento | Trilhas | Criado (ficha) |
-| `goggins_nunca.evento.rochas_vermelhas` | Evento (condicional) | A definir | Criado (ficha) |
+| `goggins_nunca.evento.rochas_vermelhas` | Evento | Deserto do sul | Criado (ficha) |
 | `goggins_nunca.evento.chegada_poste` | Conquista/evento | Estradas | Criado (ficha) |
 | `goggins_nunca.evento.parceiro_provocado` | Evento | Trilhas | Criado (ficha) |
 | `goggins_nunca.evento.4x4x48` | Evento | Cidade | Criado (ficha) |

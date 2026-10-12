@@ -306,7 +306,7 @@ Proporção (D-063): cerca de 40% memória e 60% releitura.
 | A prudência entre as virtudes cardeais; memento mori | Carta a Meneceu | A prudência como o maior bem; não temer a morte | Caps. 27, 35 |
 | "Aquilo não era suficiente"; leu Tolstói | Quanta terra precisa um homem? | A ambição e o limite | Caps. 13, 29 |
 | "A beleza de plantar…"; o ancião da árvore | Walden | Plantar com paciência; o feijoal | Caps. 33, 36 |
-| "Água!" no mar gelado | Goggins (a confirmar) | O mundo não é justo | Cap. 16 |
+| "Água!" no mar gelado | Nada Pode Me Ferir | O mar frio da praia de treino (`goggins_nada.local.praia_treino`): o mundo não é justo | Cap. 16 |
 
 ## 12. Bioma
 

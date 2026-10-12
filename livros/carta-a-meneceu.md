@@ -141,6 +141,7 @@ Observação: o livro traz versões conflitantes sobre local de nascimento e ano
 | "Nem toda dor deve ser evitada" | Goggins | Dor escolhida para um bem maior | Meneceu |
 | Respiração, calma, ausência de perturbação | Rickson Gracie | Tranquilidade como força | — |
 | O medo da morte e dos deuses | Cartas de um Diabo | Visões opostas sobre alma, morte e além | — |
+| As três cartas | Percy Jackson e o Ladrão de Raios | Ao terminar de levar as três, Epicuro entrega a chave de Além da Névoa (`percy_1.dimensao.alem_da_nevoa`; ver `_MUNDO.md` §5) | Todas |
 
 ## 12. Bioma
 

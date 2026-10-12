@@ -141,3 +141,5 @@ Não existem fases formais. O jogo avança por **desbloqueio**:
 ✅ A **primeira versão jogável** sai com **pelo menos uns 10 livros** (D-041); cerca de 15 no plano inicial. Livros sem PDF entram por pesquisa a partir do título (`conteudo-dos-livros.md` §3). Depois, o dono continua mandando livros novos e a IA cria e encaixa cada um no mundo e na história (D-040). O mundo é **expansível**: biomas novos se conectam ao mapa e dimensões novas entram pelo portal, sem quebrar saves (`tecnico.md` §5).
 
 Lista completa e status de cada livro: [`livros-recebidos.md`](livros-recebidos.md). Lote 1 (11/10/2026): 20 arquivos, 24 livros.
+
+**Situação em 12/10/2026:** os 24 livros do lote 1 estão analisados, cada um com a sua ficha em `livros/` (área com spoilers). Quinze ficam no mundo principal (biomas ou lugares da cidade, da zona rural, da montanha e da costa) e nove em **três dimensões**, cada uma com a sua chave (D-017, D-048). O mapa, o portal e as chaves estão em `livros/_MUNDO.md` (D-068). A implementação no jogo começa na fase de código.

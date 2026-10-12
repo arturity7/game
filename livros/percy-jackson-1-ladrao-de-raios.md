@@ -689,7 +689,7 @@ Ambiente: **Além da Névoa** (`percy_1.dimensao.alem_da_nevoa`).
 - **Los Angeles**: o píer e a baía de Santa Monica, o fundo do Pacífico, o Palácio das Camas-d'Água, os Estúdios M.A.C.
 - **O Mundo Inferior**: o Estige, os portões de Érebo, os Campos de Asfódelos, o Elísio visto de longe, a beira do Tártaro, o palácio de Hades e o jardim de Perséfone.
 
-Entrada: pelo portal, com a chave da dimensão (D-017, D-048). Do outro lado, o jogador chega na noite da tempestade, na estrada de Long Island, e corre para o pinheiro. A missão que dá a chave fica para o `_MUNDO.md`. Os volumes 2 a 5 partem do mesmo hub.
+Entrada: pelo portal, com a chave da dimensão (D-017, D-048). Do outro lado, o jogador chega na noite da tempestade, na estrada de Long Island, e corre para o pinheiro. A chave vem das três cartas de Epicuro, no Jardim (ver `_MUNDO.md` §5). Os volumes 2 a 5 partem do mesmo hub.
 
 ## 13. Conquistas do livro
 

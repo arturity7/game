@@ -258,10 +258,10 @@ Observações para não usar em perguntas:
 | "Riqueza é o que se pode deixar em paz"; comprar fazendas só na imaginação | De Quanta Terra (Tolstói) | O oposto de Pahom | Cap. 2 |
 | O Rum como demônio que chega como amigo; "o diabo é legião" | Cartas de um Diabo | O diabo que se disfarça de amigo | Caps. 5, 14 |
 | Ilíada, Aquiles e Pátroclo, Hércules e a hidra, Faetonte, Estige ("lago sem fundo" seria a entrada do mundo dos mortos) | Percy Jackson e o Ladrão de Raios | A lenda do lago sem fundo como pista falsa para o mundo inferior; a entrada verdadeira fica em Los Angeles, e o Estige é `percy_1.local.rio_estige` | Caps. 1, 3, 6, 16 |
-| O lenhador que "nunca ficou cansado"; banho no lago gelado | Goggins (a confirmar) | Resistência física | Caps. 2, 6 |
-| "Respiro a meu próprio modo"; calma; solidão | Rickson Gracie (a confirmar) | Respiração e serenidade | Desobediência civil |
-| Servir ao público com o que se tem | Seja Útil (a confirmar) | Ser útil | Woolf |
-| Perder-se para se encontrar; labirinto sem pista | Maze Runner (a confirmar) | Navegação e labirinto | Caps. 1, 8 |
+| O lenhador que "nunca ficou cansado"; banho no lago gelado | Nunca É Hora de Parar | Resistência no frio: a corrida na nevasca (`goggins_nunca.evento.corrida_nevasca`) | Caps. 2, 6 |
+| "Respiro a meu próprio modo"; calma; solidão | Respire | Calma e solidão: o ritual da montanha (`rickson_respire.atividade.ritual_montanha`) | Desobediência civil |
+| Servir ao público com o que se tem | Seja Útil | Ser útil com o que se tem (`seja_util.trilha.sete_ferramentas`) | Woolf |
+| Perder-se para se encontrar; labirinto sem pista | Maze Runner: Correr ou Morrer | Mapear o que muda (`maze_runner_1.minijogo.desenhar_mapa`) | Caps. 1, 8 |
 
 ## 12. Bioma
 

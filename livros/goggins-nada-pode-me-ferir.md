@@ -337,7 +337,7 @@ Proporção (D-063): cerca de 35% memória e 65% releitura.
 | Só até o topo | Mecânica | Em trilhas longas, o jogo mostra só o próximo marco; ao chegar, o jogador decide se continua | Cap. 7 |
 | O Corredor Lendário | NPC mentor (inspirado) | Desce o morro enlameado quicando na ponta dos pés. Observá-lo e treinar a técnica (cabeça parada, passos leves e silenciosos) reduz escorregões | Caps. 7, 11 |
 | Checklist da expedição | Interface | Antes de uma trilha longa: água de reserva, duas lanternas, peças de reserva, mapa. Faltar algo cria um problema no caminho | Caps. 7–8 |
-| A travessia quente | Evento (se houver área quente no mundo) | Do vale fervente ao portal da montanha, com estações de resfriamento marcadas no mapa e um enxame de mutucas ao amanhecer, espantadas com toalha | Caps. 7–8 |
+| A travessia quente | Evento (deserto do sul) | Do vale fervente ao portal da montanha, com estações de resfriamento marcadas no mapa e um enxame de mutucas ao amanhecer, espantadas com toalha | Caps. 7–8 |
 | Aplaudir o rival | Escolha | Ser ultrapassado e aplaudir o rival dá respeito dos moradores | Cap. 8 |
 | O mirante do vale | Evento | No alto da montanha, o jogador vê todo o caminho que percorreu; uma brisa sussurra "Não existe linha de chegada" (liga com a próxima montanha do Seja Útil) | Cap. 8 |
 | O atleta em cadeira de rodas | NPC | Participa de todas as provas do clube usando só os braços | Cap. 8 |
@@ -393,10 +393,10 @@ Proporção (D-063): cerca de 35% memória e 65% releitura.
 Sem bioma próprio. Acrescenta ao mundo principal:
 - **O acampamento do Corredor**, ao pé da trilha da montanha.
 - **A praia de treino** do clube, com o sino de latão, a fila de capacetes e a trincheira de lama com a ponte de corda.
-- **A trilha da floresta úmida**, com terra vermelha e três postos de água (lugar exato a definir no `_MUNDO.md`).
+- **A trilha da floresta úmida**, com terra vermelha e três postos de água (em Margrave; ver `_MUNDO.md` §4).
 - **A trilha em oito** na área fria (D-067).
 - **O mirante do vale**, no alto da montanha.
-- **A travessia quente**, só se o mundo tiver uma área quente (a definir no `_MUNDO.md`).
+- **A travessia quente**, no deserto do sul, subindo até a borda da Montanha (ver `_MUNDO.md` §4).
 
 ## 13. Conquistas do livro
 
@@ -434,7 +434,7 @@ Sem bioma próprio. Acrescenta ao mundo principal:
 | `goggins_nada.local.trilha_floresta_umida` | Local | A definir | Criado (ficha) |
 | `goggins_nada.local.trilha_oito` | Local (área fria) | Área fria | Criado (ficha) |
 | `goggins_nada.local.mirante_vale` | Local | Alto da montanha | Criado (ficha) |
-| `goggins_nada.local.travessia_quente` | Local (condicional) | A definir | Criado (ficha) |
+| `goggins_nada.local.travessia_quente` | Local | Deserto do sul (`_MUNDO.md` §4) | Criado (ficha) |
 | `goggins_nada.trilha.dez_desafios` | Trilha de lições | Quadro de avisos | Criado (ficha) |
 | `goggins_nada.missao.ordem_advertencia` | Missão inicial | Quadro de avisos | Criado (ficha) |
 | `goggins_nada.missao.zona_desconforto` | Missão | Casa / fazenda | Criado (ficha) |
@@ -469,7 +469,7 @@ Sem bioma próprio. Acrescenta ao mundo principal:
 | `goggins_nada.regra.refazer_serie` | Regra de mini-jogo | Clube | Criado (ficha) |
 | `goggins_nada.evento.prova_sino` | Evento | Praia de treino | Criado (ficha) |
 | `goggins_nada.evento.trilha_cinco_voltas` | Evento | Floresta úmida | Criado (ficha) |
-| `goggins_nada.evento.travessia_quente` | Evento (condicional) | Travessia quente | Criado (ficha) |
+| `goggins_nada.evento.travessia_quente` | Evento | Travessia quente | Criado (ficha) |
 | `goggins_nada.evento.mirante_vale` | Evento (liga com `seja_util.evento.proxima_montanha`) | Alto da montanha | Criado (ficha) |
 | `goggins_nada.evento.vigilia_nevasca` | Evento | Área fria | Criado (ficha) |
 | `goggins_nada.evento.prova_orientacao` | Evento | Mata | Criado (ficha) |
@@ -484,7 +484,7 @@ Sem bioma próprio. Acrescenta ao mundo principal:
 | `goggins_nada.tutorial.fogueira` | Tutorial | Fazenda / acampamento | Criado (ficha) |
 | `goggins_nada.item.camiseta_marrom` | Item visual | Prova do Sino | Criado (ficha) |
 | `goggins_nada.item.pote_moedas` | Item | Casa do jogador | Criado (ficha) |
-| `goggins_nada.item.livro_natacao` | Item (condicional) | Biblioteca / Mercado | Criado (ficha) |
+| `goggins_nada.item.livro_natacao` | Item (condicional: Q45, natação) | Biblioteca / Mercado | Criado (ficha) |
 | `goggins_nada.item.enxada_machado` | Ferramenta | Ferreiro | Criado (ficha) |
 | `goggins_nada.licao.pecas_reserva` | Lição | Trilha de bicicleta | Criado (ficha) |
 | `goggins_nada.licao.treine_outra_coisa` | Lição | Acampamento do Corredor | Criado (ficha) |

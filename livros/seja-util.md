@@ -263,7 +263,7 @@ Proporção (D-063): cerca de 45% memória e 55% releitura.
 | 200 agachamentos para ganhar o café | Respire | A prancha conquistada | Cap. 5 |
 | Os escoteiros que fazem rampas | Conforto na Escuridão | A rampa para o antigo rival | Cap. 7 |
 | Amor fati; Epicteto; Sêneca; Marco Aurélio | Carta a Meneceu | Aceitar o que não se controla | Caps. 5, 7 |
-| Ir até o fim; a dor produtiva | Goggins (a confirmar) | Esforço e sofrimento com propósito | Cap. 3 |
+| Ir até o fim; a dor produtiva | Nada Pode Me Ferir | Esforço com propósito: a regra dos 40% (`goggins_nada.mecanica.regra_40`) | Cap. 3 |
 
 ## 12. Bioma
 
