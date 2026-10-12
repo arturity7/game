@@ -8,7 +8,7 @@
 
 | # | Livro | Autor | Arquivo | Idioma do arquivo | Status |
 |---|---|---|---|---|---|
-| 1 | Dinheiro Sujo (Jack Reacher #1) | Lee Child | EPUB | Português | 📥 |
+| 1 | Dinheiro Sujo (Jack Reacher #1) | Lee Child | EPUB | Português | 📝 |
 | 2 | Acerto de Contas (Jack Reacher #7) | Lee Child | EPUB | Português | 📥 |
 | 3 | Bad Luck and Trouble (Jack Reacher #11) | Lee Child | EPUB | Inglês | 📥 |
 | 4 | Make Me (Jack Reacher #20) | Lee Child | FB2 | Inglês | 📥 |
