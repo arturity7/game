@@ -12,7 +12,7 @@
 | 2 | Acerto de Contas (Jack Reacher #7) | Lee Child | EPUB | Português | 📥 |
 | 3 | Bad Luck and Trouble (Jack Reacher #11) | Lee Child | EPUB | Inglês | 📥 |
 | 4 | Make Me (Jack Reacher #20) | Lee Child | FB2 | Inglês | 📥 |
-| 5 | Maze Runner: Correr ou Morrer (vol. 1) | James Dashner | EPUB | Português | 📥 |
+| 5 | Maze Runner: Correr ou Morrer (vol. 1) | James Dashner | EPUB | Português | 📝 |
 | 6 | Maze Runner: Prova de Fogo (vol. 2) | James Dashner | PDF | Português | 📥 |
 | 7 | Maze Runner: A Cura Mortal (vol. 3) | James Dashner | PDF | Português | 📥 |
 | 8 | Percy Jackson e os Olimpianos (box com 5 livros: O Ladrão de Raios, O Mar de Monstros, A Maldição do Titã, A Batalha do Labirinto, O Último Olimpiano) | Rick Riordan | EPUB | Português | 📥 |
