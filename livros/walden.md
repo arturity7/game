@@ -300,7 +300,7 @@ Adaptação ao jogo sem estações: o Walden fica sempre líquido. O conteúdo d
 | `walden.local.castelo_quoil` | Local | Mata de Walden | Criado (ficha) |
 | `walden.local.barranco_degelo` | Local | Ferrovia | Criado (ficha) |
 | `walden.npc.thoreau` | NPC | Cabana | Implementado: as três cadeiras na chegada, "a Natureza não faz perguntas", perguntas do livro (cada acerto dá feijão) e a linha com pedra |
-| `walden.npc.lenhador` | NPC | Mata de Walden | Criado (ficha) |
+| `walden.npc.lenhador` | NPC | Mata de Walden | Implementado (conversa e perguntas sobre ele) |
 | `walden.npc.john_field` | NPC | Baker Farm | Criado (ficha) |
 | `walden.npc.senhora_ervas` | NPC | Mata de Walden | Criado (ficha) |
 | `walden.missao.cabana` | Missão | Bosque e Lago Walden | Criado (ficha) |
