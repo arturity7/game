@@ -13,12 +13,14 @@
   "nome": "Chifre do homem-touro",
   "tipo": "trofeu",
   "icone": 40,
-  "pilha": 1
+  "pilha": 1,
+  "valor": 40
  },
  "percy_1.item.dracma": {
   "nome": "Dracma de ouro",
   "tipo": "moeda",
   "icone": 41,
-  "pilha": 99
+  "pilha": 99,
+  "valor": 10
  }
 }

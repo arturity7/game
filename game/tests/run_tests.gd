@@ -31,6 +31,7 @@ func _init() -> void:
 	_teste_corte(cfg)
 	_teste_animais(cfg)
 	_teste_construcao(cfg)
+	_teste_pedidos_do_dono(cfg)
 	print("\n%d verificações, %d falha(s)" % [total, falhas])
 	quit(1 if falhas > 0 else 0)
 
@@ -186,8 +187,10 @@ func _teste_mapa_fazenda() -> void:
 	cfg_l.free()
 	for id in lojas["mercado"]["vende"]:
 		checar(int(itens[id].get("preco", 0)) > 0, "loja: preço de " + str(id))
-	for id in lojas["mercado"]["compra"]:
-		checar(int(itens[id].get("venda", 0)) > 0, "loja: compra " + str(id))
+	checar(str(lojas["mercado"]["compra"]) == "tudo", "mercado compra tudo (pedido do dono)")
+	for id in itens:
+		if typeof(itens[id]) == TYPE_DICTIONARY:
+			checar(Precos.venda(itens[id], itens) >= 1, "loja: preço de venda de " + str(id))
 	var mcl := MapData.de_dict(_json("res://content/mapas/clinica.json"), objetos)
 	checar(not mcl.ocupada(mcl.inicio) and mcl.chao_em(mcl.inicio) == "piso", "clínica: lugar para acordar")
 	# a arte citada nos dados existe
@@ -564,7 +567,10 @@ func _teste_pesca() -> void:
 				checar(c.itens.has(str(p["item"])), "%s: peixe existe (%s)" % [f, p["item"]])
 	for id in c.lojas:
 		for k in ["vende", "compra"]:
-			for item in c.lojas[id].get(k, []):
+			var lista = c.lojas[id].get(k, [])
+			if typeof(lista) == TYPE_STRING:
+				continue
+			for item in lista:
 				checar(c.itens.has(str(item)), "loja %s: item existe (%s)" % [id, item])
 	c.free()
 
@@ -740,3 +746,50 @@ func _teste_construcao(cfg: Dictionary) -> void:
 	var cidade := MapData.de_dict(_json("res://content/mapas/cidade.json"), objs)
 	checar(not Construcao.cabe(d, cidade, Vector2i(5, 12), true), "construção: só na fazenda")
 	checar(bool(objs["porteira"].get("bloqueia_animais", false)) and not bool(objs["porteira"].get("solido", true)), "construção: porteira deixa gente passar e segura animal")
+
+
+## Pedidos do dono de 13/10/2026: vender tudo no Mercado, terra arada esquecida volta a ser grama,
+## correr gasta mais fome.
+func _teste_pedidos_do_dono(cfg: Dictionary) -> void:
+	var itens := _defs("itens")
+	checar(Precos.venda(itens["cenoura"], itens) == int(itens["cenoura"]["venda"]), "preço: item com venda usa a venda")
+	checar(Precos.venda(itens["enxada_larga"], itens) == int(itens["enxada_larga"]["preco"]) * 30 / 100, "preço: ferramenta usada vale 30%")
+	checar(Precos.venda(itens["enxada"], itens) > 0, "preço: a enxada do começo também vende")
+	checar(Precos.venda(itens["galinha"], itens) == int(itens["galinha"]["preco"]) / 2, "preço: o resto vale metade")
+	checar(Precos.venda(itens["cerca"], itens) == Precos.venda(itens["madeira"], itens) * 2, "preço: cerca vale a madeira dela")
+	var inv := Inventario.criar(cfg, itens)
+	Inventario.adicionar(inv, "cenoura", 2, itens)
+	var c := _config()
+	Inventario.adicionar(inv, "epicuro.item.chave_alem_nevoa", 1, c.itens)
+	var ids := Precos.que_a_loja_compra(inv, "tudo", c.itens)
+	checar("enxada" in ids and "regador" in ids and "machado" in ids and "cenoura" in ids, "mercado: compra ferramentas e tudo o mais")
+	checar(not ("epicuro.item.chave_alem_nevoa" in ids), "mercado: não compra chave de missão")
+	checar(ids.count("cenoura") == 1, "mercado: cada item aparece uma vez")
+	c.free()
+	# terra arada esquecida volta a ser grama
+	var d := GameData.novo(cfg, "fazenda", Vector2.ZERO, itens)
+	var a := Vector2i(20, 20)
+	var b := Vector2i(21, 20)
+	var p := Vector2i(22, 20)
+	for x in [a, b, p]:
+		Fazenda.arar(d, "fazenda", x, "grama", cfg)
+	Fazenda.plantar(d, "fazenda", p, "feijao")
+	var horas := float(cfg.get("horas_voltar_grama", 18))
+	d.mundo["hora"] = float(d.mundo["hora"]) + horas * 0.6
+	Fazenda.regar(d, "fazenda", b, cfg)
+	checar(Fazenda.voltar_grama(d, "fazenda", cfg) == 0, "arado: ainda não voltou")
+	d.mundo["dia"] = int(d.mundo["dia"]) + 1
+	d.mundo["hora"] = 1.0   # 19 horas depois de arar; 8 horas depois de regar
+	checar(Fazenda.voltar_grama(d, "fazenda", cfg) == 1 and Fazenda.canteiro(d, "fazenda", a) == null, "arado esquecido volta a ser grama")
+	checar(Fazenda.canteiro(d, "fazenda", b) != null, "arado regado depois ainda espera")
+	checar(Fazenda.canteiro(d, "fazenda", p) != null, "canteiro com planta nunca volta")
+	var velho := {"molhado_ate": -1.0, "cultura": "", "crescimento": 0.0}
+	Fazenda.canteiros(d, "fazenda")["5,5"] = velho
+	Fazenda.voltar_grama(d, "fazenda", cfg)
+	checar(Fazenda.canteiros(d, "fazenda").has("5,5") and velho.has("mexido_em"), "canteiro de save antigo começa a contar agora")
+	# correr gasta mais fome
+	var d1 := GameData.novo(cfg, "fazenda", Vector2.ZERO, itens)
+	var d2 := GameData.novo(cfg, "fazenda", Vector2.ZERO, itens)
+	Survival.tick(d1, cfg, 10.0, true, false)
+	Survival.tick(d2, cfg, 10.0, true, true)
+	checar(float(d2.jogador["fome"]) < float(d1.jogador["fome"]), "correr gasta mais fome")

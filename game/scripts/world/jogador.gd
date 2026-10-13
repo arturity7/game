@@ -1,6 +1,6 @@
 class_name Jogador
 extends CharacterBody2D
-## O protagonista: anda com WASD; na água, nada mais devagar (D-070).
+## O protagonista: anda com WASD (Shift corre, gastando mais fome); na água, nada mais devagar (D-070).
 ## A posição do nó fica nos pés (é por ela que o mundo decide quem fica na frente).
 
 const TEXTURA := preload("res://assets/sprites/personagens/jogador.png")
@@ -13,6 +13,7 @@ var sprite: Sprite2D
 var ondas: Sprite2D
 var nadando := false
 var andando := false
+var correndo := false     # Shift segurado andando em terra: mais rápido, mais fome
 var parado := false      # true enquanto dorme
 var direcao := Vector2i(0, 1)
 var _lado := "baixo"
@@ -21,6 +22,7 @@ var _acao := 0.0          # segundos restantes da pose de usar ferramenta
 var _celula := Vector2i(-999, -999)
 var _empurrao := Vector2.ZERO   # recuo depois de levar um golpe
 var invulneravel := 0.0         # segundos sem levar dano depois de um golpe
+var _poeira := 0.0              # poeirinha dos pés ao correr
 
 
 func _ready() -> void:
@@ -52,6 +54,13 @@ func _physics_process(delta: float) -> void:
 	nadando = mundo != null and mundo.eh_agua(global_position)
 	var cfg: Dictionary = Config.balanceamento
 	var vel := float(cfg.get("velocidade_nadar" if nadando else "velocidade_andar", 80.0))
+	correndo = dir != Vector2.ZERO and not nadando and Input.is_action_pressed("correr")
+	if correndo:
+		vel *= float(cfg.get("multiplicador_correr", 1.6))
+		_poeira -= delta
+		if _poeira <= 0.0:
+			_poeira = 0.16
+			Efeitos.particulas(get_parent(), global_position + Vector2(0, -1), Color("#c7b394"), 2, 14.0, -dir * 10.0)
 	velocity = dir * vel + _empurrao
 	_empurrao = _empurrao.move_toward(Vector2.ZERO, 700.0 * delta)
 	invulneravel = maxf(0.0, invulneravel - delta)
@@ -60,7 +69,7 @@ func _physics_process(delta: float) -> void:
 	if andando:
 		_virar(dir)
 		var antes := int(_tempo_passo * QUADROS_POR_SEGUNDO)
-		_tempo_passo += delta
+		_tempo_passo += delta * (1.5 if correndo else 1.0)
 		var agora := int(_tempo_passo * QUADROS_POR_SEGUNDO)
 		if agora != antes and agora % 2 == 1 and not nadando:
 			Som.tocar("passo_%d" % ((agora / 2) % 2), -8.0)

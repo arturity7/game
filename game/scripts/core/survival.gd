@@ -4,11 +4,13 @@ extends RefCounted
 
 
 ## Avança fome e vida. 'esforco' = true enquanto o jogador anda, nada ou trabalha.
-static func tick(dados: GameData, cfg: Dictionary, delta: float, esforco: bool) -> void:
+static func tick(dados: GameData, cfg: Dictionary, delta: float, esforco: bool, correndo := false) -> void:
 	var j := dados.jogador
 	var gasto := float(cfg.get("fome_por_segundo", 0.05)) * delta
 	if esforco:
 		gasto *= float(cfg.get("fome_esforco_multiplicador", 1.5))
+	if correndo:
+		gasto *= float(cfg.get("fome_correr_multiplicador", 2.0))
 	j["fome"] = maxf(0.0, float(j["fome"]) - gasto)
 	if float(j["fome"]) <= 0.0:
 		var perda := float(cfg.get("vida_perdida_por_segundo_sem_fome", 0.5)) * delta

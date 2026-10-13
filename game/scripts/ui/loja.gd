@@ -104,11 +104,11 @@ func _atualizar() -> void:
 	for f in _lista.get_children():
 		f.queue_free()
 	var inv: Array = d.jogador["inventario"]
-	var ids: Array = _def.get("vende" if _aba == "comprar" else "compra", [])
+	var ids: Array = _def.get("vende", []) if _aba == "comprar" else Precos.que_a_loja_compra(inv, _def.get("compra", []), Config.itens)
 	var algum := false
 	for id in ids:
 		var item: Dictionary = Config.itens.get(id, {})
-		var preco := int(item.get("preco" if _aba == "comprar" else "venda", 0))
+		var preco := int(item.get("preco", 0)) if _aba == "comprar" else Precos.venda(item, Config.itens)
 		var tem := Inventario.contar(inv, id)
 		if _aba == "vender" and tem <= 0:
 			continue
@@ -132,6 +132,9 @@ func _atualizar() -> void:
 		conteudo.add_child(icone)
 		var nome := Label.new()
 		nome.text = str(item.get("nome", id)) + (" (%d)" % tem if _aba == "vender" else "")
+		if _aba == "vender" and str(item.get("tipo", "")) in ["ferramenta", "arma"] and not item.has("venda"):
+			var primeira := str(item.get("nome", id)).split(" ")[0]
+			nome.text += " usada" if primeira.ends_with("a") else " usado"
 		nome.size_flags_horizontal = Control.SIZE_EXPAND_FILL
 		nome.mouse_filter = Control.MOUSE_FILTER_IGNORE
 		conteudo.add_child(nome)

@@ -71,6 +71,10 @@ func _rodar() -> void:
 	main.mundo.atualizar_luz(10.0)
 	main.menu._abrir()
 	await _foto("5_menu")
+	main.menu._opcoes()
+	await _foto("5b_opcoes")
+	main.menu.tela_opcoes.fechar()
+	await get_tree().create_timer(0.1).timeout
 	main.menu._fechar()
 	main.trocar_mapa("casa", Vector2i(5, 7), "baixo")
 	await get_tree().create_timer(0.8).timeout
@@ -96,6 +100,8 @@ func _rodar() -> void:
 	await _foto("11_mercado")
 	var loja: Loja = main.abrir_loja("mercado")
 	await _foto("11b_loja")
+	loja._mudar_aba("vender")
+	await _foto("11c_loja_vender")
 	loja.fechar()
 	main.trocar_mapa("jardim", Vector2i(12, 11), "cima")
 	await get_tree().create_timer(0.8).timeout

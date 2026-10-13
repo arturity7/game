@@ -16,6 +16,7 @@ Controles="*res://scripts/autoload/controles.gd"
 GameState="*res://scripts/autoload/game_state.gd"
 SaveSystem="*res://scripts/autoload/save_system.gd"
 Visual="*res://scripts/autoload/visual.gd"
+Opcoes="*res://scripts/autoload/opcoes.gd"
 Som="*res://scripts/autoload/som.gd"
 
 [display]

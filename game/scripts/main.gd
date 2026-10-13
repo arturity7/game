@@ -73,6 +73,9 @@ func _abrir_tela_inicial() -> void:
 
 func _comecar(opcao: String) -> void:
 	match opcao:
+		"opcoes":
+			abrir_opcoes()
+			return
 		"sair":
 			get_tree().quit()
 			return
@@ -105,6 +108,7 @@ func _montar_mundo() -> void:
 		# save de uma versão do mapa em que ali era livre: volta para o início
 		mundo.jogador.position = Vector2(mundo.mapa.inicio) * 16.0 + Vector2(8, 8)
 	mundo.atualizar_luz(float(GameState.dados.mundo["hora"]))
+	Fazenda.voltar_grama(GameState.dados, mundo.mapa.id, Config.balanceamento)
 	mundo.desenhar_plantacao(GameState.dados)
 	_acordar()
 	Som.musica(mundo.mapa.musica if mundo.mapa.musica != "" else "musica_fazenda")
@@ -127,7 +131,7 @@ func _process(delta: float) -> void:
 		return
 	var cfg: Dictionary = Config.balanceamento
 	d.definir_posicao(mundo.jogador.position)
-	Survival.tick(d, cfg, delta, mundo.jogador.andando)
+	Survival.tick(d, cfg, delta, mundo.jogador.andando, mundo.jogador.correndo)
 	var mult := float(cfg.get("velocidade_tempo_dormindo", 30)) if dormindo else 1.0
 	avancar_tempo(24.0 * delta * mult / float(cfg.get("dia_segundos_reais", 1080)))
 	mundo.cursor.mostrar(celula_alvo())
@@ -220,6 +224,7 @@ func _passar(d: GameData, cfg: Dictionary, horas: float) -> void:
 	if int(d.mundo["dia"]) != dia_antes:
 		_novo_dia()
 	Fazenda.crescer(d, mundo.mapa.id, horas, Config.culturas, mundo.irrigadas)
+	Fazenda.voltar_grama(d, mundo.mapa.id, cfg)
 	mundo.atualizar_luz(float(d.mundo["hora"]))
 
 
@@ -546,6 +551,12 @@ func abrir_diario() -> Diario:
 	var j := Diario.new()
 	add_child(j)
 	return j
+
+
+func abrir_opcoes() -> TelaOpcoes:
+	var t := TelaOpcoes.new()
+	add_child(t)
+	return t
 
 
 func abrir_construir() -> Construir:

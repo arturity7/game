@@ -1,10 +1,11 @@
 class_name MenuPausa
 extends CanvasLayer
-## Menu do Esc: o jogador salva a qualquer momento pelo menu (GDD §8).
+## Menu do Esc: o jogador salva a qualquer momento pelo menu (GDD §8) e abre as Opções.
 
 signal pediu_salvar
 signal pediu_carregar
 
+var tela_opcoes: TelaOpcoes = null
 var _caixa: PanelContainer
 var ativo := true   # o Esc só abre o menu durante o jogo (não na tela de abertura)
 
@@ -32,7 +33,7 @@ func _ready() -> void:
 	titulo.add_theme_font_size_override("font_size", Visual.TAM_TITULO)
 	lista.add_child(titulo)
 	for item in [["Continuar", _fechar], ["Salvar", func(): pediu_salvar.emit()],
-			["Carregar", func(): pediu_carregar.emit()], ["Sair", func(): get_tree().quit()]]:
+			["Carregar", func(): pediu_carregar.emit()], ["Opções", _opcoes], ["Sair", func(): get_tree().quit()]]:
 		var b := Button.new()
 		b.text = item[0]
 		b.custom_minimum_size = Vector2(120, 22)
@@ -42,7 +43,17 @@ func _ready() -> void:
 	visible = false
 
 
+func _opcoes() -> void:
+	if tela_opcoes != null:
+		return
+	tela_opcoes = TelaOpcoes.new()
+	tela_opcoes.fechou.connect(func(): tela_opcoes = null)
+	get_parent().add_child(tela_opcoes)
+
+
 func _unhandled_input(evento: InputEvent) -> void:
+	if tela_opcoes != null:
+		return
 	if ativo and evento.is_action_pressed("menu"):
 		if visible:
 			_fechar()

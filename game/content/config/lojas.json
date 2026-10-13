@@ -1,5 +1,5 @@
 {
-  "_sobre": "Lojas da cidade (GDD: poucas lojas; divisão proposta pela IA). 'vende' = o que o jogador pode comprar (preço em itens.json 'preco'); 'compra' = o que a loja compra do jogador ('venda'). 'abre'/'fecha' = horário (a porta fica trancada fora dele).",
+  "_sobre": "Lojas da cidade (GDD: poucas lojas; divisão proposta pela IA). 'vende' = o que o jogador pode comprar (preço em itens.json 'preco'); 'compra' = o que a loja compra do jogador: uma lista ou \"tudo\" (qualquer item do inventário, menos itens de missão e chaves); o preço vem de scripts/core/precos.gd ('venda' do item; ferramenta usada vale 30% do preço; o resto, metade do preço). 'abre'/'fecha' = horário (a porta fica trancada fora dele).",
   "mercado": {
     "nome": "Mercado",
     "abre": 8,
@@ -17,24 +17,7 @@
       "balde",
       "tesoura"
     ],
-    "compra": [
-      "feijao",
-      "cenoura",
-      "batata",
-      "milho",
-      "perca",
-      "carpa",
-      "bagre",
-      "walden.item.lucio",
-      "walden.item.faneca",
-      "walden.item.lucio_dourado",
-      "walden.item.enguia",
-      "walden.item.arca_ferro",
-      "madeira",
-      "ovo",
-      "leite",
-      "la"
-    ]
+    "compra": "tudo"
   },
   "ferreiro": {
     "nome": "Ferreiro",

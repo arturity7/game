@@ -159,6 +159,14 @@ func _rodar() -> void:
 		clique.shift_pressed = true
 		loja._clique(clique, "batata", 18)
 		checar(Inventario.contar(inv, "batata") == 0 and int(d.jogador["dinheiro"]) >= din + 36, "vende as batatas")
+		# o Mercado compra tudo, até ferramenta usada (mais barata)
+		Inventario.adicionar(inv, "enxada_larga", 1, Config.itens)
+		loja._atualizar()
+		din = int(d.jogador["dinheiro"])
+		var preco_usada := Precos.venda(Config.itens["enxada_larga"], Config.itens)
+		clique.shift_pressed = false
+		loja._clique(clique, "enxada_larga", preco_usada)
+		checar(Inventario.contar(inv, "enxada_larga") == 0 and int(d.jogador["dinheiro"]) >= din + preco_usada - preco_usada / 10 - 1 and preco_usada < int(Config.itens["enxada_larga"]["preco"]), "vende ferramenta usada mais barata")
 		loja.fechar()
 		await _esperar(0.1)
 		checar(not get_tree().paused, "fecha a loja")
@@ -336,6 +344,42 @@ func _rodar() -> void:
 	checar(float(d.jogador["vida"]) < vida_antes and main.mundo.jogador.invulneravel > 0.0, "levar um golpe tira vida e pisca")
 	main.trocar_mapa("fazenda", Vector2i(7, 8))
 	await _esperar(0.6)
+	# Shift: correr é mais rápido que andar
+	main.mundo.jogador.position = Vector2(30, 18) * 16.0 + Vector2(8, 8)
+	await _esperar(0.1)
+	var x0: float = main.mundo.jogador.position.x
+	Input.action_press("mover_direita")
+	await _esperar(0.5)
+	var andou: float = main.mundo.jogador.position.x - x0
+	Input.action_release("mover_direita")
+	main.mundo.jogador.position = Vector2(30, 18) * 16.0 + Vector2(8, 8)
+	await _esperar(0.1)
+	x0 = main.mundo.jogador.position.x
+	Input.action_press("correr")
+	Input.action_press("mover_direita")
+	await _esperar(0.5)
+	var correu: float = main.mundo.jogador.position.x - x0
+	Input.action_release("mover_direita")
+	Input.action_release("correr")
+	checar(correu > andou * 1.3, "Shift corre mais rápido (%d contra %d px)" % [int(correu), int(andou)])
+	# menu Opções: volume, sem som e restaurar padrão
+	main.menu._abrir()
+	main.menu._opcoes()
+	await _esperar(0.1)
+	var op: TelaOpcoes = main.menu.tela_opcoes
+	checar(op != null, "o menu do Esc abre as Opções")
+	if op:
+		var antes_m := int(Opcoes.valor("volume_musica"))
+		op._mudar("volume_musica", -10)
+		checar(int(Opcoes.valor("volume_musica")) == antes_m - 10 and absf(AudioServer.get_bus_volume_db(AudioServer.get_bus_index("Musica")) - Opcoes.em_db(antes_m - 10)) < 0.01, "abaixa o volume da música")
+		Opcoes.definir("mudo", true)
+		checar(AudioServer.is_bus_mute(0), "sem som deixa tudo mudo")
+		Opcoes.restaurar_padrao()
+		checar(not AudioServer.is_bus_mute(0) and int(Opcoes.valor("volume_musica")) == int(Opcoes.PADRAO["volume_musica"]), "restaurar padrão volta tudo")
+		op.fechar()
+	await _esperar(0.1)
+	main.menu._fechar()
+	await _esperar(0.1)
 	# dormir à noite faz o tempo correr até as 6h
 	d.mundo["hora"] = 22.0
 	main.dormir()

@@ -1,6 +1,7 @@
 extends Node
 ## Efeitos sonoros e música (gerados por ferramentas/som/gerar_sons.py; D-039).
 ## Som.tocar("enxada") toca um efeito; Som.musica("musica_fazenda") troca a música (em laço).
+## Os efeitos saem pelo canal "Efeitos" e a música pelo "Musica" (volumes no menu Opções; autoload Opcoes).
 
 const PASTA := "res://assets/sons/"
 const CANAIS := 8
@@ -16,9 +17,11 @@ func _ready() -> void:
 	process_mode = Node.PROCESS_MODE_ALWAYS
 	for i in CANAIS:
 		var p := AudioStreamPlayer.new()
+		p.bus = "Efeitos"
 		add_child(p)
 		_canais.append(p)
 	_musica = AudioStreamPlayer.new()
+	_musica.bus = "Musica"
 	_musica.finished.connect(func(): _musica.play())
 	add_child(_musica)
 

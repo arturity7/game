@@ -8,6 +8,7 @@ const ACOES := {
 	"mover_esquerda": [KEY_A, KEY_LEFT],
 	"mover_direita": [KEY_D, KEY_RIGHT],
 	"menu": [KEY_ESCAPE],
+	"correr": [KEY_SHIFT],             # segurando, anda mais rápido (gasta mais fome)
 	"interagir": [KEY_E],              # o mesmo que o botão direito (na célula à frente)
 	"avancar": [KEY_SPACE, KEY_ENTER, KEY_E],   # passa a fala nas conversas
 	"diario": [KEY_J, KEY_TAB],        # diário de missões e conquistas

@@ -33,6 +33,7 @@ func _ready() -> void:
 		s.loop_mode = AudioStreamWAV.LOOP_FORWARD
 		s.loop_end = s.data.size() / 2
 		_som = AudioStreamPlayer.new()
+		_som.bus = "Efeitos"
 		_som.stream = s
 		_som.volume_db = -14.0 if tipo == "tempestade" else -18.0
 		add_child(_som)

@@ -1,9 +1,9 @@
 class_name TelaInicial
 extends CanvasLayer
 ## Tela de abertura: logo sobre a fazenda (a câmera passeia devagar) e as opções
-## Continuar (se houver save), Novo jogo e Sair.
+## Continuar (se houver save), Novo jogo, Opções e Sair.
 
-signal escolheu(opcao: String)   # "continuar", "novo" ou "sair"
+signal escolheu(opcao: String)   # "continuar", "novo", "opcoes" ou "sair"
 
 const LOGO := preload("res://assets/sprites/ui/logo.png")
 
@@ -35,6 +35,7 @@ func _ready() -> void:
 	if SaveSystem.existe():
 		opcoes.append(["Continuar", "continuar"])
 	opcoes.append(["Novo jogo", "novo"])
+	opcoes.append(["Opções", "opcoes"])
 	opcoes.append(["Sair", "sair"])
 	var primeiro: Button = null
 	for o in opcoes:

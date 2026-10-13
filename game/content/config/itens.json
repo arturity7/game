@@ -1,7 +1,7 @@
 {
-  "_sobre": "Itens básicos (fora dos livros). 'icone' = posição em assets/sprites/itens/itens.png. 'preco' = quanto custa na loja; 'venda' = quanto a loja paga. 'acao' (ferramentas) = arar, regar, pescar ou cortar (machado: árvores, tocos e cercas); balde e tesoura servem nos animais. Tipo 'animal' = solta o animal ('animal' em animais.json) na fazenda; tipo 'construcao' = põe o 'objeto' na célula (fazenda) e é feito no menu Construir com a 'receita' (materiais); 'largura' = quantas células em linha ela pega. IDs nunca mudam (tecnico.md §5).",
-  "enxada": {"nome": "Enxada", "tipo": "ferramenta", "icone": 0, "pilha": 1, "acao": "arar"},
-  "regador": {"nome": "Regador", "tipo": "ferramenta", "icone": 1, "pilha": 1, "capacidade": 20, "acao": "regar"},
+  "_sobre": "Itens básicos (fora dos livros). 'icone' = posição em assets/sprites/itens/itens.png. 'preco' = quanto custa na loja; 'venda' = quanto a loja paga (sem 'venda', o preço sai de 'preco' ou 'valor': scripts/core/precos.gd). 'acao' (ferramentas) = arar, regar, pescar ou cortar (machado: árvores, tocos e cercas); balde e tesoura servem nos animais. Tipo 'animal' = solta o animal ('animal' em animais.json) na fazenda; tipo 'construcao' = põe o 'objeto' na célula (fazenda) e é feito no menu Construir com a 'receita' (materiais); 'largura' = quantas células em linha ela pega. IDs nunca mudam (tecnico.md §5).",
+  "enxada": {"nome": "Enxada", "tipo": "ferramenta", "icone": 0, "pilha": 1, "acao": "arar", "valor": 50},
+  "regador": {"nome": "Regador", "tipo": "ferramenta", "icone": 1, "pilha": 1, "capacidade": 20, "acao": "regar", "valor": 50},
   "semente_feijao": {"nome": "Sementes de feijão", "tipo": "semente", "icone": 2, "pilha": 99, "cultura": "feijao", "preco": 20},
   "feijao": {"nome": "Feijão", "tipo": "comida", "icone": 3, "pilha": 99, "fome": 8, "venda": 14},
   "semente_cenoura": {"nome": "Sementes de cenoura", "tipo": "semente", "icone": 4, "pilha": 99, "cultura": "cenoura", "preco": 15},
