@@ -139,7 +139,7 @@ Primeira versão de código, em `game/`. Ainda sem livros: só a base em que ele
 | Teclas | WASD/setas andam; botão esquerdo usa o item da mão; botão direito ou E mexe na célula (conversar, colher, pegar, animais); 1–0 e roda escolhem o item; J/Tab diário; C construir; Esc menu. Registradas em código (`scripts/autoload/controles.gd`) |
 | Arte | Gerada por código, estilo Pokémon/Stardew (§7) |
 | Testes | `bash ferramentas/testar_jogo.sh`: testes sem tela (`tests/run_tests.gd`: save, saves antigos de `tests/saves/`, migração, fome, vida, relógio, desmaio, mapa e objetos, arte citada nos dados, inventário, plantação) e autoteste da cena com tela virtual (`tests/autoteste.gd`: andar, colisão com a casa, fome, salvar, carregar, nadar, arar, regar, plantar, colher, comer, dormir) |
-| Exportação | `bash ferramentas/exportar_windows.sh` gera `game/build/LeafAndLore.exe` (um arquivo só, com os dados dentro; preset em `game/export_presets.cfg`). O `.exe` não vai para o Git |
+| Exportação | `bash ferramentas/exportar_windows.sh` gera em `game/build/` o `LeafAndLore.exe` (o motor do Godot, igual em toda build da mesma versão) e o `LeafAndLore.pck` (os dados do jogo), mais um `.zip` com os dois e um LEIA-ME para a primeira instalação (preset em `game/export_presets.cfg`, `embed_pck=false`). Atualização = mandar só o `.pck` novo (cerca de 1 MB), porque o envio de arquivos aceita no máximo 30 MB e o motor sozinho já ocupa quase isso compactado. Nada da pasta `build/` vai para o Git |
 
 Ainda não há: lobos (predadores), galinheiro/celeiro e outras construções, cozinha, moradores andando (rotina), combate, portal e a maior parte do conteúdo dos livros (o primeiro livro jogável é a Carta a Meneceu, §9).
 
