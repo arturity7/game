@@ -1,0 +1,14 @@
+{
+  "_sobre": "Valores de jogo ajustáveis sem mexer no código. Tudo provisório até os testes de balanceamento.",
+  "dia_segundos_reais": 1080,
+  "hora_inicio_dia": 6.0,
+  "fome_max": 100.0,
+  "vida_max": 100.0,
+  "fome_por_segundo": 0.046,
+  "fome_esforco_multiplicador": 1.5,
+  "vida_perdida_por_segundo_sem_fome": 0.5,
+  "perda_dinheiro_ao_desmaiar_pct": 10,
+  "velocidade_andar": 80.0,
+  "velocidade_nadar": 45.0,
+  "dinheiro_inicial": 500
+}

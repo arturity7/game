@@ -48,7 +48,7 @@ O jogo é single-player por enquanto (D-038), mas o dono não descartou multipla
 ├── CLAUDE.md               # regras de trabalho da IA
 ├── docs/                   # documentação de design
 ├── livros/                 # fichas de análise (NUNCA os PDFs)
-└── game/                   # projeto Godot (criado na fase de código)
+└── game/                   # projeto Godot (protótipo 0 em 12/10/2026)
     ├── project.godot
     ├── scenes/             # cenas (.tscn)
     ├── scripts/            # código (.gd)
@@ -99,6 +99,28 @@ Delegada à IA pelo dono (D-021). Abordagem:
 
 Limitação: o ambiente de trabalho da IA pode não conseguir baixar arquivos de alguns sites. Nesse caso, a IA pede ao dono para baixar o pacote ou gera tudo por código.
 
-## 8. Decisões técnicas para depois
+## 8. Protótipo 0 (12/10/2026) 🔵
 
-Sistema de diálogo (próprio ou plugin), formato do save, organização de cenas, testes. Serão decididas quando a fase de código começar e dependem das respostas em [`perguntas-abertas.md`](perguntas-abertas.md).
+Primeira versão de código, em `game/`. Ainda sem livros: só a base em que eles vão entrar.
+
+| Parte | Como ficou |
+|---|---|
+| Versão do Godot | **4.3**, renderizador **Compatibilidade** (OpenGL 3), que roda em mais PCs com Windows |
+| Tela | Resolução interna 480×270, ampliada em escala inteira; janela inicial de 1440×810 (3×); pixels sem filtro |
+| Estado do jogo | `scripts/core/game_data.gd`: dados do jogador, do mundo e do progresso, separados dos nós visuais (§2) |
+| Save | `scripts/core/save_codec.gd` (texto ↔ dados, versão e migrações) e `scripts/autoload/save_system.gd` (arquivo `user://save.json`). Campos que faltam recebem o padrão; chaves desconhecidas são guardadas e regravadas, nunca descartadas; save de versão mais nova é recusado sem estragar o arquivo; antes de migrar, cópia em `user://save.vN.bak` (§5) |
+| Regras de sobrevivência | `scripts/core/survival.gd`: fome cai com o tempo e mais rápido com esforço; sem fome, a vida cai; vida zerada = desmaio, sem game over, perde uma porcentagem do dinheiro; relógio com dia de 18 minutos (D-037, D-047) |
+| Valores de jogo | `content/config/balanceamento.json` (ajustável sem mexer no código) |
+| Mapas | `content/mapas/<id>.json`: grade de caracteres + legenda; tipos de chão em `content/config/tiles.json` (atlas, sólido, água). O mapa é montado em código num `TileMapLayer` |
+| Jogador | WASD/setas; na água nada mais devagar (D-070); colisão nos pés |
+| Tela de jogo | Barras de fome e vida, hora e dinheiro; o dia não aparece (GDD §6); luz muda com a hora |
+| Menu | Esc: Continuar, Salvar, Carregar, Sair (GDD §8) |
+| Teclas | Registradas em código (`scripts/autoload/controles.gd`) |
+| Arte | Provisória, gerada por `ferramentas/arte/gerar_placeholder.py` (§7) |
+| Testes | `bash ferramentas/testar_jogo.sh`: testes sem tela (`tests/run_tests.gd`: save, saves antigos de `tests/saves/`, fome, vida, relógio, desmaio, mapa) e autoteste da cena com tela virtual (`tests/autoteste.gd`: andar, colisão, fome, salvar, carregar, nadar) |
+
+Ainda não há: plantação, animais, inventário em uso, cidade, clínica (o desmaio acorda no ponto inicial), diálogos, perguntas, combate, conteúdo dos livros e exportação para `.exe`.
+
+## 9. Decisões técnicas para depois
+
+Sistema de diálogo e de perguntas (próprio, lendo os dados de `content/livros/`), organização das cenas por região e exportação para Windows. Serão decididas conforme o protótipo crescer.

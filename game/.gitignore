@@ -1,0 +1,6 @@
+# cache do editor Godot
+.godot/
+# exportações
+/build/
+*.exe
+*.pck

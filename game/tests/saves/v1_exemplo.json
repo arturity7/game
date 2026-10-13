@@ -1,0 +1,24 @@
+{
+ "save_version": 1,
+ "jogador": {
+  "mapa": "fazenda",
+  "posicao": [
+   120.0,
+   136.0
+  ],
+  "fome": 72.5,
+  "vida": 90.0,
+  "dinheiro": 450,
+  "inventario": {}
+ },
+ "mundo": {
+  "dia": 3,
+  "hora": 14.25
+ },
+ "progresso": {
+  "flags": {},
+  "perguntas": {},
+  "livros": {},
+  "conquistas": {}
+ }
+}

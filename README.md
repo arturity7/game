@@ -1,6 +1,6 @@
 # Leaf & Lore — jogo de livros no estilo Stardew Valley
 
-> **Status:** fase de documentação. Análise do lote 1 de livros concluída (24 livros com ficha). Nenhuma linha de código ainda.
+> **Status:** análise do lote 1 de livros concluída (24 livros com ficha). Fase de código começou: protótipo 0 em `game/` (andar no mapa, fome e vida, relógio, salvar e carregar). Testes: `bash ferramentas/testar_jogo.sh`.
 > **Nome:** Leaf & Lore ("leaf" = folha de planta e folha de livro; "lore" = saber, história). Escolhido pelo dono (D-049).
 
 Jogo para PC, em pixel art no estilo visual e de jogabilidade do Stardew Valley.

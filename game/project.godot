@@ -1,0 +1,32 @@
+; Leaf & Lore — projeto Godot 4.3
+; Configurações em texto para ficarem legíveis no Git.
+
+config_version=5
+
+[application]
+
+config/name="Leaf & Lore"
+run/main_scene="res://scenes/main.tscn"
+config/features=PackedStringArray("4.3")
+
+[autoload]
+
+Config="*res://scripts/autoload/config.gd"
+Controles="*res://scripts/autoload/controles.gd"
+GameState="*res://scripts/autoload/game_state.gd"
+SaveSystem="*res://scripts/autoload/save_system.gd"
+
+[display]
+
+window/size/viewport_width=480
+window/size/viewport_height=270
+window/size/window_width_override=1440
+window/size/window_height_override=810
+window/stretch/mode="viewport"
+window/stretch/scale_mode="integer"
+
+[rendering]
+
+textures/canvas_textures/default_texture_filter=0
+renderer/rendering_method="gl_compatibility"
+renderer/rendering_method.mobile="gl_compatibility"
