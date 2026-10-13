@@ -135,10 +135,17 @@ func _rodar() -> void:
 		await RenderingServer.frame_post_draw
 		get_viewport().get_texture().get_image().save_png(pasta.path_join("14b_mordida.png"))
 		main.pesca.cancelar()
+	main.mundo.jogador.position = Vector2(37, 7) * 16.0 + Vector2(8, 8)
+	main.mundo.atualizar_luz(10.0)
+	await _foto("17_fazenda_morro")
+	main.mundo.jogador.position = Vector2(6, 25) * 16.0 + Vector2(8, 8)
+	await _foto("17b_fazenda_morro_oeste")
 	main.trocar_mapa("colina", Vector2i(16, 9), "direita")
 	await get_tree().create_timer(0.8).timeout
 	main.mundo.atualizar_luz(10.0)
 	await _foto("15_colina")
+	main.mundo.jogador.position = Vector2(7, 9) * 16.0 + Vector2(8, 8)
+	await _foto("15d_colina_morro")
 	main.trocar_mapa("walden", Vector2i(13, 10), "cima")
 	await get_tree().create_timer(0.8).timeout
 	main.mundo.atualizar_luz(10.0)

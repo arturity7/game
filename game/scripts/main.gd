@@ -299,7 +299,7 @@ func usar(c: Vector2i) -> void:
 			return
 		"arar":
 			for cel in celulas:
-				var tipo := mundo.mapa.tipo_em(cel) if mundo.mapa.objeto_em(cel).is_empty() else "objeto"
+				var tipo := mundo.mapa.tipo_em(cel) if mundo.mapa.objeto_em(cel).is_empty() and not mundo.bloqueada(cel) else "objeto"
 				if Fazenda.arar(d, mapa, cel, tipo, cfg):
 					feito = true
 			Efeitos.ferramenta(mundo, c, icone, "enxada", esquerda)

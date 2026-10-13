@@ -32,6 +32,7 @@ var _npcs := {}             # id -> [StaticBody2D, dados do mapa]
 var luzes: Array = []       # luzes (PointLight2D) e janelas acesas (Sprite2D) que aparecem à noite
 var _textura_luz: Texture2D
 var ambiente: Ambiente      # borboletas, folhas e vaga-lumes (só ao ar livre)
+var paredoes := {}          # Vector2i -> linha do paredão (0 = de cima): células abaixo da beira de um morro
 var _copas := PackedVector2Array()
 
 
@@ -61,6 +62,7 @@ func montar(id_mapa: String) -> void:
 			add_child(vela)
 			luzes.append(vela)
 	else:
+		_achar_paredoes()
 		_montar_chao()
 	arado = _camada(TEX_ARADO, 1, Vector2(-TAM / 2.0, -TAM / 2.0), "Arado")
 	molhado = _camada(TEX_MOLHADO, 1, Vector2(-TAM / 2.0, -TAM / 2.0), "Molhado")
@@ -144,6 +146,65 @@ func _montar_chao() -> void:
 		for dy in mapa.altura + 1:
 			for dx in mapa.largura + 1:
 				_pintar_dupla(camada, Vector2i(dx, dy), pred)
+	_desenhar_paredoes()
+
+
+## Paredão de pedra abaixo da beira de baixo de cada morro (tiles.json: "paredao" e "altura_paredao").
+func _achar_paredoes() -> void:
+	for tipo in Config.tiles:
+		var def = Config.tiles[tipo]
+		if typeof(def) != TYPE_DICTIONARY or not def.has("paredao"):
+			continue
+		var alt := int(def.get("altura_paredao", 2))
+		for y in mapa.altura:
+			for x in mapa.largura:
+				var c := Vector2i(x, y)
+				if mapa.chao_em(c) != tipo or mapa.chao_em(c + Vector2i(0, 1)) == tipo:
+					continue
+				for k in alt:
+					var b := c + Vector2i(0, k + 1)
+					if b.y >= mapa.altura or mapa.chao_em(b) == tipo:
+						break
+					paredoes[b] = k
+
+
+func _desenhar_paredoes() -> void:
+	if paredoes.is_empty():
+		return
+	var tex: Texture2D = null
+	for tipo in Config.tiles:
+		var def = Config.tiles[tipo]
+		if typeof(def) == TYPE_DICTIONARY and def.has("paredao"):
+			tex = load(SPRITES + "terreno/" + str(def["paredao"]))
+			break
+	var ts := TileSet.new()
+	ts.tile_size = Vector2i(TAM, TAM)
+	var src := TileSetAtlasSource.new()
+	src.texture = tex
+	src.texture_region_size = Vector2i(TAM, TAM)
+	for i in tex.get_width() / TAM:
+		for j in tex.get_height() / TAM:
+			src.create_tile(Vector2i(i, j))
+	ts.add_source(src, 0)
+	var camada := TileMapLayer.new()
+	camada.name = "Paredao"
+	camada.tile_set = ts
+	add_child(camada)
+	var linhas := tex.get_height() / TAM
+	for c in paredoes:
+		var k: int = paredoes[c]
+		var esq: bool = paredoes.get(c + Vector2i(-1, 0), -1) == k
+		var dir: bool = paredoes.get(c + Vector2i(1, 0), -1) == k
+		var col := 2
+		if not esq and not dir:
+			col = 0
+		elif not esq:
+			col = 1
+		elif not dir:
+			col = 3
+		else:
+			col = [2, 4, 5][int(ruido(c.x, c.y - k, 91) * 3.0) % 3]
+		camada.set_cell(c, 0, Vector2i(col, mini(k, linhas - 1)))
 
 
 ## Número pseudoaleatório fixo por célula (0..1): a mesma célula sempre recebe a mesma variação.
@@ -298,6 +359,13 @@ func _criar_paredes() -> void:
 			forma.shape = ret
 			forma.position = Vector2((x0 + x) * TAM / 2.0, y * TAM + TAM / 2.0)
 			corpo.add_child(forma)
+	for c in paredoes:
+		var forma := CollisionShape2D.new()
+		var ret := RectangleShape2D.new()
+		ret.size = Vector2(TAM, TAM)
+		forma.shape = ret
+		forma.position = Vector2(c) * TAM + Vector2(TAM / 2.0, TAM / 2.0)
+		corpo.add_child(forma)
 	add_child(corpo)
 
 
@@ -418,7 +486,7 @@ func _criar_enfeites() -> void:
 			for dy in range(-1, 2):
 				for dx in range(-1, 2):
 					var c := Vector2i(x + dx, y + dy)
-					if mapa.chao_em(c) != "grama" or mapa.ocupada(c):
+					if mapa.chao_em(c) != "grama" or mapa.ocupada(c) or paredoes.has(c):
 						livre = false
 			if not livre:
 				continue
@@ -501,7 +569,7 @@ func eh_agua_celula(c: Vector2i) -> bool:
 ## Célula onde o jogador não pode ficar (objeto sólido ou fora do mapa).
 func bloqueada(c: Vector2i) -> bool:
 	var chao := mapa.chao_em(c)
-	return mapa.ocupada(c) or chao == "" or bool(Config.tiles.get(chao, {}).get("solido", false))
+	return mapa.ocupada(c) or chao == "" or paredoes.has(c) or bool(Config.tiles.get(chao, {}).get("solido", false))
 
 
 func atualizar_luz(hora: float) -> void:

@@ -1317,6 +1317,9 @@ def gerar_terreno():
     salvar(agua(), caminho("terreno", "agua.png"))
     salvar(solo(False), caminho("terreno", "arado.png"))
     salvar(solo(True), caminho("terreno", "molhado.png"))
+    import relevo
+    salvar(relevo.morro(), caminho("terreno", "morro.png"))
+    salvar(relevo.paredao(), caminho("terreno", "paredao.png"))
 
 
 if __name__ == "__main__":
