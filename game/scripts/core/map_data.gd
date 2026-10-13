@@ -21,6 +21,7 @@ var noite := ""           # interiores: imagem por cima à noite (janelas escura
 var luzes: Array = []     # interiores: pontos (em pixels) que acendem à noite
 var peixes: Array = []    # o que se pesca aqui: [{"item", "peso", "noite", "dia"}]
 var corte := false        # dá para cortar árvores aqui (machado)? Ver Corte
+var animais := false      # dá para soltar animais e pôr construções aqui? Ver Animais, Construcao
 var sondagem: Dictionary = {}  # lago com fundo medível: {"ponto", "maximo", "raio", "flag", "efeitos", "texto"}
 var _grade: Array = []    # Array[Array[String]] de tipos de chão
 var _ocupado := {}        # "x,y" -> tipo do objeto que ocupa a célula
@@ -40,6 +41,7 @@ static func de_dict(d: Dictionary, defs_objetos := {}) -> MapData:
 	m.peixes = d.get("peixes", [])
 	m.sondagem = d.get("sondagem", {})
 	m.corte = bool(d.get("corte", false))
+	m.animais = bool(d.get("animais", false))
 	for l in d.get("luzes", []):
 		m.luzes.append(Vector2(float(l[0]), float(l[1])))
 	for s in d.get("saidas", []):
@@ -109,6 +111,17 @@ func trocar_objeto(c: Vector2i, tipo: String, defs_objetos: Dictionary) -> void:
 		_ocupado[k] = tipo
 	else:
 		_ocupado.erase(k)
+
+
+## Põe um objeto de 1 célula em 'c' (construção do jogador). Retorna o índice dele em 'objetos'.
+func adicionar_objeto(c: Vector2i, tipo: String, defs_objetos: Dictionary) -> int:
+	var k := "%d,%d" % [c.x, c.y]
+	objetos.append({"tipo": tipo, "x": c.x, "y": c.y})
+	var i := objetos.size() - 1
+	_indice[k] = i
+	if bool(defs_objetos.get(tipo, {}).get("solido", true)):
+		_ocupado[k] = tipo
+	return i
 
 
 ## Índice em 'objetos' do objeto que cobre a célula, ou -1.

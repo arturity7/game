@@ -11,6 +11,7 @@ const ACOES := {
 	"interagir": [KEY_E],              # o mesmo que o botão direito (na célula à frente)
 	"avancar": [KEY_SPACE, KEY_ENTER, KEY_E],   # passa a fala nas conversas
 	"diario": [KEY_J, KEY_TAB],        # diário de missões e conquistas
+	"construir": [KEY_C],              # menu Construir (cercas, porteiras...)
 	"barra_1": [KEY_1], "barra_2": [KEY_2], "barra_3": [KEY_3], "barra_4": [KEY_4], "barra_5": [KEY_5],
 	"barra_6": [KEY_6], "barra_7": [KEY_7], "barra_8": [KEY_8], "barra_9": [KEY_9], "barra_10": [KEY_0],
 }

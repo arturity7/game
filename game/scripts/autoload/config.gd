@@ -7,6 +7,7 @@ var itens := {}
 var culturas := {}
 var objetos := {}
 var lojas := {}
+var animais := {}
 ## Conteúdo dos livros (content/livros/<livro>/*.json), juntado de todos os livros:
 var livros := {}       # id do livro -> livro.json
 var dialogos := {}     # id -> conversa
@@ -22,6 +23,7 @@ func _ready() -> void:
 	culturas = _sem_comentarios(ler_json("res://content/config/culturas.json"))
 	objetos = _sem_comentarios(ler_json("res://content/config/objetos.json"))
 	lojas = _sem_comentarios(ler_json("res://content/config/lojas.json"))
+	animais = _sem_comentarios(ler_json("res://content/config/animais.json"))
 	carregar_livros()
 
 

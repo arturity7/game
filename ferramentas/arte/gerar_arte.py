@@ -343,6 +343,41 @@ def cercas():
     return atlas
 
 
+def porteiras():
+    """Porteira (gente passa, animal não) nos 16 casos de vizinhos (N=1, L=2, S=4, O=8), como a cerca.
+    Ligada de lado ou sozinha: porteira deitada com travessa em diagonal; ligada só em cima/embaixo: em pé."""
+    atlas = nova(16 * 16, 32)
+    for m in range(16):
+        t = nova(16, 32)
+        n, l, s_, o = m & 1, m & 2, m & 4, m & 8
+        _sombra(t, 8, 30, 7, 1.6, 70)
+        if (n or s_) and not (l or o):
+            for y in range(4, 31):     # porteira em pé (vista de lado)
+                for x in range(6, 10):
+                    put(t, x, y, cor("madeira", 6 if x == 6 else 5 if x == 7 else 4 if x == 8 else 3))
+            for y in (8, 17, 26):
+                for x in range(5, 11):
+                    put(t, x, y, cor("madeira", 2))
+            if n:
+                for y in range(0, 4):
+                    put(t, 7, y, cor("madeira", 4)); put(t, 8, y, cor("madeira", 2))
+            put(t, 9, 13, cor("metal", 4)); put(t, 9, 14, cor("metal", 2))
+        else:
+            for x in (0, 1, 14, 15):   # mourões das pontas
+                for y in range(17, 30):
+                    put(t, x, y, cor("madeira", 4 if x in (0, 14) else 2))
+            for y0 in (19, 26):        # travessas
+                for x in range(2, 14):
+                    put(t, x, y0, cor("madeira", 6)); put(t, x, y0 + 1, cor("madeira", 4))
+            for k in range(7):         # diagonal
+                put(t, 3 + int(k * 1.5), 25 - k, cor("madeira", 5))
+                put(t, 4 + int(k * 1.5), 25 - k, cor("madeira", 3))
+            put(t, 12, 22, cor("metal", 4)); put(t, 12, 23, cor("metal", 2))
+        contornar(t, hexc("#26150c"))
+        atlas[:, m * 16:(m + 1) * 16] = t
+    return atlas
+
+
 def casa():
     """Casa da fazenda 96x112: telhado de telhas, paredes de tábuas, porta, janelas e chaminé.
     Pegada de colisão: 6x3 tiles no rodapé (as paredes)."""
@@ -527,6 +562,7 @@ def gerar_objetos():
         salvar(arbusto(v), caminho("objetos", "arbusto_%d.png" % v))
         salvar(pedra(v), caminho("objetos", "pedra_%d.png" % v))
     salvar(cercas(), caminho("objetos", "cerca.png"))
+    salvar(porteiras(), caminho("objetos", "porteira.png"))
     salvar(toco(), caminho("objetos", "toco.png"))
     for nome, tipo, v in (("mato_0", "mato", 0), ("mato_1", "mato", 1), ("mato_2", "mato", 2),
                           ("flores_0", "flores", 0), ("flores_1", "flores", 1), ("flores_2", "flores", 2),
@@ -1097,6 +1133,75 @@ def icones_itens():
                 put(c, x0 + 6, y0 + y, cor("madeira", 5 if 0 < y < 3 else 4))
             put(c, x0 + 6, y0 + 1, cor("madeira", 6)); put(c, x0 + 6, y0 + 2, cor("madeira", 4))
             put(c, x0 + 2, y0 + 1, cor("tronco", 1))
+    def ovo(c):
+        for y in range(16):
+            for x in range(16):
+                nx, ny = (x + 0.5 - 8) / 4.2, (y + 0.5 - 9) / 5.2
+                if ny < 0:
+                    nx *= 1.15
+                if nx * nx + ny * ny <= 1:
+                    v = -(nx * 0.6 + ny * 0.8)
+                    put(c, x, y, cor("papel", max(1, min(3, int(round(2.4 + v * 1.3))))))
+        put(c, 6, 6, (255, 255, 250, 255)); put(c, 6, 7, cor("papel", 3))
+    def leite(c):
+        for y in range(5, 15):    # garrafa
+            for x in range(5, 11):
+                put(c, x, y, cor("flor_br", 2 if x < 7 else 1 if x < 10 else 0))
+        for y in range(2, 5):
+            for x in range(6, 10):
+                put(c, x, y, cor("flor_br", 1 if x < 9 else 0))
+        for x in range(6, 10):
+            put(c, x, 1, cor("camisa", 3))
+        for x in range(5, 11):
+            put(c, x, 9, cor("camisa", 3)); put(c, x, 10, cor("camisa", 2))
+    def la(c):
+        for y in range(16):
+            for x in range(16):
+                d = math.hypot(x + 0.5 - 8, y + 0.5 - 8.5)
+                if d <= 5.6:
+                    v = -((x - 8) * 0.6 + (y - 8.5) * 0.8) / 5.6
+                    i = int(round(2.4 + v * 1.4))
+                    if (x + y * 2) % 5 == 0:
+                        i -= 1
+                    put(c, x, y, cor("papel", max(0, min(3, i))))
+        for k in range(4):
+            put(c, 12 + k // 2, 13 + k % 2, cor("papel", 1))
+    def balde(c, cheio=False):
+        for y in range(5, 14):
+            w = 4 + (13 - y) // 4
+            for x in range(8 - w, 8 + w):
+                put(c, x, y, cor("metal", 3 if x < 8 - w + 2 else 2 if x < 8 + w - 2 else 1))
+        for x in range(3, 13):
+            put(c, x, 5, cor("metal", 4)); put(c, x, 4, cor("metal", 1))
+        for x in range(4, 12):
+            put(c, x, 1 + abs(x - 8) // 2, cor("metal", 2))
+    def tesoura(c):
+        for k in range(8):   # lâminas cruzadas
+            put(c, 7 + k, 8 - k, cor("metal", 4)); put(c, 7 + k, 9 - k, cor("metal", 2))
+            put(c, 7 + k, 7 + k // 3, cor("metal", 3))
+        for (cx, cy) in ((5, 10), (5, 13)):
+            for y in range(cy - 2, cy + 2):
+                for x in range(cx - 2, cx + 2):
+                    if abs(x + 0.5 - cx) + abs(y + 0.5 - cy) >= 1.5:
+                        put(c, x, y, cor("coracao", 2))
+    def cerca_ic(c):
+        for x0 in (3, 11):
+            for y in range(3, 15):
+                put(c, x0, y, cor("madeira", 5)); put(c, x0 + 1, y, cor("madeira", 3))
+            put(c, x0, 2, cor("madeira", 6))
+        for y0 in (6, 11):
+            for x in range(1, 15):
+                put(c, x, y0, cor("madeira", 5)); put(c, x, y0 + 1, cor("madeira", 3))
+    def porteira_ic(c):
+        for x0 in (1, 13):
+            for y in range(3, 15):
+                put(c, x0, y, cor("madeira", 4)); put(c, x0 + 1, y, cor("madeira", 2))
+        for y0 in (5, 11):
+            for x in range(3, 13):
+                put(c, x, y0, cor("madeira", 6)); put(c, x, y0 + 1, cor("madeira", 4))
+        for k in range(5):
+            put(c, 4 + k * 2, 10 - k, cor("madeira", 5)); put(c, 5 + k * 2, 10 - k, cor("madeira", 5))
+        put(c, 11, 8, cor("metal", 4))
     lista = [_icone(enxada), _icone(regador), _pacote(("feijao", 1)), _icone(feijao),
              _pacote(("cenoura", 2)), _icone(cenoura), _pacote(("batata", 1)), _icone(batata),
              _pacote(("milho", 2)), _icone(milho), _icone(carta), _icone(bolo), _icone(chave), _icone(casaco),
@@ -1104,7 +1209,10 @@ def icones_itens():
              _icone(peixe_icone("oliva", comprido=3, listras=True)), _icone(peixe_icone("cevada", comprido=3, brilho="folha")),
              _icone(peixe_icone("metal", comprido=-2)), _icone(peixe_icone("calca", comprido=5)),
              _icone(sonda), _icone(arca), _icone(enxada_larga), _icone(regador_grande),
-             _icone(machado), _icone(madeira)]
+             _icone(machado), _icone(madeira), _icone(ovo), _icone(leite), _icone(la), _icone(balde),
+             _icone(tesoura), _icone(cerca_ic), _icone(porteira_ic)]
+    import animais
+    lista += [animais.icone(e) for e in ("galinha", "vaca", "ovelha", "porco")]
     atlas = nova(16 * len(lista), 16)
     for i, ic in enumerate(lista):
         atlas[:, i * 16:(i + 1) * 16] = ic
@@ -1374,6 +1482,8 @@ if __name__ == "__main__":
     interiores.gerar()
     import cidade
     cidade.gerar()
+    import animais
+    animais.gerar(caminho, salvar)
     import livros
     livros.gerar()
     if len(sys.argv) > 1 and sys.argv[1] == "--previa":

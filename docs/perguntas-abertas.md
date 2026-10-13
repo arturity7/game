@@ -17,4 +17,6 @@ Nenhuma.
 
 ## 🟢 Podem esperar
 
-Nenhuma.
+| # | Pergunta | Situação no jogo |
+|---|---|---|
+| Q46 | **Carne dos porcos.** O GDD diz que os animais dão ovo, leite, carne e lã (D-054), mas a lista de temas fora do jogo inclui morte na tela. Como o porco deve dar carne? (a) o Mercado compra o porco (o jogador vende o animal e não vê mais nada); (b) a carne aparece no inventário sem mostrar nada; (c) sem carne por enquanto. | Por enquanto (c): o porco existe, passeia e tem cria, mas não dá produto (a IA segue sem esperar a resposta). |

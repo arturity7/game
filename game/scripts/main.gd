@@ -32,17 +32,22 @@ func _ready() -> void:
 	_cortina.mouse_filter = Control.MOUSE_FILTER_IGNORE
 	camada.add_child(_cortina)
 	var teste := false
+	var roteiros: Array = []
 	if "--autoteste" in OS.get_cmdline_user_args():
-		var t: Node = load("res://tests/autoteste.gd").new()
+		roteiros.append("res://tests/autoteste.gd")
+	for a in OS.get_cmdline_user_args():
+		if a.begins_with("--fotos="):
+			roteiros.append("res://tests/fotos.gd")
+	for r in roteiros:
+		var scr: GDScript = load(r)
+		if scr == null or not scr.can_instantiate():
+			printerr("SCRIPT ERROR: roteiro de teste não compila: ", r)
+			get_tree().quit(1)
+			return
+		var t: Node = scr.new()
 		t.main = self
 		add_child(t)
 		teste = true
-	for a in OS.get_cmdline_user_args():
-		if a.begins_with("--fotos="):
-			var f: Node = load("res://tests/fotos.gd").new()
-			f.main = self
-			add_child(f)
-			teste = true
 	if teste:
 		_comecar("continuar" if SaveSystem.existe() else "novo")
 	else:
@@ -193,9 +198,21 @@ func _passar(d: GameData, cfg: Dictionary, horas: float) -> void:
 	if horas <= 0.0:
 		return
 	var segundos := horas * float(cfg.get("dia_segundos_reais", 1080)) / 24.0
+	var dia_antes := int(d.mundo["dia"])
 	Survival.avancar_hora(d, cfg, segundos)
+	if int(d.mundo["dia"]) != dia_antes:
+		_novo_dia()
 	Fazenda.crescer(d, mundo.mapa.id, horas, Config.culturas, mundo.irrigadas)
 	mundo.atualizar_luz(float(d.mundo["hora"]))
+
+
+## Virou o dia: animais crescem e botam ovo (ver Animais).
+func _novo_dia() -> void:
+	if mundo == null:
+		return
+	Animais.novo_dia(GameState.dados, mundo.mapa.id, Config.animais, mundo.livre_para_produto)
+	mundo.atualizar_animais()
+	mundo.atualizar_no_chao()
 
 
 func _acordar() -> void:
@@ -227,6 +244,10 @@ func _unhandled_input(evento: InputEvent) -> void:
 	if evento.is_action_pressed("diario"):
 		get_viewport().set_input_as_handled()
 		abrir_diario()
+		return
+	if evento.is_action_pressed("construir"):
+		get_viewport().set_input_as_handled()
+		abrir_construir()
 		return
 	if evento is InputEventMouseButton and evento.pressed:
 		match evento.button_index:
@@ -288,6 +309,16 @@ func usar(c: Vector2i) -> void:
 	if bool(def.get("sonda", false)):
 		sondar(c)
 		return
+	var bicho := mundo.animal_em(c)
+	if bicho != null and _mexer_no_animal(bicho, s):
+		return
+	match str(def.get("tipo", "")):
+		"animal":
+			_soltar_animal(c, s, def)
+			return
+		"construcao":
+			_construir_em(c, s, def)
+			return
 	var acao := str(def.get("acao", ""))
 	if acao == "" and str(s["id"]) in ["enxada", "regador", "vara_pesca"]:
 		acao = {"enxada": "arar", "regador": "regar", "vara_pesca": "pescar"}[str(s["id"])]
@@ -311,9 +342,10 @@ func usar(c: Vector2i) -> void:
 			Som.tocar("machado")
 			feito = true
 			var r := mundo.golpear(c, -1.0 if esquerda else 1.0, _rng)
-			if str(r["resultado"]) == "caiu" and int(r["madeira"]) > 0:
-				var sobra := Inventario.adicionar(d.jogador["inventario"], "madeira", int(r["madeira"]), Config.itens)
-				hud.avisar("+%d Madeira" % (int(r["madeira"]) - sobra) if sobra < int(r["madeira"]) else "Inventário cheio.", 1.5)
+			if str(r["resultado"]) == "caiu" and int(r["qtd"]) > 0:
+				var sobra := Inventario.adicionar(d.jogador["inventario"], str(r["item"]), int(r["qtd"]), Config.itens)
+				var nome_item := str(Config.itens.get(str(r["item"]), {}).get("nome", r["item"]))
+				hud.avisar("+%d %s" % [int(r["qtd"]) - sobra, nome_item] if sobra < int(r["qtd"]) else "Inventário cheio.", 1.5)
 				Som.tocar("tombar" if str(r["vira"]) != "" else "colher", -2.0)
 			elif str(r["resultado"]) == "nada" and not mundo.mapa.objeto_em(c).is_empty() and Config.objetos.get(str(mundo.mapa.objeto_em(c)["tipo"]), {}).has("corte"):
 				hud.avisar("Essa árvore não dá para cortar.", 1.8)
@@ -350,6 +382,90 @@ func usar(c: Vector2i) -> void:
 		mundo.desenhar_plantacao(d)
 
 
+## Mexer num animal com o item da mão: ferramenta tira o produto (balde, tesoura), a comida preferida
+## dá vontade de cria (como no Minecraft). Com 'carinho', sem nada disso, faz carinho e mostra como ele está.
+## Retorna true se fez alguma coisa.
+func _mexer_no_animal(bicho: Animal, s, carinho := false) -> bool:
+	var d: GameData = GameState.dados
+	var a: Dictionary = bicho.registro
+	var def_a: Dictionary = Config.animais.get(str(a["especie"]), {})
+	var nome := str(def_a.get("nome", a["especie"]))
+	var id_mao := str(s["id"]) if s != null else ""
+	bicho.olhar(mundo.jogador.position)
+	mundo.jogador.olhar_para(bicho.celula())
+	var prod: Dictionary = def_a.get("produto", {})
+	if id_mao != "" and str(prod.get("ferramenta", "")) == id_mao:
+		var item := Animais.tirar_produto(d, a, id_mao, Config.animais)
+		if item == "":
+			hud.avisar("%s: ainda não. Volte outro dia." % nome if not bool(a.get("filhote", false)) else "É só um filhote.", 1.8)
+			return true
+		var sobra := Inventario.adicionar(d.jogador["inventario"], item, 1, Config.itens)
+		if sobra > 0:
+			a["produto_dia"] = int(d.mundo["dia"]) - int(prod.get("dias", 1))
+			hud.avisar("Inventário cheio.", 1.5)
+			return true
+		mundo.jogador.acao()
+		Efeitos.colheita(mundo, bicho.celula(), int(Config.itens[item].get("icone", 0)))
+		Som.tocar("colher")
+		hud.avisar("Pegou: %s" % str(Config.itens[item]["nome"]), 1.2)
+		bicho.atualizar_visual()
+		return true
+	if id_mao != "" and id_mao in def_a.get("comida", []):
+		if Animais.alimentar(d, a, id_mao, Config.animais):
+			Inventario.remover(d.jogador["inventario"], _selecionado(), 1)
+			Efeitos.coracoes(mundo, bicho.position + Vector2(0, -14))
+			Som.tocar("comer", -4.0)
+			var filhote := Animais.tentar_cria(d, mundo.mapa.id)
+			if not filhote.is_empty():
+				mundo.atualizar_animais()
+				hud.avisar("Nasceu um filhote de %s!" % nome.to_lower(), 2.5)
+			else:
+				hud.avisar("%s comeu e quer cria. Falta outro com vontade hoje." % nome, 2.2)
+		else:
+			hud.avisar("%s não quer agora." % nome if not bool(a.get("filhote", false)) else "Filhote ainda não tem cria.", 1.8)
+		return true
+	if not carinho:
+		return false
+	Efeitos.coracoes(mundo, bicho.position + Vector2(0, -14), 1)
+	var estado := "filhote" if bool(a.get("filhote", false)) else "contente"
+	var extra := ""
+	if str(prod.get("modo", "")) == "ferramenta" and Animais.produto_pronto(d, a, Config.animais):
+		extra = " %s pronto (use: %s)." % [str(Config.itens.get(str(prod["item"]), {}).get("nome", "")),
+			str(Config.itens.get(str(prod["ferramenta"]), {}).get("nome", ""))]
+	hud.avisar("%s (%s).%s" % [nome, estado, extra], 2.0)
+	return true
+
+
+func _soltar_animal(c: Vector2i, s, def: Dictionary) -> void:
+	var d: GameData = GameState.dados
+	if not mundo.mapa.animais:
+		hud.avisar("Solte os animais na sua fazenda.", 1.8)
+		return
+	if not mundo.livre_para_animal(c) or mundo.celula_de(mundo.jogador.position) == c:
+		hud.avisar("Não cabe aí.", 1.2)
+		return
+	var a := Animais.soltar(d, str(def.get("animal", s["id"])), mundo.mapa.id, c)
+	Inventario.remover(d.jogador["inventario"], _selecionado(), 1)
+	mundo.atualizar_animais()
+	Efeitos.coracoes(mundo, Vector2(c) * 16.0 + Vector2(8, -2))
+	Som.tocar("plantar")
+	hud.avisar("%s solta na fazenda." % str(Config.animais.get(str(a["especie"]), {}).get("nome", "")), 1.5)
+
+
+func _construir_em(c: Vector2i, s, def: Dictionary) -> void:
+	var d: GameData = GameState.dados
+	var livre := not mundo.bloqueada(c) and mundo.celula_de(mundo.jogador.position) != c and mundo.animal_em(c) == null
+	if not Construcao.cabe(d, mundo.mapa, c, livre):
+		hud.avisar("Não dá para construir aí." if mundo.mapa.animais else "Construa na sua fazenda.", 1.5)
+		return
+	mundo.por_construcao(c, str(def.get("objeto", s["id"])))
+	Inventario.remover(d.jogador["inventario"], _selecionado(), 1)
+	mundo.jogador.olhar_para(c)
+	mundo.jogador.acao()
+	Efeitos.particulas(mundo, Vector2(c) * 16.0 + Vector2(8, 12), Color("#c98c58"), 6, 30.0)
+	Som.tocar("enxada", -6.0)
+
+
 ## A loja está aberta agora? (horário em lojas.json)
 func loja_aberta(id: String) -> bool:
 	var def: Dictionary = Config.lojas.get(id, {})
@@ -379,6 +495,13 @@ func abrir_diario() -> Diario:
 	var j := Diario.new()
 	add_child(j)
 	return j
+
+
+func abrir_construir() -> Construir:
+	Som.tocar("clique", 0.0, false)
+	var c := Construir.new()
+	add_child(c)
+	return c
 
 
 func abrir_loja(id: String) -> Loja:
@@ -517,6 +640,22 @@ func interagir(c: Vector2i) -> void:
 			conversar(str(npc["dialogo"]), str(npc.get("nome", "")))
 		elif str(npc.get("fala", "")) != "":
 			ler(str(npc.get("nome", "")), [str(npc["fala"])])
+		return
+	var do_chao := Animais.pegar_do_chao(d, mundo.mapa.id, c)
+	if do_chao != "":
+		var sobra := Inventario.adicionar(d.jogador["inventario"], do_chao, 1, Config.itens)
+		if sobra > 0:
+			Animais.no_chao(d, mundo.mapa.id)["%d,%d" % [c.x, c.y]] = do_chao
+			hud.avisar("Inventário cheio.", 1.5)
+		else:
+			Efeitos.colheita(mundo, c, int(Config.itens[do_chao].get("icone", 0)))
+			Som.tocar("colher")
+			hud.avisar("Pegou: %s" % str(Config.itens[do_chao]["nome"]), 1.2)
+		mundo.atualizar_no_chao()
+		return
+	var bicho := mundo.animal_em(c)
+	if bicho != null:
+		_mexer_no_animal(bicho, _item_selecionado(), true)
 		return
 	var obj := mundo.mapa.objeto_em(c)
 	if obj.has("texto"):

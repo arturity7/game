@@ -227,6 +227,41 @@ func _rodar() -> void:
 	checar(Inventario.contar(inv, "madeira") > madeira_antes, "o machado derruba a árvore e dá madeira")
 	checar(main.mundo.mapa.tipo_em(Vector2i(3, 12)) == "toco", "fica um toco no lugar da árvore")
 	await _esperar(0.8)
+	# animais: solta duas galinhas, dá semente às duas e nasce um pintinho
+	var antes_animais := Animais.todos(d).size()
+	for k in 2:
+		inv[8] = Inventario.novo_slot("galinha", 1, Config.itens)
+		main.selecionar(8)
+		main.mundo.jogador.position = Vector2(30, 9) * 16.0 + Vector2(8, 8)
+		main.usar(Vector2i(31 + k * 2, 9))
+	checar(Animais.todos(d).size() == antes_animais + 2 and main.mundo.animais_nos.size() >= 2, "solta duas galinhas na fazenda")
+	checar(inv[8] == null, "a galinha sai do inventário")
+	inv[8] = Inventario.novo_slot("semente_milho", 5, Config.itens)
+	main.selecionar(8)
+	for a in Animais.do_mapa(d, "fazenda"):
+		var no: Animal = main.mundo.animais_nos[int(a["id"])]
+		main.interagir(no.celula())
+	checar(Animais.todos(d).size() == antes_animais + 3, "duas galinhas com vontade: nasce um pintinho")
+	await _esperar(3.0)
+	var presos := true
+	for id in main.mundo.animais_nos:
+		var no: Animal = main.mundo.animais_nos[id]
+		if main.mundo.bloqueada(no.celula()) or main.mundo.eh_agua_celula(no.celula()):
+			presos = false
+	checar(presos, "animais andam só onde podem")
+	# construir: faz uma cerca com madeira e põe na fazenda
+	inv[7] = Inventario.novo_slot("madeira", 4, Config.itens)
+	checar(Construcao.fazer(d, "cerca", Config.itens), "faz uma cerca no menu Construir")
+	inv[8] = Inventario.novo_slot("cerca", 1, Config.itens)
+	main.selecionar(8)
+	main.mundo.jogador.position = Vector2(40, 12) * 16.0 + Vector2(8, 8)
+	main.usar(Vector2i(41, 12))
+	checar(main.mundo.mapa.tipo_em(Vector2i(41, 12)) == "cerca", "põe a cerca na fazenda")
+	var tela: Construir = main.abrir_construir()
+	await _esperar(0.1)
+	checar(get_tree().paused, "o menu Construir pausa o jogo")
+	tela.fechar()
+	await _esperar(0.1)
 	# dormir à noite faz o tempo correr até as 6h
 	d.mundo["hora"] = 22.0
 	main.dormir()

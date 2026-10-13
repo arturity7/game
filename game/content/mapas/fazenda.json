@@ -1,8 +1,9 @@
 {
- "_sobre": "Mapa da fazenda. Cada caractere é uma célula de 16x16; a legenda diz o tipo de chão (tiles.json) ou o objeto (objetos.json) da célula. Objetos maiores que uma célula ficam em 'objetos' (x, y = canto de cima à esquerda da pegada). 'saidas' = células que levam a outro mapa (a porta da casa). 'peixes' = o que se pesca na água do mapa (peso = chance; noite/dia = só nesse período). 'corte': true = dá para cortar as árvores com o machado (menos as da beira do mapa).",
+ "_sobre": "Mapa da fazenda. Cada caractere é uma célula de 16x16; a legenda diz o tipo de chão (tiles.json) ou o objeto (objetos.json) da célula. Objetos maiores que uma célula ficam em 'objetos' (x, y = canto de cima à esquerda da pegada). 'saidas' = células que levam a outro mapa (a porta da casa). 'peixes' = o que se pesca na água do mapa (peso = chance; noite/dia = só nesse período). 'corte': true = dá para cortar as árvores com o machado (menos as da beira do mapa). 'animais': true = dá para soltar animais e pôr construções (cercas, porteiras).",
  "id": "fazenda",
  "nome": "Fazenda",
  "corte": true,
+ "animais": true,
  "legenda": {
   ".": "grama",
   "t": "terra",

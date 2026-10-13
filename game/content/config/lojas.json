@@ -9,7 +9,13 @@
       "semente_cenoura",
       "semente_batata",
       "semente_milho",
-      "vara_pesca"
+      "vara_pesca",
+      "galinha",
+      "ovelha",
+      "porco",
+      "vaca",
+      "balde",
+      "tesoura"
     ],
     "compra": [
       "feijao",
@@ -24,7 +30,10 @@
       "walden.item.lucio_dourado",
       "walden.item.enguia",
       "walden.item.arca_ferro",
-      "madeira"
+      "madeira",
+      "ovo",
+      "leite",
+      "la"
     ]
   },
   "ferreiro": {

@@ -77,6 +77,42 @@ static func colheita(pai: Node, celula: Vector2i, icone: int) -> void:
 	particulas(pai, Vector2(celula) * 16.0 + Vector2(8, 10), Color("#63a63d"), 6, 35.0)
 
 
+static var _tex_coracao: Texture2D
+
+
+## Coração de 9x8 px com contorno (feito uma vez).
+static func _coracao() -> Texture2D:
+	if _tex_coracao != null:
+		return _tex_coracao
+	var molde := [".oo...oo.", "orrooorro", "orlrrrrro", "orrrrrrro", ".orrrrro.", "..orrro..", "...oro...", "....o...."]
+	var cores := {"o": Color("#3a1418"), "r": Color("#d6383f"), "l": Color("#f6b0aa")}
+	var img := Image.create(9, 8, false, Image.FORMAT_RGBA8)
+	for y in molde.size():
+		for x in str(molde[y]).length():
+			var ch: String = molde[y][x]
+			if cores.has(ch):
+				img.set_pixel(x, y, cores[ch])
+	_tex_coracao = ImageTexture.create_from_image(img)
+	return _tex_coracao
+
+
+## Coraçõezinhos subindo (carinho, comida, animal novo).
+static func coracoes(pai: Node, origem: Vector2, n := 3) -> void:
+	for k in n:
+		var s := Sprite2D.new()
+		s.texture = _coracao()
+		s.position = origem + Vector2((k - (n - 1) / 2.0) * 7.0, 0)
+		s.z_index = 7
+		s.modulate.a = 0.0
+		var tw := s.create_tween()
+		tw.tween_interval(k * 0.12)
+		tw.tween_property(s, "modulate:a", 1.0, 0.08)
+		tw.parallel().tween_property(s, "position:y", s.position.y - 12, 0.6).set_ease(Tween.EASE_OUT)
+		tw.tween_property(s, "modulate:a", 0.0, 0.25)
+		tw.tween_callback(s.queue_free)
+		pai.add_child(s)
+
+
 class Particulas:
 	extends Node2D
 	var pontos: Array = []

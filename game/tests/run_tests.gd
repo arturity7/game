@@ -29,6 +29,8 @@ func _init() -> void:
 	_teste_walden(cfg)
 	_teste_seja_util(cfg)
 	_teste_corte(cfg)
+	_teste_animais(cfg)
+	_teste_construcao(cfg)
 	print("\n%d verificações, %d falha(s)" % [total, falhas])
 	quit(1 if falhas > 0 else 0)
 
@@ -608,7 +610,7 @@ func _teste_corte(cfg: Dictionary) -> void:
 	for k in golpes - 1:
 		checar(str(Corte.golpear(d, m, arv, objs, cfg, rng)["resultado"]) == "golpe", "corte: golpe %d só balança" % (k + 1))
 	var r := Corte.golpear(d, m, arv, objs, cfg, rng)
-	checar(str(r["resultado"]) == "caiu" and int(r["madeira"]) >= 3 and int(r["madeira"]) <= 5, "corte: a árvore cai e dá madeira")
+	checar(str(r["resultado"]) == "caiu" and str(r["item"]) == "madeira" and int(r["qtd"]) >= 3 and int(r["qtd"]) <= 5, "corte: a árvore cai e dá madeira")
 	checar(m.tipo_em(arv) == "toco" and m.ocupada(arv), "corte: fica um toco no lugar")
 	# recarregar o mapa: o toco continua; depois de alguns dias, rebrota
 	var m2 := MapData.de_dict(_json("res://content/mapas/fazenda.json"), objs)
@@ -634,3 +636,89 @@ func _teste_corte(cfg: Dictionary) -> void:
 	checar(gd.mundo.get("arvores", {}).get("fazenda", {}).size() == 1, "corte: estado vai para o save")
 	var cidade := MapData.de_dict(_json("res://content/mapas/cidade.json"), objs)
 	checar(not cidade.corte, "corte: na cidade não")
+
+
+func _teste_animais(cfg: Dictionary) -> void:
+	var defs := _defs("animais")
+	var itens := _defs("itens")
+	for e in defs:
+		for k in ["folha", "filhote"]:
+			checar(ResourceLoader.exists("res://assets/sprites/animais/" + str(defs[e][k])), "animal %s: arte %s" % [e, k])
+		var prod: Dictionary = defs[e].get("produto", {})
+		if not prod.is_empty():
+			checar(itens.has(str(prod["item"])), "animal %s: produto existe" % e)
+			if prod.has("ferramenta"):
+				checar(itens.has(str(prod["ferramenta"])), "animal %s: ferramenta existe" % e)
+		for c in defs[e].get("comida", []):
+			checar(itens.has(str(c)), "animal %s: comida existe (%s)" % [e, c])
+		checar(itens.has(e) and str(itens[e].get("animal", "")) == e, "animal %s: item para comprar" % e)
+	var d := GameData.novo(cfg, "fazenda", Vector2.ZERO, itens)
+	var livre := func(_c: Vector2i) -> bool: return true
+	var g1 := Animais.soltar(d, "galinha", "fazenda", Vector2i(10, 20))
+	var g2 := Animais.soltar(d, "galinha", "fazenda", Vector2i(12, 20))
+	checar(int(g1["id"]) != int(g2["id"]), "animais: ids diferentes")
+	Animais.novo_dia(d, "fazenda", defs, livre)
+	checar(Animais.no_chao(d, "fazenda").is_empty(), "animais: galinha nova não bota no mesmo dia")
+	d.mundo["dia"] = int(d.mundo["dia"]) + 1
+	var postos := Animais.novo_dia(d, "fazenda", defs, livre)
+	checar(postos.size() == 2 and Animais.no_chao(d, "fazenda").size() == 2, "animais: cada galinha bota um ovo por dia")
+	Animais.novo_dia(d, "fazenda", defs, livre)
+	checar(Animais.no_chao(d, "fazenda").size() == 2, "animais: só um ovo por dia")
+	var k: String = Animais.no_chao(d, "fazenda").keys()[0]
+	var c := Fazenda.celula_da_chave(k)
+	checar(Animais.pegar_do_chao(d, "fazenda", c) == "ovo" and Animais.no_chao(d, "fazenda").size() == 1, "animais: pega o ovo do chão")
+	var v := Animais.soltar(d, "vaca", "fazenda", Vector2i(20, 20))
+	checar(Animais.tirar_produto(d, v, "balde", defs) == "", "animais: vaca nova só dá leite amanhã")
+	d.mundo["dia"] = int(d.mundo["dia"]) + 1
+	checar(Animais.tirar_produto(d, v, "tesoura", defs) == "", "animais: ferramenta errada não tira nada")
+	checar(Animais.tirar_produto(d, v, "balde", defs) == "leite", "animais: balde tira leite")
+	checar(Animais.tirar_produto(d, v, "balde", defs) == "", "animais: um leite por dia")
+	# cria como no Minecraft: dois adultos com a comida preferida no mesmo dia
+	checar(not Animais.alimentar(d, g1, "milho", defs), "animais: comida errada não serve")
+	checar(Animais.alimentar(d, g1, "semente_milho", defs), "animais: galinha come semente")
+	checar(not Animais.alimentar(d, g1, "semente_milho", defs), "animais: não come duas vezes no dia")
+	checar(Animais.tentar_cria(d, "fazenda").is_empty(), "animais: um só não tem cria")
+	checar(Animais.alimentar(d, g2, "semente_feijao", defs), "animais: a outra galinha come")
+	var f := Animais.tentar_cria(d, "fazenda")
+	checar(not f.is_empty() and bool(f["filhote"]) and str(f["especie"]) == "galinha", "animais: nasce um pintinho")
+	checar(not Animais.alimentar(d, g1, "semente_milho", defs), "animais: depois da cria, espera uns dias")
+	checar(not Animais.alimentar(d, f, "semente_milho", defs), "animais: filhote não tem cria")
+	d.mundo["dia"] = int(d.mundo["dia"]) + int(defs["galinha"]["dias_crescer"])
+	Animais.novo_dia(d, "fazenda", defs, livre)
+	checar(not bool(f["filhote"]), "animais: o pintinho cresce")
+	var gd := GameData.from_dict(d.to_dict(2))
+	checar(gd.mundo["animais"].size() == 4, "animais: vão para o save")
+	var velho := GameData.from_dict({"save_version": 2, "mundo": {"dia": 3}})
+	checar(velho.mundo.has("animais") and velho.mundo["animais"].is_empty(), "animais: save antigo começa sem animais")
+
+
+func _teste_construcao(cfg: Dictionary) -> void:
+	var objs := _defs("objetos")
+	var itens := _defs("itens")
+	var d := GameData.novo(cfg, "fazenda", Vector2.ZERO, itens)
+	var inv: Array = d.jogador["inventario"]
+	checar(not Construcao.fazer(d, "cerca", itens), "construção: sem madeira não faz")
+	Inventario.adicionar(inv, "madeira", 5, itens)
+	checar(Construcao.fazer(d, "cerca", itens) and Inventario.contar(inv, "cerca") == 1 and Inventario.contar(inv, "madeira") == 3, "construção: cerca gasta 2 de madeira")
+	var m := MapData.de_dict(_json("res://content/mapas/fazenda.json"), objs)
+	var c := Vector2i(30, 10)
+	checar(Construcao.cabe(d, m, c, true), "construção: cabe na grama livre da fazenda")
+	checar(not Construcao.cabe(d, m, Vector2i(26, 10), true) or m.chao_em(Vector2i(26, 10)) == "caminho", "construção: caminho também serve")
+	Construcao.por(d, m, c, "cerca", objs)
+	checar(m.tipo_em(c) == "cerca" and m.ocupada(c), "construção: a cerca ocupa a célula")
+	checar(not Construcao.cabe(d, m, c, true), "construção: não põe em cima de outra")
+	var m2 := MapData.de_dict(_json("res://content/mapas/fazenda.json"), objs)
+	Corte.aplicar(d, m2, objs, cfg)
+	Construcao.aplicar(d, m2, objs)
+	checar(m2.tipo_em(c) == "cerca", "construção: continua ao voltar ao mapa")
+	var rng := RandomNumberGenerator.new()
+	var r := Corte.golpear(d, m2, c, objs, cfg, rng)
+	checar(str(r["resultado"]) == "caiu" and str(r["item"]) == "cerca" and int(r["qtd"]) == 1, "construção: o machado desfaz e devolve a cerca")
+	checar(Construcao.do_mapa(d, "fazenda").is_empty() and not m2.ocupada(c), "construção: sai do save")
+	var m3 := MapData.de_dict(_json("res://content/mapas/fazenda.json"), objs)
+	Corte.aplicar(d, m3, objs, cfg)
+	Construcao.aplicar(d, m3, objs)
+	checar(not m3.ocupada(c), "construção: desfeita continua desfeita")
+	var cidade := MapData.de_dict(_json("res://content/mapas/cidade.json"), objs)
+	checar(not Construcao.cabe(d, cidade, Vector2i(5, 12), true), "construção: só na fazenda")
+	checar(bool(objs["porteira"].get("bloqueia_animais", false)) and not bool(objs["porteira"].get("solido", true)), "construção: porteira deixa gente passar e segura animal")

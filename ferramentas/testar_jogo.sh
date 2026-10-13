@@ -7,7 +7,7 @@ cd "$(dirname "$0")/../game"
 timeout 120 "$G" --headless --path . --import >/dev/null 2>&1 || true
 echo "== scripts compilam"
 ERROS=""
-for f in $(find scripts -name "*.gd"); do
+for f in $(find scripts tests -name "*.gd"); do
   R=$(timeout 60 "$G" --headless --path . --check-only --script "res://$f" 2>&1 | grep -A1 "Parse Error" || true)
   [ -n "$R" ] && ERROS="$ERROS\n$f: $R"
 done

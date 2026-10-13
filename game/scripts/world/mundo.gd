@@ -36,12 +36,15 @@ var paredoes := {}          # Vector2i -> linha do paredão (0 = de cima): célu
 var _copas := PackedVector2Array()   # copas da mata em volta (folhas caindo)
 var _copas_obj := {}                   # índice do objeto -> copa (folhas caindo)
 var _corpos := {}                      # índice do objeto -> nó (para trocar quando muda, ex.: árvore cortada)
+var animais_nos := {}                  # id do animal -> Animal
+var _chao_nos := {}                    # "x,y" -> Sprite2D de um item no chão (ovo)
 
 
 func montar(id_mapa: String) -> void:
 	mapa = Config.mapa(id_mapa)
 	if GameState.dados != null:
 		Corte.aplicar(GameState.dados, mapa, Config.objetos, Config.balanceamento)
+		Construcao.aplicar(GameState.dados, mapa, Config.objetos)
 	if mapa.fundo != "":
 		var fundo := Sprite2D.new()
 		fundo.name = "Fundo"
@@ -92,6 +95,10 @@ func montar(id_mapa: String) -> void:
 	jogador.name = "Jogador"
 	jogador.mundo = self
 	profundidade.add_child(jogador)
+	if GameState.dados != null:
+		Animais.novo_dia(GameState.dados, mapa.id, Config.animais, livre_para_produto)
+		atualizar_animais()
+		atualizar_no_chao()
 	var cam := Camera2D.new()
 	var tela := Vector2(480, 270)
 	var w := mapa.largura * TAM
@@ -561,7 +568,117 @@ func golpear(c: Vector2i, lado: float, rng: RandomNumberGenerator) -> Dictionary
 			corpo.queue_free()
 			_criar_objeto(i)
 			_atualizar_copas()
+			_refazer_vizinhos(c)
 	return r
+
+
+## Redesenha as cercas vizinhas (depois de pôr ou tirar uma cerca).
+func _refazer_vizinhos(c: Vector2i) -> void:
+	for d in [Vector2i(0, -1), Vector2i(1, 0), Vector2i(0, 1), Vector2i(-1, 0)]:
+		var j := mapa.indice_em(c + d)
+		if j < 0 or not Config.objetos.get(str(mapa.objetos[j]["tipo"]), {}).has("cerca"):
+			continue
+		var velho: Node = _corpos.get(j)
+		if velho != null:
+			velho.queue_free()
+			_corpos.erase(j)
+		_criar_objeto(j)
+
+
+## Põe uma construção do jogador na célula (ver Construcao) e liga as cercas vizinhas.
+func por_construcao(c: Vector2i, tipo_objeto: String) -> void:
+	Construcao.por(GameState.dados, mapa, c, tipo_objeto, Config.objetos)
+	_criar_objeto(mapa.indice_em(c))
+	_refazer_vizinhos(c)
+
+
+# ---------- animais ----------
+
+## Célula onde um animal pode pisar (e onde não há outro animal nem o jogador).
+func livre_para_animal(c: Vector2i, quem: Node = null) -> bool:
+	if bloqueada(c) or eh_agua_celula(c) or not mapa.saida_em(c).is_empty():
+		return false
+	var o := mapa.objeto_em(c)
+	if not o.is_empty() and bool(Config.objetos.get(str(o["tipo"]), {}).get("bloqueia_animais", false)):
+		return false
+	if GameState.dados != null and Fazenda.canteiro(GameState.dados, mapa.id, c) != null:
+		return false
+	if jogador != null and celula_de(jogador.position) == c:
+		return false
+	for id in animais_nos:
+		var a: Animal = animais_nos[id]
+		if a == quem:
+			continue
+		if a.celula() == c or Vector2i(int(a.registro["x"]), int(a.registro["y"])) == c:
+			return false
+	return true
+
+
+## Célula onde cabe um produto no chão (ovo).
+func livre_para_produto(c: Vector2i) -> bool:
+	if bloqueada(c) or eh_agua_celula(c) or not mapa.saida_em(c).is_empty() or not mapa.objeto_em(c).is_empty():
+		return false
+	if GameState.dados != null and Fazenda.canteiro(GameState.dados, mapa.id, c) != null:
+		return false
+	return mapa.chao_em(c) in ["grama", "terra", "caminho"]
+
+
+## Cria os nós dos animais deste mapa que ainda não têm nó e atualiza o desenho de todos.
+func atualizar_animais() -> void:
+	if GameState.dados == null:
+		return
+	for a in Animais.do_mapa(GameState.dados, mapa.id):
+		var id := int(a["id"])
+		if not animais_nos.has(id):
+			var n := Animal.new()
+			n.registro = a
+			n.mundo = self
+			n.name = "Animal_%d" % id
+			profundidade.add_child(n)
+			animais_nos[id] = n
+		else:
+			animais_nos[id].registro = a
+			animais_nos[id].atualizar_visual()
+
+
+## O animal na célula (ou o mais perto dela, a até 12 px do centro), ou null.
+func animal_em(c: Vector2i) -> Animal:
+	var centro := Vector2(c) * TAM + Vector2(8, 10)
+	var melhor: Animal = null
+	var dist := 13.0
+	for id in animais_nos:
+		var a: Animal = animais_nos[id]
+		if a.celula() == c:
+			return a
+		var d := a.position.distance_to(centro)
+		if d < dist:
+			dist = d
+			melhor = a
+	return melhor
+
+
+## Desenha os itens no chão (ovos) conforme o save.
+func atualizar_no_chao() -> void:
+	if GameState.dados == null:
+		return
+	var chao := Animais.no_chao(GameState.dados, mapa.id)
+	for k in _chao_nos.keys():
+		if not chao.has(k):
+			_chao_nos[k].queue_free()
+			_chao_nos.erase(k)
+	for k in chao:
+		if _chao_nos.has(k):
+			continue
+		var c := Fazenda.celula_da_chave(k)
+		var spr := Sprite2D.new()
+		spr.texture = Efeitos.ITENS
+		spr.region_enabled = true
+		spr.region_rect = Rect2(int(Config.itens.get(str(chao[k]), {}).get("icone", 0)) * 16, 0, 16, 16)
+		spr.centered = false
+		spr.position = Vector2(c.x * TAM + 8, c.y * TAM + 12)
+		spr.offset = Vector2(-8, -14)
+		profundidade.add_child(spr)
+		_chao_nos[k] = spr
 
 
 ## Mato e flores balançam quando alguém passa por cima (só desenho).
@@ -605,11 +722,16 @@ func _criar_mata_em_volta() -> void:
 				_copas.append(spr.position + Vector2(0, -tex.get_height() * 0.62))
 
 
+func _liga_cerca(c: Vector2i) -> bool:
+	var o := mapa.objeto_em(c)
+	return not o.is_empty() and Config.objetos.get(str(o["tipo"]), {}).has("cerca")
+
+
 ## Cerca liga com as vizinhas: N=1, L=2, S=4, O=8 (ordem das colunas em cerca.png).
 func _mascara_cerca(c: Vector2i) -> int:
 	var m := 0
 	for par in [[Vector2i(0, -1), 1], [Vector2i(1, 0), 2], [Vector2i(0, 1), 4], [Vector2i(-1, 0), 8]]:
-		if mapa.tipo_em(c + par[0]) == "cerca":
+		if _liga_cerca(c + par[0]):
 			m |= int(par[1])
 	return m
 

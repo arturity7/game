@@ -1,5 +1,5 @@
 {
-  "_sobre": "Itens básicos (fora dos livros). 'icone' = posição em assets/sprites/itens/itens.png. 'preco' = quanto custa na loja; 'venda' = quanto a loja paga. 'acao' (ferramentas) = arar, regar, pescar ou cortar (machado: árvores e tocos); 'largura' = quantas células em linha ela pega. IDs nunca mudam (tecnico.md §5).",
+  "_sobre": "Itens básicos (fora dos livros). 'icone' = posição em assets/sprites/itens/itens.png. 'preco' = quanto custa na loja; 'venda' = quanto a loja paga. 'acao' (ferramentas) = arar, regar, pescar ou cortar (machado: árvores, tocos e cercas); balde e tesoura servem nos animais. Tipo 'animal' = solta o animal ('animal' em animais.json) na fazenda; tipo 'construcao' = põe o 'objeto' na célula (fazenda) e é feito no menu Construir com a 'receita' (materiais); 'largura' = quantas células em linha ela pega. IDs nunca mudam (tecnico.md §5).",
   "enxada": {"nome": "Enxada", "tipo": "ferramenta", "icone": 0, "pilha": 1, "acao": "arar"},
   "regador": {"nome": "Regador", "tipo": "ferramenta", "icone": 1, "pilha": 1, "capacidade": 20, "acao": "regar"},
   "semente_feijao": {"nome": "Sementes de feijão", "tipo": "semente", "icone": 2, "pilha": 99, "cultura": "feijao", "preco": 20},
@@ -17,5 +17,16 @@
   "enxada_larga": {"nome": "Enxada larga", "tipo": "ferramenta", "icone": 24, "pilha": 1, "acao": "arar", "largura": 3, "preco": 200},
   "regador_grande": {"nome": "Regador grande", "tipo": "ferramenta", "icone": 25, "pilha": 1, "acao": "regar", "capacidade": 40, "largura": 3, "preco": 150},
   "machado": {"nome": "Machado", "tipo": "ferramenta", "icone": 26, "pilha": 1, "acao": "cortar", "preco": 60},
-  "madeira": {"nome": "Madeira", "tipo": "material", "icone": 27, "pilha": 99, "venda": 3}
+  "madeira": {"nome": "Madeira", "tipo": "material", "icone": 27, "pilha": 99, "venda": 3},
+  "ovo": {"nome": "Ovo", "tipo": "comida", "icone": 28, "pilha": 99, "fome": 3, "venda": 8},
+  "leite": {"nome": "Leite", "tipo": "comida", "icone": 29, "pilha": 99, "fome": 5, "venda": 15},
+  "la": {"nome": "Lã", "tipo": "material", "icone": 30, "pilha": 99, "venda": 20},
+  "balde": {"nome": "Balde", "tipo": "ferramenta", "icone": 31, "pilha": 1, "preco": 30},
+  "tesoura": {"nome": "Tesoura de tosquia", "tipo": "ferramenta", "icone": 32, "pilha": 1, "preco": 30},
+  "cerca": {"nome": "Cerca", "tipo": "construcao", "icone": 33, "pilha": 99, "objeto": "cerca", "receita": {"madeira": 2}},
+  "porteira": {"nome": "Porteira", "tipo": "construcao", "icone": 34, "pilha": 99, "objeto": "porteira", "receita": {"madeira": 4}},
+  "galinha": {"nome": "Galinha", "tipo": "animal", "icone": 35, "pilha": 1, "animal": "galinha", "preco": 80},
+  "vaca": {"nome": "Vaca", "tipo": "animal", "icone": 36, "pilha": 1, "animal": "vaca", "preco": 350},
+  "ovelha": {"nome": "Ovelha", "tipo": "animal", "icone": 37, "pilha": 1, "animal": "ovelha", "preco": 250},
+  "porco": {"nome": "Porco", "tipo": "animal", "icone": 38, "pilha": 1, "animal": "porco", "preco": 200}
 }

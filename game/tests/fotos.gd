@@ -150,6 +150,34 @@ func _rodar() -> void:
 	get_viewport().get_texture().get_image().save_png(pasta.path_join("18_arvore_caindo.png"))
 	await get_tree().create_timer(1.0).timeout
 	await _foto("18b_toco")
+	# cercado com animais (cercas e porteira postas pelo jogador)
+	for x in range(33, 42):
+		for y in [7, 13]:
+			main.mundo.por_construcao(Vector2i(x, y), "porteira" if (x == 37 and y == 13) else "cerca")
+	for y in range(8, 13):
+		for x in [33, 41]:
+			main.mundo.por_construcao(Vector2i(x, y), "cerca")
+	var bichos := [["galinha", 35, 9, false], ["galinha", 38, 11, false], ["galinha", 36, 11, true], ["vaca", 39, 9, false],
+		["ovelha", 35, 12, false], ["ovelha", 40, 12, false], ["porco", 37, 8, false], ["vaca", 34, 10, true]]
+	for b in bichos:
+		var a := Animais.soltar(d, b[0], "fazenda", Vector2i(b[1], b[2]), b[3])
+		if b[0] == "ovelha" and b[1] == 40:
+			a["produto_dia"] = int(d.mundo["dia"])
+		else:
+			a["produto_dia"] = int(d.mundo["dia"]) - 5
+	Animais.no_chao(d, "fazenda")["36,9"] = "ovo"
+	Animais.no_chao(d, "fazenda")["39,12"] = "ovo"
+	main.mundo.atualizar_animais()
+	main.mundo.atualizar_no_chao()
+	main.mundo.jogador.position = Vector2(37, 15) * 16.0 + Vector2(8, 8)
+	main.mundo.jogador.virar_para("cima")
+	await get_tree().create_timer(1.5).timeout
+	await _foto("19_cercado")
+	await get_tree().create_timer(2.5).timeout
+	await _foto("19b_cercado")
+	var tela: Construir = main.abrir_construir()
+	await _foto("19c_construir")
+	tela.fechar()
 	main.mundo.jogador.position = Vector2(37, 7) * 16.0 + Vector2(8, 8)
 	main.mundo.atualizar_luz(10.0)
 	await _foto("17_fazenda_morro")

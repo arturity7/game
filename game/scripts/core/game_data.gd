@@ -21,6 +21,9 @@ var mundo := {
 	"hora": 6.0,       # hora do dia, de 0.0 a 24.0
 	"canteiros": {},   # id do mapa -> "x,y" -> canteiro; ver Fazenda
 	"arvores": {},     # id do mapa -> "x,y" -> árvore cortada/toco; ver Corte
+	"construcoes": {}, # id do mapa -> "x,y" -> objeto posto pelo jogador; ver Construcao
+	"animais": [],     # animais da fazenda; ver Animais
+	"no_chao": {},     # id do mapa -> "x,y" -> item no chão (ovo); ver Animais
 }
 var progresso := {
 	"flags": {},
