@@ -5,13 +5,15 @@ var balanceamento := {}
 var tiles := {}
 var itens := {}
 var culturas := {}
+var objetos := {}
 
 
 func _ready() -> void:
 	balanceamento = ler_json("res://content/config/balanceamento.json")
-	tiles = ler_json("res://content/config/tiles.json")
+	tiles = _sem_comentarios(ler_json("res://content/config/tiles.json"))
 	itens = _sem_comentarios(ler_json("res://content/config/itens.json"))
 	culturas = _sem_comentarios(ler_json("res://content/config/culturas.json"))
+	objetos = _sem_comentarios(ler_json("res://content/config/objetos.json"))
 
 
 static func ler_json(caminho: String) -> Dictionary:
@@ -36,4 +38,4 @@ static func _sem_comentarios(d: Dictionary) -> Dictionary:
 
 
 func mapa(id: String) -> MapData:
-	return MapData.de_dict(ler_json("res://content/mapas/%s.json" % id))
+	return MapData.de_dict(ler_json("res://content/mapas/%s.json" % id), objetos)

@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dcckxwa8ndkj6"
-path="res://.godot/imported/itens.png-e24ed5e19b00eac7825cc59337741ccd.ctex"
+uid="uid://c76xx1rwvwwd"
+path="res://.godot/imported/arvore_2.png-c0a78e1eb51db05496de59fc565fed11.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/sprites/placeholder/itens.png"
-dest_files=["res://.godot/imported/itens.png-e24ed5e19b00eac7825cc59337741ccd.ctex"]
+source_file="res://assets/sprites/objetos/arvore_2.png"
+dest_files=["res://.godot/imported/arvore_2.png-c0a78e1eb51db05496de59fc565fed11.ctex"]
 
 [params]
 

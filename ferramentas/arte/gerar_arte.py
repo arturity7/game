@@ -331,7 +331,7 @@ def casa():
         for x in range(4, 92):
             put(img, x, y, (30, 15, 8, 120 - (y - 52) * 25))
     # janelas
-    for jx in (14, 66):
+    for jx in (12, 70):
         for y in range(62, 80):
             for x in range(jx, jx + 16):
                 put(img, x, y, cor("madeira", 1))
@@ -355,16 +355,16 @@ def casa():
             put(img, fx, 78, cor("folha", 4))
     # porta
     for y in range(66, 98):
-        for x in range(40, 56):
+        for x in range(48, 64):
             put(img, x, y, cor("madeira", 1))
     for y in range(68, 98):
-        for x in range(42, 54):
-            i = 3 if (x - 42) % 4 == 0 else 2
+        for x in range(50, 62):
+            i = 3 if (x - 50) % 4 == 0 else 2
             if y in (75, 87):
                 i = 1
             put(img, x, y, cor("madeira", i))
-    put(img, 51, 83, cor("flor_am", 2)); put(img, 51, 84, cor("flor_am", 0))
-    for x in range(38, 58):  # degrau
+    put(img, 59, 83, cor("flor_am", 2)); put(img, 59, 84, cor("flor_am", 0))
+    for x in range(46, 66):  # degrau
         for y in range(98, 102):
             put(img, x, y, cor("pedra", 4 if y == 98 else 3))
     # telhado (visto de frente, inclinado para trás)
@@ -420,6 +420,529 @@ def gerar_objetos():
     salvar(casa(), caminho("objetos", "casa.png"))
 
 
+
+# =============================== PERSONAGEM ===============================
+# Cabeças desenhadas à mão (12 linhas x 16 colunas). Corpo desenhado por código.
+CHAVES = {
+    "o": hexc("#1e1420"), "h": cor("cabelo", 1), "H": cor("cabelo", 3), "j": cor("cabelo", 4),
+    "k": cor("pele", 3), "K": cor("pele", 4), "S": cor("pele", 2), "s": cor("pele", 1),
+    "e": hexc("#241826"), "w": hexc("#f4f0e8"), "r": hexc("#ec8f78"),
+}
+CABECA = {
+    "baixo": [
+        ".....oooooo.....",
+        "...ooHHHHHHoo...",
+        "..oHHjjHHHHHHo..",
+        ".oHHjjHHHHHHHHo.",
+        ".oHHHHHHHHHHHHo.",
+        ".ohHHhhHHhhHHho.",
+        ".ohhkkhkkhkkhho.",
+        ".ohkkkkkkkkkkho.",
+        ".ohkkekkkkekkho.",
+        ".ohkkekkkkekkho.",
+        "..oSrkkkkkkrSo..",
+        "...oosSSSSsoo...",
+    ],
+    "cima": [
+        ".....oooooo.....",
+        "...ooHHHHHHoo...",
+        "..oHHjjHHHHHHo..",
+        ".oHHjjHHHHHHHHo.",
+        ".oHHHHHHHHHHHHo.",
+        ".ohHHHHHHHHHHho.",
+        ".ohhHHHHHHHHhho.",
+        ".ohhhHHHHHHhhho.",
+        ".ohhhhhhhhhhhho.",
+        ".ohhhhhhhhhhhho.",
+        "..ohhhhhhhhhho..",
+        "...oosSSSSsoo...",
+    ],
+    "esquerda": [
+        ".....oooooo.....",
+        "...ooHHHHHHoo...",
+        "..oHHjjHHHHHHo..",
+        ".oHHjjHHHHHHHHo.",
+        ".oHHHHHHHHHHHHo.",
+        ".ohHHHHHHHHHHho.",
+        ".ohhhhhHHHHHhho.",
+        ".okkkkhhhHHhhho.",
+        ".okekkkhhhhhhho.",
+        ".okekkkkShhhhho.",
+        "..oSrkkkSShhho..",
+        "...oosSSSsooo...",
+    ],
+}
+
+
+def _molde(img, linhas, ox, oy, espelhar=False):
+    for y, linha in enumerate(linhas):
+        for x, ch in enumerate(linha):
+            if ch == ".":
+                continue
+            xx = (15 - x) if espelhar else x
+            put(img, ox + xx, oy + y, CHAVES[ch])
+
+
+def _parte(img, desenhar, contorno=hexc("#1e1420")):
+    """Desenha uma parte numa camada própria, contorna e cola por cima (gera linhas internas)."""
+    camada = nova(img.shape[1], img.shape[0])
+    desenhar(camada)
+    contornar(camada, contorno)
+    m = camada[:, :, 3] > 0
+    img[m] = camada[m]
+
+
+def _bloco(c, x0, y0, x1, y1, rampa, base, luz_esq=True):
+    """Retângulo com luz da esquerda: coluna esquerda mais clara, direita mais escura."""
+    for y in range(y0, y1 + 1):
+        for x in range(x0, x1 + 1):
+            i = base
+            if x == x0 and luz_esq:
+                i += 1
+            if x == x1:
+                i -= 1
+            if y == y1:
+                i -= 1
+            put(c, x, y, cor(rampa, i))
+
+
+def quadro_jogador(direcao, passo):
+    """Um quadro 16x32. passo: 0 parado, 1 passo com a perna esquerda, -1 com a direita.
+    Pés no y=29 (contorno no 30)."""
+    img = nova(16, 32)
+    _sombra(img, 8, 30, 5.5, 1.8, 90)
+    lado = direcao in ("esquerda", "direita")
+    esp = direcao == "direita"
+    def X(x):  # espelha para a direita
+        return 15 - x if esp else x
+    cab_y = 6 - (1 if passo == 0 else 0) + 1
+    if not lado:
+        # pernas (frente/costas)
+        def pernas(c):
+            for i, (x0, x1, bx0, bx1) in enumerate(((5, 6, 4, 6), (9, 10, 9, 11))):
+                ergue = 1 if (passo == 1 and i == 1) or (passo == -1 and i == 0) else 0
+                _bloco(c, x0, 24, x1, 27 - ergue, "calca", 2)
+                _bloco(c, bx0, 28 - ergue, bx1, 29 - ergue, "sapato", 2)
+            _bloco(c, 5, 23, 10, 24, "calca", 2)
+        _parte(img, pernas)
+        # tronco + braços numa parte só
+        def corpo(c):
+            _bloco(c, 5, 18, 10, 23, "camisa", 2)
+            for x in (6, 7, 8, 9):
+                put(c, x, 18, cor("camisa", 4 if direcao == "baixo" else 3))
+            if direcao == "baixo":
+                put(c, 7, 19, cor("camisa", 1)); put(c, 8, 19, cor("camisa", 1))  # gola
+            for i, x0 in enumerate((3, 11)):
+                sobe = 1 if (passo == 1 and i == 0) or (passo == -1 and i == 1) else 0
+                fim = 22 - sobe
+                for y in range(18, fim + 1):
+                    for x in (x0, x0 + 1):
+                        if y <= 20:
+                            put(c, x, y, cor("camisa", 3 if x == x0 and i == 0 else 2 if x == x0 else 1))
+                        else:
+                            put(c, x, y, cor("pele", 3 if x == x0 else 2))
+                put(c, x0 + (1 if i == 0 else 0), 18, cor("camisa", 1))
+                for y in range(19, 21):
+                    put(c, 5 if i == 0 else 10, y, cor("camisa", 1))
+            for x in range(5, 11):  # cinto
+                put(c, x, 23, cor("madeira", 1))
+            if direcao == "baixo":
+                put(c, 7, 23, cor("flor_am", 1))
+        _parte(img, corpo)
+        _molde(img, CABECA[direcao], 0, cab_y)
+    else:
+        def P(c, x0, y0, x1, y1, rampa, base):
+            a, b = sorted((X(x0), X(x1)))
+            _bloco(c, a, y0, b, y1, rampa, base)
+        # perna de trás (mais escura) e da frente
+        def perna_tras(c):
+            if passo != 0:
+                d = 2 if passo == 1 else -2
+                P(c, 7 + d, 24, 8 + d, 27, "calca", 1)
+                P(c, 7 + d - (1 if True else 0), 28, 8 + d, 29, "sapato", 1)
+        def perna_frente(c):
+            d = -2 if passo == 1 else 2 if passo == -1 else 0
+            P(c, 7 + d, 24, 8 + d, 27, "calca", 2)
+            P(c, 6 + d, 28, 8 + d, 29, "sapato", 2)
+            P(c, 6, 23, 9, 24, "calca", 2)
+        if passo != 0:
+            _parte(img, perna_tras)
+        _parte(img, perna_frente)
+        def tronco_lado(c):
+            P(c, 5, 18, 9, 23, "camisa", 2)
+            for x in range(5, 10):
+                put(c, X(x), 23, cor("madeira", 1))
+        _parte(img, tronco_lado)
+        def braco(c):
+            d = (-1 if passo == -1 else 1 if passo == 1 else 0)
+            for y in range(18, 23):
+                for x in (6 + d, 7 + d):
+                    if y <= 20:
+                        put(c, X(x), y, cor("camisa", 3 if x == 6 + d else 2))
+                    else:
+                        put(c, X(x), y, cor("pele", 3 if x == 6 + d else 2))
+        _parte(img, braco)
+        _molde(img, CABECA["esquerda"], 0, cab_y, espelhar=esp)
+    return img
+
+
+def jogador():
+    """Folha 64x128: linhas baixo, cima, esquerda, direita; colunas parado, passo, parado, passo."""
+    folha = nova(64, 128)
+    for li, d in enumerate(("baixo", "cima", "esquerda", "direita")):
+        for co, p in enumerate((0, 1, 0, -1)):
+            folha[li * 32:(li + 1) * 32, co * 16:(co + 1) * 16] = quadro_jogador(d, p)
+    return folha
+
+
+def ondas():
+    """Ondinhas em volta do jogador nadando: 2 quadros 20x8."""
+    folha = nova(40, 8)
+    for q in range(2):
+        t = nova(20, 8)
+        for y in range(8):
+            for x in range(20):
+                dx, dy = (x + 0.5 - 10) / (9 - q), (y + 0.5 - 4) / (3 - q * 0.4)
+                r = dx * dx + dy * dy
+                if 0.62 <= r <= 1.0 and y >= 3:
+                    put(t, x, y, cor("agua", 6))
+                elif 0.62 <= r <= 1.0 and hash01(x, q, 3) > 0.5:
+                    put(t, x, y, cor("agua", 5))
+        folha[:, q * 20:(q + 1) * 20] = t
+    return folha
+
+
+def gerar_personagens():
+    salvar(jogador(), caminho("personagens", "jogador.png"))
+    salvar(ondas(), caminho("personagens", "ondas.png"))
+
+
+
+# =============================== PLANTAÇÃO ===============================
+# Atlas 64x160: colunas = estágios 0..3 (3 = pronta); linha = "linha" em culturas.json (0 fica vazia).
+# Cada quadro tem 16x32; a célula do chão é a metade de baixo (a planta nasce em y≈26).
+
+def _haste(c, x, y0, y1, i=3):
+    for y in range(y1, y0 + 1):
+        put(c, x, y, cor("folha", i))
+
+
+def _folhinha(c, x, y, lado, tam=2, i=5):
+    """Folha pequena saindo para o lado (lado=-1 esquerda, 1 direita)."""
+    for k in range(tam + 1):
+        put(c, x + lado * k, y - (k + 1) // 2, cor("folha", i if k < tam else i + 1))
+        if k > 0 and tam > 1:
+            put(c, x + lado * k, y - (k + 1) // 2 + 1, cor("folha", i - 2))
+
+
+def broto(c, cx=8, base=26, estagio=0):
+    if estagio == 0:
+        _haste(c, cx, base, base - 1)
+        _folhinha(c, cx - 1, base - 2, -1, 1); _folhinha(c, cx + 1, base - 2, 1, 1)
+    else:
+        _haste(c, cx, base, base - 4)
+        _folhinha(c, cx - 1, base - 2, -1, 2, 4); _folhinha(c, cx + 1, base - 3, 1, 2, 4)
+        _folhinha(c, cx - 1, base - 5, -1, 1); _folhinha(c, cx + 1, base - 5, 1, 1)
+
+
+def _moita(c, circ, s, deslocar=0):
+    camada = nova(c.shape[1], c.shape[0])
+    copa(camada, circ, semente=s, deslocar=deslocar)
+    m = camada[:, :, 3] > 0
+    c[m] = camada[m]
+
+
+def cultura(nome, estagio):
+    c = nova(16, 32)
+    if estagio <= 1:
+        broto(c, estagio=estagio)
+        if nome == "milho" and estagio == 1:
+            _haste(c, 8, 22, 19, 4)
+        contornar(c, hexc("#13230f"))
+        return c
+    s = {"feijao": 11, "cenoura": 12, "batata": 13, "milho": 14}[nome]
+    pronta = estagio == 3
+    if nome == "feijao":
+        for y in range(8, 28):  # estaca
+            put(c, 7, y, cor("madeira", 4)); put(c, 8, y, cor("madeira", 2))
+        folhas = [(6, 24, 3), (10, 21, 3), (5, 18, 3), (10, 15, 3), (6, 12, 2.8)]
+        if pronta:
+            folhas.append((9, 10, 2.6))
+        _moita(c, folhas if pronta else folhas[:4], s)
+        if pronta:
+            for (x, y) in ((4, 20), (11, 17), (5, 14), (11, 24)):
+                for k in range(3):
+                    put(c, x, y + k, cor("feijao", 2 if k == 0 else 1))
+                put(c, x, y, cor("feijao", 3))
+    elif nome == "cenoura":
+        if pronta:
+            for y in range(24, 28):
+                for x in range(6, 11):
+                    if (x - 8) ** 2 / 6.5 + (y - 26.5) ** 2 / 3.0 <= 1:
+                        put(c, x, y, cor("cenoura", 3 if x < 8 else 2))
+        alt = 9 if pronta else 6
+        for k, (dx, h) in enumerate(((-3, alt - 2), (-1, alt), (1, alt + 1), (3, alt - 1), (0, alt - 3))):
+            for j in range(h):
+                x = 8 + int(round(dx * j / h))
+                put(c, x, 25 - j, cor("folha", 4 if j > h // 2 else 3))
+            put(c, 8 + dx - (1 if dx < 0 else -1 if dx > 0 else 0), 25 - h, cor("folha", 6))
+            put(c, 8 + dx, 25 - h + 1, cor("folha", 5))
+    elif nome == "batata":
+        circ = [(8, 22, 5.2), (4.5, 23.5, 3.2), (11.5, 23.5, 3.2), (8, 18.5, 3.6)] if pronta else \
+               [(8, 23, 4.2), (5, 24, 2.6), (11, 24, 2.6)]
+        _moita(c, circ, s)
+        if pronta:
+            for (x, y, f) in ((6, 18, "flor_br"), (10, 19, "flor_li"), (8, 16, "flor_br"), (12, 22, "flor_li")):
+                put(c, x, y, cor(f, 1)); put(c, x - 1, y, cor(f, 2)); put(c, x + 1, y, cor(f, 2))
+                put(c, x, y - 1, cor(f, 2)); put(c, x, y + 1, cor(f, 2)); put(c, x, y, cor("flor_am", 1))
+            for (x, y) in ((4, 27), (11, 27)):
+                put(c, x, y, cor("batata", 3)); put(c, x + 1, y, cor("batata", 2))
+    elif nome == "milho":
+        topo = 6 if pronta else 12
+        for y in range(topo, 28):
+            put(c, 7, y, cor("folha", 4)); put(c, 8, y, cor("folha", 2))
+        for (y, lado, n) in ((24, -1, 5), (21, 1, 5), (17, -1, 5), (14, 1, 4)) + (((10, -1, 4),) if pronta else ()):
+            if y < topo + 2:
+                continue
+            for k in range(n):
+                x = (7 - 1 - k) if lado < 0 else (8 + 1 + k)
+                yy = y - (1 if k < 2 else 0) + (1 if k >= n - 1 else 0)
+                put(c, x, yy, cor("folha", 5 if k < n - 2 else 4))
+                put(c, x, yy + 1, cor("folha", 3))
+        if pronta:
+            for y in range(13, 20):  # espiga
+                put(c, 9, y, cor("milho", 3 if y < 16 else 2)); put(c, 10, y, cor("milho", 2 if y < 17 else 1))
+            put(c, 9, 20, cor("folha", 4)); put(c, 10, 20, cor("folha", 3)); put(c, 10, 12, cor("folha", 5))
+            for (x, y) in ((6, 5), (8, 4), (9, 5), (7, 3)):  # pendão
+                put(c, x, y, cor("milho", 3))
+    contornar(c, hexc("#13230f"))
+    return c
+
+
+def plantacao():
+    atlas = nova(64, 160)
+    for linha, nome in ((1, "feijao"), (2, "cenoura"), (3, "batata"), (4, "milho")):
+        for e in range(4):
+            atlas[linha * 32:(linha + 1) * 32, e * 16:(e + 1) * 16] = cultura(nome, e)
+    return atlas
+
+
+# =============================== ITENS ===============================
+
+def _icone(desenhar):
+    c = nova(16, 16)
+    desenhar(c)
+    contornar(c, hexc("#1e1420"))
+    return c
+
+
+def _pacote(cor_semente):
+    def d(c):
+        for y in range(3, 15):
+            for x in range(3, 13):
+                i = 3 if x < 6 else 2 if x < 11 else 1
+                if y == 3:
+                    i = 1
+                put(c, x, y, cor("papel", i))
+        for x in range(3, 13):  # dobra de cima
+            put(c, x, 4, cor("papel", 0)); put(c, x, 2, cor("papel", 2))
+        for y in range(7, 12):  # desenho da cultura
+            for x in range(5, 11):
+                if (x - 7.5) ** 2 / 6 + (y - 9.5) ** 2 / 4 <= 1:
+                    put(c, x, y, cor(cor_semente[0], cor_semente[1] + (1 if x < 7 else 0)))
+        put(c, 7, 6, cor("folha", 4)); put(c, 8, 6, cor("folha", 5))
+    return _icone(d)
+
+
+def icones_itens():
+    def enxada(c):
+        for k in range(10):  # cabo na diagonal
+            put(c, 4 + k, 13 - k, cor("madeira", 4)); put(c, 5 + k, 13 - k, cor("madeira", 2))
+        for y in range(2, 7):  # lâmina
+            for x in range(9, 15):
+                if y - 2 <= (x - 9) + 1:
+                    put(c, x, y, cor("metal", 4 if y == 2 else 3 if x < 12 else 2))
+        put(c, 12, 4, cor("madeira", 1))
+    def regador(c):
+        for y in range(6, 14):
+            for x in range(4, 12):
+                put(c, x, y, cor("camisa", 4 if x < 6 else 3 if x < 10 else 2))
+        for x in range(4, 12):
+            put(c, x, 6, cor("camisa", 4)); put(c, x, 13, cor("camisa", 1))
+        for k in range(4):  # bico
+            put(c, 12 + k, 9 - k, cor("metal", 3)); put(c, 12 + k, 10 - k, cor("metal", 2))
+        put(c, 15, 5, cor("metal", 4)); put(c, 14, 5, cor("metal", 4))
+        for x in range(5, 10):  # alça
+            put(c, x, 3, cor("metal", 3))
+        put(c, 4, 4, cor("metal", 3)); put(c, 4, 5, cor("metal", 3)); put(c, 10, 4, cor("metal", 3)); put(c, 10, 5, cor("metal", 3))
+    def feijao(c):
+        for (cx, cy) in ((5.5, 7.5), (10.5, 8), (8, 12)):
+            def um(cc, cx=cx, cy=cy):
+                for y in range(16):
+                    for x in range(16):
+                        if ((x + 0.5 - cx) / 2.7) ** 2 + ((y + 0.5 - cy) / 2.0) ** 2 <= 1:
+                            put(cc, x, y, cor("feijao", 2 if y + 0.5 < cy else 1))
+                put(cc, int(cx) - 1, int(cy) - 1, cor("feijao", 3))
+                put(cc, int(cx), int(cy) - 1, cor("papel", 3))
+            _parte(c, um)
+    def cenoura(c):
+        for k in range(9):
+            r = 2.4 - k * 0.24
+            cx, cy = 5 + k * 0.85, 11 - k * 0.85
+            for y in range(16):
+                for x in range(16):
+                    if math.hypot(x + 0.5 - cx, y + 0.5 - cy) <= max(0.6, r):
+                        put(c, x, y, cor("cenoura", 3 if x + y < cx + cy - 1 else 2))
+        for (x, y) in ((3, 12), (4, 13), (5, 11)):
+            put(c, x, y, cor("cenoura", 1))
+        for (x, y, i) in ((3, 6, 4), (4, 7, 5), (2, 5, 5), (5, 5, 4), (5, 4, 5), (2, 8, 4), (1, 8, 5), (4, 8, 3)):
+            put(c, x, y, cor("folha", i))
+    def batata(c):
+        for y in range(16):
+            for x in range(16):
+                if ((x + 0.5 - 8) / 5.5) ** 2 + ((y + 0.5 - 9) / 4.2) ** 2 <= 1:
+                    v = -((x - 8) * -0.6 + (y - 9) * -0.8) / 5
+                    put(c, x, y, cor("batata", max(0, min(3, int(round(2 + v * 1.5))))))
+        for (x, y) in ((6, 8), (10, 10), (8, 11)):
+            put(c, x, y, cor("batata", 0))
+    def milho(c):
+        for k in range(10):
+            cx, cy = 5.5 + k * 0.6, 12.5 - k * 0.95
+            for y in range(16):
+                for x in range(16):
+                    if math.hypot(x + 0.5 - cx, y + 0.5 - cy) <= 2.3 - k * 0.08:
+                        put(c, x, y, cor("milho", 3 if (x + y) % 2 == 0 else 2))
+        for (x, y, i) in ((3, 13, 4), (4, 13, 3), (4, 12, 4), (2, 12, 5), (6, 14, 3), (7, 14, 4), (8, 13, 5), (3, 11, 5)):
+            put(c, x, y, cor("folha", i))
+    lista = [_icone(enxada), _icone(regador), _pacote(("feijao", 1)), _icone(feijao),
+             _pacote(("cenoura", 2)), _icone(cenoura), _pacote(("batata", 1)), _icone(batata),
+             _pacote(("milho", 2)), _icone(milho)]
+    atlas = nova(16 * len(lista), 16)
+    for i, ic in enumerate(lista):
+        atlas[:, i * 16:(i + 1) * 16] = ic
+    return atlas
+
+
+# =============================== INTERFACE ===============================
+
+def painel():
+    """Painel de madeira 24x24 para 9-patch (margens de 7 px). Moldura de madeira e fundo de pergaminho."""
+    c = nova(24, 24)
+    for y in range(24):
+        for x in range(24):
+            borda = min(x, y, 23 - x, 23 - y)
+            if borda == 0:
+                if (x in (0, 23)) and (y in (0, 23)):
+                    continue
+                put(c, x, y, cor("ui_mad", 0))
+            elif borda <= 5:
+                i = 4
+                if borda == 1:
+                    i = 5 if (x < 12 and y < 12) else 3
+                elif borda == 5:
+                    i = 2
+                elif borda == 4:
+                    i = 3
+                put(c, x, y, cor("ui_mad", i))
+            else:
+                put(c, x, y, hexc("#f2dfb0"))
+    # pregos
+    for (x, y) in ((3, 3), (20, 3), (3, 20), (20, 20)):
+        put(c, x, y, cor("metal", 4)); put(c, x + 1, y + 1, cor("metal", 1))
+    return c
+
+
+def slot(selecionado=False):
+    c = nova(20, 20)
+    for y in range(20):
+        for x in range(20):
+            b = min(x, y, 19 - x, 19 - y)
+            if b == 0:
+                put(c, x, y, cor("ui_mad", 6 if selecionado else 1))
+            elif b == 1:
+                put(c, x, y, cor("ui_mad", 5 if selecionado else 2) if not selecionado else hexc("#f6e27a"))
+            else:
+                i = hexc("#e3c48c") if (x + y) % 2 == 0 or y > 2 else hexc("#d4b177")
+                if y == 2 or x == 2:
+                    i = hexc("#c9a46a")
+                put(c, x, y, i)
+    if selecionado:
+        for y in range(20):
+            for x in range(20):
+                if min(x, y, 19 - x, 19 - y) == 0:
+                    put(c, x, y, hexc("#d6383f"))
+    return c
+
+
+def icones_hud():
+    """Ícones 10x10: coração (vida), maçã (fome), sol, lua, moeda."""
+    def coracao(c):
+        for y in range(10):
+            for x in range(10):
+                px, py = x + 0.5, y + 0.5
+                d1 = math.hypot(px - 3.2, py - 3.6); d2 = math.hypot(px - 6.8, py - 3.6)
+                tri = py > 3.5 and abs(px - 5) < (9.2 - py) * 0.95
+                if d1 <= 2.4 or d2 <= 2.4 or tri:
+                    put(c, x, y, cor("coracao", 2))
+        put(c, 2, 2, cor("coracao", 3)); put(c, 3, 2, cor("coracao", 3)); put(c, 2, 3, cor("coracao", 3))
+        for (x, y) in ((6, 6), (5, 7), (7, 5), (8, 4)):
+            put(c, x, y, cor("coracao", 1))
+    def maca(c):
+        for y in range(10):
+            for x in range(10):
+                if math.hypot(x + 0.5 - 5, y + 0.5 - 5.8) <= 3.8:
+                    put(c, x, y, cor("coracao", 3 if x < 4 and y < 5 else 2 if x < 7 else 1))
+        put(c, 5, 1, cor("tronco", 2)); put(c, 5, 2, cor("tronco", 2)); put(c, 6, 1, cor("folha", 5)); put(c, 7, 1, cor("folha", 4))
+        put(c, 3, 4, cor("papel", 3))
+    def sol(c):
+        for y in range(10):
+            for x in range(10):
+                d = math.hypot(x + 0.5 - 5, y + 0.5 - 5)
+                if d <= 2.6:
+                    put(c, x, y, cor("flor_am", 2 if d < 1.5 else 1))
+        for (x, y) in ((5, 0), (4, 0), (5, 9), (4, 9), (0, 5), (0, 4), (9, 4), (9, 5), (1, 1), (8, 1), (1, 8), (8, 8)):
+            put(c, x, y, cor("flor_am", 1))
+    def lua(c):
+        for y in range(10):
+            for x in range(10):
+                if math.hypot(x + 0.5 - 5, y + 0.5 - 5) <= 3.6 and math.hypot(x + 0.5 - 6.8, y + 0.5 - 3.8) > 3.0:
+                    put(c, x, y, cor("flor_br", 1 if x > 3 else 2))
+    def moeda(c):
+        for y in range(10):
+            for x in range(10):
+                d = math.hypot(x + 0.5 - 5, y + 0.5 - 5)
+                if d <= 3.8:
+                    put(c, x, y, cor("milho", 3 if d < 2.2 and x < 5 else 2 if d < 3 else 1))
+        for y in range(3, 7):
+            put(c, 5, y, cor("milho", 0))
+    atlas = nova(50, 10)
+    for i, f in enumerate((coracao, maca, sol, lua, moeda)):
+        c = nova(10, 10)
+        f(c)
+        atlas[:, i * 10:(i + 1) * 10] = c
+    out = nova(52, 12)
+    out[1:11, 1:51] = atlas
+    # contorno por ícone
+    for i in range(5):
+        sub = nova(12, 12)
+        sub[1:11, 1:11] = atlas[:, i * 10:(i + 1) * 10]
+        contornar(sub, hexc("#1e1420"))
+        out2 = sub
+        if i == 0:
+            final = nova(12 * 5, 12)
+        final[:, i * 12:(i + 1) * 12] = out2
+    return final
+
+
+def gerar_interface():
+    salvar(plantacao(), caminho("plantacao", "culturas.png"))
+    salvar(icones_itens(), caminho("itens", "itens.png"))
+    salvar(painel(), caminho("ui", "painel.png"))
+    salvar(slot(False), caminho("ui", "slot.png"))
+    salvar(slot(True), caminho("ui", "slot_sel.png"))
+    salvar(icones_hud(), caminho("ui", "icones_hud.png"))
+
+
 # =============================== PRÉVIA ===============================
 
 def previa_terreno(mapa_json, saida, escala=3):
@@ -470,6 +993,8 @@ def gerar_terreno():
 if __name__ == "__main__":
     gerar_terreno()
     gerar_objetos()
+    gerar_personagens()
+    gerar_interface()
     if len(sys.argv) > 1 and sys.argv[1] == "--previa":
         previa_terreno(os.path.join(RAIZ, "..", "..", "content", "mapas", "fazenda.json"), sys.argv[2])
     print("ok")

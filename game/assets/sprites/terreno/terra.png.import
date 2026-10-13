@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://b6ljmrkwc724h"
-path="res://.godot/imported/plantacao.png-fa1a2ffe9909bfdd4df825a5c3d910f3.ctex"
+uid="uid://bnnm2d5skw7hg"
+path="res://.godot/imported/terra.png-30904733fb86b5a87eb8038342665c02.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/sprites/placeholder/plantacao.png"
-dest_files=["res://.godot/imported/plantacao.png-fa1a2ffe9909bfdd4df825a5c3d910f3.ctex"]
+source_file="res://assets/sprites/terreno/terra.png"
+dest_files=["res://.godot/imported/terra.png-30904733fb86b5a87eb8038342665c02.ctex"]
 
 [params]
 

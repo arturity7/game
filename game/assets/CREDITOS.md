@@ -1,10 +1,14 @@
-# Créditos de arte e som
+# Créditos de arte, fontes e som
 
 | Arquivo | Origem | Licença |
 |---|---|---|
-| `sprites/placeholder/tiles.png` | Gerado por código (`ferramentas/arte/gerar_placeholder.py`) | Próprio do projeto |
-| `sprites/placeholder/jogador.png` | Gerado por código (`ferramentas/arte/gerar_placeholder.py`) | Próprio do projeto |
-| `sprites/placeholder/plantacao.png` | Gerado por código (`ferramentas/arte/gerar_placeholder.py`) | Próprio do projeto |
-| `sprites/placeholder/itens.png` | Gerado por código (`ferramentas/arte/gerar_placeholder.py`) | Próprio do projeto |
+| `sprites/terreno/*.png` | Gerado por código (`ferramentas/arte/gerar_arte.py`) | Próprio do projeto |
+| `sprites/objetos/*.png` | Gerado por código (`ferramentas/arte/gerar_arte.py`) | Próprio do projeto |
+| `sprites/personagens/*.png` | Gerado por código (`ferramentas/arte/gerar_arte.py`) | Próprio do projeto |
+| `sprites/plantacao/*.png` | Gerado por código (`ferramentas/arte/gerar_arte.py`) | Próprio do projeto |
+| `sprites/itens/*.png` | Gerado por código (`ferramentas/arte/gerar_arte.py`) | Próprio do projeto |
+| `sprites/ui/*.png` | Gerado por código (`ferramentas/arte/gerar_arte.py`) | Próprio do projeto |
+| `fontes/leaf_pixel.fnt` e `.png` | Fonte de pixel própria, gerada por `ferramentas/arte/fonte.py` | Próprio do projeto |
+| `fontes/PixelifySans-*.woff2` | Pixelify Sans, de Stefie Justprince (pacote npm `@fontsource/pixelify-sans`) | SIL Open Font License 1.1 (`fontes/OFL-PixelifySans.txt`) |
 
-Arte provisória do protótipo; será trocada pela arte definitiva (tecnico.md §7).
+Toda a arte é desenhada por código com paleta própria (tecnico.md §7). Nada é copiado de outros jogos.

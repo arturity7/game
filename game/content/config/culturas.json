@@ -1,5 +1,5 @@
 {
-  "_sobre": "Culturas da fazenda (provisórias). 'linha' = linha em plantacao.png. Crescem em horas de jogo, só enquanto o solo está molhado.",
+  "_sobre": "Culturas da fazenda (provisórias). 'linha' = linha em assets/sprites/plantacao/culturas.png (quadros de 16x32, colunas = estágios). Crescem em horas de jogo, só enquanto o solo está molhado.",
   "feijao": {"nome": "Feijão", "linha": 1, "horas_para_crescer": 36, "semente": "semente_feijao", "produto": "feijao", "colheita": 2, "sementes_na_colheita": 1},
   "cenoura": {"nome": "Cenoura", "linha": 2, "horas_para_crescer": 30, "semente": "semente_cenoura", "produto": "cenoura", "colheita": 2, "sementes_na_colheita": 1},
   "batata": {"nome": "Batata", "linha": 3, "horas_para_crescer": 48, "semente": "semente_batata", "produto": "batata", "colheita": 3, "sementes_na_colheita": 1},

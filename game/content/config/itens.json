@@ -1,5 +1,5 @@
 {
-  "_sobre": "Itens básicos (fora dos livros). 'icone' = posição em itens.png. IDs nunca mudam (tecnico.md §5).",
+  "_sobre": "Itens básicos (fora dos livros). 'icone' = posição em assets/sprites/itens/itens.png. IDs nunca mudam (tecnico.md §5).",
   "enxada": {"nome": "Enxada", "tipo": "ferramenta", "icone": 0, "pilha": 1},
   "regador": {"nome": "Regador", "tipo": "ferramenta", "icone": 1, "pilha": 1, "capacidade": 20},
   "semente_feijao": {"nome": "Sementes de feijão", "tipo": "semente", "icone": 2, "pilha": 99, "cultura": "feijao"},

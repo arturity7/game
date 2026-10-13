@@ -19,6 +19,11 @@ func _ready() -> void:
 		var t: Node = load("res://tests/autoteste.gd").new()
 		t.main = self
 		add_child(t)
+	for a in OS.get_cmdline_user_args():
+		if a.begins_with("--fotos="):
+			var f: Node = load("res://tests/fotos.gd").new()
+			f.main = self
+			add_child(f)
 	if SaveSystem.existe() and _carregar():
 		pass
 	else:
@@ -36,6 +41,9 @@ func _montar_mundo() -> void:
 	move_child(mundo, 0)
 	mundo.montar(str(GameState.dados.jogador["mapa"]))
 	mundo.jogador.position = GameState.dados.posicao()
+	if mundo.bloqueada(mundo.celula_de(mundo.jogador.position)):
+		# save de uma versão do mapa em que ali era livre: volta para o início
+		mundo.jogador.position = Vector2(mundo.mapa.inicio) * 16.0 + Vector2(8, 8)
 	mundo.atualizar_luz(float(GameState.dados.mundo["hora"]))
 	mundo.desenhar_plantacao(GameState.dados)
 	_acordar()
@@ -193,7 +201,7 @@ func interagir(c: Vector2i) -> void:
 		hud.avisar("Colheu %d %s." % [colheita["qtd"], Config.itens[colheita["produto"]]["nome"]], 1.5)
 		mundo.desenhar_plantacao(d)
 		return
-	if mundo.mapa.tipo_em(c) == "casa":
+	if bool(Config.objetos.get(mundo.mapa.tipo_em(c), {}).get("dormir", false)):
 		dormir()
 		return
 	var s = _item_selecionado()

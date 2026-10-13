@@ -125,8 +125,31 @@ func _teste_mapa_fazenda() -> void:
 	checar(m.tipo_em(Vector2i(36, 23)) == "agua", "mapa: lago")
 	checar(m.tipo_em(Vector2i(-1, 0)) == "", "mapa: fora do mapa")
 	var tiles := _json("res://content/config/tiles.json")
+	var objetos := _defs("objetos")
 	for linha in _json("res://content/mapas/fazenda.json")["legenda"].values():
-		checar(tiles.has(linha), "mapa: tipo de chão conhecido: " + str(linha))
+		checar(tiles.has(linha) or objetos.has(linha), "mapa: tipo conhecido: " + str(linha))
+	# com as definições de objetos: árvores, cercas e a casa ocupam células sobre a grama
+	var mo := MapData.de_dict(_json("res://content/mapas/fazenda.json"), objetos)
+	checar(mo.tipo_em(Vector2i(0, 0)) == "arvore" and mo.chao_em(Vector2i(0, 0)) == "grama", "mapa: árvore sobre grama")
+	checar(mo.tipo_em(Vector2i(6, 5)) == "casa" and mo.ocupada(Vector2i(9, 6)), "mapa: pegada da casa")
+	checar(mo.tipo_em(Vector2i(6, 3)) == "grama" and mo.tipo_em(Vector2i(7, 7)) == "caminho", "mapa: fora da pegada da casa")
+	checar(mo.tipo_em(Vector2i(11, 9)) == "cerca", "mapa: cerca")
+	checar(mo.tipo_em(mo.inicio) == "caminho" and not mo.ocupada(mo.inicio), "mapa: início livre")
+	checar(mo.tipo_em(Vector2i(36, 23)) == "agua", "mapa: lago com objetos")
+	var cfg := _json("res://content/config/balanceamento.json")
+	var d := GameData.novo(cfg, "fazenda", Vector2.ZERO)
+	checar(not Fazenda.arar(d, "fazenda", Vector2i(0, 0), mo.tipo_em(Vector2i(0, 0)), cfg), "mapa: não ara debaixo de árvore")
+	# a arte citada nos dados existe
+	for tipo in tiles:
+		if typeof(tiles[tipo]) == TYPE_DICTIONARY and tiles[tipo].has("terreno"):
+			checar(ResourceLoader.exists("res://assets/sprites/terreno/" + str(tiles[tipo]["terreno"])), "arte do terreno: " + tipo)
+	for tipo in objetos:
+		var lista: Array = objetos[tipo].get("sprites", [])
+		if objetos[tipo].has("cerca"):
+			lista = [objetos[tipo]["cerca"]]
+		checar(not lista.is_empty(), "objeto com arte: " + tipo)
+		for s in lista:
+			checar(ResourceLoader.exists("res://assets/sprites/objetos/" + str(s)), "arte do objeto: " + str(s))
 
 
 func _defs(nome: String) -> Dictionary:

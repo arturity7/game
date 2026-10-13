@@ -33,7 +33,7 @@ func _rodar() -> void:
 	await _esperar(0.6)
 	Input.action_release("mover_direita")
 	checar(jog.position.x > antes.x + 10, "o jogador anda para a direita")
-	# logo abaixo da casa (linhas 3 a 6 do mapa), andando para cima: tem que parar na parede
+	# logo abaixo da casa (pegada nas linhas 4 a 6 do mapa), andando para cima: tem que parar na parede
 	jog.position = Vector2(6, 8) * 16.0 + Vector2(8, 8)
 	Input.action_press("mover_cima")
 	await _esperar(1.0)

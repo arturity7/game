@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://lw6khjwrsk2h"
-path="res://.godot/imported/jogador.png-11722732b4ca15d4ea83fc8ce8562859.ctex"
+uid="uid://ct0i80dooc184"
+path="res://.godot/imported/agua.png-6a9462cf8c6499d81879bf379a82fb7f.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/sprites/placeholder/jogador.png"
-dest_files=["res://.godot/imported/jogador.png-11722732b4ca15d4ea83fc8ce8562859.ctex"]
+source_file="res://assets/sprites/terreno/agua.png"
+dest_files=["res://.godot/imported/agua.png-6a9462cf8c6499d81879bf379a82fb7f.ctex"]
 
 [params]
 

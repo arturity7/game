@@ -1,10 +1,7 @@
 {
-  "_sobre": "Tipos de chão. 'atlas' é a posição em assets/sprites/placeholder/tiles.png.",
-  "grama": {"atlas": 0},
-  "terra": {"atlas": 1},
-  "agua": {"atlas": 2, "agua": true},
-  "cerca": {"atlas": 3, "solido": true},
-  "arvore": {"atlas": 4, "solido": true},
-  "casa": {"atlas": 5, "solido": true},
-  "caminho": {"atlas": 6}
+  "_sobre": "Tipos de chão. A grama é a base de tudo. Os outros são desenhados por cima em grade dupla (bordas arredondadas), na ordem de 'ordem', com a arte de assets/sprites/terreno/<terreno>. 'quadros' = quadros de animação (em linhas no PNG).",
+  "grama": {"base": true},
+  "terra": {"terreno": "terra.png", "ordem": 1},
+  "caminho": {"terreno": "caminho.png", "ordem": 2},
+  "agua": {"terreno": "agua.png", "ordem": 3, "quadros": 3, "agua": true}
 }

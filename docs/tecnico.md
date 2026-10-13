@@ -88,18 +88,25 @@ O jogo vai receber atualizações e **nenhuma atualização pode quebrar ou apag
 
 ## 7. Arte 🔵
 
-Delegada à IA pelo dono (D-021). Abordagem:
+Delegada à IA pelo dono (D-021). Estilo pedido pelo dono em 13/10/2026: **parecido com Pokémon (GBA) e Stardew Valley** — pixel art vista de cima, cores vivas, contorno escuro, personagem baixinho de cabeça grande. Nada é copiado desses jogos: desenho e paleta são próprios.
 
-1. **Base:** pacotes de pixel art gratuitos no estilo fazenda/aventura (fontes a avaliar: itch.io, OpenGameArt, Kenney), sempre conferindo a licença de cada pacote e registrando a origem em `game/assets/CREDITOS.md`.
-2. **Sob medida:** o que for específico dos livros (inimigos, bosses, lugares, itens) é gerado por código (scripts Python que desenham os sprites pixel a pixel), mantendo a mesma paleta e escala da base.
-3. **Consistência:** paleta de cores única definida no início, tiles de 16×16, personagens em 16×32.
-4. **Provisório primeiro:** arte simples para prototipar; refinada depois.
+1. **Tudo gerado por código** em `ferramentas/arte/`:
+   - `pixel.py`: paleta em rampas (do escuro ao claro), contorno automático, ruído fixo por posição e o desenho de terreno em grade dupla.
+   - `gerar_arte.py`: terreno, objetos, personagem, plantação, ícones de itens e interface. `python3 ferramentas/arte/gerar_arte.py` regrava os PNGs em `game/assets/sprites/`.
+   - `fonte.py`: a fonte de pixel própria **Leaf Pixel** (formato BMFont: `game/assets/fontes/leaf_pixel.fnt` + `.png`), com acentos do português.
+2. **Terreno em grade dupla:** a grama é a base (com variações: tufos e flores em manchas). Terra, caminho, água (animada, com espuma e barranco) e o solo arado e molhado são desenhados por cima, com bordas arredondadas. Cada camada fica deslocada meio tile; cada tile olha as 4 células nos seus cantos (máscara TL=1, TR=2, BL=4, BR=8). São 16 desenhos por terreno, mais variações do tile cheio para não repetir.
+3. **Objetos com profundidade:** casa (96×112), árvores (32×48 e 48×72), arbustos, pedras e cercas que se ligam às vizinhas. Quem está mais embaixo na tela fica na frente (y-sort): o jogador passa atrás da copa das árvores e do telhado. Em volta do mapa há mata fechada só de enfeite.
+4. **Personagem:** 16×32, 4 direções × 4 quadros de caminhada, com sombra. Nadando, só o tronco aparece, com ondinhas.
+5. **Plantação:** quadros de 16×32 por estágio (4 estágios por cultura); o último mostra o fruto.
+6. **Interface:** painéis de madeira com pergaminho (9-patch), espaços da barra de itens, ícones de vida, fome, sol, lua e moeda. Fonte Leaf Pixel no tamanho 13 (1 pixel do desenho = 1 pixel da tela) e 26 nos títulos; a Pixelify Sans (licença OFL) fica de reserva para caracteres que a Leaf Pixel não tem.
+7. **Conferir:** `bash ferramentas/fotos_jogo.sh <pasta>` tira fotos da cena (casa, plantação, lago nadando, noite, menu) em 480×270 e ampliadas 3×.
+8. **Conteúdo dos livros** (inimigos, bosses, lugares, itens): mesmo processo, mesma paleta e escala (tiles de 16×16, personagens de 16×32).
 
-**Som e música** (D-039): mesma abordagem. Músicas e sons gratuitos de sites de recursos para jogos (licença conferida e creditada em `CREDITOS.md`), mais efeitos simples (passos, golpes, coleta) gerados por código.
+Pacotes prontos de terceiros só entram se o dono pedir, com a licença registrada em `game/assets/CREDITOS.md`.
 
-Limitação: o ambiente de trabalho da IA pode não conseguir baixar arquivos de alguns sites. Nesse caso, a IA pede ao dono para baixar o pacote ou gera tudo por código.
+**Som e música** (D-039): músicas e sons gratuitos de sites de recursos para jogos (licença conferida e creditada em `CREDITOS.md`), mais efeitos simples (passos, golpes, coleta) gerados por código. Limitação: o ambiente de trabalho da IA pode não conseguir baixar arquivos de alguns sites; nesse caso, a IA pede ao dono para baixar o pacote ou gera tudo por código.
 
-## 8. Protótipo 0 (12/10/2026) 🔵
+## 8. Protótipos 0 e 1 (12 e 13/10/2026) 🔵
 
 Primeira versão de código, em `game/`. Ainda sem livros: só a base em que eles vão entrar.
 
@@ -111,16 +118,20 @@ Primeira versão de código, em `game/`. Ainda sem livros: só a base em que ele
 | Save | `scripts/core/save_codec.gd` (texto ↔ dados, versão e migrações) e `scripts/autoload/save_system.gd` (arquivo `user://save.json`). Campos que faltam recebem o padrão; chaves desconhecidas são guardadas e regravadas, nunca descartadas; save de versão mais nova é recusado sem estragar o arquivo; antes de migrar, cópia em `user://save.vN.bak` (§5) |
 | Regras de sobrevivência | `scripts/core/survival.gd`: fome cai com o tempo e mais rápido com esforço; sem fome, a vida cai; vida zerada = desmaio, sem game over, perde uma porcentagem do dinheiro; relógio com dia de 18 minutos (D-037, D-047) |
 | Valores de jogo | `content/config/balanceamento.json` (ajustável sem mexer no código) |
-| Mapas | `content/mapas/<id>.json`: grade de caracteres + legenda; tipos de chão em `content/config/tiles.json` (atlas, sólido, água). O mapa é montado em código num `TileMapLayer` |
+| Mapas | `content/mapas/<id>.json`: grade de caracteres + legenda. Cada caractere é um tipo de chão (`content/config/tiles.json`) ou um objeto (`content/config/objetos.json`: arte, pegada, colisão, se dá para dormir). Objetos maiores que uma célula (a casa) ficam na lista `objetos`. O desenho é montado em `scripts/world/mundo.gd` (§7) |
 | Jogador | WASD/setas; na água nada mais devagar (D-070); colisão nos pés |
-| Tela de jogo | Barras de fome e vida, hora e dinheiro; o dia não aparece (GDD §6); luz muda com a hora |
+| Plantação | Enxada ara grama ou terra (não debaixo de objetos); regador de 20 usos, enche na água; sementes; a planta só cresce com o solo molhado; o lago irriga até 4 tiles (D-053); colhe com o botão direito (`scripts/core/fazenda.gd`, `content/config/culturas.json`) |
+| Inventário | 30 espaços, barra de 10 (teclas 1–0 ou roda do mouse); `scripts/core/inventario.gd`, `content/config/itens.json`. Ferramentas no botão esquerdo, mirando a célula sob o mouse (se ao alcance) ou a da frente |
+| Comer e dormir | Botão direito com comida na mão enche a fome; na casa, dorme (só das 18h às 6h; o tempo corre 30× até as 6h) |
+| Save | Versão 2 (inventário em espaços e canteiros), com migração da versão 1 |
+| Tela de jogo | Painéis de madeira: vida e fome, hora (sol ou lua) e dinheiro, barra de itens, avisos; o dia não aparece (GDD §6); luz muda com a hora |
 | Menu | Esc: Continuar, Salvar, Carregar, Sair (GDD §8) |
 | Teclas | Registradas em código (`scripts/autoload/controles.gd`) |
-| Arte | Provisória, gerada por `ferramentas/arte/gerar_placeholder.py` (§7) |
-| Testes | `bash ferramentas/testar_jogo.sh`: testes sem tela (`tests/run_tests.gd`: save, saves antigos de `tests/saves/`, fome, vida, relógio, desmaio, mapa) e autoteste da cena com tela virtual (`tests/autoteste.gd`: andar, colisão, fome, salvar, carregar, nadar) |
+| Arte | Gerada por código, estilo Pokémon/Stardew (§7) |
+| Testes | `bash ferramentas/testar_jogo.sh`: testes sem tela (`tests/run_tests.gd`: save, saves antigos de `tests/saves/`, migração, fome, vida, relógio, desmaio, mapa e objetos, arte citada nos dados, inventário, plantação) e autoteste da cena com tela virtual (`tests/autoteste.gd`: andar, colisão com a casa, fome, salvar, carregar, nadar, arar, regar, plantar, colher, comer, dormir) |
 | Exportação | `bash ferramentas/exportar_windows.sh` gera `game/build/LeafAndLore.exe` (um arquivo só, com os dados dentro; preset em `game/export_presets.cfg`). O `.exe` não vai para o Git |
 
-Ainda não há: plantação, animais, inventário em uso, cidade, clínica (o desmaio acorda no ponto inicial), diálogos, perguntas, combate e conteúdo dos livros.
+Ainda não há: animais, cidade, loja, clínica (o desmaio acorda no ponto inicial), diálogos, perguntas, combate e conteúdo dos livros.
 
 ## 9. Decisões técnicas para depois
 
