@@ -29,6 +29,9 @@
    - Feito (13/10/2026): pesca (D-073); Colina do Portal e Walden em parte (Thoreau, lenhador, fundo do lago, peixes) (D-074).
    - Feito (13/10/2026): Tolstói em parte (sapataria de Simon na cidade, história de Michael, casaco de lã).
    - Feito (13/10/2026): Babilônia em parte (Arkad e Mathon no Mercado: poupança, décimo, muralha, lições).
+   - Feito (13/10/2026, tarde): manchas na grama, sombras sem contorno, borboletas/folhas/vaga-lumes, morros com paredão, machado e tocos, animais e menu Construir, combate (espada, inimigos, chefes), chuva/tempestade, Percy Jackson 1 em parte (portal, homem-touro, acampamento). Pedidos do dono (D-081): Opções, Shift corre, arado volta a grama, Mercado compra tudo.
+   - Build: desde 13/10 o jogo sai em `.exe` (motor, igual sempre) + `.pck` (dados). Atualização = mandar só o `.pck` ao dono. Mandar o `.zip` inteiro só se o motor (versão do Godot) mudar.
+   - Em andamento (não commitado): retratos dos personagens na caixa de conversa (`ferramentas/arte/retratos.py`, `game/assets/sprites/retratos/`); falta ligar na `caixa_dialogo.gd` (retrato à esquerda, acima da caixa; nome ao lado) e um mapa nome → retrato.
    - Próximo: os outros livros, um por vez, seguindo `_MUNDO.md` (lugares na cidade primeiro: Mercado com Arkad e Mathon, sapataria de Simon; depois biomas em volta da fazenda); portal na Colina do Portal; animais, machado/árvores, ferreiro, rotina de moradores.
    - Motor de diálogos e perguntas lendo `content/livros/<id>/…` a partir das fichas; depois cidade, loja, animais.
    - Se os tokens acabarem, há um envio agendado para retomar às 5h (horário de Brasília).
