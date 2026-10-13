@@ -330,7 +330,7 @@ def gerar():
     salvar(personagem("cabelo_grisalho", "tunica_roxa", "tunica_ocre", barba=True), caminho("personagens", "arkad.png"))
     salvar(personagem("cabelo_preto", "camisa_vinho", "tunica_ocre", barba=True), caminho("personagens", "mathon.png"))
     salvar(personagem("pele", "camisa_vinho", "calca"), caminho("personagens", "simon.png"))
-    salvar(personagem("coracao", "tunica_azul", "tunica_azul"), caminho("personagens", "matryona.png"))
+    salvar(cabelo_comprido(personagem("coracao", "tunica_azul", "tunica_azul"), "coracao", 4), caminho("personagens", "matryona.png"))
     salvar(personagem("cabelo_loiro", "camisa_branca", "tunica_creme"), caminho("personagens", "michael.png"))
     salvar(cevada(), caminho("objetos", "cevada.png"))
     gerar_walden()

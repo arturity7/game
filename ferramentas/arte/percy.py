@@ -5,7 +5,7 @@ Folhas de inimigos em game/assets/sprites/inimigos/ (linhas: baixo, cima, esquer
 colunas: parado, passo 1, passo 2, preparo).
 """
 import math
-from pixel import RAMPAS, nova, put, cor, hexc, contornar, hash01, retangulo, salvar
+from pixel import RAMPAS, nova, put, cor, hexc, contornar, hash01, retangulo, salvar, cabelo_comprido
 import gerar_arte as GA
 from gerar_arte import caminho, _sombra, copa
 from animais import elipse_luz, camada, sobrepor, espelhar
@@ -32,57 +32,6 @@ RAMPAS.update({
     "morango":    ["#6e1018", "#a11c26", "#d33036", "#f0605a", "#fb9a8a"],
 })
 CONT = hexc("#1e1420")
-
-
-def cabelo_comprido(folha, rampa, n=5):
-    """Estica o cabelo (cor da 'rampa') para baixo nos lados (frente), atrás da cabeça (costas)
-    e na nuca (de lado), em cada quadro 16x32 da folha do jogador. Contorna só o cabelo novo."""
-    import numpy as np
-    out = folha.copy()
-    cores = [hexc(h)[:3] for h in RAMPAS[rampa]]
-    linhas = folha.shape[0] // 32
-    colunas = folha.shape[1] // 16
-    for r in range(linhas):
-        for q in range(colunas):
-            y0, x0 = r * 32, q * 16
-            f = out[y0:y0 + 32, x0:x0 + 16]
-            cab = np.zeros((32, 16), dtype=bool)
-            for c in cores:
-                cab |= (f[:, :, 0] == c[0]) & (f[:, :, 1] == c[1]) & (f[:, :, 2] == c[2])
-            ys, xs = np.nonzero(cab)
-            if len(xs) == 0:
-                continue
-            minx, maxx = xs.min(), xs.max()
-            if r == 0:
-                cols = [minx, minx + 1, maxx - 1, maxx]
-            elif r == 1:
-                cols = list(range(minx + 1, maxx))
-            elif r == 2:
-                cols = [maxx - 2, maxx - 1, maxx]
-            else:
-                cols = [minx, minx + 1, minx + 2]
-            novos = []
-            for x in cols:
-                col = np.nonzero(cab[:, x])[0]
-                if len(col) == 0:
-                    continue
-                yb = col.max()
-                for k in range(1, n + 1):
-                    y = yb + k
-                    if y >= 31:
-                        break
-                    i = 2 if k < n - 1 else 1
-                    if x in (minx, maxx):
-                        i = 1
-                    f[y, x] = hexc(RAMPAS[rampa][i])
-                    novos.append((x, y))
-            ocupado = set(novos)
-            for (x, y) in novos:
-                for dx, dy in ((1, 0), (-1, 0), (0, 1)):
-                    xx, yy = x + dx, y + dy
-                    if 0 <= xx < 16 and 0 <= yy < 32 and (xx, yy) not in ocupado and f[yy, xx, 3] == 0:
-                        f[yy, xx] = CONT
-    return out
 
 
 # ------------------------------------------------------------------ homem-touro (32x40)

@@ -367,6 +367,9 @@ RAMPAS.update({
 })
 
 
+from pixel import cabelo_comprido  # noqa: E402
+
+
 def moradores():
     from gerar_arte import jogador
     base = jogador()
@@ -379,6 +382,8 @@ def moradores():
     r = {}
     for nome, t in tipos.items():
         r[nome] = _recolorir(base, t)
+        if nome in ("vendedora", "enfermeira"):
+            r[nome] = cabelo_comprido(r[nome], t["cabelo"])
     return r
 
 
