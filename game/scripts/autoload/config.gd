@@ -6,6 +6,7 @@ var tiles := {}
 var itens := {}
 var culturas := {}
 var objetos := {}
+var lojas := {}
 
 
 func _ready() -> void:
@@ -14,6 +15,7 @@ func _ready() -> void:
 	itens = _sem_comentarios(ler_json("res://content/config/itens.json"))
 	culturas = _sem_comentarios(ler_json("res://content/config/culturas.json"))
 	objetos = _sem_comentarios(ler_json("res://content/config/objetos.json"))
+	lojas = _sem_comentarios(ler_json("res://content/config/lojas.json"))
 
 
 static func ler_json(caminho: String) -> Dictionary:

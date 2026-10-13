@@ -153,6 +153,29 @@ func _teste_mapa_fazenda() -> void:
 	checar(str(mc.saida_em(Vector2i(5, 9)).get("para", "")) == "fazenda", "casa: porta de volta à fazenda")
 	checar(not mc.ocupada(mc.inicio) and mc.chao_em(mc.inicio) == "piso", "casa: chegada livre")
 	checar(ResourceLoader.exists("res://assets/sprites/interiores/" + mc.fundo), "casa: arte do fundo")
+	# cidade: entrada pela estrada da fazenda, mercado (com horário), clínica e ferreiro fechado
+	checar(str(mo.saida_em(Vector2i(47, 16)).get("para", "")) == "cidade", "fazenda: estrada leva à cidade")
+	var mcid := MapData.de_dict(_json("res://content/mapas/cidade.json"), objetos)
+	checar(str(mcid.saida_em(Vector2i(0, 12)).get("para", "")) == "fazenda", "cidade: volta à fazenda")
+	var porta_m := mcid.saida_em(Vector2i(7, 7))
+	checar(str(porta_m.get("para", "")) == "mercado" and str(porta_m.get("loja", "")) == "mercado", "cidade: porta do mercado com horário")
+	checar(str(mcid.saida_em(Vector2i(18, 7)).get("para", "")) == "clinica", "cidade: porta da clínica")
+	checar(not mcid.fechada_em(Vector2i(35, 7)).is_empty() and mcid.ocupada(Vector2i(35, 7)), "cidade: ferreiro fechado")
+	checar(mcid.chao_em(Vector2i(10, 12)) == "calcada" and not mcid.ocupada(mcid.inicio), "cidade: estrada de calçada")
+	for o in mcid.objetos:
+		checar(objetos.has(o["tipo"]), "cidade: objeto conhecido: " + str(o["tipo"]))
+	var mm := MapData.de_dict(_json("res://content/mapas/mercado.json"), objetos)
+	checar(str(mm.npc_em(Vector2i(5, 3)).get("loja", "")) == "mercado" and mm.ocupada(Vector2i(5, 3)), "mercado: vendedora no balcão")
+	checar(bool(objetos[mm.tipo_em(Vector2i(5, 4))].get("atende_atras", false)), "mercado: balcão na frente dela")
+	checar(str(mm.saida_em(Vector2i(5, 8)).get("para", "")) == "cidade", "mercado: porta de volta")
+	var lojas := _defs("lojas")
+	var itens := _defs("itens")
+	for id in lojas["mercado"]["vende"]:
+		checar(int(itens[id].get("preco", 0)) > 0, "loja: preço de " + str(id))
+	for id in lojas["mercado"]["compra"]:
+		checar(int(itens[id].get("venda", 0)) > 0, "loja: compra " + str(id))
+	var mcl := MapData.de_dict(_json("res://content/mapas/clinica.json"), objetos)
+	checar(not mcl.ocupada(mcl.inicio) and mcl.chao_em(mcl.inicio) == "piso", "clínica: lugar para acordar")
 	# a arte citada nos dados existe
 	for tipo in tiles:
 		if typeof(tiles[tipo]) == TYPE_DICTIONARY and tiles[tipo].has("terreno"):
@@ -163,6 +186,8 @@ func _teste_mapa_fazenda() -> void:
 			lista = [objetos[tipo]["cerca"]]
 		if objetos[tipo].has("noite"):
 			lista = lista + [objetos[tipo]["noite"]]
+		if objetos[tipo].has("quadros"):
+			lista = lista + objetos[tipo]["quadros"]
 		checar(not lista.is_empty(), "objeto com arte: " + tipo)
 		for s in lista:
 			checar(ResourceLoader.exists("res://assets/sprites/objetos/" + str(s)), "arte do objeto: " + str(s))

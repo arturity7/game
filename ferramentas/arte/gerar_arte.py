@@ -1160,6 +1160,8 @@ if __name__ == "__main__":
     gerar_logo()
     import interiores
     interiores.gerar()
+    import cidade
+    cidade.gerar()
     if len(sys.argv) > 1 and sys.argv[1] == "--previa":
         previa_terreno(os.path.join(RAIZ, "..", "..", "content", "mapas", "fazenda.json"), sys.argv[2])
     print("ok")

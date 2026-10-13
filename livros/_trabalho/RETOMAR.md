@@ -23,6 +23,7 @@
    - Build nova enviada ao dono (zip do .exe).
    Próximos passos (seguir sem perguntar, pedido do dono):
    - Feito também: efeitos de ferramenta e colheita, janelas acesas à noite, sons e música gerados por código (`ferramentas/som/gerar_sons.py`).
-   - Polimento que ainda falta: pose do personagem usando ferramenta, mais variação de árvores e flores, interior da casa.
+   - Feito também: tela de abertura, pose de usar ferramenta, enfeites na grama, casa por dentro (cama), cidade com mercado (loja), clínica (desmaio) e ferreiro fechado (D-072).
+   - Próximo: motor de diálogos e perguntas dos livros; depois animais, machado/árvores, ferreiro, rotina de moradores.
    - Motor de diálogos e perguntas lendo `content/livros/<id>/…` a partir das fichas; depois cidade, loja, animais.
    - Se os tokens acabarem, há um envio agendado para retomar às 5h (horário de Brasília).

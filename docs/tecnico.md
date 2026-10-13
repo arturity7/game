@@ -125,6 +125,7 @@ Primeira versão de código, em `game/`. Ainda sem livros: só a base em que ele
 | Inventário | 30 espaços, barra de 10 (teclas 1–0 ou roda do mouse); `scripts/core/inventario.gd`, `content/config/itens.json`. Ferramentas no botão esquerdo, mirando a célula sob o mouse (se ao alcance) ou a da frente |
 | Casa por dentro | Entra pela porta da casa (passagem com a tela escurecendo); cômodo com cama, mesa, cadeiras, estante de livros e vaso (`content/mapas/casa.json`, fundo desenhado em `ferramentas/arte/interiores.py`). À noite, a janela escurece e a vela da mesa acende |
 | Comer e dormir | Botão direito com comida na mão enche a fome; botão direito na **cama** dorme (só das 18h às 6h; o tempo corre 30× até as 6h) |
+| Cidade | `content/mapas/cidade.json`, a leste da fazenda: estrada de calçada, postes que acendem à noite, praça com chafariz. **Mercado** (8h–18h; porta trancada fora do horário): botão direito na vendedora (por cima do balcão) abre a loja (`scripts/ui/loja.gd`; clique compra/vende 1, Shift compra 5 ou vende tudo; dados em `content/config/lojas.json` e preços em `itens.json`). **Clínica**: quem desmaia acorda lá. **Ferreiro**: ainda fechado. Moradores parados com sprite próprio (`npcs` no mapa) (D-072) |
 | Save | Versão 2 (inventário em espaços e canteiros), com migração da versão 1 |
 | Tela de jogo | Painéis de madeira: vida e fome, hora (sol ou lua) e dinheiro, barra de itens, avisos; o dia não aparece (GDD §6); luz muda com a hora |
 | Abertura | Logo sobre a fazenda; Continuar (se houver save), Novo jogo, Sair (`scripts/ui/tela_inicial.gd`) |
@@ -134,7 +135,7 @@ Primeira versão de código, em `game/`. Ainda sem livros: só a base em que ele
 | Testes | `bash ferramentas/testar_jogo.sh`: testes sem tela (`tests/run_tests.gd`: save, saves antigos de `tests/saves/`, migração, fome, vida, relógio, desmaio, mapa e objetos, arte citada nos dados, inventário, plantação) e autoteste da cena com tela virtual (`tests/autoteste.gd`: andar, colisão com a casa, fome, salvar, carregar, nadar, arar, regar, plantar, colher, comer, dormir) |
 | Exportação | `bash ferramentas/exportar_windows.sh` gera `game/build/LeafAndLore.exe` (um arquivo só, com os dados dentro; preset em `game/export_presets.cfg`). O `.exe` não vai para o Git |
 
-Ainda não há: animais, cidade, loja, clínica (o desmaio acorda no ponto inicial), diálogos, perguntas, combate e conteúdo dos livros.
+Ainda não há: animais, ferreiro aberto, moradores andando (rotina), diálogos, perguntas, combate e conteúdo dos livros.
 
 ## 9. Decisões técnicas para depois
 

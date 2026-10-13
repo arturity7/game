@@ -9,5 +9,16 @@
   "arvore": {"sprites": ["arvore_0.png", "arvore_1.png", "arvore_2.png", "arvore_grande_0.png", "arvore_grande_1.png"], "pegada": [1, 1], "ajuste": [0, 3], "colisao": [12, 9]},
   "arbusto": {"sprites": ["arbusto_0.png", "arbusto_1.png"], "pegada": [1, 1], "ajuste": [0, 1], "colisao": [14, 9]},
   "pedra": {"sprites": ["pedra_0.png", "pedra_1.png"], "pegada": [1, 1], "ajuste": [0, 2], "colisao": [12, 8]},
-  "cerca": {"cerca": "cerca.png", "pegada": [1, 1], "colisao": [16, 10]}
+  "cerca": {"cerca": "cerca.png", "pegada": [1, 1], "colisao": [16, 10]},
+  "mercado": {"sprites": ["mercado.png"], "pegada": [7, 3], "ajuste": [0, 6], "porta": [3, 2], "luzes": [[18, 72], [94, 72]], "noite": "mercado_janelas.png"},
+  "clinica": {"sprites": ["clinica.png"], "pegada": [7, 3], "ajuste": [0, 6], "porta": [3, 2], "luzes": [[18, 72], [94, 72]], "noite": "clinica_janelas.png"},
+  "ferreiro": {"sprites": ["ferreiro.png"], "pegada": [5, 3], "ajuste": [0, 6], "luzes": [[16, 72], [64, 72]], "noite": "ferreiro_janelas.png"},
+  "poste": {"sprites": ["poste.png"], "pegada": [1, 1], "ajuste": [0, 2], "colisao": [6, 6], "luzes": [[8, 4]]},
+  "banco": {"sprites": ["banco.png"], "pegada": [2, 1], "ajuste": [0, 2], "colisao": [30, 8]},
+  "canteiro_flores": {"sprites": ["canteiro_flores.png"], "pegada": [2, 1], "ajuste": [0, 1], "colisao": [30, 8]},
+  "chafariz": {"quadros": ["chafariz_0.png", "chafariz_1.png", "chafariz_2.png"], "pegada": [3, 2], "ajuste": [0, 2], "colisao": [44, 24]},
+  "balcao": {"sprites": ["balcao.png"], "pegada": [4, 1], "ajuste": [0, 2], "atende_atras": true},
+  "prateleira": {"sprites": ["prateleira.png"], "pegada": [2, 1], "ajuste": [0, 2]},
+  "caixotes": {"sprites": ["caixotes.png"], "pegada": [2, 1], "ajuste": [0, 2], "colisao": [30, 10]},
+  "leito": {"sprites": ["leito.png"], "pegada": [1, 2], "ajuste": [0, 2]}
 }

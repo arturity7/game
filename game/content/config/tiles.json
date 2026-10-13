@@ -4,6 +4,7 @@
   "terra": {"terreno": "terra.png", "ordem": 1},
   "caminho": {"terreno": "caminho.png", "ordem": 2},
   "agua": {"terreno": "agua.png", "ordem": 3, "quadros": 3, "agua": true},
+  "calcada": {"terreno": "calcada.png", "ordem": 4},
   "piso": {"interior": true},
   "parede": {"interior": true, "solido": true}
 }

@@ -79,6 +79,24 @@ func _rodar() -> void:
 	main.mundo.atualizar_luz(21.0)
 	await _foto("9b_casa_noite")
 	d.mundo["hora"] = 10.0
+	main.trocar_mapa("cidade", Vector2i(12, 12), "direita")
+	await get_tree().create_timer(0.8).timeout
+	main.mundo.atualizar_luz(10.0)
+	await _foto("10_cidade")
+	main.mundo.jogador.position = Vector2(21, 19) * 16.0 + Vector2(8, 8)
+	await _foto("10b_praca")
+	d.mundo["hora"] = 20.0
+	main.mundo.atualizar_luz(20.0)
+	main.mundo.jogador.position = Vector2(14, 12) * 16.0 + Vector2(8, 8)
+	await _foto("10c_cidade_noite")
+	d.mundo["hora"] = 10.0
+	main.trocar_mapa("mercado", Vector2i(5, 5), "cima")
+	await get_tree().create_timer(0.8).timeout
+	main.mundo.atualizar_luz(10.0)
+	await _foto("11_mercado")
+	var loja: Loja = main.abrir_loja("mercado")
+	await _foto("11b_loja")
+	loja.fechar()
 	main._abrir_tela_inicial()
 	await get_tree().create_timer(0.5).timeout
 	await _foto("8_abertura")

@@ -154,6 +154,158 @@ def fundo_casa_noite():
     return img
 
 
+def fundo_loja(nome):
+    """Interior de loja 11x9 células: parede do fundo (linhas 0-2), piso (3-7), parede da frente com porta (8)."""
+    L, A = 11, 9
+    W, H = L * 16, A * 16
+    img = nova(W, H)
+    retangulo(img, 0, 0, W, H, hexc("#120c10"))
+    if nome == "clinica":
+        for y in range(48, H - 16):  # piso de ladrilhos
+            for x in range(16, W - 16):
+                q = ((x // 8) + (y // 8)) % 2
+                c = hexc("#dfe6ea") if q else hexc("#c7d2d8")
+                if x % 8 == 0 or y % 8 == 0:
+                    c = hexc("#aab6be")
+                put(img, x, y, c)
+        papel = (hexc("#cfe3dc"), hexc("#bcd6cd"), hexc("#a9c7bc"))
+    else:
+        _piso(img, 16, 48, W - 16, H - 16)
+        papel = (hexc("#d9e6c2"), hexc("#c9d9ae"), hexc("#b5c896"))
+    for y in range(4, 48):
+        for x in range(16, W - 16):
+            c = papel[0] if (x // 8) % 2 else papel[1]
+            if x % 8 == 0:
+                c = papel[2]
+            if y >= 32:
+                c = cor("madeira", 3 if (x - 16) % 8 else 1)
+                if y == 32:
+                    c = cor("madeira", 5)
+            if y >= 45:
+                c = cor("madeira", 1 if y == 47 else 2)
+            put(img, x, y, c)
+    for x in range(16, W - 16):
+        put(img, x, 4, cor("madeira", 2)); put(img, x, 5, cor("madeira", 4)); put(img, x, 6, cor("madeira", 1))
+    for y in range(48, 52):
+        for x in range(16, W - 16):
+            put(img, x, y, (30, 15, 8, 110 - (y - 48) * 25))
+    # janelas
+    for jx in (28, W - 60):
+        retangulo(img, jx - 2, 9, jx + 34, 30, cor("madeira", 1))
+        for y in range(10, 29):
+            for x in range(jx - 1, jx + 33):
+                c = hexc("#9fd4ee") if y < 19 else hexc("#b9e2f3")
+                if 3 <= (x - jx) + (y - 10) * 0.6 - 6 <= 5:
+                    c = hexc("#e3f5fc")
+                put(img, x, y, c)
+        for y in range(10, 29):
+            put(img, jx + 15, y, cor("madeira", 4)); put(img, jx + 16, y, cor("madeira", 2))
+    def topo_parede(x0, y0, x1, y1):
+        for y in range(y0, y1):
+            for x in range(x0, x1):
+                put(img, x, y, cor("madeira", 1))
+        for x in range(x0, x1):
+            put(img, x, y0, cor("madeira", 3))
+    topo_parede(4, 0, 16, H)
+    topo_parede(W - 16, 0, W - 4, H)
+    topo_parede(4, 0, W - 4, 4)
+    topo_parede(4, H - 16, 5 * 16, H - 4)
+    topo_parede(6 * 16, H - 16, W - 4, H - 4)
+    for y in range(H - 16, H):
+        for x in range(5 * 16, 6 * 16):
+            put(img, x, y, cor("madeira", 2) if y < H - 4 else hexc("#120c10"))
+    for y in range(H - 30, H - 19):
+        for x in range(5 * 16 + 1, 6 * 16 - 1):
+            put(img, x, y, cor("folha" if nome != "clinica" else "camisa", 3 if (x + y) % 4 < 2 else 2))
+    return img
+
+
+def fundo_loja_noite(nome):
+    W, H = 11 * 16, 9 * 16
+    img = nova(W, H)
+    for jx in (28, W - 60):
+        for y in range(10, 29):
+            for x in range(jx - 1, jx + 33):
+                c = hexc("#1b2447") if y < 19 else hexc("#24305a")
+                if hash01(x, y, 96) > 0.96 and y < 22:
+                    c = hexc("#f4f0d0")
+                put(img, x, y, c)
+        for y in range(10, 29):
+            put(img, jx + 15, y, cor("madeira", 4)); put(img, jx + 16, y, cor("madeira", 2))
+    return img
+
+
+def balcao(largura=64):
+    """Balcão de loja (pegada largura/16 x 1), tampo claro e frente de tábuas."""
+    img = nova(largura, 30)
+    _sombra(img, largura / 2, 28, largura / 2, 2, 90)
+    for y in range(2, 10):
+        for x in range(0, largura):
+            put(img, x, y, cor("madeira", 6 if y < 4 else 5))
+    for y in range(10, 27):
+        for x in range(0, largura):
+            i = 3 if (x % 8) else 2
+            if y == 10:
+                i = 1
+            put(img, x, y, cor("madeira", i))
+    return contornar(img, ESCURO)
+
+
+def prateleira_mercado():
+    """Prateleira 32x40 com potes, sacos de semente e verduras (encostada na parede)."""
+    img = nova(32, 40)
+    _sombra(img, 16, 38, 15, 2, 90)
+    for y in range(0, 38):
+        for x in range(0, 32):
+            i = 3 if 1 < x < 30 else 4 if x < 2 else 2
+            put(img, x, y, cor("madeira", i))
+    itens = [("cenoura", 2), ("milho", 2), ("papel", 3), ("feijao", 2), ("batata", 2), ("folha", 4), ("flor_rs", 1)]
+    for k, prat in enumerate((2, 14, 26)):
+        for y in range(prat, prat + 10):
+            for x in range(2, 30):
+                put(img, x, y, cor("madeira", 1))
+        for j in range(4):
+            r, i = itens[(k * 4 + j) % len(itens)]
+            x0 = 3 + j * 7
+            for y in range(prat + 3, prat + 10):
+                for x in range(x0, x0 + 5):
+                    put(img, x, y, cor(r, i + (1 if x == x0 else 0) if y > prat + 3 else i + 1))
+        for x in range(2, 30):
+            put(img, x, prat + 10, cor("madeira", 5)); put(img, x, prat + 11, cor("madeira", 2))
+    return contornar(img, ESCURO)
+
+
+def caixotes():
+    img = nova(32, 26)
+    _sombra(img, 16, 24, 15, 2, 90)
+    for (bx, by, r) in ((1, 8, "cenoura"), (16, 10, "batata"), (8, 0, "milho")):
+        for y in range(by + 4, by + 15):
+            for x in range(bx, bx + 15):
+                i = 4 if y == by + 4 else 3 if (x - bx) % 5 else 2
+                put(img, x, y, cor("madeira", i))
+        for k in range(6):
+            put(img, bx + 2 + k * 2, by + 3, cor(r, 2)); put(img, bx + 3 + k * 2, by + 2, cor(r, 3))
+    return contornar(img, ESCURO)
+
+
+def leito():
+    """Leito da clínica 16x32 (pegada 1x2)."""
+    img = nova(16, 34)
+    _sombra(img, 8, 32, 8, 2, 90)
+    for y in range(0, 30):
+        for x in range(1, 15):
+            if y < 4:
+                c = cor("metal", 3)
+            elif y < 10:
+                c = cor("flor_br", 2)
+            else:
+                c = cor("camisa", 3 if y < 12 else 2)
+            put(img, x, y, c)
+    for y in range(0, 31):
+        put(img, 1, y, cor("metal", 2)); put(img, 14, y, cor("metal", 1))
+    return contornar(img, ESCURO)
+
+
 # ---------- móveis ----------
 
 def cama():
@@ -299,6 +451,13 @@ def vaso():
 def gerar():
     salvar(fundo_casa(), caminho("interiores", "casa.png"))
     salvar(fundo_casa_noite(), caminho("interiores", "casa_noite.png"))
+    for n in ("mercado", "clinica"):
+        salvar(fundo_loja(n), caminho("interiores", n + ".png"))
+        salvar(fundo_loja_noite(n), caminho("interiores", n + "_noite.png"))
+    salvar(balcao(64), caminho("objetos", "balcao.png"))
+    salvar(prateleira_mercado(), caminho("objetos", "prateleira.png"))
+    salvar(caixotes(), caminho("objetos", "caixotes.png"))
+    salvar(leito(), caminho("objetos", "leito.png"))
     salvar(cama(), caminho("objetos", "cama.png"))
     salvar(estante(), caminho("objetos", "estante.png"))
     salvar(mesa(), caminho("objetos", "mesa.png"))

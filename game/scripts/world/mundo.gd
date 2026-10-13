@@ -70,6 +70,7 @@ func montar(id_mapa: String) -> void:
 	add_child(profundidade)
 	_criar_paredes()
 	_criar_objetos()
+	_criar_npcs()
 	if not mapa.interior:
 		_criar_enfeites()
 		_criar_mata_em_volta()
@@ -193,6 +194,29 @@ func _pintar_dupla(camada: TileMapLayer, d: Vector2i, pred: Callable) -> void:
 
 # ---------- objetos ----------
 
+## Moradores parados (lojistas etc.): sprite olhando para um lado, com colisão nos pés.
+func _criar_npcs() -> void:
+	var linhas := {"baixo": 0, "cima": 1, "esquerda": 2, "direita": 3}
+	for n in mapa.npcs:
+		var corpo := StaticBody2D.new()
+		corpo.name = "NPC_" + str(n["id"])
+		corpo.position = Vector2(int(n["x"]) * TAM + TAM / 2.0, int(n["y"]) * TAM + TAM / 2.0 + 6)
+		var spr := Sprite2D.new()
+		spr.texture = load(SPRITES + "personagens/" + str(n["sprite"]))
+		spr.centered = false
+		spr.region_enabled = true
+		spr.region_rect = Rect2(0, int(linhas.get(n["olhar"], 0)) * 32, 16, 32)
+		spr.offset = Vector2(-8, -30)
+		corpo.add_child(spr)
+		var forma := CollisionShape2D.new()
+		var ret := RectangleShape2D.new()
+		ret.size = Vector2(12, 8)
+		forma.shape = ret
+		forma.position = Vector2(0, -3)
+		corpo.add_child(forma)
+		profundidade.add_child(corpo)
+
+
 ## Chão sólido (paredes dos interiores): um bloqueio por trecho de células seguidas na linha.
 func _criar_paredes() -> void:
 	var corpo := StaticBody2D.new()
@@ -232,6 +256,21 @@ func _criar_objetos() -> void:
 			spr.region_enabled = true
 			spr.region_rect = Rect2(_mascara_cerca(Vector2i(x, y)) * TAM, 0, TAM, TAM * 2)
 			spr.offset = Vector2(-TAM / 2.0, -TAM * 2.0)
+		elif def.has("quadros"):
+			var quadros := SpriteFrames.new()
+			quadros.set_animation_speed("default", 5.0)
+			for q in def["quadros"]:
+				quadros.add_frame("default", load(SPRITES + "objetos/" + str(q)))
+			var anim := AnimatedSprite2D.new()
+			anim.sprite_frames = quadros
+			anim.centered = false
+			var t0: Texture2D = quadros.get_frame_texture("default", 0)
+			var aj0: Array = def.get("ajuste", [0, 0])
+			anim.offset = Vector2(-t0.get_width() / 2.0 + float(aj0[0]), -t0.get_height() + float(aj0[1]))
+			anim.play()
+			spr.free()
+			spr = null
+			corpo.add_child(anim)
 		else:
 			var lista: Array = def.get("sprites", [])
 			if lista.is_empty():
@@ -240,8 +279,9 @@ func _criar_objetos() -> void:
 			var aj: Array = def.get("ajuste", [0, 0])
 			spr.texture = tex
 			spr.offset = Vector2(-tex.get_width() / 2.0 + float(aj[0]), -tex.get_height() + float(aj[1]))
-		corpo.add_child(spr)
-		if def.has("noite"):
+		if spr != null:
+			corpo.add_child(spr)
+		if def.has("noite") and spr != null:
 			var acesas := Sprite2D.new()
 			acesas.texture = load(SPRITES + "objetos/" + str(def["noite"]))
 			acesas.centered = false
@@ -250,6 +290,8 @@ func _criar_objetos() -> void:
 			corpo.add_child(acesas)
 			luzes.append(acesas)
 		for l in def.get("luzes", []):
+			if spr == null:
+				break
 			var luz_janela := PointLight2D.new()
 			luz_janela.texture = _luz()
 			luz_janela.color = Color(1.0, 0.78, 0.42)

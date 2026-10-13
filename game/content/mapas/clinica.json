@@ -1,0 +1,71 @@
+{
+ "_sobre": "Interior da clínica: quem desmaia acorda aqui (GDD: vida zerada).",
+ "id": "clinica",
+ "nome": "Clínica",
+ "fundo": "clinica.png",
+ "noite": "clinica_noite.png",
+ "interior": true,
+ "legenda": {
+  "#": "parede",
+  ".": "piso"
+ },
+ "linhas": [
+  "###########",
+  "###########",
+  "###########",
+  "#.........#",
+  "#.........#",
+  "#.........#",
+  "#.........#",
+  "#.........#",
+  "#####.#####"
+ ],
+ "objetos": [
+  {
+   "tipo": "balcao",
+   "x": 3,
+   "y": 4
+  },
+  {
+   "tipo": "leito",
+   "x": 1,
+   "y": 3
+  },
+  {
+   "tipo": "leito",
+   "x": 9,
+   "y": 3
+  },
+  {
+   "tipo": "vaso",
+   "x": 9,
+   "y": 6
+  }
+ ],
+ "npcs": [
+  {
+   "id": "enfermeira",
+   "sprite": "enfermeira.png",
+   "x": 5,
+   "y": 3,
+   "olhar": "baixo",
+   "fala": "Se você desmaiar, acorda aqui na clínica."
+  }
+ ],
+ "saidas": [
+  {
+   "x": 5,
+   "y": 8,
+   "para": "cidade",
+   "chegada": [
+    18,
+    8
+   ],
+   "olhar": "baixo"
+  }
+ ],
+ "inicio": [
+  5,
+  7
+ ]
+}

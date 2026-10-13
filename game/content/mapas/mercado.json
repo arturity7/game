@@ -1,0 +1,76 @@
+{
+ "_sobre": "Interior do mercado: balcão com a vendedora (botão direito nela abre a loja).",
+ "id": "mercado",
+ "nome": "Mercado",
+ "fundo": "mercado.png",
+ "noite": "mercado_noite.png",
+ "interior": true,
+ "legenda": {
+  "#": "parede",
+  ".": "piso"
+ },
+ "linhas": [
+  "###########",
+  "###########",
+  "###########",
+  "#.........#",
+  "#.........#",
+  "#.........#",
+  "#.........#",
+  "#.........#",
+  "#####.#####"
+ ],
+ "objetos": [
+  {
+   "tipo": "balcao",
+   "x": 3,
+   "y": 4
+  },
+  {
+   "tipo": "prateleira",
+   "x": 1,
+   "y": 3
+  },
+  {
+   "tipo": "prateleira",
+   "x": 8,
+   "y": 3
+  },
+  {
+   "tipo": "caixotes",
+   "x": 8,
+   "y": 6
+  },
+  {
+   "tipo": "vaso",
+   "x": 1,
+   "y": 6
+  }
+ ],
+ "npcs": [
+  {
+   "id": "vendedora",
+   "sprite": "vendedora.png",
+   "x": 5,
+   "y": 3,
+   "olhar": "baixo",
+   "loja": "mercado"
+  }
+ ],
+ "saidas": [
+  {
+   "x": 5,
+   "y": 8,
+   "para": "cidade",
+   "chegada": [
+    7,
+    8
+   ],
+   "olhar": "baixo"
+  }
+ ],
+ "inicio": [
+  5,
+  7
+ ]
+}

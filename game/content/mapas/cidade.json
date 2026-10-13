@@ -1,0 +1,155 @@
+{
+ "_sobre": "Cidade (protótipo): mercado, clínica e ferreiro em volta de uma estrada de calçada, praça com chafariz ao sul. Cada caractere é uma célula de 16x16 (legenda: chão em tiles.json ou objeto em objetos.json). 'objetos' = objetos maiores que uma célula; 'npcs' = moradores parados (com a loja que atendem); 'saidas' = células que levam a outro mapa ('loja' = só abre no horário da loja).",
+ "id": "cidade",
+ "nome": "Cidade",
+ "legenda": {
+  ".": "grama",
+  "c": "calcada",
+  "A": "arvore",
+  "b": "arbusto",
+  "p": "pedra",
+  "P": "poste"
+ },
+ "linhas": [
+  "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+  "A..........................................A",
+  "A..........................................A",
+  "A.b.........b...........A....A...........A.A",
+  "A............A.............................A",
+  "A.........................b................A",
+  "A........................................b.A",
+  "A..........................................A",
+  "A......c..........c....p...........c.......A",
+  "A......c...p......c................c....b..A",
+  "A......c..........c................c.......A",
+  "A...P..c...P...P..c...P....P....P..c...P...A",
+  "ccccccccccccccccccccccccccccccccccccccccc..A",
+  "ccccccccccccccccccccccccccccccccccccccccc..A",
+  "A...............ccccccccccc................A",
+  "A............b..ccccccccccc..b...........b.A",
+  "A..A......A.....ccccccccccc....A.......A...A",
+  "A...............ccccccccccc................A",
+  "A.b...A.........ccccccccccc........A.......A",
+  "A...........A...ccccccccccc..............A.A",
+  "A...A...........PcccccccccP......A.........A",
+  "A.......b............................b.....A",
+  "A..A..A..A..A.................A..A..A..A..AA",
+  "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+ ],
+ "objetos": [
+  {
+   "tipo": "mercado",
+   "x": 4,
+   "y": 5
+  },
+  {
+   "tipo": "clinica",
+   "x": 15,
+   "y": 5
+  },
+  {
+   "tipo": "ferreiro",
+   "x": 33,
+   "y": 5
+  },
+  {
+   "tipo": "chafariz",
+   "x": 20,
+   "y": 16
+  },
+  {
+   "tipo": "banco",
+   "x": 17,
+   "y": 18
+  },
+  {
+   "tipo": "banco",
+   "x": 24,
+   "y": 18
+  },
+  {
+   "tipo": "canteiro_flores",
+   "x": 17,
+   "y": 15
+  },
+  {
+   "tipo": "canteiro_flores",
+   "x": 24,
+   "y": 15
+  },
+  {
+   "tipo": "canteiro_flores",
+   "x": 5,
+   "y": 9
+  },
+  {
+   "tipo": "canteiro_flores",
+   "x": 8,
+   "y": 9
+  },
+  {
+   "tipo": "canteiro_flores",
+   "x": 16,
+   "y": 9
+  },
+  {
+   "tipo": "canteiro_flores",
+   "x": 19,
+   "y": 9
+  }
+ ],
+ "saidas": [
+  {
+   "x": 0,
+   "y": 12,
+   "para": "fazenda",
+   "chegada": [
+    46,
+    16
+   ],
+   "olhar": "esquerda"
+  },
+  {
+   "x": 0,
+   "y": 13,
+   "para": "fazenda",
+   "chegada": [
+    46,
+    16
+   ],
+   "olhar": "esquerda"
+  },
+  {
+   "x": 7,
+   "y": 7,
+   "para": "mercado",
+   "chegada": [
+    5,
+    7
+   ],
+   "olhar": "cima",
+   "loja": "mercado"
+  },
+  {
+   "x": 18,
+   "y": 7,
+   "para": "clinica",
+   "chegada": [
+    5,
+    7
+   ],
+   "olhar": "cima"
+  }
+ ],
+ "fechadas": [
+  {
+   "x": 35,
+   "y": 7,
+   "aviso": "O ferreiro ainda não abriu."
+  }
+ ],
+ "inicio": [
+  2,
+  12
+ ]
+}

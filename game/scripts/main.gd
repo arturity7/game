@@ -121,13 +121,23 @@ func _process(delta: float) -> void:
 	if not _trocando:
 		var saida := mundo.mapa.saida_em(mundo.celula_de(mundo.jogador.position))
 		if not saida.is_empty():
-			trocar_mapa(str(saida["para"]), saida["chegada"], str(saida["olhar"]))
+			var loja := str(saida.get("loja", ""))
+			if loja != "" and not loja_aberta(loja):
+				# porta trancada fora do horário: o jogador volta um passo
+				mundo.jogador.position += Vector2(0, 8)
+				var def: Dictionary = Config.lojas.get(loja, {})
+				hud.avisar("%s está fechado. Abre às %dh." % [str(def.get("nome", loja)), int(def.get("abre", 8))], 2.0)
+			else:
+				trocar_mapa(str(saida["para"]), saida["chegada"], str(saida["olhar"]))
 	if float(d.jogador["vida"]) <= 0.0:
-		# acorda no começo da fazenda (a clínica da cidade ainda não existe)
-		var fazenda: MapData = Config.mapa("fazenda")
-		var inicio := Vector2(fazenda.inicio) * 16.0 + Vector2(8, 8)
-		var perda := Survival.desmaiar(d, cfg, inicio, fazenda.id)
-		if mundo.mapa.id != fazenda.id:
+		# acorda na clínica da cidade (GDD: vida zerada) e perde um pouco de dinheiro
+		var id_clinica := str(cfg.get("mapa_clinica", "clinica"))
+		if not FileAccess.file_exists("res://content/mapas/%s.json" % id_clinica):
+			id_clinica = "fazenda"
+		var clinica: MapData = Config.mapa(id_clinica)
+		var inicio := Vector2(clinica.inicio) * 16.0 + Vector2(8, 8)
+		var perda := Survival.desmaiar(d, cfg, inicio, clinica.id)
+		if mundo.mapa.id != clinica.id:
 			_montar_mundo()
 		mundo.jogador.position = inicio
 		_acordar()
@@ -288,11 +298,45 @@ func usar(c: Vector2i) -> void:
 		mundo.desenhar_plantacao(d)
 
 
-## Clique direito: colhe, dorme na casa ou come o item da barra.
+## A loja está aberta agora? (horário em lojas.json)
+func loja_aberta(id: String) -> bool:
+	var def: Dictionary = Config.lojas.get(id, {})
+	var h := float(GameState.dados.mundo["hora"])
+	return h >= float(def.get("abre", 0)) and h < float(def.get("fecha", 24))
+
+
+func abrir_loja(id: String) -> Loja:
+	var l := Loja.new()
+	add_child(l)
+	l.abrir(id)
+	return l
+
+
+## Clique direito: fala com morador, colhe, dorme na cama ou come o item da barra.
 func interagir(c: Vector2i) -> void:
 	if dormindo:
 		return
 	var d: GameData = GameState.dados
+	# morador na célula; no balcão, quem atende fica atrás dele
+	var npc := mundo.mapa.npc_em(c)
+	if npc.is_empty() and bool(Config.objetos.get(mundo.mapa.tipo_em(c), {}).get("atende_atras", false)):
+		npc = mundo.mapa.npc_em(c + Vector2i(0, -1))
+	if not npc.is_empty():
+		mundo.jogador.olhar_para(c)
+		var loja := str(npc.get("loja", ""))
+		if loja != "":
+			if loja_aberta(loja):
+				Som.tocar("clique", 0.0, false)
+				abrir_loja(loja)
+			else:
+				hud.avisar("A loja já fechou. Abre às %dh." % int(Config.lojas.get(loja, {}).get("abre", 8)), 2.0)
+		elif str(npc.get("fala", "")) != "":
+			hud.avisar(str(npc["fala"]), 3.0)
+		return
+	var fechada := mundo.mapa.fechada_em(c)
+	if not fechada.is_empty():
+		hud.avisar(str(fechada["aviso"]), 2.0)
+		return
 	var colheita := Fazenda.colher(d, mundo.mapa.id, c, Config.culturas)
 	if not colheita.is_empty():
 		var inv: Array = d.jogador["inventario"]

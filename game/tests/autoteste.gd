@@ -115,6 +115,51 @@ func _rodar() -> void:
 	Input.action_release("mover_baixo")
 	await _esperar(0.6)
 	checar(main.mundo.mapa.id == "fazenda" and main.mundo.celula_de(main.mundo.jogador.position) == Vector2i(7, 7), "sai de casa para a fazenda")
+	# pela estrada até a cidade, mercado (comprar e vender) e de volta
+	d.mundo["hora"] = 10.0
+	main.mundo.jogador.position = Vector2(46, 16) * 16.0 + Vector2(8, 8)
+	Input.action_press("mover_direita")
+	await _ate(func(): return main.mundo.mapa.id == "cidade", 2.0)
+	Input.action_release("mover_direita")
+	await _esperar(0.5)
+	checar(main.mundo.mapa.id == "cidade", "vai da fazenda para a cidade")
+	main.mundo.jogador.position = Vector2(7, 8) * 16.0 + Vector2(8, 6)
+	Input.action_press("mover_cima")
+	await _ate(func(): return main.mundo.mapa.id == "mercado", 2.0)
+	Input.action_release("mover_cima")
+	await _esperar(0.5)
+	checar(main.mundo.mapa.id == "mercado", "entra no mercado")
+	main.mundo.jogador.position = Vector2(5, 5) * 16.0 + Vector2(8, 8)
+	main.interagir(Vector2i(5, 4))
+	await _esperar(0.1)
+	var loja: Loja = null
+	for n in main.get_children():
+		if n is Loja:
+			loja = n
+	checar(loja != null and get_tree().paused, "abre a loja falando com a vendedora pelo balcão")
+	if loja:
+		var din := int(d.jogador["dinheiro"])
+		var sem := Inventario.contar(inv, "semente_milho")
+		var clique := InputEventMouseButton.new()
+		clique.pressed = true
+		clique.button_index = MOUSE_BUTTON_LEFT
+		loja._clique(clique, "semente_milho", 30)
+		checar(int(d.jogador["dinheiro"]) == din - 30 and Inventario.contar(inv, "semente_milho") == sem + 1, "compra uma semente")
+		Inventario.adicionar(inv, "batata", 2, Config.itens)
+		loja._mudar_aba("vender")
+		din = int(d.jogador["dinheiro"])
+		clique.shift_pressed = true
+		loja._clique(clique, "batata", 18)
+		checar(Inventario.contar(inv, "batata") == 0 and int(d.jogador["dinheiro"]) >= din + 36, "vende as batatas")
+		loja.fechar()
+		await _esperar(0.1)
+		checar(not get_tree().paused, "fecha a loja")
+	# desmaio: acorda na clínica
+	d.jogador["vida"] = 0.0
+	await _esperar(0.2)
+	checar(main.mundo.mapa.id == "clinica" and float(d.jogador["vida"]) > 0.0, "desmaio acorda na clínica")
+	main.trocar_mapa("fazenda", Vector2i(7, 8))
+	await _esperar(0.6)
 	# dormir à noite faz o tempo correr até as 6h
 	d.mundo["hora"] = 22.0
 	main.dormir()

@@ -74,3 +74,5 @@
 | D-068 | 12/10/2026 | Mapa do mundo principal, lugar de cada livro, portal fixo e missões que dão as três chaves das dimensões definidos em `livros/_MUNDO.md` (área com spoilers). Pode mudar quando o dono pedir ou quando chegarem livros novos | IA (D-065) |
 | D-069 | 12/10/2026 | Sem objetivo final por enquanto: o jogo não tem um "final", porque o dono vai adicionando livros novos ao longo do tempo (Q4b) | Dono |
 | D-070 | 12/10/2026 | O jogador pode nadar; de barco ele anda mais rápido na água (Q45) | Dono |
+| D-071 | 13/10/2026 | Estilo gráfico parecido com Pokémon (GBA) e Stardew Valley, com arte, fonte, sons e música próprios, feitos por código (tecnico.md §7) | Dono (pedido) → IA (execução) |
+| D-072 | 13/10/2026 | 🔵 Cidade do protótipo: estrada que sai da fazenda para o leste; Mercado (8h–18h; vende sementes, compra a colheita), Clínica (onde se acorda depois de desmaiar) e Ferreiro (ainda fechado). Preços iniciais em `itens.json` (`preco`/`venda`). Dormir passou da porta da casa para a cama, dentro de casa (GDD: casa com cama) | IA (D-058, D-064, balanceamento) |

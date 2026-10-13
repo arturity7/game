@@ -14,6 +14,8 @@ var saidas: Array = []    # [{"x", "y", "para", "chegada": Vector2i, "olhar"}]
 var fundo := ""           # interiores: imagem do cômodo em assets/sprites/interiores/
 var interior := false
 var musica := ""
+var npcs: Array = []      # [{"id", "sprite", "x", "y", "olhar", "loja", "fala"}] — moradores parados
+var fechadas: Array = []  # [{"x", "y", "aviso"}] — portas trancadas (botão direito mostra o aviso)
 var noite := ""           # interiores: imagem por cima à noite (janelas escuras)
 var luzes: Array = []     # interiores: pontos (em pixels) que acendem à noite
 var _grade: Array = []    # Array[Array[String]] de tipos de chão
@@ -34,7 +36,13 @@ static func de_dict(d: Dictionary, defs_objetos := {}) -> MapData:
 	for s in d.get("saidas", []):
 		var ch: Array = s.get("chegada", [0, 0])
 		m.saidas.append({"x": int(s.get("x", 0)), "y": int(s.get("y", 0)), "para": str(s.get("para", "")),
-			"chegada": Vector2i(int(ch[0]), int(ch[1])), "olhar": str(s.get("olhar", ""))})
+			"chegada": Vector2i(int(ch[0]), int(ch[1])), "olhar": str(s.get("olhar", "")), "loja": str(s.get("loja", ""))})
+	for n in d.get("npcs", []):
+		m.npcs.append({"id": str(n.get("id", "")), "sprite": str(n.get("sprite", "")), "x": int(n.get("x", 0)),
+			"y": int(n.get("y", 0)), "olhar": str(n.get("olhar", "baixo")), "loja": str(n.get("loja", "")),
+			"fala": str(n.get("fala", ""))})
+	for f in d.get("fechadas", []):
+		m.fechadas.append({"x": int(f.get("x", 0)), "y": int(f.get("y", 0)), "aviso": str(f.get("aviso", ""))})
 	var legenda: Dictionary = d.get("legenda", {})
 	var linhas: Array = d.get("linhas", [])
 	m.altura = linhas.size()
@@ -61,6 +69,8 @@ static func de_dict(d: Dictionary, defs_objetos := {}) -> MapData:
 		if def.has("porta"):
 			var p: Array = def["porta"]
 			m._livre["%d,%d" % [int(o["x"]) + int(p[0]), int(o["y"]) + int(p[1])]] = true
+	for n in m.npcs:
+		m._ocupado["%d,%d" % [int(n["x"]), int(n["y"])]] = "npc"
 	var ini: Array = d.get("inicio", [0, 0])
 	m.inicio = Vector2i(int(ini[0]), int(ini[1]))
 	return m
@@ -92,6 +102,22 @@ func ocupada(celula: Vector2i) -> bool:
 ## Porta de um objeto (passável, mas tipo_em ainda diz o objeto).
 func porta(celula: Vector2i) -> bool:
 	return _livre.has("%d,%d" % [celula.x, celula.y])
+
+
+## O morador parado nesta célula, ou {} se não houver.
+func npc_em(celula: Vector2i) -> Dictionary:
+	for n in npcs:
+		if int(n["x"]) == celula.x and int(n["y"]) == celula.y:
+			return n
+	return {}
+
+
+## A porta trancada nesta célula, ou {} se não houver.
+func fechada_em(celula: Vector2i) -> Dictionary:
+	for f in fechadas:
+		if int(f["x"]) == celula.x and int(f["y"]) == celula.y:
+			return f
+	return {}
 
 
 ## A saída que fica nesta célula, ou {} se não houver.
