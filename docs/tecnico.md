@@ -119,8 +119,10 @@ Primeira versão de código, em `game/`. Ainda sem livros: só a base em que ele
 | Arte | Provisória, gerada por `ferramentas/arte/gerar_placeholder.py` (§7) |
 | Testes | `bash ferramentas/testar_jogo.sh`: testes sem tela (`tests/run_tests.gd`: save, saves antigos de `tests/saves/`, fome, vida, relógio, desmaio, mapa) e autoteste da cena com tela virtual (`tests/autoteste.gd`: andar, colisão, fome, salvar, carregar, nadar) |
 
-Ainda não há: plantação, animais, inventário em uso, cidade, clínica (o desmaio acorda no ponto inicial), diálogos, perguntas, combate, conteúdo dos livros e exportação para `.exe`.
+| Exportação | `bash ferramentas/exportar_windows.sh` gera `game/build/LeafAndLore.exe` (um arquivo só, com os dados dentro; preset em `game/export_presets.cfg`). O `.exe` não vai para o Git |
+
+Ainda não há: plantação, animais, inventário em uso, cidade, clínica (o desmaio acorda no ponto inicial), diálogos, perguntas, combate e conteúdo dos livros.
 
 ## 9. Decisões técnicas para depois
 
-Sistema de diálogo e de perguntas (próprio, lendo os dados de `content/livros/`), organização das cenas por região e exportação para Windows. Serão decididas conforme o protótipo crescer.
+Sistema de diálogo e de perguntas (próprio, lendo os dados de `content/livros/`), organização das cenas por região e ícone do `.exe`. Serão decididas conforme o protótipo crescer.
