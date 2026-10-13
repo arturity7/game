@@ -35,6 +35,7 @@ func _ready() -> void:
 		var b := Button.new()
 		b.text = item[0]
 		b.custom_minimum_size = Vector2(120, 22)
+		b.pressed.connect(func(): Som.tocar("clique", 0.0, false))
 		b.pressed.connect(item[1])
 		lista.add_child(b)
 	visible = false

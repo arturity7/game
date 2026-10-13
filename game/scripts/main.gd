@@ -47,6 +47,7 @@ func _montar_mundo() -> void:
 	mundo.atualizar_luz(float(GameState.dados.mundo["hora"]))
 	mundo.desenhar_plantacao(GameState.dados)
 	_acordar()
+	Som.musica("musica_fazenda")
 
 
 func _process(delta: float) -> void:
@@ -132,6 +133,8 @@ func _selecionado() -> int:
 
 
 func selecionar(i: int) -> void:
+	if i != int(GameState.dados.jogador["barra_selecionada"]):
+		Som.tocar("selecionar")
 	GameState.dados.jogador["barra_selecionada"] = i
 	var s = GameState.dados.jogador["inventario"][i]
 	if s != null:
@@ -164,23 +167,33 @@ func usar(c: Vector2i) -> void:
 	var def: Dictionary = Config.itens.get(s["id"], {})
 	var mapa := mundo.mapa.id
 	var feito := false
+	var esquerda := c.x < mundo.celula_de(mundo.jogador.position).x or mundo.jogador.direcao.x < 0
+	var icone := int(def.get("icone", 0))
 	match str(s["id"]):
 		"enxada":
 			feito = Fazenda.arar(d, mapa, c, mundo.mapa.tipo_em(c), cfg)
+			Efeitos.ferramenta(mundo, c, icone, "enxada", esquerda)
+			Som.tocar("enxada")
 		"regador":
 			if mundo.eh_agua_celula(c):
 				s["agua"] = int(def.get("capacidade", 20))
 				hud.avisar("Regador cheio.", 1.2)
+				Efeitos.particulas(mundo, Vector2(c) * 16.0 + Vector2(8, 8), Color("#8fcbea"), 10, 45.0)
+				Som.tocar("encher")
 				feito = true
 			elif int(s.get("agua", 0)) <= 0:
 				hud.avisar("O regador está vazio. Encha na água.", 1.5)
 			elif Fazenda.regar(d, mapa, c, cfg):
 				s["agua"] = int(s["agua"]) - 1
+				Efeitos.ferramenta(mundo, c, icone, "regador", esquerda)
+				Som.tocar("regar")
 				feito = true
 		_:
 			if str(def.get("tipo", "")) == "semente":
 				if Fazenda.plantar(d, mapa, c, str(def.get("cultura", ""))):
 					Inventario.remover(d.jogador["inventario"], _selecionado(), 1)
+					Efeitos.particulas(mundo, Vector2(c) * 16.0 + Vector2(8, 10), Color("#61402a"), 5, 25.0)
+					Som.tocar("plantar")
 					feito = true
 	if feito:
 		Survival.tick(d, {"fome_por_segundo": float(cfg.get("fome_por_uso_ferramenta", 0.3))}, 1.0, false)
@@ -199,6 +212,8 @@ func interagir(c: Vector2i) -> void:
 		if int(colheita["sementes"]) > 0:
 			Inventario.adicionar(inv, colheita["semente"], colheita["sementes"], Config.itens)
 		hud.avisar("Colheu %d %s." % [colheita["qtd"], Config.itens[colheita["produto"]]["nome"]], 1.5)
+		Efeitos.colheita(mundo, c, int(Config.itens[colheita["produto"]].get("icone", 0)))
+		Som.tocar("colher")
 		mundo.desenhar_plantacao(d)
 		return
 	if bool(Config.objetos.get(mundo.mapa.tipo_em(c), {}).get("dormir", false)):
@@ -208,6 +223,7 @@ func interagir(c: Vector2i) -> void:
 	if s != null and Fazenda.comer(d, Config.itens.get(s["id"], {}), Config.balanceamento):
 		Inventario.remover(d.jogador["inventario"], _selecionado(), 1)
 		hud.avisar("Comeu %s." % Config.itens[s["id"]]["nome"], 1.2)
+		Som.tocar("comer")
 
 
 ## Dormir faz a noite passar mais rápido (D-026). Só à noite (das 18h às 6h).
@@ -217,6 +233,7 @@ func dormir() -> void:
 		hud.avisar("Ainda é dia. Dá para dormir a partir das 18h.", 1.8)
 		return
 	dormindo = true
+	Som.tocar("dormir", 0.0, false)
 	mundo.jogador.parado = true
 	hud.dormindo = true
 	hud.avisar("Dormindo...", 2.0)
@@ -225,6 +242,7 @@ func dormir() -> void:
 func _salvar() -> void:
 	if SaveSystem.salvar(GameState.dados):
 		hud.avisar("Jogo salvo.")
+		Som.tocar("salvar", 0.0, false)
 	else:
 		hud.avisar("Não foi possível salvar.")
 

@@ -409,6 +409,20 @@ def casa():
     return img
 
 
+def casa_janelas():
+    """Vidros acesos da casa (mesmo tamanho de casa.png), mostrados à noite por cima da casa."""
+    img = nova(96, 112)
+    for jx in (12, 70):
+        for y in range(64, 78):
+            for x in range(jx + 2, jx + 14):
+                if x in (jx + 7, jx + 8) or y in (70, 71):
+                    continue
+                v = (x - jx) + (y - 64)
+                c = hexc("#ffe7a3") if 4 <= v <= 7 else hexc("#ffc861") if y < 72 else hexc("#f3a447")
+                put(img, x, y, c)
+    return img
+
+
 def gerar_objetos():
     for v in range(3):
         salvar(arvore(v), caminho("objetos", "arvore_%d.png" % v))
@@ -418,6 +432,7 @@ def gerar_objetos():
         salvar(pedra(v), caminho("objetos", "pedra_%d.png" % v))
     salvar(cercas(), caminho("objetos", "cerca.png"))
     salvar(casa(), caminho("objetos", "casa.png"))
+    salvar(casa_janelas(), caminho("objetos", "casa_janelas.png"))
 
 
 

@@ -52,6 +52,21 @@ func _rodar() -> void:
 	d.mundo["hora"] = 20.5
 	main.mundo.atualizar_luz(20.5)
 	await _foto("4_noite")
+	jog.position = Vector2(8, 9) * 16.0 + Vector2(8, 8)
+	await _foto("4b_noite_casa")
+	d.mundo["hora"] = 10.0
+	main.mundo.atualizar_luz(10.0)
+	jog.position = Vector2(16, 12) * 16.0 + Vector2(8, 8)
+	main.selecionar(0)
+	main.usar(Vector2i(17, 12))
+	await get_tree().create_timer(0.07).timeout
+	await RenderingServer.frame_post_draw
+	get_viewport().get_texture().get_image().save_png(pasta.path_join("6_enxada.png"))
+	main.selecionar(1)
+	main.usar(Vector2i(15, 12))
+	await get_tree().create_timer(0.2).timeout
+	await RenderingServer.frame_post_draw
+	get_viewport().get_texture().get_image().save_png(pasta.path_join("7_regador.png"))
 	d.mundo["hora"] = 10.0
 	main.mundo.atualizar_luz(10.0)
 	main.menu._abrir()

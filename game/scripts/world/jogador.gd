@@ -49,7 +49,11 @@ func _physics_process(delta: float) -> void:
 	andando = dir != Vector2.ZERO
 	if andando:
 		_virar(dir)
+		var antes := int(_tempo_passo * QUADROS_POR_SEGUNDO)
 		_tempo_passo += delta
+		var agora := int(_tempo_passo * QUADROS_POR_SEGUNDO)
+		if agora != antes and agora % 2 == 1 and not nadando:
+			Som.tocar("passo_%d" % ((agora / 2) % 2), -8.0)
 	else:
 		_tempo_passo = 0.0
 	move_and_slide()

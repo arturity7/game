@@ -52,5 +52,7 @@
   "tipos_de_chao_aravel": [
     "grama",
     "terra"
-  ]
+  ],
+  "volume_musica_db": -12.0,
+  "volume_efeitos_db": -4.0
 }

@@ -5,6 +5,7 @@ set -e
 P="$(realpath -m "${1:?pasta}")"; mkdir -p "$P"
 G="${2:-/home/claude/godot/Godot_v4.3-stable_linux.x86_64}"
 cd "$(dirname "$0")/../game"
+timeout 120 "$G" --headless --path . --import >/dev/null 2>&1 || true
 rm -f "$HOME/.local/share/godot/app_userdata/Leaf & Lore/save.json"
 timeout 120 xvfb-run -a -s "-screen 0 1440x810x24" "$G" --path . --rendering-driver opengl3 -- --fotos="$P" 2>&1 | grep -E "ERROR|SCRIPT" || true
 python3 -c "

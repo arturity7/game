@@ -1,6 +1,6 @@
 {
   "_sobre": "Objetos do mapa (desenhados com profundidade: quem está mais embaixo na tela fica na frente). 'sprites' = arquivos em assets/sprites/objetos/ (a variação sai da posição). 'pegada' = células ocupadas [largura, altura], contadas do canto de cima à esquerda; o sprite fica centrado na pegada e apoiado na base dela, mais o 'ajuste' em pixels. 'colisao' = [largura, altura] em pixels do bloqueio, apoiado na base (sem ela, a pegada toda). 'dormir' = clicar com o botão direito nele faz dormir.",
-  "casa": {"sprites": ["casa.png"], "pegada": [6, 3], "ajuste": [0, 6], "dormir": true},
+  "casa": {"sprites": ["casa.png"], "pegada": [6, 3], "ajuste": [0, 6], "dormir": true, "luzes": [[20, 71], [78, 71]], "noite": "casa_janelas.png"},
   "arvore": {"sprites": ["arvore_0.png", "arvore_1.png", "arvore_2.png", "arvore_grande_0.png", "arvore_grande_1.png"], "pegada": [1, 1], "ajuste": [0, 3], "colisao": [12, 9]},
   "arbusto": {"sprites": ["arbusto_0.png", "arbusto_1.png"], "pegada": [1, 1], "ajuste": [0, 1], "colisao": [14, 9]},
   "pedra": {"sprites": ["pedra_0.png", "pedra_1.png"], "pegada": [1, 1], "ajuste": [0, 2], "colisao": [12, 8]},

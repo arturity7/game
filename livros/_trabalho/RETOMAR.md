@@ -22,6 +22,7 @@
    - Mapa: chão (`tiles.json`) + objetos (`objetos.json`), desenho em grade dupla + y-sort em `scripts/world/mundo.gd`.
    - Build nova enviada ao dono (zip do .exe).
    Próximos passos (seguir sem perguntar, pedido do dono):
-   - Polimento visual que ainda falta: animação de usar ferramenta, janelas acesas à noite, mais variação de árvores/flores, som (D-039).
+   - Feito também: efeitos de ferramenta e colheita, janelas acesas à noite, sons e música gerados por código (`ferramentas/som/gerar_sons.py`).
+   - Polimento que ainda falta: pose do personagem usando ferramenta, mais variação de árvores e flores, interior da casa.
    - Motor de diálogos e perguntas lendo `content/livros/<id>/…` a partir das fichas; depois cidade, loja, animais.
    - Se os tokens acabarem, há um envio agendado para retomar às 5h (horário de Brasília).

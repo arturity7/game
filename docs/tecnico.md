@@ -99,12 +99,13 @@ Delegada à IA pelo dono (D-021). Estilo pedido pelo dono em 13/10/2026: **parec
 4. **Personagem:** 16×32, 4 direções × 4 quadros de caminhada, com sombra. Nadando, só o tronco aparece, com ondinhas.
 5. **Plantação:** quadros de 16×32 por estágio (4 estágios por cultura); o último mostra o fruto.
 6. **Interface:** painéis de madeira com pergaminho (9-patch), espaços da barra de itens, ícones de vida, fome, sol, lua e moeda. Fonte Leaf Pixel no tamanho 13 (1 pixel do desenho = 1 pixel da tela) e 26 nos títulos; a Pixelify Sans (licença OFL) fica de reserva para caracteres que a Leaf Pixel não tem.
-7. **Conferir:** `bash ferramentas/fotos_jogo.sh <pasta>` tira fotos da cena (casa, plantação, lago nadando, noite, menu) em 480×270 e ampliadas 3×.
-8. **Conteúdo dos livros** (inimigos, bosses, lugares, itens): mesmo processo, mesma paleta e escala (tiles de 16×16, personagens de 16×32).
+7. **Noite e efeitos:** à noite as janelas da casa acendem (luz quente com `PointLight2D` + vidros acesos, `objetos.json` → `luzes` e `noite`). Ferramentas balançam sobre a célula, com terra ou gotas voando; a colheita sobe e some (`scripts/world/efeitos.gd`).
+8. **Conferir:** `bash ferramentas/fotos_jogo.sh <pasta>` tira fotos da cena (casa, plantação, lago nadando, noite, menu) em 480×270 e ampliadas 3×.
+9. **Conteúdo dos livros** (inimigos, bosses, lugares, itens): mesmo processo, mesma paleta e escala (tiles de 16×16, personagens de 16×32).
 
 Pacotes prontos de terceiros só entram se o dono pedir, com a licença registrada em `game/assets/CREDITOS.md`.
 
-**Som e música** (D-039): músicas e sons gratuitos de sites de recursos para jogos (licença conferida e creditada em `CREDITOS.md`), mais efeitos simples (passos, golpes, coleta) gerados por código. Limitação: o ambiente de trabalho da IA pode não conseguir baixar arquivos de alguns sites; nesse caso, a IA pede ao dono para baixar o pacote ou gera tudo por código.
+**Som e música** (D-039): por enquanto tudo gerado por código em `ferramentas/som/gerar_sons.py` (WAV de 22050 Hz em `game/assets/sons/`): passos, enxada, regar, encher o regador, plantar, colher, comer, clique, troca de item, dormir, salvar, e a música da fazenda (composição própria em estilo de console portátil: ondas quadradas e triangulares, Fá maior, 96 bpm, cerca de 80 s em laço). Tocados pelo autoload `Som`; volumes em `balanceamento.json` (`volume_musica_db`, `volume_efeitos_db`). Alternativa: músicas e sons gratuitos de sites de recursos para jogos (licença conferida e creditada em `CREDITOS.md`), mais efeitos simples (passos, golpes, coleta) gerados por código. Limitação: o ambiente de trabalho da IA pode não conseguir baixar arquivos de alguns sites; nesse caso, a IA pede ao dono para baixar o pacote ou gera tudo por código.
 
 ## 8. Protótipos 0 e 1 (12 e 13/10/2026) 🔵
 

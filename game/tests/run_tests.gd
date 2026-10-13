@@ -147,6 +147,8 @@ func _teste_mapa_fazenda() -> void:
 		var lista: Array = objetos[tipo].get("sprites", [])
 		if objetos[tipo].has("cerca"):
 			lista = [objetos[tipo]["cerca"]]
+		if objetos[tipo].has("noite"):
+			lista = lista + [objetos[tipo]["noite"]]
 		checar(not lista.is_empty(), "objeto com arte: " + tipo)
 		for s in lista:
 			checar(ResourceLoader.exists("res://assets/sprites/objetos/" + str(s)), "arte do objeto: " + str(s))

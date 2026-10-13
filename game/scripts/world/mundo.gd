@@ -27,6 +27,8 @@ var luz: CanvasModulate
 var cursor: Cursor
 var irrigadas := {}         # "x,y" -> true: células regadas pelo lago
 var _canteiros_desenhados := {}
+var luzes: Array = []       # luzes (PointLight2D) e janelas acesas (Sprite2D) que aparecem à noite
+var _textura_luz: Texture2D
 
 
 func montar(id_mapa: String) -> void:
@@ -174,6 +176,23 @@ func _criar_objetos() -> void:
 			spr.texture = tex
 			spr.offset = Vector2(-tex.get_width() / 2.0 + float(aj[0]), -tex.get_height() + float(aj[1]))
 		corpo.add_child(spr)
+		if def.has("noite"):
+			var acesas := Sprite2D.new()
+			acesas.texture = load(SPRITES + "objetos/" + str(def["noite"]))
+			acesas.centered = false
+			acesas.offset = spr.offset
+			acesas.modulate.a = 0.0
+			corpo.add_child(acesas)
+			luzes.append(acesas)
+		for l in def.get("luzes", []):
+			var luz_janela := PointLight2D.new()
+			luz_janela.texture = _luz()
+			luz_janela.color = Color(1.0, 0.78, 0.42)
+			luz_janela.energy = 0.0
+			luz_janela.texture_scale = 1.0
+			luz_janela.position = spr.offset + Vector2(float(l[0]), float(l[1]))
+			corpo.add_child(luz_janela)
+			luzes.append(luz_janela)
 		var tam: Array = def.get("colisao", [int(peg[0]) * TAM, int(peg[1]) * TAM])
 		var forma := CollisionShape2D.new()
 		var ret := RectangleShape2D.new()
@@ -240,6 +259,38 @@ func bloqueada(c: Vector2i) -> bool:
 
 func atualizar_luz(hora: float) -> void:
 	luz.color = Survival.cor_do_ceu(hora)
+	# janelas: acendem entre 17h e 19h, apagam entre 5h e 7h
+	var noite := 0.0
+	if hora >= 19.0 or hora < 5.0:
+		noite = 1.0
+	elif hora >= 17.0:
+		noite = (hora - 17.0) / 2.0
+	elif hora < 7.0:
+		noite = (7.0 - hora) / 2.0
+	for l in luzes:
+		if l is PointLight2D:
+			l.energy = 1.1 * noite
+			l.enabled = noite > 0.0
+		else:
+			l.modulate.a = noite
+
+
+## Textura de luz redonda e suave (feita uma vez).
+func _luz() -> Texture2D:
+	if _textura_luz == null:
+		var g := Gradient.new()
+		g.set_color(0, Color(1, 1, 1, 1))
+		g.set_color(1, Color(1, 1, 1, 0))
+		g.add_point(0.35, Color(1, 1, 1, 0.55))
+		var t := GradientTexture2D.new()
+		t.gradient = g
+		t.fill = GradientTexture2D.FILL_RADIAL
+		t.fill_from = Vector2(0.5, 0.5)
+		t.fill_to = Vector2(1.0, 0.5)
+		t.width = 72
+		t.height = 72
+		_textura_luz = t
+	return _textura_luz
 
 
 ## Redesenha solo arado (seco ou molhado) e plantas a partir do estado do jogo.
