@@ -1,0 +1,382 @@
+{
+ "_sobre": "Perguntas do livro de Epicuro. 'opcoes': a de índice 'certa' é a correta (as opções são embaralhadas na tela, a não ser que 'embaralhar' seja false). 'nivel' memoria/releitura (releitura tem 'dica' com o lugar no livro). 'peso' simples/importante; importante tem 'punicao' vida/amanha (D-029). 'ref' = de onde veio.",
+ "epicuro.pergunta.desejo_agua": {
+  "texto": "Que tipo de desejo é beber água quando se tem sede?",
+  "opcoes": [
+   "Natural e necessário",
+   "Natural, mas não necessário",
+   "Vão (nem natural, nem necessário)"
+  ],
+  "certa": 0,
+  "nivel": "memoria",
+  "peso": "simples",
+  "embaralhar": false,
+  "ref": "Carta a Meneceu"
+ },
+ "epicuro.pergunta.desejo_abrigo": {
+  "texto": "E ter um abrigo para não passar frio?",
+  "opcoes": [
+   "Natural e necessário",
+   "Natural, mas não necessário",
+   "Vão (nem natural, nem necessário)"
+  ],
+  "certa": 0,
+  "nivel": "memoria",
+  "peso": "simples",
+  "embaralhar": false,
+  "ref": "Carta a Meneceu"
+ },
+ "epicuro.pergunta.desejo_banquete": {
+  "texto": "E querer um banquete cheio de pratos raros?",
+  "opcoes": [
+   "Natural e necessário",
+   "Natural, mas não necessário",
+   "Vão (nem natural, nem necessário)"
+  ],
+  "certa": 1,
+  "nivel": "memoria",
+  "peso": "simples",
+  "embaralhar": false,
+  "ref": "Carta a Meneceu"
+ },
+ "epicuro.pergunta.desejo_fama": {
+  "texto": "E querer ser famoso na cidade inteira?",
+  "opcoes": [
+   "Natural e necessário",
+   "Natural, mas não necessário",
+   "Vão (nem natural, nem necessário)"
+  ],
+  "certa": 2,
+  "nivel": "memoria",
+  "peso": "simples",
+  "embaralhar": false,
+  "ref": "Carta a Meneceu"
+ },
+ "epicuro.pergunta.desejo_riqueza": {
+  "texto": "E querer cada vez mais dinheiro, sem limite?",
+  "opcoes": [
+   "Natural e necessário",
+   "Natural, mas não necessário",
+   "Vão (nem natural, nem necessário)"
+  ],
+  "certa": 2,
+  "nivel": "memoria",
+  "peso": "simples",
+  "embaralhar": false,
+  "ref": "Carta a Meneceu"
+ },
+ "epicuro.pergunta.prazer": {
+  "texto": "Para Epicuro, o que é o prazer?",
+  "opcoes": [
+   "Não sentir dor no corpo nem perturbação na alma",
+   "Comer e beber o máximo possível",
+   "Ser rico e admirado",
+   "Fugir de todo esforço, sempre"
+  ],
+  "certa": 0,
+  "nivel": "memoria",
+  "peso": "simples",
+  "ref": "Carta a Meneceu"
+ },
+ "epicuro.pergunta.eclipse": {
+  "texto": "Um eclipse acontece. Como a carta manda pensar sobre isso?",
+  "opcoes": [
+   "Aceitar as várias explicações que não contrariam o que se vê",
+   "Acreditar na única explicação dos astrólogos",
+   "Ver nele um castigo dos deuses",
+   "Não pensar nisso, porque é proibido"
+  ],
+  "certa": 0,
+  "nivel": "memoria",
+  "peso": "simples",
+  "ref": "Carta a Pítocles"
+ },
+ "epicuro.pergunta.raio": {
+  "texto": "E um raio que cai durante a tempestade?",
+  "opcoes": [
+   "Pode ter várias causas naturais; não é recado dos deuses",
+   "É sempre a fúria de um deus",
+   "É um aviso de que algo ruim vai acontecer",
+   "Só pode ter uma causa, e ela é secreta"
+  ],
+  "certa": 0,
+  "nivel": "memoria",
+  "peso": "simples",
+  "ref": "Carta a Pítocles"
+ },
+ "epicuro.pergunta.assunto_pitocles": {
+  "texto": "Do que trata a carta que você trouxe para Pítocles?",
+  "opcoes": [
+   "Do céu e das coisas que acontecem nele",
+   "De como ganhar dinheiro",
+   "De receitas de cozinha",
+   "Da história de Atenas"
+  ],
+  "certa": 0,
+  "nivel": "memoria",
+  "peso": "simples",
+  "ref": "Carta a Pítocles"
+ },
+ "epicuro.pergunta.cleon": {
+  "texto": "Quem entregou a Epicuro a carta em que Pítocles pedia o resumo?",
+  "opcoes": [
+   "Cléon",
+   "Meneceu",
+   "Heródoto",
+   "Demócrito"
+  ],
+  "certa": 0,
+  "nivel": "releitura",
+  "dica": "na Carta a Pítocles, logo no começo",
+  "peso": "simples",
+  "ref": "Carta a Pítocles"
+ },
+ "epicuro.pergunta.atomos": {
+  "texto": "Segundo a carta, o que os átomos têm?",
+  "opcoes": [
+   "Forma, peso e tamanho",
+   "Cor, cheiro e sabor",
+   "Forma, cor e calor",
+   "Só tamanho, e nada mais"
+  ],
+  "certa": 0,
+  "nivel": "releitura",
+  "dica": "na Carta a Heródoto, na parte sobre os átomos",
+  "peso": "simples",
+  "ref": "Carta a Heródoto"
+ },
+ "epicuro.pergunta.corpos_vazio": {
+  "texto": "Para Epicuro, de que é feito tudo o que existe?",
+  "opcoes": [
+   "De corpos e de vazio",
+   "Só de água",
+   "Só de fogo",
+   "De números"
+  ],
+  "certa": 0,
+  "nivel": "releitura",
+  "dica": "na Carta a Heródoto, no começo do resumo",
+  "peso": "simples",
+  "ref": "Carta a Heródoto"
+ },
+ "epicuro.pergunta.alma": {
+  "texto": "E a alma, segundo a carta, é feita de quê?",
+  "opcoes": [
+   "De partículas finas, parecidas com vento e calor",
+   "De fogo puro",
+   "De água da nascente",
+   "De nada: ela não existe"
+  ],
+  "certa": 0,
+  "nivel": "releitura",
+  "dica": "na Carta a Heródoto, na parte sobre a alma",
+  "peso": "simples",
+  "ref": "Carta a Heródoto"
+ },
+ "epicuro.pergunta.morte": {
+  "texto": "Por que não devemos temer a morte?",
+  "opcoes": [
+   "Porque, enquanto existimos, ela não está; quando ela chega, já não existimos",
+   "Porque depois dela vem um castigo justo",
+   "Porque os deuses protegem quem tem medo",
+   "Porque ela nunca chega para quem é rico"
+  ],
+  "certa": 0,
+  "nivel": "memoria",
+  "peso": "importante",
+  "punicao": "amanha",
+  "ref": "Carta a Meneceu"
+ },
+ "epicuro.pergunta.jardim": {
+  "texto": "Como se chamava a escola de Epicuro?",
+  "opcoes": [
+   "O Jardim",
+   "A Academia",
+   "O Liceu",
+   "O Pórtico"
+  ],
+  "certa": 0,
+  "nivel": "memoria",
+  "peso": "simples",
+  "ref": "Biografia"
+ },
+ "epicuro.pergunta.amizade": {
+  "texto": "Qual é o maior bem que a sabedoria nos dá?",
+  "opcoes": [
+   "A amizade",
+   "A riqueza",
+   "A fama",
+   "O poder"
+  ],
+  "certa": 0,
+  "nivel": "memoria",
+  "peso": "simples",
+  "ref": "Escrituras epicurianas"
+ },
+ "epicuro.pergunta.feliz": {
+  "texto": "Para fazer alguém feliz, o que é melhor?",
+  "opcoes": [
+   "Diminuir os desejos dele",
+   "Aumentar a riqueza dele",
+   "Dar mais poder a ele",
+   "Deixá-lo famoso"
+  ],
+  "certa": 0,
+  "nivel": "memoria",
+  "peso": "simples",
+  "ref": "Escrituras epicurianas"
+ },
+ "epicuro.pergunta.prudencia": {
+  "texto": "Qual é o maior bem, raiz de todas as virtudes, na carta a Meneceu?",
+  "opcoes": [
+   "A prudência",
+   "A coragem",
+   "A riqueza",
+   "A força"
+  ],
+  "certa": 0,
+  "nivel": "memoria",
+  "peso": "simples",
+  "ref": "Carta a Meneceu"
+ },
+ "epicuro.pergunta.pao_agua": {
+  "texto": "O que dá o maior prazer a lábios famintos?",
+  "opcoes": [
+   "Pão e água",
+   "Um banquete",
+   "Vinho caro",
+   "Doces raros"
+  ],
+  "certa": 0,
+  "nivel": "releitura",
+  "dica": "na Carta a Meneceu, na parte sobre a comida simples",
+  "peso": "simples",
+  "ref": "Carta a Meneceu"
+ },
+ "epicuro.pergunta.vaso_cheio": {
+  "texto": "A riqueza além do necessário é comparada a quê?",
+  "opcoes": [
+   "Água num vaso cheio",
+   "Areia no deserto",
+   "Um rio sem margens",
+   "Uma chama ao vento"
+  ],
+  "certa": 0,
+  "nivel": "releitura",
+  "dica": "nas Escrituras epicurianas",
+  "peso": "simples",
+  "ref": "Escrituras epicurianas"
+ },
+ "epicuro.pergunta.leao_lobo": {
+  "texto": "Comer sem um amigo é vida de quê?",
+  "opcoes": [
+   "De leão e de lobo",
+   "De rei",
+   "De pássaro",
+   "De pedra"
+  ],
+  "certa": 0,
+  "nivel": "releitura",
+  "dica": "nas Escrituras epicurianas",
+  "peso": "simples",
+  "ref": "Escrituras epicurianas"
+ },
+ "epicuro.pergunta.lucrecio": {
+  "texto": "Qual poeta chamou Epicuro de farol na escuridão?",
+  "opcoes": [
+   "Lucrécio",
+   "Horácio",
+   "Homero",
+   "Virgílio"
+  ],
+  "certa": 0,
+  "nivel": "releitura",
+  "dica": "nas Escrituras epicurianas",
+  "peso": "simples",
+  "ref": "Escrituras epicurianas"
+ },
+ "epicuro.pergunta.horacio": {
+  "texto": "O que Horácio pede para comer?",
+  "opcoes": [
+   "Azeitonas, chicória e malvas",
+   "Carne e vinho",
+   "Pão doce e mel",
+   "Peixe e frutas raras"
+  ],
+  "certa": 0,
+  "nivel": "releitura",
+  "dica": "nas Escrituras epicurianas, no poema de Horácio",
+  "peso": "simples",
+  "ref": "Escrituras epicurianas"
+ },
+ "epicuro.pergunta.democrito": {
+  "texto": "Qual atomista inspirou Epicuro?",
+  "opcoes": [
+   "Demócrito",
+   "Platão",
+   "Aristóteles",
+   "Sócrates"
+  ],
+  "certa": 0,
+  "nivel": "releitura",
+  "dica": "na Introdução",
+  "peso": "simples",
+  "ref": "Introdução"
+ },
+ "epicuro.pergunta.inscricao": {
+  "texto": "O que a inscrição do portão do Jardim oferecia ao visitante?",
+  "opcoes": [
+   "Bolos de cevada e água da nascente",
+   "Vinho e carne",
+   "Moedas de ouro",
+   "Uma cama macia"
+  ],
+  "certa": 0,
+  "nivel": "releitura",
+  "dica": "em Sobre Epicuro e sua filosofia",
+  "peso": "simples",
+  "ref": "Sobre Epicuro"
+ },
+ "epicuro.pergunta.demetrio": {
+  "texto": "O que os amigos do Jardim dividiram durante o cerco de Demétrio?",
+  "opcoes": [
+   "Feijão",
+   "Trigo",
+   "Peixe",
+   "Azeitonas"
+  ],
+  "certa": 0,
+  "nivel": "releitura",
+  "dica": "em Sobre Epicuro e sua filosofia",
+  "peso": "simples",
+  "ref": "Sobre Epicuro"
+ },
+ "epicuro.pergunta.riacho": {
+  "texto": "A vida feliz é comparada a quê?",
+  "opcoes": [
+   "Um riacho suave",
+   "Uma tempestade",
+   "Uma montanha alta",
+   "Um mar bravo"
+  ],
+  "certa": 0,
+  "nivel": "releitura",
+  "dica": "em Sobre Epicuro e sua filosofia",
+  "peso": "simples",
+  "ref": "Sobre Epicuro"
+ },
+ "epicuro.pergunta.voz_carne": {
+  "texto": "O que pede a voz da carne?",
+  "opcoes": [
+   "Não sofrer fome, sede e frio",
+   "Ficar rico",
+   "Ser famoso",
+   "Viver para sempre"
+  ],
+  "certa": 0,
+  "nivel": "releitura",
+  "dica": "nos Aforismos",
+  "peso": "simples",
+  "ref": "Aforismos"
+ }
+}

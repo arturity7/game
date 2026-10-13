@@ -11,18 +11,18 @@
   "P": "poste"
  },
  "linhas": [
-  "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
-  "A..........................................A",
-  "A..........................................A",
-  "A.b.........b...........A....A...........A.A",
-  "A............A.............................A",
-  "A.........................b................A",
-  "A........................................b.A",
-  "A..........................................A",
-  "A......c..........c....p...........c.......A",
-  "A......c...p......c................c....b..A",
-  "A......c..........c................c.......A",
-  "A...P..c...P...P..c...P....P....P..c...P...A",
+  "AAcAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+  "A.c........................................A",
+  "A.c........................................A",
+  "A.c.........b...........A....A...........A.A",
+  "A.c..........A.............................A",
+  "A.c.......................b................A",
+  "A.c......................................b.A",
+  "A.c........................................A",
+  "A.c....c..........c....p...........c.......A",
+  "A.c....c...p......c................c....b..A",
+  "A.c....c..........c................c.......A",
+  "A.c.P..c...P...P..c...P....P....P..c...P...A",
   "ccccccccccccccccccccccccccccccccccccccccc..A",
   "ccccccccccccccccccccccccccccccccccccccccc..A",
   "A...............ccccccccccc................A",
@@ -96,6 +96,45 @@
    "tipo": "canteiro_flores",
    "x": 19,
    "y": 9
+  },
+  {
+   "tipo": "placa",
+   "x": 3,
+   "y": 10,
+   "nome": "Placa",
+   "texto": [
+    "Ao norte: o Jardim.",
+    "A oeste: a fazenda."
+   ]
+  }
+ ],
+ "npcs": [
+  {
+   "id": "epicuro.npc.meneceu",
+   "nome": "Meneceu",
+   "sprite": "meneceu.png",
+   "x": 19,
+   "y": 19,
+   "olhar": "baixo",
+   "dialogo": "epicuro.dialogo.meneceu"
+  },
+  {
+   "id": "epicuro.npc.pitocles",
+   "nome": "Pítocles",
+   "sprite": "pitocles.png",
+   "x": 39,
+   "y": 7,
+   "olhar": "cima",
+   "dialogo": "epicuro.dialogo.pitocles"
+  },
+  {
+   "id": "epicuro.npc.herodoto",
+   "nome": "Heródoto",
+   "sprite": "herodoto.png",
+   "x": 8,
+   "y": 17,
+   "olhar": "esquerda",
+   "dialogo": "epicuro.dialogo.herodoto"
   }
  ],
  "saidas": [
@@ -137,6 +176,16 @@
    "chegada": [
     5,
     7
+   ],
+   "olhar": "cima"
+  },
+  {
+   "x": 2,
+   "y": 0,
+   "para": "jardim",
+   "chegada": [
+    12,
+    16
    ],
    "olhar": "cima"
   }

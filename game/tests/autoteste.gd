@@ -160,6 +160,37 @@ func _rodar() -> void:
 	checar(main.mundo.mapa.id == "clinica" and float(d.jogador["vida"]) > 0.0, "desmaio acorda na clínica")
 	main.trocar_mapa("fazenda", Vector2i(7, 8))
 	await _esperar(0.6)
+	# Jardim: conversa com Epicuro pela caixa de diálogo e diário
+	main.trocar_mapa("jardim", Vector2i(12, 12), "cima")
+	await _esperar(0.6)
+	checar(main.mundo.mapa.id == "jardim", "vai ao Jardim")
+	var cx: CaixaDialogo = main.conversar("epicuro.dialogo.epicuro", "Epicuro")
+	await _esperar(0.1)
+	checar(get_tree().paused and cx._nome.text == "Epicuro", "a conversa abre com o nome de quem fala")
+	for i in 30:
+		if cx._estado == "escolhas":
+			break
+		cx._avancar()
+		await get_tree().process_frame
+	checar(cx._estado == "escolhas" and cx._opcoes_caixa.visible, "a conversa chega nas escolhas")
+	cx._opcoes.get_child(0).emit_signal("pressed")
+	for i in 30:
+		if not is_instance_valid(cx):
+			break
+		cx._avancar()
+		await get_tree().process_frame
+	checar(not is_instance_valid(cx) and not get_tree().paused, "a conversa fecha e o jogo volta")
+	checar(Progresso.missao(d, "epicuro.missao.carta_meneceu") == "ativa", "aceita levar a carta conversando")
+	var diario: Diario = main.abrir_diario()
+	await _esperar(0.1)
+	checar(get_tree().paused and diario._lista.get_child_count() > 0, "o diário mostra a missão")
+	diario._mudar("conquistas")
+	await _esperar(0.05)
+	diario.fechar()
+	await _esperar(0.05)
+	checar(not get_tree().paused, "fecha o diário")
+	main.trocar_mapa("fazenda", Vector2i(7, 8))
+	await _esperar(0.6)
 	# dormir à noite faz o tempo correr até as 6h
 	d.mundo["hora"] = 22.0
 	main.dormir()

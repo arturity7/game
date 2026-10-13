@@ -208,6 +208,14 @@ func _unhandled_input(evento: InputEvent) -> void:
 	for i in 10:
 		if evento.is_action_pressed("barra_%d" % (i + 1)):
 			selecionar(i)
+	if evento.is_action_pressed("interagir"):
+		get_viewport().set_input_as_handled()
+		interagir(mundo.celula_de(mundo.jogador.position) + mundo.jogador.direcao)
+		return
+	if evento.is_action_pressed("diario"):
+		get_viewport().set_input_as_handled()
+		abrir_diario()
+		return
 	if evento is InputEventMouseButton and evento.pressed:
 		match evento.button_index:
 			MOUSE_BUTTON_WHEEL_UP:
@@ -267,7 +275,8 @@ func usar(c: Vector2i) -> void:
 	var icone := int(def.get("icone", 0))
 	match str(s["id"]):
 		"enxada":
-			feito = Fazenda.arar(d, mapa, c, mundo.mapa.tipo_em(c), cfg)
+			var tipo := mundo.mapa.tipo_em(c) if mundo.mapa.objeto_em(c).is_empty() else "objeto"
+			feito = Fazenda.arar(d, mapa, c, tipo, cfg)
 			Efeitos.ferramenta(mundo, c, icone, "enxada", esquerda)
 			Som.tocar("enxada")
 		"regador":
@@ -305,6 +314,29 @@ func loja_aberta(id: String) -> bool:
 	return h >= float(def.get("abre", 0)) and h < float(def.get("fecha", 24))
 
 
+## Abre uma conversa dos livros (content/livros/*/dialogos.json).
+func conversar(id_dialogo: String, quem := "") -> CaixaDialogo:
+	var c := CaixaDialogo.new()
+	add_child(c)
+	c.abrir(id_dialogo, quem)
+	return c
+
+
+## Mostra um texto solto (placa, inscrição) na caixa de conversa.
+func ler(quem: String, paginas: Array) -> CaixaDialogo:
+	var c := CaixaDialogo.new()
+	add_child(c)
+	c.abrir_texto(quem, paginas)
+	return c
+
+
+func abrir_diario() -> Diario:
+	Som.tocar("clique", 0.0, false)
+	var j := Diario.new()
+	add_child(j)
+	return j
+
+
 func abrir_loja(id: String) -> Loja:
 	var l := Loja.new()
 	add_child(l)
@@ -330,8 +362,18 @@ func interagir(c: Vector2i) -> void:
 				abrir_loja(loja)
 			else:
 				hud.avisar("A loja já fechou. Abre às %dh." % int(Config.lojas.get(loja, {}).get("abre", 8)), 2.0)
+		elif str(npc.get("dialogo", "")) != "":
+			conversar(str(npc["dialogo"]), str(npc.get("nome", "")))
 		elif str(npc.get("fala", "")) != "":
-			hud.avisar(str(npc["fala"]), 3.0)
+			ler(str(npc.get("nome", "")), [str(npc["fala"])])
+		return
+	var obj := mundo.mapa.objeto_em(c)
+	if obj.has("texto"):
+		var paginas = obj["texto"]
+		ler(str(obj.get("nome", "")), paginas if typeof(paginas) == TYPE_ARRAY else [str(paginas)])
+		return
+	if obj.has("dialogo"):
+		conversar(str(obj["dialogo"]), str(obj.get("nome", "")))
 		return
 	var fechada := mundo.mapa.fechada_em(c)
 	if not fechada.is_empty():
@@ -352,10 +394,18 @@ func interagir(c: Vector2i) -> void:
 		dormir()
 		return
 	var s = _item_selecionado()
+	var fome_antes := float(d.jogador["fome"])
 	if s != null and Fazenda.comer(d, Config.itens.get(s["id"], {}), Config.balanceamento):
+		var def_comida: Dictionary = Config.itens[s["id"]]
 		Inventario.remover(d.jogador["inventario"], _selecionado(), 1)
-		hud.avisar("Comeu %s." % Config.itens[s["id"]]["nome"], 1.2)
+		hud.avisar("Comeu %s." % def_comida["nome"], 1.2)
 		Som.tocar("comer")
+		# comida simples com a fome quase zerada: o maior prazer (conquista do livro de Epicuro)
+		var conq := str(def_comida.get("conquista_simples", ""))
+		if conq != "" and fome_antes <= float(Config.balanceamento.get("fome_max", 100.0)) * 0.1:
+			if Progresso.conquistar(d, conq):
+				hud.avisar("Conquista: %s!" % str(Config.conquistas.get(conq, {}).get("nome", conq)), 3.0)
+				Som.tocar("salvar", 0.0, false)
 
 
 ## Dormir faz a noite passar mais rápido (D-026). Só à noite (das 18h às 6h).

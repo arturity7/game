@@ -1,5 +1,5 @@
 {
-  "_sobre": "Objetos do mapa (desenhados com profundidade: quem está mais embaixo na tela fica na frente). 'sprites' = arquivos em assets/sprites/objetos/ (a variação sai da posição). 'pegada' = células ocupadas [largura, altura], contadas do canto de cima à esquerda; o sprite fica centrado na pegada e apoiado na base dela, mais o 'ajuste' em pixels. 'colisao' = [largura, altura] em pixels do bloqueio, apoiado na base (sem ela, a pegada toda). 'dormir' = clicar com o botão direito nele faz dormir.",
+  "_sobre": "Objetos do mapa (desenhados com profundidade: quem está mais embaixo na tela fica na frente). 'sprites' = arquivos em assets/sprites/objetos/ (a variação sai da posição). 'pegada' = células ocupadas [largura, altura], contadas do canto de cima à esquerda; o sprite fica centrado na pegada e apoiado na base dela, mais o 'ajuste' em pixels. 'colisao' = [largura, altura] em pixels do bloqueio, apoiado na base (sem ela, a pegada toda). \"solido\": false = não bloqueia (enfeite). \"dormir\" = clicar com o botão direito nele faz dormir.",
   "casa": {"sprites": ["casa.png"], "pegada": [6, 3], "ajuste": [0, 6], "porta": [3, 2], "luzes": [[20, 71], [78, 71]], "noite": "casa_janelas.png"},
   "cama": {"sprites": ["cama.png"], "pegada": [2, 2], "ajuste": [0, 2], "dormir": true},
   "estante": {"sprites": ["estante.png"], "pegada": [2, 1], "ajuste": [0, 2]},
@@ -20,5 +20,10 @@
   "balcao": {"sprites": ["balcao.png"], "pegada": [4, 1], "ajuste": [0, 2], "atende_atras": true},
   "prateleira": {"sprites": ["prateleira.png"], "pegada": [2, 1], "ajuste": [0, 2]},
   "caixotes": {"sprites": ["caixotes.png"], "pegada": [2, 1], "ajuste": [0, 2], "colisao": [30, 10]},
-  "leito": {"sprites": ["leito.png"], "pegada": [1, 2], "ajuste": [0, 2]}
+  "leito": {"sprites": ["leito.png"], "pegada": [1, 2], "ajuste": [0, 2]},
+  "oliveira": {"sprites": ["oliveira_0.png", "oliveira_1.png"], "pegada": [1, 1], "ajuste": [0, 3], "colisao": [12, 8]},
+  "cevada": {"sprites": ["cevada.png"], "pegada": [1, 1], "ajuste": [0, 1], "solido": false},
+  "horta": {"sprites": ["horta_0.png", "horta_1.png"], "pegada": [1, 1], "ajuste": [0, 0], "solido": false},
+  "mesa_comprida": {"sprites": ["mesa_comprida.png"], "pegada": [4, 1], "ajuste": [0, 2], "colisao": [62, 10]},
+  "placa": {"sprites": ["placa.png"], "pegada": [1, 1], "ajuste": [0, 2], "colisao": [6, 6]}
 }

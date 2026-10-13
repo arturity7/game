@@ -97,6 +97,29 @@ func _rodar() -> void:
 	var loja: Loja = main.abrir_loja("mercado")
 	await _foto("11b_loja")
 	loja.fechar()
+	main.trocar_mapa("jardim", Vector2i(12, 11), "cima")
+	await get_tree().create_timer(0.8).timeout
+	main.mundo.atualizar_luz(10.0)
+	await _foto("12_jardim")
+	var cx: CaixaDialogo = main.conversar("epicuro.dialogo.epicuro", "Epicuro")
+	await get_tree().create_timer(0.6).timeout
+	await _foto("12b_conversa")
+	for i in 30:
+		if cx._estado == "escolhas":
+			break
+		cx._avancar()
+		await get_tree().process_frame
+	await _foto("12c_escolhas")
+	cx.fechar()
+	var cp: CaixaDialogo = main.conversar("epicuro.dialogo.meneceu", "Meneceu")
+	cp._entrar("d3")
+	cp._texto.visible_characters = cp._texto.get_total_character_count()
+	cp._avancar()
+	await _foto("12d_pergunta")
+	cp.fechar()
+	var dj: Diario = main.abrir_diario()
+	await _foto("12e_diario")
+	dj.fechar()
 	main._abrir_tela_inicial()
 	await get_tree().create_timer(0.5).timeout
 	await _foto("8_abertura")

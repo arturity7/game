@@ -1,0 +1,110 @@
+{
+ "_sobre": "O Jardim de Epicuro (livro: Carta a Meneceu): pomar-horta cercado na beira da cidade, com oliveiras, cevada, horta, nascente e a mesa comprida dos amigos. Área com spoilers do livro.",
+ "id": "jardim",
+ "nome": "O Jardim",
+ "livro": "epicuro",
+ "legenda": {
+  ".": "grama",
+  "=": "caminho",
+  "~": "agua",
+  "A": "arvore",
+  "#": "cerca",
+  "O": "oliveira",
+  "v": "cevada",
+  "h": "horta@terra"
+ },
+ "linhas": [
+  "AAAAAAAAAAAAAAAAAAAAAAAAAA",
+  "A........................A",
+  "A.######################.A",
+  "AA#....O...............#.A",
+  "A.#.O...........v.v.v..#.A",
+  "A.#.............vvvvvv.#.A",
+  "A.#.....O.......v.v.v..#AA",
+  "A.#..O.................#.A",
+  "A.#....................#.A",
+  "AA#................~~~.#.A",
+  "A.#....O........~~~~~~.#.A",
+  "A.#.O.......==.........#.A",
+  "A.#.........==..hhhhhh.#AA",
+  "A.#......O..==..hhhhhh.#.A",
+  "A.#.O.......==.........#.A",
+  "A.##########==##########.A",
+  "AA..A...A...==...A...A..AA",
+  "AAAAAAAAAAAA==AAAAAAAAAAAA"
+ ],
+ "objetos": [
+  {
+   "tipo": "mesa_comprida",
+   "x": 10,
+   "y": 8
+  },
+  {
+   "tipo": "banco",
+   "x": 10,
+   "y": 7
+  },
+  {
+   "tipo": "banco",
+   "x": 12,
+   "y": 7
+  },
+  {
+   "tipo": "pedra",
+   "x": 22,
+   "y": 9
+  },
+  {
+   "tipo": "pedra",
+   "x": 18,
+   "y": 9
+  },
+  {
+   "tipo": "placa",
+   "x": 14,
+   "y": 16,
+   "nome": "Inscrição do portão",
+   "texto": [
+    "Visitante, aqui você vai ficar bem.",
+    "Quem cuida deste jardim vai lhe oferecer bolos de cevada e água da nascente."
+   ]
+  }
+ ],
+ "npcs": [
+  {
+   "id": "epicuro.npc.epicuro",
+   "nome": "Epicuro",
+   "sprite": "epicuro.png",
+   "x": 14,
+   "y": 8,
+   "olhar": "baixo",
+   "dialogo": "epicuro.dialogo.epicuro"
+  }
+ ],
+ "saidas": [
+  {
+   "x": 12,
+   "y": 17,
+   "para": "cidade",
+   "chegada": [
+    2,
+    1
+   ],
+   "olhar": "baixo"
+  },
+  {
+   "x": 13,
+   "y": 17,
+   "para": "cidade",
+   "chegada": [
+    2,
+    1
+   ],
+   "olhar": "baixo"
+  }
+ ],
+ "inicio": [
+  12,
+  16
+ ]
+}

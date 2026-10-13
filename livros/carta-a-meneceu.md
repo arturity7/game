@@ -162,13 +162,18 @@ Ambiente: **O Jardim**, um pomar-horta cercado na beira da cidade, com nascente,
 
 | ID | Tipo | Onde | Status |
 |---|---|---|---|
-| `epicuro.local.jardim` | Local | Mundo principal | Criado (ficha) |
-| `epicuro.npc.epicuro` | NPC | O Jardim | Criado (ficha) |
-| `epicuro.missao.carta_meneceu` | Missão + puzzle | Cidade / Jardim | Criado (ficha) |
-| `epicuro.missao.carta_pitocles` | Missão + puzzle | Cidade / Jardim | Criado (ficha) |
-| `epicuro.missao.carta_herodoto` | Missão + puzzle | Cidade / Jardim | Criado (ficha) |
-| `epicuro.puzzle.feijao_demetrio` | Puzzle | O Jardim | Criado (ficha) |
-| `epicuro.puzzle.riacho_suave` | Puzzle | O Jardim | Criado (ficha) |
-| `epicuro.receita.bolo_cevada` | Receita | — | Criado (ficha) |
+| `epicuro.local.jardim` | Local | Mundo principal (mapa `jardim`, ao norte da cidade) | Implementado |
+| `epicuro.npc.epicuro` | NPC | O Jardim | Implementado |
+| `epicuro.missao.carta_meneceu` | Missão + puzzle | Cidade / Jardim | Implementado (puzzle: separar os três tipos de desejo, com Meneceu perto do chafariz) |
+| `epicuro.missao.carta_pitocles` | Missão + puzzle | Cidade / Jardim | Implementado (puzzle: várias explicações para o céu, com Pítocles no leste da cidade) |
+| `epicuro.missao.carta_herodoto` | Missão + puzzle | Cidade / Jardim | Implementado (puzzle: corpos, vazio, átomos e alma, com Heródoto no parque) |
+| `epicuro.npc.meneceu`, `epicuro.npc.pitocles`, `epicuro.npc.herodoto` | NPCs | Cidade | Implementado |
+| `epicuro.item.carta_meneceu`, `epicuro.item.carta_pitocles`, `epicuro.item.carta_herodoto` | Itens de missão | — | Implementado |
+| `epicuro.item.bolo_cevada` | Comida simples | Dada por Epicuro | Implementado (a receita, `epicuro.receita.bolo_cevada`, fica para quando houver cozinha) |
+| `epicuro.item.chave_alem_nevoa` | Chave da dimensão Além da Névoa | Recompensa das três cartas | Implementado (o portal ainda não existe) |
+| `epicuro.conquista.hospede_satisfeito`, `epicuro.conquista.pao_agua`, `epicuro.conquista.riacho_suave` | Conquistas | — | As duas primeiras implementadas; a do riacho espera o puzzle |
+| `epicuro.puzzle.feijao_demetrio` | Puzzle | O Jardim | Pendente |
+| `epicuro.puzzle.riacho_suave` | Puzzle | O Jardim | Pendente |
+| `epicuro.receita.bolo_cevada` | Receita | — | Pendente (cozinha) |
 
-Implementação no jogo: pendente (fase de código).
+Perguntas no jogo (`game/content/livros/epicuro/perguntas.json`): as do §9 viraram perguntas das cartas e conversa livre com Epicuro depois da última carta (cada acerto dá um bolo de cevada). A pergunta sobre a morte é a **importante**: errar fecha a pergunta até o dia seguinte (D-029).

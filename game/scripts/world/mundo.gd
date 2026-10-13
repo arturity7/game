@@ -302,6 +302,8 @@ func _criar_objetos() -> void:
 			luzes.append(luz_janela)
 		if def.has("porta"):
 			_colisao_com_porta(corpo, peg, def["porta"])
+		elif not bool(def.get("solido", true)):
+			pass
 		else:
 			var tam: Array = def.get("colisao", [int(peg[0]) * TAM, int(peg[1]) * TAM])
 			var forma := CollisionShape2D.new()

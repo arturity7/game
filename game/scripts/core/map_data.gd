@@ -21,6 +21,7 @@ var luzes: Array = []     # interiores: pontos (em pixels) que acendem à noite
 var _grade: Array = []    # Array[Array[String]] de tipos de chão
 var _ocupado := {}        # "x,y" -> tipo do objeto que ocupa a célula
 var _livre := {}          # "x,y" -> true: célula de porta (dentro de uma pegada, mas passável)
+var _indice := {}         # "x,y" -> índice em 'objetos' do objeto que cobre a célula
 
 
 static func de_dict(d: Dictionary, defs_objetos := {}) -> MapData:
@@ -40,7 +41,7 @@ static func de_dict(d: Dictionary, defs_objetos := {}) -> MapData:
 	for n in d.get("npcs", []):
 		m.npcs.append({"id": str(n.get("id", "")), "sprite": str(n.get("sprite", "")), "x": int(n.get("x", 0)),
 			"y": int(n.get("y", 0)), "olhar": str(n.get("olhar", "baixo")), "loja": str(n.get("loja", "")),
-			"fala": str(n.get("fala", ""))})
+			"fala": str(n.get("fala", "")), "dialogo": str(n.get("dialogo", "")), "nome": str(n.get("nome", ""))})
 	for f in d.get("fechadas", []):
 		m.fechadas.append({"x": int(f.get("x", 0)), "y": int(f.get("y", 0)), "aviso": str(f.get("aviso", ""))})
 	var legenda: Dictionary = d.get("legenda", {})
@@ -52,20 +53,32 @@ static func de_dict(d: Dictionary, defs_objetos := {}) -> MapData:
 		var fila: Array = []
 		for x in s.length():
 			var tipo := str(legenda.get(s[x], "grama"))
+			var chao := "grama"
+			if "@" in tipo:  # "objeto@chao": objeto sobre outro chão (ex.: "horta@terra")
+				chao = tipo.get_slice("@", 1)
+				tipo = tipo.get_slice("@", 0)
 			if defs_objetos.has(tipo):
-				fila.append("grama")
+				fila.append(chao)
 				m.objetos.append({"tipo": tipo, "x": x, "y": y})
 			else:
-				fila.append(tipo)
+				fila.append(tipo if not "@" in str(legenda.get(s[x], "")) else chao)
 		m._grade.append(fila)
 	for o in d.get("objetos", []):
-		m.objetos.append({"tipo": str(o.get("tipo", "")), "x": int(o.get("x", 0)), "y": int(o.get("y", 0))})
-	for o in m.objetos:
+		var obj: Dictionary = o.duplicate(true)
+		obj["tipo"] = str(o.get("tipo", ""))
+		obj["x"] = int(o.get("x", 0))
+		obj["y"] = int(o.get("y", 0))
+		m.objetos.append(obj)
+	for i in m.objetos.size():
+		var o: Dictionary = m.objetos[i]
 		var def: Dictionary = defs_objetos.get(o["tipo"], {})
 		var peg: Array = def.get("pegada", [1, 1])
 		for dy in int(peg[1]):
 			for dx in int(peg[0]):
-				m._ocupado["%d,%d" % [int(o["x"]) + dx, int(o["y"]) + dy]] = o["tipo"]
+				var k := "%d,%d" % [int(o["x"]) + dx, int(o["y"]) + dy]
+				m._indice[k] = i
+				if bool(def.get("solido", true)):
+					m._ocupado[k] = o["tipo"]
 		if def.has("porta"):
 			var p: Array = def["porta"]
 			m._livre["%d,%d" % [int(o["x"]) + int(p[0]), int(o["y"]) + int(p[1])]] = true
@@ -102,6 +115,12 @@ func ocupada(celula: Vector2i) -> bool:
 ## Porta de um objeto (passável, mas tipo_em ainda diz o objeto).
 func porta(celula: Vector2i) -> bool:
 	return _livre.has("%d,%d" % [celula.x, celula.y])
+
+
+## O objeto (com todos os campos do mapa) que cobre a célula, ou {} se não houver.
+func objeto_em(celula: Vector2i) -> Dictionary:
+	var i = _indice.get("%d,%d" % [celula.x, celula.y])
+	return objetos[i] if i != null else {}
 
 
 ## O morador parado nesta célula, ou {} se não houver.

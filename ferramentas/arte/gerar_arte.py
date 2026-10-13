@@ -902,9 +902,44 @@ def icones_itens():
                         put(c, x, y, cor("milho", 3 if (x + y) % 2 == 0 else 2))
         for (x, y, i) in ((3, 13, 4), (4, 13, 3), (4, 12, 4), (2, 12, 5), (6, 14, 3), (7, 14, 4), (8, 13, 5), (3, 11, 5)):
             put(c, x, y, cor("folha", i))
+    def carta(c):
+        for y in range(3, 13):  # pergaminho enrolado nas pontas
+            for x in range(3, 13):
+                put(c, x, y, cor("papel", 3 if x < 10 else 2))
+        for y in range(2, 14):
+            put(c, 2, y, cor("papel", 1)); put(c, 3, y, cor("papel", 2))
+            put(c, 12, y, cor("papel", 1)); put(c, 13, y, cor("papel", 0))
+        for k, y in enumerate((5, 7, 9)):
+            for x in range(5, 11 - (k == 2) * 2):
+                put(c, x, y, cor("madeira", 2))
+        for (x, y) in ((9, 10), (10, 10), (9, 11), (10, 11), (11, 11), (10, 12)):  # selo
+            put(c, x, y, cor("coracao", 2 if y < 12 else 1))
+        put(c, 9, 10, cor("coracao", 3))
+    def bolo(c):
+        for y in range(16):
+            for x in range(16):
+                d = ((x + 0.5 - 8) / 6) ** 2 + ((y + 0.5 - 9) / 4.5) ** 2
+                if d <= 1:
+                    i = 3 if y < 8 else 2 if y < 11 else 1
+                    put(c, x, y, cor("cevada", i))
+        for x in range(4, 13):
+            put(c, x, 9, cor("cevada", 0)) if x % 2 == 0 else None
+        for y in range(6, 12):
+            put(c, 8, y, cor("cevada", 0)) if y % 2 == 0 else None
+        put(c, 5, 6, cor("cevada", 4)); put(c, 6, 6, cor("cevada", 4))
+    def chave(c):
+        for y in range(16):
+            for x in range(16):
+                if 2.2 <= math.hypot(x + 0.5 - 5, y + 0.5 - 5) <= 3.6:
+                    put(c, x, y, cor("milho", 3 if y < 5 else 2))
+        put(c, 5, 5, cor("vidro", 3)); put(c, 4, 5, cor("vidro", 4)); put(c, 5, 4, cor("vidro", 4)); put(c, 4, 4, cor("vidro", 4))
+        for k in range(8):
+            put(c, 7 + k, 7 + k, cor("milho", 2)); put(c, 8 + k, 7 + k, cor("milho", 1))
+        for (x, y) in ((12, 14), (13, 13), (10, 12), (11, 11)):
+            put(c, x, y, cor("milho", 2))
     lista = [_icone(enxada), _icone(regador), _pacote(("feijao", 1)), _icone(feijao),
              _pacote(("cenoura", 2)), _icone(cenoura), _pacote(("batata", 1)), _icone(batata),
-             _pacote(("milho", 2)), _icone(milho)]
+             _pacote(("milho", 2)), _icone(milho), _icone(carta), _icone(bolo), _icone(chave)]
     atlas = nova(16 * len(lista), 16)
     for i, ic in enumerate(lista):
         atlas[:, i * 16:(i + 1) * 16] = ic
@@ -1003,21 +1038,28 @@ def icones_hud():
                     put(c, x, y, cor("milho", 3 if d < 2.2 and x < 5 else 2 if d < 3 else 1))
         for y in range(3, 7):
             put(c, 5, y, cor("milho", 0))
-    atlas = nova(50, 10)
-    for i, f in enumerate((coracao, maca, sol, lua, moeda)):
+    def medalha(c):
+        for (x, y, i) in ((3, 0, 1), (4, 1, 1), (6, 0, 2), (5, 1, 2), (4, 2, 1), (5, 2, 2)):
+            put(c, x, y, cor("camisa" if i == 1 else "coracao", 3))
+        for y in range(10):
+            for x in range(10):
+                d = math.hypot(x + 0.5 - 5, y + 0.5 - 6.2)
+                if d <= 3.4:
+                    put(c, x, y, cor("milho", 3 if d < 1.8 and x < 5 else 2 if d < 2.7 else 1))
+        put(c, 4, 5, cor("flor_br", 2))
+    atlas = nova(60, 10)
+    for i, f in enumerate((coracao, maca, sol, lua, moeda, medalha)):
         c = nova(10, 10)
         f(c)
         atlas[:, i * 10:(i + 1) * 10] = c
-    out = nova(52, 12)
-    out[1:11, 1:51] = atlas
     # contorno por ícone
-    for i in range(5):
+    for i in range(6):
         sub = nova(12, 12)
         sub[1:11, 1:11] = atlas[:, i * 10:(i + 1) * 10]
         contornar(sub, hexc("#1e1420"))
         out2 = sub
         if i == 0:
-            final = nova(12 * 5, 12)
+            final = nova(12 * 6, 12)
         final[:, i * 12:(i + 1) * 12] = out2
     return final
 
@@ -1162,6 +1204,8 @@ if __name__ == "__main__":
     interiores.gerar()
     import cidade
     cidade.gerar()
+    import livros
+    livros.gerar()
     if len(sys.argv) > 1 and sys.argv[1] == "--previa":
         previa_terreno(os.path.join(RAIZ, "..", "..", "content", "mapas", "fazenda.json"), sys.argv[2])
     print("ok")

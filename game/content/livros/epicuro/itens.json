@@ -1,0 +1,35 @@
+{
+ "_sobre": "Itens do livro de Epicuro. 'icone' = posição em assets/sprites/itens/itens.png.",
+ "epicuro.item.carta_meneceu": {
+  "nome": "Carta a Meneceu",
+  "tipo": "missao",
+  "icone": 10,
+  "pilha": 1
+ },
+ "epicuro.item.carta_pitocles": {
+  "nome": "Carta a Pítocles",
+  "tipo": "missao",
+  "icone": 10,
+  "pilha": 1
+ },
+ "epicuro.item.carta_herodoto": {
+  "nome": "Carta a Heródoto",
+  "tipo": "missao",
+  "icone": 10,
+  "pilha": 1
+ },
+ "epicuro.item.bolo_cevada": {
+  "nome": "Bolo de cevada",
+  "tipo": "comida",
+  "icone": 11,
+  "pilha": 99,
+  "fome": 10,
+  "conquista_simples": "epicuro.conquista.pao_agua"
+ },
+ "epicuro.item.chave_alem_nevoa": {
+  "nome": "Chave de Além da Névoa",
+  "tipo": "chave",
+  "icone": 12,
+  "pilha": 1
+ }
+}

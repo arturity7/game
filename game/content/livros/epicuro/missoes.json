@@ -1,0 +1,18 @@
+{
+ "_sobre": "Missões do livro de Epicuro (aparecem no diário).",
+ "epicuro.missao.carta_meneceu": {
+  "nome": "A carta a Meneceu",
+  "livro": "epicuro",
+  "descricao": "Levar a carta de Epicuro a Meneceu, que fica perto do chafariz da cidade. Depois, voltar ao Jardim."
+ },
+ "epicuro.missao.carta_pitocles": {
+  "nome": "A carta a Pítocles",
+  "livro": "epicuro",
+  "descricao": "Levar a segunda carta a Pítocles, no lado leste da cidade, onde ele fica olhando o céu. Depois, voltar ao Jardim."
+ },
+ "epicuro.missao.carta_herodoto": {
+  "nome": "A carta a Heródoto",
+  "livro": "epicuro",
+  "descricao": "Levar a última carta a Heródoto, no parque a sudoeste da praça. Depois, voltar ao Jardim."
+ }
+}

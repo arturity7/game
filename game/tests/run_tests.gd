@@ -20,6 +20,9 @@ func _init() -> void:
 	_teste_inventario(cfg)
 	_teste_plantacao(cfg)
 	_teste_migracao_v1_v2()
+	_teste_conteudo_dos_livros(cfg)
+	_teste_mapas_ligados()
+	_teste_epicuro_do_comeco_ao_fim(cfg)
 	print("\n%d verificações, %d falha(s)" % [total, falhas])
 	quit(1 if falhas > 0 else 0)
 
@@ -127,7 +130,8 @@ func _teste_mapa_fazenda() -> void:
 	var tiles := _json("res://content/config/tiles.json")
 	var objetos := _defs("objetos")
 	for linha in _json("res://content/mapas/fazenda.json")["legenda"].values():
-		checar(tiles.has(linha) or objetos.has(linha), "mapa: tipo conhecido: " + str(linha))
+		var tipo_l := str(linha).get_slice("@", 0)
+		checar(tiles.has(tipo_l) or objetos.has(tipo_l), "mapa: tipo conhecido: " + str(linha))
 	# com as definições de objetos: árvores, cercas e a casa ocupam células sobre a grama
 	var mo := MapData.de_dict(_json("res://content/mapas/fazenda.json"), objetos)
 	checar(mo.tipo_em(Vector2i(0, 0)) == "arvore" and mo.chao_em(Vector2i(0, 0)) == "grama", "mapa: árvore sobre grama")
@@ -263,3 +267,164 @@ func _teste_migracao_v1_v2() -> void:
 	checar(Inventario.contar(g.jogador["inventario"], "enxada") == 1, "migração: recebe o kit inicial")
 	checar(g.mundo.has("canteiros"), "migração: ganha canteiros")
 	checar(float(g.jogador["fome"]) == 72.5 and int(g.mundo["dia"]) == 3, "migração: mantém o resto do save")
+
+
+
+# ---------- conteúdo dos livros ----------
+
+func _config() -> Node:
+	var c: Node = load("res://scripts/autoload/config.gd").new()
+	c._ready()
+	return c
+
+
+## Confere todas as conversas, perguntas, itens, missões e conquistas de content/livros.
+func _teste_conteudo_dos_livros(_cfg: Dictionary) -> void:
+	var c := _config()
+	checar(c.livros.has("epicuro"), "livros: Epicuro carregado")
+	for id in c.perguntas:
+		var p: Dictionary = c.perguntas[id]
+		var n: int = p.get("opcoes", []).size()
+		checar(n >= 2 and int(p.get("certa", 0)) < n, "pergunta com opções: " + id)
+		checar(str(p.get("nivel", "")) in ["memoria", "releitura"], "pergunta com nível: " + id)
+		if str(p.get("nivel", "")) == "releitura":
+			checar(str(p.get("dica", "")) != "", "releitura tem dica: " + id)
+		if str(p.get("peso", "simples")) == "importante":
+			checar(str(p.get("punicao", "")) in ["vida", "amanha"], "importante tem punição: " + id)
+		checar(str(p.get("ref", "")) != "", "pergunta com referência: " + id)
+	for id in c.dialogos:
+		var conv: Dictionary = c.dialogos[id]
+		var nos: Dictionary = conv.get("nos", {})
+		var alvos: Array = []
+		for e in conv.get("inicio", []):
+			alvos.append(e.get("ir", ""))
+		for nid in nos:
+			var no: Dictionary = nos[nid]
+			for k in ["ir", "certo", "errado", "bloqueada"]:
+				if no.has(k):
+					alvos.append(no[k])
+			for e in no.get("escolhas", []) + no.get("ramos", []):
+				alvos.append(e.get("ir", ""))
+			if no.has("pergunta"):
+				checar(c.perguntas.has(str(no["pergunta"])), "%s: pergunta existe (%s)" % [id, no["pergunta"]])
+				checar(no.has("certo") and no.has("errado"), "%s.%s: pergunta com certo e errado" % [id, nid])
+			for e in no.get("efeitos", []):
+				for k in ["dar_item", "tirar_item"]:
+					if e.has(k):
+						checar(c.itens.has(str(e[k])), "%s: item existe (%s)" % [id, e[k]])
+				if e.has("missao"):
+					checar(c.missoes.has(str(e["missao"])), "%s: missão existe (%s)" % [id, e["missao"]])
+				if e.has("conquista"):
+					checar(c.conquistas.has(str(e["conquista"])), "%s: conquista existe (%s)" % [id, e["conquista"]])
+		for a in alvos:
+			checar(str(a) == "fim" or nos.has(str(a)), "%s: nó existe (%s)" % [id, a])
+	for id in c.itens:
+		var it: Dictionary = c.itens[id]
+		checar(int(it.get("icone", -1)) >= 0 and int(it.get("icone", 0)) < 13, "item com ícone: " + id)
+		if it.has("conquista_simples"):
+			checar(c.conquistas.has(str(it["conquista_simples"])), "item: conquista existe: " + id)
+	c.free()
+
+
+## Toda saída leva a um mapa que existe, e a chegada é uma célula livre; NPCs em células livres.
+func _teste_mapas_ligados() -> void:
+	var c := _config()
+	var dir := DirAccess.open("res://content/mapas")
+	var mapas := {}
+	for f in dir.get_files():
+		if f.ends_with(".json"):
+			mapas[f.get_basename()] = MapData.de_dict(_json("res://content/mapas/" + f), c.objetos)
+	for id in mapas:
+		var m: MapData = mapas[id]
+		var leg: Dictionary = _json("res://content/mapas/%s.json" % id).get("legenda", {})
+		for v in leg.values():
+			var tipo := str(v).get_slice("@", 0)
+			checar(c.tiles.has(tipo) or c.objetos.has(tipo), "%s: tipo conhecido %s" % [id, v])
+		for o in m.objetos:
+			checar(c.objetos.has(str(o["tipo"])), "%s: objeto conhecido %s" % [id, o["tipo"]])
+		for s in m.saidas:
+			var para := str(s["para"])
+			checar(mapas.has(para), "%s: saída para mapa que existe (%s)" % [id, para])
+			if mapas.has(para):
+				var dest: MapData = mapas[para]
+				var ch: Vector2i = s["chegada"]
+				var chao := dest.chao_em(ch)
+				checar(chao != "" and not dest.ocupada(ch) and not bool(c.tiles.get(chao, {}).get("solido", false)),
+					"%s -> %s: chegada livre %s" % [id, para, ch])
+				checar(dest.saida_em(ch).is_empty(), "%s -> %s: chegada não é outra saída" % [id, para])
+		for n in m.npcs:
+			var cel := Vector2i(int(n["x"]), int(n["y"]))
+			checar(m.chao_em(cel) != "" and m.objeto_em(cel).is_empty(), "%s: NPC em célula livre (%s)" % [id, n["id"]])
+			if str(n.get("dialogo", "")) != "":
+				checar(c.dialogos.has(str(n["dialogo"])), "%s: conversa do NPC existe (%s)" % [id, n["dialogo"]])
+			checar(ResourceLoader.exists("res://assets/sprites/personagens/" + str(n["sprite"])), "%s: sprite do NPC (%s)" % [id, n["sprite"]])
+	c.free()
+
+
+## Segue uma conversa como o jogador faria: aplica efeitos, escolhe a primeira opção e acerta as
+## perguntas (ou erra, se 'errar' tiver o id). Retorna os nós visitados.
+func _conversar(c: Node, d: GameData, id: String, errar := "") -> Array:
+	var conv: Dictionary = c.dialogos[id]
+	var no_id := Dialogo.no_inicial(d, conv)
+	var vistos: Array = []
+	var passos := 0
+	while no_id != "" and no_id != "fim" and passos < 100:
+		passos += 1
+		vistos.append(no_id)
+		var no: Dictionary = conv["nos"][no_id]
+		if no.has("ramos"):
+			no_id = Dialogo.escolher_ramo(d, no["ramos"])
+			continue
+		Dialogo.aplicar(d, no.get("efeitos", []), c.itens)
+		if no.has("pergunta"):
+			var pid := str(no["pergunta"])
+			if Progresso.bloqueada(d, pid):
+				no_id = str(no.get("bloqueada", "fim"))
+				continue
+			var certa := pid != errar
+			Progresso.responder(d, pid, c.perguntas[pid], certa, {})
+			no_id = str(no["certo"] if certa else no["errado"])
+			continue
+		var esc := Dialogo.escolhas_visiveis(d, no)
+		if not esc.is_empty():
+			no_id = str(esc[0].get("ir", "fim"))
+			continue
+		no_id = str(no.get("ir", "fim"))
+	return vistos
+
+
+func _teste_epicuro_do_comeco_ao_fim(cfg: Dictionary) -> void:
+	var c := _config()
+	var d := GameData.novo(cfg, "fazenda", Vector2.ZERO, c.itens)
+	var inv: Array = d.jogador["inventario"]
+	_conversar(c, d, "epicuro.dialogo.meneceu")
+	checar(not Progresso.tem_flag(d, "epicuro.meneceu_leu"), "epicuro: Meneceu sem carta só cumprimenta")
+	_conversar(c, d, "epicuro.dialogo.epicuro")
+	checar(Progresso.missao(d, "epicuro.missao.carta_meneceu") == "ativa", "epicuro: primeira missão começa")
+	checar(Inventario.contar(inv, "epicuro.item.carta_meneceu") == 1 and Inventario.contar(inv, "epicuro.item.bolo_cevada") == 2, "epicuro: carta e bolos")
+	_conversar(c, d, "epicuro.dialogo.epicuro")
+	checar(Progresso.missao(d, "epicuro.missao.carta_meneceu") == "ativa", "epicuro: só lembra onde fica Meneceu")
+	_conversar(c, d, "epicuro.dialogo.meneceu", "epicuro.pergunta.desejo_fama")
+	checar(not Progresso.tem_flag(d, "epicuro.meneceu_leu") and Inventario.contar(inv, "epicuro.item.carta_meneceu") == 1, "epicuro: errar não perde a carta")
+	_conversar(c, d, "epicuro.dialogo.meneceu")
+	checar(Progresso.tem_flag(d, "epicuro.meneceu_leu") and Inventario.contar(inv, "epicuro.item.carta_meneceu") == 0, "epicuro: Meneceu lê a carta")
+	_conversar(c, d, "epicuro.dialogo.epicuro")
+	checar(Progresso.missao(d, "epicuro.missao.carta_meneceu") == "feita" and Progresso.missao(d, "epicuro.missao.carta_pitocles") == "ativa", "epicuro: segunda carta")
+	_conversar(c, d, "epicuro.dialogo.pitocles")
+	_conversar(c, d, "epicuro.dialogo.epicuro")
+	checar(Progresso.missao(d, "epicuro.missao.carta_herodoto") == "ativa", "epicuro: terceira carta")
+	_conversar(c, d, "epicuro.dialogo.herodoto")
+	var vida := float(d.jogador["vida"])
+	_conversar(c, d, "epicuro.dialogo.epicuro", "epicuro.pergunta.morte")
+	checar(Progresso.bloqueada(d, "epicuro.pergunta.morte") and float(d.jogador["vida"]) == vida, "epicuro: errar a pergunta importante fecha até amanhã")
+	var vistos := _conversar(c, d, "epicuro.dialogo.epicuro")
+	checar("ainda_pensando" in vistos, "epicuro: no mesmo dia, ainda pensando")
+	d.mundo["dia"] = int(d.mundo["dia"]) + 1
+	_conversar(c, d, "epicuro.dialogo.epicuro")
+	checar(Progresso.missao(d, "epicuro.missao.carta_herodoto") == "feita", "epicuro: as três cartas entregues")
+	checar(Inventario.contar(inv, "epicuro.item.chave_alem_nevoa") == 1, "epicuro: ganha a chave de Além da Névoa")
+	checar(Progresso.tem_conquista(d, "epicuro.conquista.hospede_satisfeito"), "epicuro: conquista Hóspede satisfeito")
+	var antes := Inventario.contar(inv, "epicuro.item.bolo_cevada")
+	vistos = _conversar(c, d, "epicuro.dialogo.epicuro")
+	checar("quiz_certo" in vistos and "quiz_fim" in vistos and Inventario.contar(inv, "epicuro.item.bolo_cevada") > antes, "epicuro: perguntas livres dão bolo")
+	c.free()

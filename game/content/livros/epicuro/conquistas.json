@@ -1,0 +1,18 @@
+{
+ "_sobre": "Medalhas do livro de Epicuro (ficha §13).",
+ "epicuro.conquista.hospede_satisfeito": {
+  "nome": "Hóspede satisfeito",
+  "livro": "epicuro",
+  "descricao": "Levou as três cartas de Epicuro."
+ },
+ "epicuro.conquista.pao_agua": {
+  "nome": "Pão e água",
+  "livro": "epicuro",
+  "descricao": "Comeu algo simples quase morrendo de fome."
+ },
+ "epicuro.conquista.riacho_suave": {
+  "nome": "Nem torrente, nem lagoa",
+  "livro": "epicuro",
+  "descricao": "Deixou o riacho do Jardim correr manso."
+ }
+}

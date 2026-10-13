@@ -17,7 +17,7 @@ const COR_TEXTO := Color("#3b2214")
 const COR_CLARA := Color("#fff3d6")
 const COR_SOMBRA := Color("#1e1420")
 ## Ícones de icones_hud.png (12x12 cada).
-const ICONE := {"vida": 0, "fome": 1, "sol": 2, "lua": 3, "moeda": 4}
+const ICONE := {"vida": 0, "fome": 1, "sol": 2, "lua": 3, "moeda": 4, "medalha": 5}
 
 var fonte: FontFile
 var fonte_forte: FontFile

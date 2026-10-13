@@ -1,0 +1,717 @@
+{
+ "_sobre": "Conversas do livro de Epicuro (formato em scripts/core/dialogo.gd).",
+ "epicuro.dialogo.epicuro": {
+  "quem": "Epicuro",
+  "inicio": [
+   {
+    "se": {
+     "missao": "epicuro.missao.carta_herodoto",
+     "estado": "feita"
+    },
+    "ir": "conversa"
+   },
+   {
+    "se": {
+     "missao": "epicuro.missao.carta_herodoto",
+     "estado": "ativa",
+     "flag": "epicuro.herodoto_leu"
+    },
+    "ir": "volta_herodoto"
+   },
+   {
+    "se": {
+     "missao": "epicuro.missao.carta_herodoto",
+     "estado": "ativa"
+    },
+    "ir": "lembra_herodoto"
+   },
+   {
+    "se": {
+     "missao": "epicuro.missao.carta_pitocles",
+     "estado": "ativa",
+     "flag": "epicuro.pitocles_leu"
+    },
+    "ir": "volta_pitocles"
+   },
+   {
+    "se": {
+     "missao": "epicuro.missao.carta_pitocles",
+     "estado": "ativa"
+    },
+    "ir": "lembra_pitocles"
+   },
+   {
+    "se": {
+     "missao": "epicuro.missao.carta_meneceu",
+     "estado": "ativa",
+     "flag": "epicuro.meneceu_leu"
+    },
+    "ir": "volta_meneceu"
+   },
+   {
+    "se": {
+     "missao": "epicuro.missao.carta_meneceu",
+     "estado": "ativa"
+    },
+    "ir": "lembra_meneceu"
+   },
+   {
+    "se": {
+     "flag": "epicuro.conheceu"
+    },
+    "ir": "pedido"
+   },
+   {
+    "ir": "chegada"
+   }
+  ],
+  "nos": {
+   "chegada": {
+    "fala": [
+     "Seja bem-vindo ao Jardim, amigo.",
+     "Aqui ninguém passa fome. Tome um bolo de cevada; a água da nascente é de todos."
+    ],
+    "efeitos": [
+     {
+      "flag": "epicuro.conheceu"
+     },
+     {
+      "dar_item": "epicuro.item.bolo_cevada",
+      "qtd": 2
+     }
+    ],
+    "ir": "pedido"
+   },
+   "pedido": {
+    "fala": [
+     "Escrevi três cartas para três amigos.",
+     "A primeira é para Meneceu, que mora na cidade, perto do chafariz. Você levaria para ele?"
+    ],
+    "escolhas": [
+     {
+      "texto": "Levo, sim.",
+      "ir": "aceitou"
+     },
+     {
+      "texto": "Agora não.",
+      "ir": "sem_pressa"
+     }
+    ]
+   },
+   "aceitou": {
+    "fala": [
+     "Obrigado. Ela fala de como viver feliz.",
+     "Quando ele tiver lido, volte aqui."
+    ],
+    "efeitos": [
+     {
+      "missao": "epicuro.missao.carta_meneceu",
+      "estado": "ativa"
+     },
+     {
+      "dar_item": "epicuro.item.carta_meneceu"
+     }
+    ],
+    "ir": "fim"
+   },
+   "sem_pressa": {
+    "fala": "Sem pressa. O portão do Jardim fica sempre aberto.",
+    "ir": "fim"
+   },
+   "lembra_meneceu": {
+    "fala": "Meneceu mora na cidade, perto do chafariz da praça.",
+    "ir": "fim"
+   },
+   "volta_meneceu": {
+    "fala": [
+     "Meneceu leu a carta? Que bom.",
+     "Então me diga você também:"
+    ],
+    "pergunta": "epicuro.pergunta.prazer",
+    "certo": "meneceu_ok",
+    "errado": "tente_de_novo"
+   },
+   "meneceu_ok": {
+    "fala": [
+     "Isso mesmo: nem dor no corpo, nem perturbação na alma.",
+     "A segunda carta é para Pítocles. Ele fica no lado leste da cidade, sempre olhando o céu."
+    ],
+    "efeitos": [
+     {
+      "missao": "epicuro.missao.carta_meneceu",
+      "estado": "feita"
+     },
+     {
+      "missao": "epicuro.missao.carta_pitocles",
+      "estado": "ativa"
+     },
+     {
+      "dar_item": "epicuro.item.carta_pitocles"
+     },
+     {
+      "dar_item": "epicuro.item.bolo_cevada"
+     }
+    ],
+    "ir": "fim"
+   },
+   "lembra_pitocles": {
+    "fala": "Pítocles fica no lado leste da cidade, olhando o céu.",
+    "ir": "fim"
+   },
+   "volta_pitocles": {
+    "fala": [
+     "Pítocles gostou do resumo? Ele tinha mandado o pedido por um mensageiro.",
+     "Lembra quem trouxe?"
+    ],
+    "pergunta": "epicuro.pergunta.cleon",
+    "certo": "pitocles_ok",
+    "errado": "tente_de_novo"
+   },
+   "pitocles_ok": {
+    "fala": [
+     "Isso. O céu não precisa nos dar medo.",
+     "A última carta é para Heródoto, que gosta de saber do que as coisas são feitas. Ele anda pelo parque, a sudoeste da praça."
+    ],
+    "efeitos": [
+     {
+      "missao": "epicuro.missao.carta_pitocles",
+      "estado": "feita"
+     },
+     {
+      "missao": "epicuro.missao.carta_herodoto",
+      "estado": "ativa"
+     },
+     {
+      "dar_item": "epicuro.item.carta_herodoto"
+     },
+     {
+      "dar_item": "epicuro.item.bolo_cevada"
+     }
+    ],
+    "ir": "fim"
+   },
+   "lembra_herodoto": {
+    "fala": "Heródoto anda pelo parque, a sudoeste da praça da cidade.",
+    "ir": "fim"
+   },
+   "volta_herodoto": {
+    "fala": [
+     "As três cartas chegaram. Falta só uma coisa.",
+     "É a pergunta mais importante de todas."
+    ],
+    "pergunta": "epicuro.pergunta.morte",
+    "certo": "final",
+    "errado": "pense_hoje",
+    "bloqueada": "ainda_pensando"
+   },
+   "pense_hoje": {
+    "fala": "Ainda não. Pense nisso esta noite; amanhã conversamos de novo.",
+    "ir": "fim"
+   },
+   "ainda_pensando": {
+    "fala": "Pense mais um pouco na carta a Meneceu... Volte amanhã.",
+    "ir": "fim"
+   },
+   "final": {
+    "fala": [
+     "Exato. Quem perdeu o medo da morte e dos deuses pode visitar até um mundo onde os deuses andam por aí.",
+     "Fique com esta chave. Um dia ela vai abrir o caminho para Além da Névoa."
+    ],
+    "efeitos": [
+     {
+      "missao": "epicuro.missao.carta_herodoto",
+      "estado": "feita"
+     },
+     {
+      "dar_item": "epicuro.item.chave_alem_nevoa"
+     },
+     {
+      "conquista": "epicuro.conquista.hospede_satisfeito"
+     }
+    ],
+    "ir": "fim"
+   },
+   "tente_de_novo": {
+    "fala": "Hum, não é bem isso. Pense na carta e volte quando quiser.",
+    "ir": "fim"
+   },
+   "conversa": {
+    "fala": "Volte sempre. Aqui sempre tem bolo de cevada e água fresca.",
+    "escolhas": [
+     {
+      "texto": "Me pergunta algo do livro?",
+      "ir": "quiz"
+     },
+     {
+      "texto": "Até logo.",
+      "ir": "fim"
+     }
+    ]
+   },
+   "quiz": {
+    "ramos": [
+     {
+      "se": {
+       "nao_acertou": "epicuro.pergunta.jardim"
+      },
+      "ir": "q_jardim"
+     },
+     {
+      "se": {
+       "nao_acertou": "epicuro.pergunta.amizade"
+      },
+      "ir": "q_amizade"
+     },
+     {
+      "se": {
+       "nao_acertou": "epicuro.pergunta.feliz"
+      },
+      "ir": "q_feliz"
+     },
+     {
+      "se": {
+       "nao_acertou": "epicuro.pergunta.prudencia"
+      },
+      "ir": "q_prudencia"
+     },
+     {
+      "se": {
+       "nao_acertou": "epicuro.pergunta.pao_agua"
+      },
+      "ir": "q_pao_agua"
+     },
+     {
+      "se": {
+       "nao_acertou": "epicuro.pergunta.vaso_cheio"
+      },
+      "ir": "q_vaso_cheio"
+     },
+     {
+      "se": {
+       "nao_acertou": "epicuro.pergunta.leao_lobo"
+      },
+      "ir": "q_leao_lobo"
+     },
+     {
+      "se": {
+       "nao_acertou": "epicuro.pergunta.lucrecio"
+      },
+      "ir": "q_lucrecio"
+     },
+     {
+      "se": {
+       "nao_acertou": "epicuro.pergunta.horacio"
+      },
+      "ir": "q_horacio"
+     },
+     {
+      "se": {
+       "nao_acertou": "epicuro.pergunta.democrito"
+      },
+      "ir": "q_democrito"
+     },
+     {
+      "se": {
+       "nao_acertou": "epicuro.pergunta.inscricao"
+      },
+      "ir": "q_inscricao"
+     },
+     {
+      "se": {
+       "nao_acertou": "epicuro.pergunta.demetrio"
+      },
+      "ir": "q_demetrio"
+     },
+     {
+      "se": {
+       "nao_acertou": "epicuro.pergunta.riacho"
+      },
+      "ir": "q_riacho"
+     },
+     {
+      "se": {
+       "nao_acertou": "epicuro.pergunta.voz_carne"
+      },
+      "ir": "q_voz_carne"
+     },
+     {
+      "ir": "quiz_fim"
+     }
+    ]
+   },
+   "quiz_certo": {
+    "fala": "Muito bem! Leve mais um bolo de cevada para a estrada.",
+    "efeitos": [
+     {
+      "dar_item": "epicuro.item.bolo_cevada"
+     }
+    ],
+    "escolhas": [
+     {
+      "texto": "Outra!",
+      "ir": "quiz"
+     },
+     {
+      "texto": "Chega por hoje.",
+      "ir": "fim"
+     }
+    ]
+   },
+   "quiz_errado": {
+    "fala": "Não... Mas a resposta está no livro. Releia e volte quando quiser.",
+    "ir": "fim"
+   },
+   "quiz_fim": {
+    "fala": "Você já sabe tudo o que eu ensinaria. Agora é só viver bem.",
+    "ir": "fim"
+   },
+   "q_jardim": {
+    "pergunta": "epicuro.pergunta.jardim",
+    "certo": "quiz_certo",
+    "errado": "quiz_errado"
+   },
+   "q_amizade": {
+    "pergunta": "epicuro.pergunta.amizade",
+    "certo": "quiz_certo",
+    "errado": "quiz_errado"
+   },
+   "q_feliz": {
+    "pergunta": "epicuro.pergunta.feliz",
+    "certo": "quiz_certo",
+    "errado": "quiz_errado"
+   },
+   "q_prudencia": {
+    "pergunta": "epicuro.pergunta.prudencia",
+    "certo": "quiz_certo",
+    "errado": "quiz_errado"
+   },
+   "q_pao_agua": {
+    "pergunta": "epicuro.pergunta.pao_agua",
+    "certo": "quiz_certo",
+    "errado": "quiz_errado"
+   },
+   "q_vaso_cheio": {
+    "pergunta": "epicuro.pergunta.vaso_cheio",
+    "certo": "quiz_certo",
+    "errado": "quiz_errado"
+   },
+   "q_leao_lobo": {
+    "pergunta": "epicuro.pergunta.leao_lobo",
+    "certo": "quiz_certo",
+    "errado": "quiz_errado"
+   },
+   "q_lucrecio": {
+    "pergunta": "epicuro.pergunta.lucrecio",
+    "certo": "quiz_certo",
+    "errado": "quiz_errado"
+   },
+   "q_horacio": {
+    "pergunta": "epicuro.pergunta.horacio",
+    "certo": "quiz_certo",
+    "errado": "quiz_errado"
+   },
+   "q_democrito": {
+    "pergunta": "epicuro.pergunta.democrito",
+    "certo": "quiz_certo",
+    "errado": "quiz_errado"
+   },
+   "q_inscricao": {
+    "pergunta": "epicuro.pergunta.inscricao",
+    "certo": "quiz_certo",
+    "errado": "quiz_errado"
+   },
+   "q_demetrio": {
+    "pergunta": "epicuro.pergunta.demetrio",
+    "certo": "quiz_certo",
+    "errado": "quiz_errado"
+   },
+   "q_riacho": {
+    "pergunta": "epicuro.pergunta.riacho",
+    "certo": "quiz_certo",
+    "errado": "quiz_errado"
+   },
+   "q_voz_carne": {
+    "pergunta": "epicuro.pergunta.voz_carne",
+    "certo": "quiz_certo",
+    "errado": "quiz_errado"
+   }
+  }
+ },
+ "epicuro.dialogo.meneceu": {
+  "quem": "Meneceu",
+  "inicio": [
+   {
+    "se": {
+     "flag": "epicuro.meneceu_leu"
+    },
+    "ir": "depois"
+   },
+   {
+    "se": {
+     "item": "epicuro.item.carta_meneceu"
+    },
+    "ir": "carta"
+   },
+   {
+    "ir": "oi"
+   }
+  ],
+  "nos": {
+   "oi": {
+    "fala": "Bom dia! Dizem que um filósofo mora num jardim, no norte da cidade.",
+    "ir": "fim"
+   },
+   "carta": {
+    "fala": [
+     "Uma carta de Epicuro! Deixe-me ler...",
+     "Ele diz que nem todo desejo é igual. Você me ajuda a separar estes?"
+    ],
+    "escolhas": [
+     {
+      "texto": "Ajudo.",
+      "ir": "d1"
+     },
+     {
+      "texto": "Depois.",
+      "ir": "fim"
+     }
+    ]
+   },
+   "d1": {
+    "pergunta": "epicuro.pergunta.desejo_agua",
+    "certo": "d2",
+    "errado": "errou"
+   },
+   "d2": {
+    "pergunta": "epicuro.pergunta.desejo_abrigo",
+    "certo": "d3",
+    "errado": "errou"
+   },
+   "d3": {
+    "pergunta": "epicuro.pergunta.desejo_banquete",
+    "certo": "d4",
+    "errado": "errou"
+   },
+   "d4": {
+    "pergunta": "epicuro.pergunta.desejo_fama",
+    "certo": "d5",
+    "errado": "errou"
+   },
+   "d5": {
+    "pergunta": "epicuro.pergunta.desejo_riqueza",
+    "certo": "entendi",
+    "errado": "errou"
+   },
+   "errou": {
+    "fala": "Hum... acho que não é isso. A carta explica bem os três tipos.",
+    "escolhas": [
+     {
+      "texto": "Vamos de novo.",
+      "ir": "d1"
+     },
+     {
+      "texto": "Depois eu volto.",
+      "ir": "fim"
+     }
+    ]
+   },
+   "entendi": {
+    "fala": [
+     "Entendi! Muito do que eu queria nem era preciso.",
+     "Vou guardar a carta comigo. Diga a Epicuro que eu li."
+    ],
+    "efeitos": [
+     {
+      "flag": "epicuro.meneceu_leu"
+     },
+     {
+      "tirar_item": "epicuro.item.carta_meneceu"
+     }
+    ],
+    "ir": "fim"
+   },
+   "depois": {
+    "fala": "Obrigado pela carta. Estou desejando menos e dormindo melhor.",
+    "ir": "fim"
+   }
+  }
+ },
+ "epicuro.dialogo.pitocles": {
+  "quem": "Pítocles",
+  "inicio": [
+   {
+    "se": {
+     "flag": "epicuro.pitocles_leu"
+    },
+    "ir": "depois"
+   },
+   {
+    "se": {
+     "item": "epicuro.item.carta_pitocles"
+    },
+    "ir": "carta"
+   },
+   {
+    "ir": "oi"
+   }
+  ],
+  "nos": {
+   "oi": {
+    "fala": "Já reparou como o céu muda? Eu queria entender tudo isso sem decorar livros enormes.",
+    "ir": "fim"
+   },
+   "carta": {
+    "fala": [
+     "A resposta de Epicuro! Eu tinha pedido um resumo curto sobre o céu.",
+     "Vamos ver se entendi direito."
+    ],
+    "escolhas": [
+     {
+      "texto": "Vamos.",
+      "ir": "p1"
+     },
+     {
+      "texto": "Depois.",
+      "ir": "fim"
+     }
+    ]
+   },
+   "p1": {
+    "pergunta": "epicuro.pergunta.eclipse",
+    "certo": "p2",
+    "errado": "errou"
+   },
+   "p2": {
+    "pergunta": "epicuro.pergunta.raio",
+    "certo": "p3",
+    "errado": "errou"
+   },
+   "p3": {
+    "pergunta": "epicuro.pergunta.assunto_pitocles",
+    "certo": "entendi",
+    "errado": "errou"
+   },
+   "errou": {
+    "fala": "Será? Acho que a carta diz outra coisa.",
+    "escolhas": [
+     {
+      "texto": "Vamos de novo.",
+      "ir": "p1"
+     },
+     {
+      "texto": "Depois eu volto.",
+      "ir": "fim"
+     }
+    ]
+   },
+   "entendi": {
+    "fala": [
+     "Então o céu pode ter várias explicações, e nenhuma delas precisa me dar medo.",
+     "Agradeça a Epicuro por mim."
+    ],
+    "efeitos": [
+     {
+      "flag": "epicuro.pitocles_leu"
+     },
+     {
+      "tirar_item": "epicuro.item.carta_pitocles"
+     }
+    ],
+    "ir": "fim"
+   },
+   "depois": {
+    "fala": "Hoje à noite vou olhar as estrelas sem medo nenhum.",
+    "ir": "fim"
+   }
+  }
+ },
+ "epicuro.dialogo.herodoto": {
+  "quem": "Heródoto",
+  "inicio": [
+   {
+    "se": {
+     "flag": "epicuro.herodoto_leu"
+    },
+    "ir": "depois"
+   },
+   {
+    "se": {
+     "item": "epicuro.item.carta_herodoto"
+    },
+    "ir": "carta"
+   },
+   {
+    "ir": "oi"
+   }
+  ],
+  "nos": {
+   "oi": {
+    "fala": "De que será feita esta pedra? E esta árvore? E nós?",
+    "ir": "fim"
+   },
+   "carta": {
+    "fala": [
+     "O resumo da física, de Epicuro! Era o que eu esperava.",
+     "Me ajuda a conferir o que ele diz?"
+    ],
+    "escolhas": [
+     {
+      "texto": "Ajudo.",
+      "ir": "h1"
+     },
+     {
+      "texto": "Depois.",
+      "ir": "fim"
+     }
+    ]
+   },
+   "h1": {
+    "pergunta": "epicuro.pergunta.corpos_vazio",
+    "certo": "h2",
+    "errado": "errou"
+   },
+   "h2": {
+    "pergunta": "epicuro.pergunta.atomos",
+    "certo": "h3",
+    "errado": "errou"
+   },
+   "h3": {
+    "pergunta": "epicuro.pergunta.alma",
+    "certo": "entendi",
+    "errado": "errou"
+   },
+   "errou": {
+    "fala": "Hum, não é o que está escrito aqui.",
+    "escolhas": [
+     {
+      "texto": "Vamos de novo.",
+      "ir": "h1"
+     },
+     {
+      "texto": "Depois eu volto.",
+      "ir": "fim"
+     }
+    ]
+   },
+   "entendi": {
+    "fala": [
+     "Corpos, vazio e átomos de formas diferentes... Tudo faz sentido.",
+     "Diga a Epicuro que a carta chegou."
+    ],
+    "efeitos": [
+     {
+      "flag": "epicuro.herodoto_leu"
+     },
+     {
+      "tirar_item": "epicuro.item.carta_herodoto"
+     }
+    ],
+    "ir": "fim"
+   },
+   "depois": {
+    "fala": "Estou tentando imaginar o formato dos átomos desta maçã.",
+    "ir": "fim"
+   }
+  }
+ }
+}

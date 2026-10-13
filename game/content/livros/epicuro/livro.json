@@ -1,0 +1,10 @@
+{
+ "id": "epicuro",
+ "titulo": "Carta a Meneceu",
+ "autor": "Epicuro",
+ "ficha": "livros/carta-a-meneceu.md",
+ "lugares": [
+  "jardim"
+ ],
+ "_sobre": "Conteúdo do livro no jogo (área com spoilers). Origem de cada pergunta no campo 'ref' (conteudo-dos-livros.md §4)."
+}

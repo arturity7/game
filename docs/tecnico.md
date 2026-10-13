@@ -135,8 +135,26 @@ Primeira versão de código, em `game/`. Ainda sem livros: só a base em que ele
 | Testes | `bash ferramentas/testar_jogo.sh`: testes sem tela (`tests/run_tests.gd`: save, saves antigos de `tests/saves/`, migração, fome, vida, relógio, desmaio, mapa e objetos, arte citada nos dados, inventário, plantação) e autoteste da cena com tela virtual (`tests/autoteste.gd`: andar, colisão com a casa, fome, salvar, carregar, nadar, arar, regar, plantar, colher, comer, dormir) |
 | Exportação | `bash ferramentas/exportar_windows.sh` gera `game/build/LeafAndLore.exe` (um arquivo só, com os dados dentro; preset em `game/export_presets.cfg`). O `.exe` não vai para o Git |
 
-Ainda não há: animais, ferreiro aberto, moradores andando (rotina), diálogos, perguntas, combate e conteúdo dos livros.
+Ainda não há: animais, ferreiro aberto, moradores andando (rotina), combate, portal e a maior parte do conteúdo dos livros (o primeiro livro jogável é a Carta a Meneceu, §9).
 
-## 9. Decisões técnicas para depois
+## 9. Conteúdo dos livros no jogo (formato dos dados) 🔵
+
+Cada livro é uma pasta `game/content/livros/<id>/` lida inteira pelo autoload `Config` (livro novo = pasta nova, sem mexer no código):
+
+| Arquivo | O que tem |
+|---|---|
+| `livro.json` | id, título, autor, ficha de origem |
+| `perguntas.json` | `texto`, `opcoes` (a de índice `certa` é a correta; embaralhadas na tela, a não ser com `"embaralhar": false`), `nivel` (`memoria`/`releitura`; releitura tem `dica` com o lugar no livro, D-044), `peso` (`simples`/`importante`; importante tem `punicao` `vida` ou `amanha`, D-029) e `ref` (de onde veio, conteudo-dos-livros.md §4) |
+| `dialogos.json` | conversas: `quem`, `inicio` (lista de `{se, ir}`) e `nos` com `fala`, `efeitos`, `escolhas`, `pergunta` (+ `certo`, `errado`, `bloqueada`), `ramos` e `ir`. Condições e efeitos estão descritos em `scripts/core/dialogo.gd` |
+| `missoes.json` | nome e descrição que aparecem no diário |
+| `itens.json` | itens do livro (somam aos itens básicos) |
+| `conquistas.json` | medalhas do livro |
+
+- **Onde aparecem:** os moradores ficam em `npcs` dos mapas (com `dialogo`); placas e inscrições são objetos com `texto`.
+- **Avanço do jogador** (`scripts/core/progresso.gd`, em `progresso` do save): flags, estado das missões (`missao:<id>` = `ativa`/`feita`), respostas (`acertou`, `tentativas`, `reabre_dia`) e conquistas (dia em que foi ganha). Campos novos dentro de `progresso`, sem mudar a versão do save.
+- **Tela:** caixa de conversa no pé da tela com nome, texto letra a letra, escolhas e perguntas (`scripts/ui/caixa_dialogo.gd`; Espaço/Enter/E passam, 1–4 escolhem). Diário com missões e conquistas na tecla J ou Tab (`scripts/ui/diario.gd`). E também conversa (o mesmo que o botão direito).
+- **Testes:** `tests/run_tests.gd` confere todas as conversas (nós, perguntas, itens, missões e conquistas citados existem), todas as saídas entre mapas e segue a história de cada livro do começo ao fim.
+
+## 10. Decisões técnicas para depois
 
 Sistema de diálogo e de perguntas (próprio, lendo os dados de `content/livros/`), organização das cenas por região e ícone do `.exe`. Serão decididas conforme o protótipo crescer.
