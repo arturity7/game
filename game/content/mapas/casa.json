@@ -1,0 +1,78 @@
+{
+ "_sobre": "Interior da casa do jogador. 'fundo' = imagem do cômodo em assets/sprites/interiores/ (paredes, piso, janela, tapete); 'noite' = imagem por cima à noite (janela escura); 'luzes' = pontos [x, y] em pixels que acendem à noite (a vela da mesa). A grade só diz onde é parede (sólida) e onde é piso. 'saidas' = células que levam a outro mapa.",
+ "id": "casa",
+ "nome": "Casa",
+ "fundo": "casa.png",
+ "noite": "casa_noite.png",
+ "luzes": [
+  [
+   79,
+   89
+  ]
+ ],
+ "interior": true,
+ "legenda": {
+  "#": "parede",
+  ".": "piso"
+ },
+ "linhas": [
+  "###########",
+  "###########",
+  "###########",
+  "#.........#",
+  "#.........#",
+  "#.........#",
+  "#.........#",
+  "#.........#",
+  "#.........#",
+  "#####.#####"
+ ],
+ "objetos": [
+  {
+   "tipo": "cama",
+   "x": 1,
+   "y": 3
+  },
+  {
+   "tipo": "estante",
+   "x": 7,
+   "y": 3
+  },
+  {
+   "tipo": "vaso",
+   "x": 9,
+   "y": 3
+  },
+  {
+   "tipo": "mesa",
+   "x": 4,
+   "y": 6
+  },
+  {
+   "tipo": "cadeira",
+   "x": 3,
+   "y": 6
+  },
+  {
+   "tipo": "cadeira",
+   "x": 6,
+   "y": 6
+  }
+ ],
+ "saidas": [
+  {
+   "x": 5,
+   "y": 9,
+   "para": "fazenda",
+   "chegada": [
+    7,
+    7
+   ],
+   "olhar": "baixo"
+  }
+ ],
+ "inicio": [
+  5,
+  8
+ ]
+}

@@ -1158,6 +1158,8 @@ if __name__ == "__main__":
     gerar_personagens()
     gerar_interface()
     gerar_logo()
+    import interiores
+    interiores.gerar()
     if len(sys.argv) > 1 and sys.argv[1] == "--previa":
         previa_terreno(os.path.join(RAIZ, "..", "..", "content", "mapas", "fazenda.json"), sys.argv[2])
     print("ok")

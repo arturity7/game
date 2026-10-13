@@ -34,6 +34,71 @@ var _textura_luz: Texture2D
 
 func montar(id_mapa: String) -> void:
 	mapa = Config.mapa(id_mapa)
+	if mapa.fundo != "":
+		var fundo := Sprite2D.new()
+		fundo.name = "Fundo"
+		fundo.texture = load(SPRITES + "interiores/" + mapa.fundo)
+		fundo.centered = false
+		add_child(fundo)
+		if mapa.noite != "":
+			var escuro := Sprite2D.new()
+			escuro.name = "FundoNoite"
+			escuro.texture = load(SPRITES + "interiores/" + mapa.noite)
+			escuro.centered = false
+			escuro.modulate.a = 0.0
+			add_child(escuro)
+			luzes.append(escuro)
+		for p in mapa.luzes:
+			var vela := PointLight2D.new()
+			vela.texture = _luz()
+			vela.color = Color(1.0, 0.72, 0.38)
+			vela.texture_scale = 1.6
+			vela.position = p
+			vela.energy = 0.0
+			add_child(vela)
+			luzes.append(vela)
+	else:
+		_montar_chao()
+	arado = _camada(TEX_ARADO, 1, Vector2(-TAM / 2.0, -TAM / 2.0), "Arado")
+	molhado = _camada(TEX_MOLHADO, 1, Vector2(-TAM / 2.0, -TAM / 2.0), "Molhado")
+	irrigadas = mapa.celulas_irrigadas(int(Config.balanceamento.get("distancia_irrigacao_lago", 4)), Config.tiles)
+	cursor = Cursor.new()
+	add_child(cursor)
+	profundidade = Node2D.new()
+	profundidade.name = "Profundidade"
+	profundidade.y_sort_enabled = true
+	add_child(profundidade)
+	_criar_paredes()
+	_criar_objetos()
+	if not mapa.interior:
+		_criar_enfeites()
+		_criar_mata_em_volta()
+	jogador = Jogador.new()
+	jogador.name = "Jogador"
+	jogador.mundo = self
+	profundidade.add_child(jogador)
+	var cam := Camera2D.new()
+	var tela := Vector2(480, 270)
+	var w := mapa.largura * TAM
+	var h := mapa.altura * TAM
+	if mapa.interior:
+		# cômodo pequeno: câmera parada, cômodo no meio da tela
+		cam.limit_left = int((w - tela.x) / 2.0)
+		cam.limit_right = cam.limit_left + int(tela.x)
+		cam.limit_top = int((h - tela.y) / 2.0)
+		cam.limit_bottom = cam.limit_top + int(tela.y)
+	else:
+		cam.limit_left = -20
+		cam.limit_top = -36
+		cam.limit_right = w + 20
+		cam.limit_bottom = h + 12
+	jogador.add_child(cam)
+	luz = CanvasModulate.new()
+	add_child(luz)
+
+
+## Chão ao ar livre: grama de base e os terrenos em grade dupla por cima.
+func _montar_chao() -> void:
 	grama = _camada(TEX_GRAMA, 1, Vector2.ZERO, "Grama")
 	var n_grama := TEX_GRAMA.get_width() / TAM
 	for y in range(-MARGEM - 1, mapa.altura + MARGEM):
@@ -48,30 +113,6 @@ func montar(id_mapa: String) -> void:
 		for dy in mapa.altura + 1:
 			for dx in mapa.largura + 1:
 				_pintar_dupla(camada, Vector2i(dx, dy), pred)
-	arado = _camada(TEX_ARADO, 1, Vector2(-TAM / 2.0, -TAM / 2.0), "Arado")
-	molhado = _camada(TEX_MOLHADO, 1, Vector2(-TAM / 2.0, -TAM / 2.0), "Molhado")
-	irrigadas = mapa.celulas_irrigadas(int(Config.balanceamento.get("distancia_irrigacao_lago", 4)), Config.tiles)
-	cursor = Cursor.new()
-	add_child(cursor)
-	profundidade = Node2D.new()
-	profundidade.name = "Profundidade"
-	profundidade.y_sort_enabled = true
-	add_child(profundidade)
-	_criar_objetos()
-	_criar_enfeites()
-	_criar_mata_em_volta()
-	jogador = Jogador.new()
-	jogador.name = "Jogador"
-	jogador.mundo = self
-	profundidade.add_child(jogador)
-	var cam := Camera2D.new()
-	cam.limit_left = -20
-	cam.limit_top = -36
-	cam.limit_right = mapa.largura * TAM + 20
-	cam.limit_bottom = mapa.altura * TAM + 12
-	jogador.add_child(cam)
-	luz = CanvasModulate.new()
-	add_child(luz)
 
 
 ## Número pseudoaleatório fixo por célula (0..1): a mesma célula sempre recebe a mesma variação.
@@ -152,6 +193,28 @@ func _pintar_dupla(camada: TileMapLayer, d: Vector2i, pred: Callable) -> void:
 
 # ---------- objetos ----------
 
+## Chão sólido (paredes dos interiores): um bloqueio por trecho de células seguidas na linha.
+func _criar_paredes() -> void:
+	var corpo := StaticBody2D.new()
+	corpo.name = "Paredes"
+	for y in mapa.altura:
+		var x := 0
+		while x < mapa.largura:
+			if not bool(Config.tiles.get(mapa.chao_em(Vector2i(x, y)), {}).get("solido", false)):
+				x += 1
+				continue
+			var x0 := x
+			while x < mapa.largura and bool(Config.tiles.get(mapa.chao_em(Vector2i(x, y)), {}).get("solido", false)):
+				x += 1
+			var forma := CollisionShape2D.new()
+			var ret := RectangleShape2D.new()
+			ret.size = Vector2((x - x0) * TAM, TAM)
+			forma.shape = ret
+			forma.position = Vector2((x0 + x) * TAM / 2.0, y * TAM + TAM / 2.0)
+			corpo.add_child(forma)
+	add_child(corpo)
+
+
 func _criar_objetos() -> void:
 	for o in mapa.objetos:
 		var def: Dictionary = Config.objetos.get(o["tipo"], {})
@@ -195,14 +258,38 @@ func _criar_objetos() -> void:
 			luz_janela.position = spr.offset + Vector2(float(l[0]), float(l[1]))
 			corpo.add_child(luz_janela)
 			luzes.append(luz_janela)
-		var tam: Array = def.get("colisao", [int(peg[0]) * TAM, int(peg[1]) * TAM])
-		var forma := CollisionShape2D.new()
-		var ret := RectangleShape2D.new()
-		ret.size = Vector2(float(tam[0]), float(tam[1]))
-		forma.shape = ret
-		forma.position = Vector2(0, -float(tam[1]) / 2.0)
-		corpo.add_child(forma)
+		if def.has("porta"):
+			_colisao_com_porta(corpo, peg, def["porta"])
+		else:
+			var tam: Array = def.get("colisao", [int(peg[0]) * TAM, int(peg[1]) * TAM])
+			var forma := CollisionShape2D.new()
+			var ret := RectangleShape2D.new()
+			ret.size = Vector2(float(tam[0]), float(tam[1]))
+			forma.shape = ret
+			forma.position = Vector2(0, -float(tam[1]) / 2.0)
+			corpo.add_child(forma)
 		profundidade.add_child(corpo)
+
+
+## Pegada inteira sólida, menos a célula da porta (a origem do corpo é o meio da base da pegada).
+func _colisao_com_porta(corpo: Node2D, peg: Array, porta: Array) -> void:
+	var w := int(peg[0])
+	var h := int(peg[1])
+	for y in h:
+		var x := 0
+		while x < w:
+			if x == int(porta[0]) and y == int(porta[1]):
+				x += 1
+				continue
+			var x0 := x
+			while x < w and not (x == int(porta[0]) and y == int(porta[1])):
+				x += 1
+			var forma := CollisionShape2D.new()
+			var ret := RectangleShape2D.new()
+			ret.size = Vector2((x - x0) * TAM, TAM)
+			forma.shape = ret
+			forma.position = Vector2((x0 + x) * TAM / 2.0 - w * TAM / 2.0, (y - h) * TAM + TAM / 2.0)
+			corpo.add_child(forma)
 
 
 ## Enfeites soltos na grama: só onde a célula e as 8 vizinhas são grama livre.
@@ -287,11 +374,16 @@ func eh_agua_celula(c: Vector2i) -> bool:
 
 ## Célula onde o jogador não pode ficar (objeto sólido ou fora do mapa).
 func bloqueada(c: Vector2i) -> bool:
-	return mapa.ocupada(c) or mapa.chao_em(c) == ""
+	var chao := mapa.chao_em(c)
+	return mapa.ocupada(c) or chao == "" or bool(Config.tiles.get(chao, {}).get("solido", false))
 
 
 func atualizar_luz(hora: float) -> void:
 	luz.color = Survival.cor_do_ceu(hora)
+	if mapa.interior:
+		# dentro de casa: claro de dia; à noite, luz quente de lampião
+		var c := Survival.cor_do_ceu(hora)
+		luz.color = c.lerp(Color(1.0, 0.86, 0.7), 0.6)
 	# janelas: acendem entre 17h e 19h, apagam entre 5h e 7h
 	var noite := 0.0
 	if hora >= 19.0 or hora < 5.0:

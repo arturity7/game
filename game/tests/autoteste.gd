@@ -19,6 +19,14 @@ func _esperar(seg: float) -> void:
 	await get_tree().create_timer(seg).timeout
 
 
+## Espera até a condição valer (ou o tempo acabar).
+func _ate(cond: Callable, limite: float) -> void:
+	var t := 0.0
+	while t < limite and not cond.call():
+		await get_tree().process_frame
+		t += get_process_delta_time()
+
+
 func checar(cond: bool, nome: String) -> void:
 	if not cond:
 		falhas.append(nome)
@@ -89,6 +97,24 @@ func _rodar() -> void:
 			main.selecionar(i)
 	main.interagir(alvo)
 	checar(float(d.jogador["fome"]) > 50.0, "comer o feijão enche a fome")
+	# entrar em casa pela porta, dormir na cama e sair
+	main.mundo.jogador.position = Vector2(7, 7) * 16.0 + Vector2(8, 10)
+	Input.action_press("mover_cima")
+	await _ate(func(): return main.mundo.mapa.id == "casa", 2.0)
+	Input.action_release("mover_cima")
+	await _esperar(0.6)
+	checar(main.mundo.mapa.id == "casa" and str(d.jogador["mapa"]) == "casa", "entra em casa pela porta")
+	checar(main.mundo.celula_de(main.mundo.jogador.position) == Vector2i(5, 8), "chega na porta, por dentro")
+	d.mundo["hora"] = 21.0
+	main.interagir(Vector2i(2, 4))
+	checar(main.dormindo, "dorme na cama")
+	main.avancar_tempo(10.0)
+	checar(not main.dormindo, "acorda de manhã")
+	Input.action_press("mover_baixo")
+	await _ate(func(): return main.mundo.mapa.id == "fazenda", 2.0)
+	Input.action_release("mover_baixo")
+	await _esperar(0.6)
+	checar(main.mundo.mapa.id == "fazenda" and main.mundo.celula_de(main.mundo.jogador.position) == Vector2i(7, 7), "sai de casa para a fazenda")
 	# dormir à noite faz o tempo correr até as 6h
 	d.mundo["hora"] = 22.0
 	main.dormir()

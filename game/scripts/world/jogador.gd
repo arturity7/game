@@ -76,6 +76,14 @@ func acao(segundos := 0.22) -> void:
 	_atualizar_quadro()
 
 
+## Vira o jogador para um lado: "baixo", "cima", "esquerda" ou "direita".
+func virar_para(lado: String) -> void:
+	var v := {"baixo": Vector2.DOWN, "cima": Vector2.UP, "esquerda": Vector2.LEFT, "direita": Vector2.RIGHT}
+	if v.has(lado):
+		_virar(v[lado])
+		_atualizar_quadro()
+
+
 ## Vira o jogador para uma célula vizinha (ou para a direção dela).
 func olhar_para(celula: Vector2i) -> void:
 	var d := Vector2(celula) * 16.0 + Vector2(8, 8) - position

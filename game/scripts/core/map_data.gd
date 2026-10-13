@@ -10,14 +10,31 @@ var largura := 0
 var altura := 0
 var inicio := Vector2i.ZERO
 var objetos: Array = []   # [{"tipo", "x", "y"}] — x, y = canto de cima à esquerda da pegada
+var saidas: Array = []    # [{"x", "y", "para", "chegada": Vector2i, "olhar"}]
+var fundo := ""           # interiores: imagem do cômodo em assets/sprites/interiores/
+var interior := false
+var musica := ""
+var noite := ""           # interiores: imagem por cima à noite (janelas escuras)
+var luzes: Array = []     # interiores: pontos (em pixels) que acendem à noite
 var _grade: Array = []    # Array[Array[String]] de tipos de chão
 var _ocupado := {}        # "x,y" -> tipo do objeto que ocupa a célula
+var _livre := {}          # "x,y" -> true: célula de porta (dentro de uma pegada, mas passável)
 
 
 static func de_dict(d: Dictionary, defs_objetos := {}) -> MapData:
 	var m := MapData.new()
 	m.id = str(d.get("id", ""))
 	m.nome = str(d.get("nome", m.id))
+	m.fundo = str(d.get("fundo", ""))
+	m.interior = bool(d.get("interior", false))
+	m.musica = str(d.get("musica", ""))
+	m.noite = str(d.get("noite", ""))
+	for l in d.get("luzes", []):
+		m.luzes.append(Vector2(float(l[0]), float(l[1])))
+	for s in d.get("saidas", []):
+		var ch: Array = s.get("chegada", [0, 0])
+		m.saidas.append({"x": int(s.get("x", 0)), "y": int(s.get("y", 0)), "para": str(s.get("para", "")),
+			"chegada": Vector2i(int(ch[0]), int(ch[1])), "olhar": str(s.get("olhar", ""))})
 	var legenda: Dictionary = d.get("legenda", {})
 	var linhas: Array = d.get("linhas", [])
 	m.altura = linhas.size()
@@ -36,10 +53,14 @@ static func de_dict(d: Dictionary, defs_objetos := {}) -> MapData:
 	for o in d.get("objetos", []):
 		m.objetos.append({"tipo": str(o.get("tipo", "")), "x": int(o.get("x", 0)), "y": int(o.get("y", 0))})
 	for o in m.objetos:
-		var peg: Array = defs_objetos.get(o["tipo"], {}).get("pegada", [1, 1])
+		var def: Dictionary = defs_objetos.get(o["tipo"], {})
+		var peg: Array = def.get("pegada", [1, 1])
 		for dy in int(peg[1]):
 			for dx in int(peg[0]):
 				m._ocupado["%d,%d" % [int(o["x"]) + dx, int(o["y"]) + dy]] = o["tipo"]
+		if def.has("porta"):
+			var p: Array = def["porta"]
+			m._livre["%d,%d" % [int(o["x"]) + int(p[0]), int(o["y"]) + int(p[1])]] = true
 	var ini: Array = d.get("inicio", [0, 0])
 	m.inicio = Vector2i(int(ini[0]), int(ini[1]))
 	return m
@@ -64,7 +85,21 @@ func chao_em(celula: Vector2i) -> String:
 
 
 func ocupada(celula: Vector2i) -> bool:
-	return _ocupado.has("%d,%d" % [celula.x, celula.y])
+	var k := "%d,%d" % [celula.x, celula.y]
+	return _ocupado.has(k) and not _livre.has(k)
+
+
+## Porta de um objeto (passável, mas tipo_em ainda diz o objeto).
+func porta(celula: Vector2i) -> bool:
+	return _livre.has("%d,%d" % [celula.x, celula.y])
+
+
+## A saída que fica nesta célula, ou {} se não houver.
+func saida_em(celula: Vector2i) -> Dictionary:
+	for s in saidas:
+		if int(s["x"]) == celula.x and int(s["y"]) == celula.y:
+			return s
+	return {}
 
 
 ## Células a até 'dist' tiles de alguma água (distância de xadrez, como no Minecraft; D-053).

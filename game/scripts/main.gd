@@ -9,6 +9,8 @@ var em_jogo := false          # false enquanto a tela de abertura está aberta
 var _redesenhar_em := 0.0
 var _inicio: TelaInicial
 var _passeio := 0.0
+var _trocando := false        # true durante a passagem de um mapa para outro
+var _cortina: ColorRect       # tela preta da passagem
 
 
 func _ready() -> void:
@@ -18,6 +20,14 @@ func _ready() -> void:
 	add_child(menu)
 	menu.pediu_salvar.connect(_salvar)
 	menu.pediu_carregar.connect(_carregar)
+	var camada := CanvasLayer.new()
+	camada.layer = 15
+	add_child(camada)
+	_cortina = ColorRect.new()
+	_cortina.color = Color(0.02, 0.01, 0.03, 0.0)
+	_cortina.set_anchors_preset(Control.PRESET_FULL_RECT)
+	_cortina.mouse_filter = Control.MOUSE_FILTER_IGNORE
+	camada.add_child(_cortina)
 	var teste := false
 	if "--autoteste" in OS.get_cmdline_user_args():
 		var t: Node = load("res://tests/autoteste.gd").new()
@@ -87,7 +97,7 @@ func _montar_mundo() -> void:
 	mundo.atualizar_luz(float(GameState.dados.mundo["hora"]))
 	mundo.desenhar_plantacao(GameState.dados)
 	_acordar()
-	Som.musica("musica_fazenda")
+	Som.musica(mundo.mapa.musica if mundo.mapa.musica != "" else "musica_fazenda")
 
 
 func _process(delta: float) -> void:
@@ -108,12 +118,44 @@ func _process(delta: float) -> void:
 	if _redesenhar_em <= 0.0:
 		_redesenhar_em = 0.5
 		mundo.desenhar_plantacao(d)
+	if not _trocando:
+		var saida := mundo.mapa.saida_em(mundo.celula_de(mundo.jogador.position))
+		if not saida.is_empty():
+			trocar_mapa(str(saida["para"]), saida["chegada"], str(saida["olhar"]))
 	if float(d.jogador["vida"]) <= 0.0:
-		var inicio := Vector2(mundo.mapa.inicio) * 16.0 + Vector2(8, 8)
-		var perda := Survival.desmaiar(d, cfg, inicio, mundo.mapa.id)
+		# acorda no começo da fazenda (a clínica da cidade ainda não existe)
+		var fazenda: MapData = Config.mapa("fazenda")
+		var inicio := Vector2(fazenda.inicio) * 16.0 + Vector2(8, 8)
+		var perda := Survival.desmaiar(d, cfg, inicio, fazenda.id)
+		if mundo.mapa.id != fazenda.id:
+			_montar_mundo()
 		mundo.jogador.position = inicio
 		_acordar()
 		hud.avisar("Você desmaiou. Perdeu $ %d." % perda, 4.0)
+
+
+## Passa para outro mapa (porta da casa etc.): escurece, monta o mapa novo e clareia.
+func trocar_mapa(para: String, chegada: Vector2i, olhar := "") -> void:
+	if _trocando:
+		return
+	_trocando = true
+	mundo.jogador.parado = true
+	var tw := create_tween()
+	tw.tween_property(_cortina, "color:a", 1.0, 0.18)
+	await tw.finished
+	var d: GameData = GameState.dados
+	d.jogador["mapa"] = para
+	d.definir_posicao(Vector2(chegada) * 16.0 + Vector2(8, 8))
+	_montar_mundo()
+	if olhar != "":
+		mundo.jogador.virar_para(olhar)
+	mundo.jogador.parado = true
+	var tw2 := create_tween()
+	tw2.tween_property(_cortina, "color:a", 0.0, 0.25)
+	await tw2.finished
+	if not dormindo:
+		mundo.jogador.parado = false
+	_trocando = false
 
 
 ## Passa 'horas' de jogo: relógio, plantas e, se estiver dormindo, acorda na hora certa.

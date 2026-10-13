@@ -1,5 +1,5 @@
 {
- "_sobre": "Mapa da fazenda. Cada caractere é uma célula de 16x16; a legenda diz o tipo de chão (tiles.json) ou o objeto (objetos.json) da célula. Objetos maiores que uma célula ficam em 'objetos' (x, y = canto de cima à esquerda da pegada).",
+ "_sobre": "Mapa da fazenda. Cada caractere é uma célula de 16x16; a legenda diz o tipo de chão (tiles.json) ou o objeto (objetos.json) da célula. Objetos maiores que uma célula ficam em 'objetos' (x, y = canto de cima à esquerda da pegada). 'saidas' = células que levam a outro mapa (a porta da casa).",
  "id": "fazenda",
  "nome": "Fazenda",
  "legenda": {
@@ -49,6 +49,18 @@
    "tipo": "casa",
    "x": 4,
    "y": 4
+  }
+ ],
+ "saidas": [
+  {
+   "x": 7,
+   "y": 6,
+   "para": "casa",
+   "chegada": [
+    5,
+    8
+   ],
+   "olhar": "cima"
   }
  ],
  "inicio": [

@@ -139,6 +139,20 @@ func _teste_mapa_fazenda() -> void:
 	var cfg := _json("res://content/config/balanceamento.json")
 	var d := GameData.novo(cfg, "fazenda", Vector2.ZERO)
 	checar(not Fazenda.arar(d, "fazenda", Vector2i(0, 0), mo.tipo_em(Vector2i(0, 0)), cfg), "mapa: não ara debaixo de árvore")
+	# porta da casa: dentro da pegada, mas passável, e leva para dentro
+	checar(mo.tipo_em(Vector2i(7, 6)) == "casa" and mo.porta(Vector2i(7, 6)) and not mo.ocupada(Vector2i(7, 6)), "mapa: porta da casa livre")
+	checar(mo.ocupada(Vector2i(6, 6)) and mo.ocupada(Vector2i(8, 6)), "mapa: paredes ao lado da porta")
+	var porta := mo.saida_em(Vector2i(7, 6))
+	checar(str(porta.get("para", "")) == "casa" and porta.get("chegada") == Vector2i(5, 8), "mapa: saída da porta para dentro de casa")
+	checar(mo.saida_em(Vector2i(7, 7)).is_empty(), "mapa: célula sem saída")
+	# interior da casa: paredes sólidas, piso, cama e a saída de volta
+	var mc := MapData.de_dict(_json("res://content/mapas/casa.json"), objetos)
+	checar(mc.interior and mc.fundo == "casa.png", "casa: é interior com fundo")
+	checar(bool(tiles[mc.chao_em(Vector2i(0, 0))].get("solido", false)) and mc.chao_em(Vector2i(5, 8)) == "piso", "casa: parede e piso")
+	checar(mc.tipo_em(Vector2i(1, 3)) == "cama" and bool(objetos["cama"].get("dormir", false)), "casa: cama para dormir")
+	checar(str(mc.saida_em(Vector2i(5, 9)).get("para", "")) == "fazenda", "casa: porta de volta à fazenda")
+	checar(not mc.ocupada(mc.inicio) and mc.chao_em(mc.inicio) == "piso", "casa: chegada livre")
+	checar(ResourceLoader.exists("res://assets/sprites/interiores/" + mc.fundo), "casa: arte do fundo")
 	# a arte citada nos dados existe
 	for tipo in tiles:
 		if typeof(tiles[tipo]) == TYPE_DICTIONARY and tiles[tipo].has("terreno"):

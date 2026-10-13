@@ -72,6 +72,13 @@ func _rodar() -> void:
 	main.menu._abrir()
 	await _foto("5_menu")
 	main.menu._fechar()
+	main.trocar_mapa("casa", Vector2i(5, 7), "baixo")
+	await get_tree().create_timer(0.8).timeout
+	await _foto("9_casa_dentro")
+	d.mundo["hora"] = 21.0
+	main.mundo.atualizar_luz(21.0)
+	await _foto("9b_casa_noite")
+	d.mundo["hora"] = 10.0
 	main._abrir_tela_inicial()
 	await get_tree().create_timer(0.5).timeout
 	await _foto("8_abertura")
