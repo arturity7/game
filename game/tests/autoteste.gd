@@ -207,6 +207,14 @@ func _rodar() -> void:
 	await _esperar(0.1)
 	checar(main.pesca == null and Inventario.contar(inv, "perca") + Inventario.contar(inv, "carpa") == peixes_antes + 1, "pesca um peixe")
 	checar(not main.mundo.jogador.parado, "depois de pescar, volta a andar")
+	# enxada larga (Ferreiro): ara três células em linha
+	inv[8] = Inventario.novo_slot("enxada_larga", 1, Config.itens)
+	main.selecionar(8)
+	main.mundo.jogador.position = Vector2(13, 13) * 16.0 + Vector2(8, 8)
+	main.mundo.jogador.virar_para("direita")
+	main.usar(Vector2i(14, 13))
+	checar(Fazenda.canteiro(d, "fazenda", Vector2i(14, 13)) != null and Fazenda.canteiro(d, "fazenda", Vector2i(16, 13)) != null, "a enxada larga ara três células")
+	await _esperar(0.3)
 	# dormir à noite faz o tempo correr até as 6h
 	d.mundo["hora"] = 22.0
 	main.dormir()

@@ -17,11 +17,12 @@ extends RefCounted
 ## Condições ("se", todas precisam valer):
 ##   flag, sem_flag, item (+ qtd), sem_item, missao + estado, acertou, nao_acertou,
 ##   dinheiro (tem pelo menos), conta + minimo (saldo guardado), flag_dias [flag, dias] (passaram
-##   'dias' desde o dia guardado na flag), conquista, sem_conquista
+##   'dias' desde o dia guardado na flag), hoje (a flag guarda o dia de hoje), conquista, sem_conquista
 ## Efeitos:
 ##   flag (+ valor), tirar_flag, marcar_dia (guarda o dia de hoje na flag), dar_item (+ qtd),
 ##   tirar_item (+ qtd), dinheiro, missao + estado, conquista, vida,
-##   conta + depositar/sacar (número ou "tudo"; sai/volta da carteira) ou + render (aparece na conta)
+##   conta + depositar/sacar (número ou "tudo"; sai/volta da carteira) ou + render (aparece na conta),
+##   abrir_loja (a loja abre quando a conversa termina; tratado pela caixa de conversa)
 ## Textos podem ter {dinheiro}, {dia} e {conta:<nome>} (trocados por Dialogo.texto)
 
 
@@ -60,6 +61,10 @@ static func condicao(dados: GameData, se: Dictionary) -> bool:
 			"flag_dias":
 				var desde = Progresso.flag(dados, str(v[0]))
 				if desde == null or int(dados.mundo["dia"]) - int(desde) < int(v[1]):
+					return false
+			"hoje":
+				var dia_flag = Progresso.flag(dados, str(v))
+				if dia_flag == null or int(dia_flag) != int(dados.mundo["dia"]):
 					return false
 			"conquista":
 				if not Progresso.tem_conquista(dados, str(v)):

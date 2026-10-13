@@ -1,0 +1,84 @@
+{
+ "_sobre": "Forja do Ferreiro (livro Seja Útil: personagem inspirado nas lições, D-066): bigorna, fornalha, pesos e a lousa do dia. Ferramentas melhores à venda (GDD).",
+ "id": "ferreiro",
+ "nome": "Forja",
+ "livro": "seja_util",
+ "fundo": "ferreiro.png",
+ "noite": "ferreiro_noite.png",
+ "interior": true,
+ "legenda": {
+  "#": "parede",
+  ".": "piso"
+ },
+ "linhas": [
+  "###########",
+  "###########",
+  "###########",
+  "#.........#",
+  "#.........#",
+  "#.........#",
+  "#.........#",
+  "#.........#",
+  "#####.#####"
+ ],
+ "luzes": [
+  [
+   40,
+   64
+  ]
+ ],
+ "objetos": [
+  {
+   "tipo": "forja",
+   "x": 1,
+   "y": 3
+  },
+  {
+   "tipo": "bigorna",
+   "x": 5,
+   "y": 5
+  },
+  {
+   "tipo": "pesos",
+   "x": 8,
+   "y": 6
+  },
+  {
+   "tipo": "lousa",
+   "x": 8,
+   "y": 3
+  },
+  {
+   "tipo": "prateleira",
+   "x": 3,
+   "y": 3
+  }
+ ],
+ "npcs": [
+  {
+   "id": "seja_util.npc.ferreiro_personalidade",
+   "nome": "Ferreiro",
+   "sprite": "ferreiro.png",
+   "x": 5,
+   "y": 4,
+   "olhar": "baixo",
+   "dialogo": "seja_util.dialogo.ferreiro"
+  }
+ ],
+ "saidas": [
+  {
+   "x": 5,
+   "y": 8,
+   "para": "cidade",
+   "chegada": [
+    35,
+    8
+   ],
+   "olhar": "baixo"
+  }
+ ],
+ "inicio": [
+  5,
+  7
+ ]
+}

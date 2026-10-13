@@ -1,0 +1,654 @@
+{
+ "_sobre": "Perguntas do livro Seja Útil (formato em docs/tecnico.md §9). Fora: política, saúde, família do autor, filmes (ficha §9).",
+ "seja_util.pergunta.f1": {
+  "texto": "O que perguntar a quem treina muito, mas sem plano nenhum?",
+  "opcoes": [
+   "Em forma para quê?",
+   "Quanto você levanta?",
+   "Onde você treina?",
+   "Quem é o seu treinador?"
+  ],
+  "certa": 0,
+  "nivel": "memoria",
+  "peso": "simples",
+  "ref": "Cap. 1"
+ },
+ "seja_util.pergunta.f2": {
+  "texto": "O que Hillary viu lá do topo do Everest?",
+  "opcoes": [
+   "Outra montanha que ele queria escalar",
+   "O mar inteiro",
+   "A cidade onde nasceu",
+   "Nada: só nuvens"
+  ],
+  "certa": 0,
+  "nivel": "memoria",
+  "peso": "simples",
+  "ref": "Cap. 2"
+ },
+ "seja_util.pergunta.f3": {
+  "texto": "Devagar é tranquilo, tranquilo é...",
+  "opcoes": [
+   "Rápido",
+   "Preguiça",
+   "Perigoso",
+   "Chato"
+  ],
+  "certa": 0,
+  "nivel": "memoria",
+  "peso": "simples",
+  "ref": "Cap. 3"
+ },
+ "seja_util.pergunta.f4": {
+  "texto": "No caso dos azulejos, quem de fato decidia a compra?",
+  "opcoes": [
+   "A esposa",
+   "O marido",
+   "O vendedor",
+   "O vizinho"
+  ],
+  "certa": 0,
+  "nivel": "memoria",
+  "peso": "simples",
+  "ref": "Cap. 4"
+ },
+ "seja_util.pergunta.f5": {
+  "texto": "O que é o fracasso, para o autor?",
+  "opcoes": [
+   "Um relatório de progresso",
+   "O fim da linha",
+   "Uma vergonha a esconder",
+   "Um sinal para desistir"
+  ],
+  "certa": 0,
+  "nivel": "memoria",
+  "peso": "simples",
+  "ref": "Cap. 5"
+ },
+ "seja_util.pergunta.f6": {
+  "texto": "Por que temos duas orelhas e uma boca?",
+  "opcoes": [
+   "Para escutar o dobro do que falamos",
+   "Para falar mais alto",
+   "Para ouvir música",
+   "Por acaso"
+  ],
+  "certa": 0,
+  "nivel": "memoria",
+  "peso": "simples",
+  "ref": "Cap. 6"
+ },
+ "seja_util.pergunta.f7": {
+  "texto": "Quer ajudar a si mesmo? Ajude...",
+  "opcoes": [
+   "os outros",
+   "o seu bolso",
+   "só a sua família",
+   "ninguém"
+  ],
+  "certa": 0,
+  "nivel": "memoria",
+  "peso": "simples",
+  "ref": "Cap. 7"
+ },
+ "seja_util.pergunta.conselho": {
+  "texto": "Qual foi o melhor conselho que o autor recebeu do pai?",
+  "opcoes": [
+   "Seja útil",
+   "Fique rico",
+   "Seja famoso",
+   "Nunca confie em ninguém"
+  ],
+  "certa": 0,
+  "nivel": "memoria",
+  "peso": "simples",
+  "ref": "Introdução"
+ },
+ "seja_util.pergunta.espada": {
+  "texto": "O que deixa uma espada mais forte?",
+  "opcoes": [
+   "Ser esquentada, martelada, esfriada e lixada",
+   "Ficar guardada na bainha",
+   "Ser pintada de ouro",
+   "Nunca ser usada"
+  ],
+  "certa": 0,
+  "nivel": "memoria",
+  "peso": "simples",
+  "ref": "Cap. 1"
+ },
+ "seja_util.pergunta.ensaio": {
+  "texto": "Complete: esta vida não é um...",
+  "opcoes": [
+   "ensaio",
+   "sonho",
+   "jogo",
+   "castigo"
+  ],
+  "certa": 0,
+  "nivel": "memoria",
+  "peso": "simples",
+  "ref": "Cap. 1"
+ },
+ "seja_util.pergunta.transicoes": {
+  "texto": "A vida acontece nas poses e também nas...",
+  "opcoes": [
+   "transições",
+   "férias",
+   "fotos",
+   "competições"
+  ],
+  "certa": 0,
+  "nivel": "memoria",
+  "peso": "simples",
+  "ref": "Cap. 1"
+ },
+ "seja_util.pergunta.thoreau": {
+  "texto": "Para qual escritor os pensamentos fluíam quando as pernas se moviam?",
+  "opcoes": [
+   "Thoreau",
+   "Homero",
+   "Tolstói",
+   "Epicuro"
+  ],
+  "certa": 0,
+  "nivel": "memoria",
+  "peso": "simples",
+  "ref": "Cap. 1"
+ },
+ "seja_util.pergunta.wenn_schon": {
+  "texto": "O que quer dizer o lema \"se vai fazer, faça\"?",
+  "opcoes": [
+   "Vá com tudo",
+   "Faça só a metade",
+   "Espere a hora certa",
+   "Peça ajuda primeiro"
+  ],
+  "certa": 0,
+  "nivel": "memoria",
+  "peso": "simples",
+  "ref": "Cap. 2"
+ },
+ "seja_util.pergunta.plano_b": {
+  "texto": "Complete: o plano B é...",
+  "opcoes": [
+   "ter sucesso no plano A",
+   "desistir com calma",
+   "ter dinheiro guardado",
+   "mudar de cidade"
+  ],
+  "certa": 0,
+  "nivel": "memoria",
+  "peso": "simples",
+  "ref": "Cap. 2"
+ },
+ "seja_util.pergunta.pessimistas": {
+  "texto": "O que fazer com quem diz que você não vai conseguir?",
+  "opcoes": [
+   "Ignorar ou usar como motivação, nunca acreditar",
+   "Concordar com eles",
+   "Brigar com eles",
+   "Desistir na hora"
+  ],
+  "certa": 0,
+  "nivel": "memoria",
+  "peso": "simples",
+  "ref": "Cap. 2"
+ },
+ "seja_util.pergunta.papel": {
+  "texto": "Qual é o exercício do papel para a visão?",
+  "opcoes": [
+   "Escrever a visão, riscar e escrever de novo maior",
+   "Rasgar todos os planos",
+   "Desenhar um mapa do bairro",
+   "Fazer uma lista de compras"
+  ],
+  "certa": 0,
+  "nivel": "memoria",
+  "peso": "simples",
+  "ref": "Cap. 2"
+ },
+ "seja_util.pergunta.helicoptero": {
+  "texto": "Se Hillary fosse levado ao topo de helicóptero, o que mudaria?",
+  "opcoes": [
+   "A vista não seria a mesma",
+   "Nada",
+   "Ele chegaria mais feliz",
+   "Ele veria outra montanha"
+  ],
+  "certa": 0,
+  "nivel": "memoria",
+  "peso": "simples",
+  "ref": "Cap. 3"
+ },
+ "seja_util.pergunta.lousa": {
+  "texto": "Onde ele anotava o treino na cidade de Graz?",
+  "opcoes": [
+   "Numa lousa, riscando cada item",
+   "Num caderno de capa dura",
+   "Na parede do quarto",
+   "Ele não anotava"
+  ],
+  "certa": 0,
+  "nivel": "memoria",
+  "peso": "simples",
+  "ref": "Cap. 3"
+ },
+ "seja_util.pergunta.dor": {
+  "texto": "Que dor vale a pena?",
+  "opcoes": [
+   "A que tem um objetivo",
+   "Toda dor",
+   "Nenhuma dor",
+   "A dor dos outros"
+  ],
+  "certa": 0,
+  "nivel": "memoria",
+  "peso": "simples",
+  "ref": "Cap. 3"
+ },
+ "seja_util.pergunta.prometeu": {
+  "texto": "Complete: faça o que disse que faria, e...",
+  "opcoes": [
+   "um pouco melhor",
+   "nada mais",
+   "só se pagarem",
+   "amanhã"
+  ],
+  "certa": 0,
+  "nivel": "memoria",
+  "peso": "simples",
+  "ref": "Cap. 3"
+ },
+ "seja_util.pergunta.uma_hora": {
+  "texto": "Na contagem das 24 horas, quanto sobra no fim do dia?",
+  "opcoes": [
+   "Uma hora",
+   "Nada",
+   "Cinco horas",
+   "Meia hora"
+  ],
+  "certa": 0,
+  "nivel": "memoria",
+  "peso": "simples",
+  "ref": "Cap. 3"
+ },
+ "seja_util.pergunta.uma_pagina": {
+  "texto": "Uma página por dia, num ano, dá quantas páginas?",
+  "opcoes": [
+   "365, um livro inteiro",
+   "Doze",
+   "Cinquenta",
+   "Mil"
+  ],
+  "certa": 0,
+  "nivel": "memoria",
+  "peso": "simples",
+  "ref": "Cap. 3"
+ },
+ "seja_util.pergunta.progresso": {
+  "texto": "Complete: nada dá mais energia do que fazer...",
+  "opcoes": [
+   "progresso",
+   "festa",
+   "compras",
+   "silêncio"
+  ],
+  "certa": 0,
+  "nivel": "memoria",
+  "peso": "simples",
+  "ref": "Cap. 3"
+ },
+ "seja_util.pergunta.serei": {
+  "texto": "Que palavra ele tira do vocabulário ao falar dos objetivos?",
+  "opcoes": [
+   "\"Serei\"",
+   "\"Não\"",
+   "\"Talvez\"",
+   "\"Sempre\""
+  ],
+  "certa": 0,
+  "nivel": "memoria",
+  "peso": "simples",
+  "ref": "Cap. 4"
+ },
+ "seja_util.pergunta.reclamar": {
+  "texto": "Qual é a regra para reclamar?",
+  "opcoes": [
+   "Só se estiver disposto a resolver",
+   "Reclamar sempre que puder",
+   "Nunca falar de problemas",
+   "Reclamar só aos domingos"
+  ],
+  "certa": 0,
+  "nivel": "memoria",
+  "peso": "simples",
+  "ref": "Cap. 5"
+ },
+ "seja_util.pergunta.lenha": {
+  "texto": "O que o pai dizia sobre ficar forte?",
+  "opcoes": [
+   "Que era melhor cortar lenha, que pelo menos ajuda os outros",
+   "Que músculo não serve para nada",
+   "Que só os ricos treinam",
+   "Que força vem do sono"
+  ],
+  "certa": 0,
+  "nivel": "memoria",
+  "peso": "simples",
+  "ref": "Cap. 5"
+ },
+ "seja_util.pergunta.amor_fati": {
+  "texto": "Como se diz \"amor ao destino\" em latim?",
+  "opcoes": [
+   "Amor fati",
+   "Carpe diem",
+   "Memento mori",
+   "Veni vidi vici"
+  ],
+  "certa": 0,
+  "nivel": "memoria",
+  "peso": "simples",
+  "ref": "Cap. 5"
+ },
+ "seja_util.pergunta.sete_palavras": {
+  "texto": "Quais eram as sete palavras proibidas na casa dele?",
+  "opcoes": [
+   "\"É assim que as coisas sempre foram\"",
+   "\"Eu não sei fazer isso direito\"",
+   "\"Amanhã eu começo de verdade, juro\"",
+   "\"Isso não é problema meu agora\""
+  ],
+  "certa": 0,
+  "nivel": "memoria",
+  "peso": "simples",
+  "ref": "Cap. 5"
+ },
+ "seja_util.pergunta.risco": {
+  "texto": "Qual é a verdadeira pergunta sobre o risco?",
+  "opcoes": [
+   "O que você tem a perder?",
+   "Quanto vou ganhar?",
+   "Quem vai ver?",
+   "E se eu errar?"
+  ],
+  "certa": 0,
+  "nivel": "memoria",
+  "peso": "simples",
+  "ref": "Cap. 5"
+ },
+ "seja_util.pergunta.escutar": {
+  "texto": "Qual era a condição do mentor para treinar os meninos?",
+  "opcoes": [
+   "Que eles escutassem",
+   "Que pagassem",
+   "Que fossem fortes",
+   "Que acordassem cedo"
+  ],
+  "certa": 0,
+  "nivel": "memoria",
+  "peso": "simples",
+  "ref": "Cap. 6"
+ },
+ "seja_util.pergunta.esponjas": {
+  "texto": "O mundo é a maior escola; sejam...",
+  "opcoes": [
+   "esponjas",
+   "pedras",
+   "professores",
+   "reis"
+  ],
+  "certa": 0,
+  "nivel": "memoria",
+  "peso": "simples",
+  "ref": "Cap. 6"
+ },
+ "seja_util.pergunta.usado": {
+  "texto": "Complete: aquilo que não é usado é...",
+  "opcoes": [
+   "perdido",
+   "guardado",
+   "sagrado",
+   "esquecido para sempre"
+  ],
+  "certa": 0,
+  "nivel": "memoria",
+  "peso": "simples",
+  "ref": "Cap. 6"
+ },
+ "seja_util.pergunta.soma_zero": {
+  "texto": "A vida não é um jogo de soma...",
+  "opcoes": [
+   "zero",
+   "um",
+   "cem",
+   "dez"
+  ],
+  "certa": 0,
+  "nivel": "memoria",
+  "peso": "simples",
+  "ref": "Cap. 7"
+ },
+ "seja_util.pergunta.contador": {
+  "texto": "Que papel ele deu ao menino com medo de treinar?",
+  "opcoes": [
+   "Contador oficial de repetições",
+   "Ajudante de cozinha",
+   "Guarda do portão",
+   "Fotógrafo"
+  ],
+  "certa": 0,
+  "nivel": "memoria",
+  "peso": "simples",
+  "ref": "Cap. 7"
+ },
+ "seja_util.pergunta.espelhos": {
+  "texto": "Ao quebrar os espelhos, é mais feliz quem conta...",
+  "opcoes": [
+   "amigos, e não dinheiro",
+   "dinheiro, e não amigos",
+   "medalhas",
+   "seguidores"
+  ],
+  "certa": 0,
+  "nivel": "memoria",
+  "peso": "simples",
+  "ref": "Cap. 7"
+ },
+ "seja_util.pergunta.casa_infancia": {
+  "texto": "Como era a casa da infância do autor?",
+  "opcoes": [
+   "Sem água encanada nem esgoto",
+   "Uma mansão",
+   "Um apartamento no centro",
+   "Um barco"
+  ],
+  "certa": 0,
+  "nivel": "releitura",
+  "dica": "no capítulo 1",
+  "peso": "simples",
+  "ref": "Cap. 1"
+ },
+ "seja_util.pergunta.beethoven": {
+  "texto": "Qual compositor caminhava com partituras em branco e lápis?",
+  "opcoes": [
+   "Beethoven",
+   "Mozart",
+   "Bach",
+   "Chopin"
+  ],
+  "certa": 0,
+  "nivel": "releitura",
+  "dica": "no capítulo 1",
+  "peso": "simples",
+  "ref": "Cap. 1"
+ },
+ "seja_util.pergunta.aristoteles": {
+  "texto": "Qual filósofo grego dava aulas caminhando?",
+  "opcoes": [
+   "Aristóteles",
+   "Platão",
+   "Epicuro",
+   "Diógenes"
+  ],
+  "certa": 0,
+  "nivel": "releitura",
+  "dica": "no capítulo 1",
+  "peso": "simples",
+  "ref": "Cap. 1"
+ },
+ "seja_util.pergunta.everest_data": {
+  "texto": "Quando aconteceu a primeira subida ao Everest?",
+  "opcoes": [
+   "29 de maio de 1953",
+   "4 de julho de 1945",
+   "1º de janeiro de 1900",
+   "12 de outubro de 1960"
+  ],
+  "certa": 0,
+  "nivel": "releitura",
+  "dica": "no capítulo 2",
+  "peso": "simples",
+  "ref": "Cap. 2"
+ },
+ "seja_util.pergunta.tenzing": {
+  "texto": "Quem subiu o Everest com Hillary?",
+  "opcoes": [
+   "Tenzing Norgay",
+   "George Mallory",
+   "Reinhold Messner",
+   "Ninguém"
+  ],
+  "certa": 0,
+  "nivel": "releitura",
+  "dica": "no capítulo 2",
+  "peso": "simples",
+  "ref": "Cap. 2"
+ },
+ "seja_util.pergunta.ocupado": {
+  "texto": "Complete: estar ocupado é...",
+  "opcoes": [
+   "enrolação",
+   "sucesso",
+   "descanso",
+   "destino"
+  ],
+  "certa": 0,
+  "nivel": "releitura",
+  "dica": "no capítulo 3",
+  "peso": "simples",
+  "ref": "Cap. 3"
+ },
+ "seja_util.pergunta.discurso": {
+  "texto": "Quantas vezes treinar um discurso para ficar sensacional?",
+  "opcoes": [
+   "Vinte",
+   "Duas",
+   "Cem",
+   "Uma"
+  ],
+  "certa": 0,
+  "nivel": "releitura",
+  "dica": "no capítulo 3",
+  "peso": "simples",
+  "ref": "Cap. 3"
+ },
+ "seja_util.pergunta.loja_ferragens": {
+  "texto": "Onde ele aprendeu a vender?",
+  "opcoes": [
+   "Numa loja de ferragens em Graz",
+   "Numa feira de rua",
+   "Num banco",
+   "Numa padaria"
+  ],
+  "certa": 0,
+  "nivel": "releitura",
+  "dica": "no capítulo 3",
+  "peso": "simples",
+  "ref": "Cap. 3"
+ },
+ "seja_util.pergunta.explique": {
+  "texto": "Que passo ele acrescenta a \"Visualize. Acredite. Conquiste.\"?",
+  "opcoes": [
+   "Explique",
+   "Descanse",
+   "Compre",
+   "Repita"
+  ],
+  "certa": 0,
+  "nivel": "releitura",
+  "dica": "no capítulo 4",
+  "peso": "simples",
+  "ref": "Cap. 4"
+ },
+ "seja_util.pergunta.agachamentos": {
+  "texto": "O que ele fazia para ganhar o café da manhã?",
+  "opcoes": [
+   "200 agachamentos",
+   "Cortar lenha",
+   "Correr 10 km",
+   "Nadar no lago"
+  ],
+  "certa": 0,
+  "nivel": "releitura",
+  "dica": "no capítulo 5",
+  "peso": "simples",
+  "ref": "Cap. 5"
+ },
+ "seja_util.pergunta.wd40": {
+  "texto": "Quantas fórmulas do WD-40 fracassaram antes da certa?",
+  "opcoes": [
+   "39",
+   "3",
+   "100",
+   "9"
+  ],
+  "certa": 0,
+  "nivel": "releitura",
+  "dica": "no capítulo 5",
+  "peso": "simples",
+  "ref": "Cap. 5"
+ },
+ "seja_util.pergunta.quiosques": {
+  "texto": "Onde ficavam os quiosques do mentor?",
+  "opcoes": [
+   "Na estação e na praça",
+   "Na praia",
+   "No porto",
+   "Na montanha"
+  ],
+  "certa": 0,
+  "nivel": "releitura",
+  "dica": "no capítulo 6",
+  "peso": "simples",
+  "ref": "Cap. 6"
+ },
+ "seja_util.pergunta.zona_perigo": {
+  "texto": "Qual é a \"zona de perigo\" das crianças depois da escola?",
+  "opcoes": [
+   "Das 15h às 18h",
+   "Das 6h às 9h",
+   "Da meia-noite às 3h",
+   "Das 12h às 13h"
+  ],
+  "certa": 0,
+  "nivel": "releitura",
+  "dica": "no capítulo 6",
+  "peso": "simples",
+  "ref": "Cap. 6"
+ },
+ "seja_util.pergunta.meditacoes": {
+  "texto": "O que é o primeiro livro das Meditações?",
+  "opcoes": [
+   "Uma lista de quem ajudou Marco Aurélio",
+   "Um diário de batalhas",
+   "Um livro de receitas",
+   "Uma carta de amor"
+  ],
+  "certa": 0,
+  "nivel": "releitura",
+  "dica": "no Agradecimento",
+  "peso": "simples",
+  "ref": "Agradecimento"
+ }
+}

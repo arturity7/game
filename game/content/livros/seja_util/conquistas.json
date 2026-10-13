@@ -1,0 +1,48 @@
+{
+ "_sobre": "Medalhas do livro Seja Útil (ficha §13).",
+ "seja_util.conquista.seja_util": {
+  "nome": "Seja útil",
+  "livro": "seja_util",
+  "descricao": "Aprendeu as sete ferramentas do Ferreiro."
+ },
+ "seja_util.conquista.esponja": {
+  "nome": "Esponja",
+  "livro": "seja_util",
+  "descricao": "Respondeu a todas as perguntas do Jornaleiro."
+ },
+ "seja_util.conquista.plano_a": {
+  "nome": "Plano A",
+  "livro": "seja_util",
+  "descricao": "Completou uma missão longa sem desistir."
+ },
+ "seja_util.conquista.um_pouco_melhor": {
+  "nome": "Um pouco melhor",
+  "livro": "seja_util",
+  "descricao": "Cumpriu dez objetivos extras."
+ },
+ "seja_util.conquista.terceira_tentativa": {
+  "nome": "Terceira tentativa",
+  "livro": "seja_util",
+  "descricao": "Venceu a prova dos três levantamentos na tentativa mais difícil."
+ },
+ "seja_util.conquista.aprendiz": {
+  "nome": "Aprendiz do vencedor",
+  "livro": "seja_util",
+  "descricao": "Convidou quem te venceu para ensinar."
+ },
+ "seja_util.conquista.uma_hora": {
+  "nome": "Uma hora por dia",
+  "livro": "seja_util",
+  "descricao": "Resolveu a contagem de 24 horas."
+ },
+ "seja_util.conquista.contador": {
+  "nome": "Contador oficial",
+  "livro": "seja_util",
+  "descricao": "Ajudou a criança medrosa."
+ },
+ "seja_util.conquista.espelho": {
+  "nome": "Quebrar o espelho",
+  "livro": "seja_util",
+  "descricao": "Teve dez nomes no livro de gratidão."
+ }
+}

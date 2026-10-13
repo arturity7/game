@@ -1,0 +1,11 @@
+{
+ "id": "seja_util",
+ "titulo": "Seja Útil",
+ "autor": "Arnold Schwarzenegger",
+ "ficha": "livros/seja-util.md",
+ "lugares": [
+  "ferreiro",
+  "cidade"
+ ],
+ "_sobre": "Conteúdo do livro no jogo (área com spoilers). O autor é uma pessoa viva: no jogo ele não aparece; o Ferreiro e o Jornaleiro são personagens inspirados nas lições (D-066). Por enquanto: a forja (as sete ferramentas) e o quiosque do Jornaleiro."
+}

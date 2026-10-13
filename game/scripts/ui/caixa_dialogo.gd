@@ -18,6 +18,7 @@ var _escolhas: Array = []
 var _pergunta: Dictionary = {}
 var _id_pergunta := ""
 var _depois_do_aviso: Callable
+var _loja_no_fim := ""      # efeito "abrir_loja": a loja abre quando a conversa acaba
 var _tempo := 0.0
 
 var _raiz: Control
@@ -89,6 +90,9 @@ func abrir_texto(quem: String, paginas: Array) -> void:
 func fechar() -> void:
 	get_tree().paused = false
 	acabou.emit()
+	var main := get_parent()
+	if _loja_no_fim != "" and main and main.has_method("abrir_loja"):
+		main.abrir_loja.call_deferred(_loja_no_fim)
 	queue_free()
 
 
@@ -102,6 +106,9 @@ func _entrar(id: String) -> void:
 		_entrar(Dialogo.escolher_ramo(GameState.dados, _no["ramos"]))
 		return
 	var avisos := Dialogo.aplicar(GameState.dados, _no.get("efeitos", []), Config.itens)
+	for e in _no.get("efeitos", []):
+		if e.has("abrir_loja"):
+			_loja_no_fim = str(e["abrir_loja"])
 	_mostrar_avisos(avisos)
 	_nome.text = str(_no.get("quem", conversa.get("quem", "")))
 	_nome_caixa.visible = _nome.text != ""

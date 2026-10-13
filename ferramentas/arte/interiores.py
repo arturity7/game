@@ -155,7 +155,7 @@ def fundo_casa_noite():
     return img
 
 
-TAMANHO_LOJA = {"mercado": (13, 10), "clinica": (11, 9), "sapataria": (11, 9)}
+TAMANHO_LOJA = {"mercado": (13, 10), "clinica": (11, 9), "sapataria": (11, 9), "ferreiro": (11, 9)}
 
 
 def fundo_loja(nome):
@@ -174,6 +174,16 @@ def fundo_loja(nome):
                     c = hexc("#aab6be")
                 put(img, x, y, c)
         papel = (hexc("#cfe3dc"), hexc("#bcd6cd"), hexc("#a9c7bc"))
+    elif nome == "ferreiro":  # forja: chão de pedra e paredes de tijolo
+        for y in range(48, H - 16):
+            for x in range(16, W - 16):
+                fila = (y - 48) // 8
+                desl = 6 if fila % 2 else 0
+                c = cor("pedra", 3 if hash01((x + desl) // 12, fila, 97) > 0.4 else 2)
+                if (x + desl) % 12 == 0 or (y - 48) % 8 == 0:
+                    c = cor("pedra", 1)
+                put(img, x, y, c)
+        papel = (cor("tijolo", 3), cor("tijolo", 2), cor("tijolo", 1))
     elif nome == "sapataria":  # isbá: paredes de troncos e piso de tábuas
         _piso(img, 16, 48, W - 16, H - 16)
         papel = (cor("madeira", 4), cor("madeira", 3), cor("madeira", 2))
@@ -182,7 +192,13 @@ def fundo_loja(nome):
         papel = (hexc("#d9e6c2"), hexc("#c9d9ae"), hexc("#b5c896"))
     for y in range(4, 48):
         for x in range(16, W - 16):
-            if nome == "sapataria":  # troncos deitados
+            if nome == "ferreiro":  # tijolos
+                fila = (y - 4) // 5
+                desl = 4 if fila % 2 else 0
+                c = papel[0] if hash01((x + desl) // 8, fila, 98) > 0.3 else papel[1]
+                if (y - 4) % 5 == 4 or (x + desl) % 8 == 0:
+                    c = papel[2]
+            elif nome == "sapataria":  # troncos deitados
                 yy = (y - 4) % 7
                 c = papel[0] if yy in (1, 2) else papel[1] if yy < 5 else papel[2]
                 if yy == 6:
@@ -191,7 +207,7 @@ def fundo_loja(nome):
                 c = papel[0] if (x // 8) % 2 else papel[1]
                 if x % 8 == 0:
                     c = papel[2]
-            if y >= 32:
+            if y >= 32 and nome != "ferreiro":
                 c = cor("madeira", 3 if (x - 16) % 8 else 1)
                 if y == 32:
                     c = cor("madeira", 5)
@@ -401,6 +417,84 @@ def bancada():
     return contornar(img, ESCURO)
 
 
+def bigorna():
+    """Bigorna 32x24 (pegada 2x1) sobre um toco."""
+    img = nova(32, 24)
+    _sombra(img, 16, 22, 13, 2, 90)
+    for y in range(12, 21):  # toco
+        for x in range(10, 22):
+            put(img, x, y, cor("tronco", 3 if x < 14 else 2))
+    for y in range(4, 12):  # bigorna
+        w0 = 2 if y < 7 else 8
+        w1 = 30 if y < 6 else 24
+        for x in range(w0, w1):
+            put(img, x, y, cor("metal", 4 if y == 4 else 3 if y < 7 else 2))
+    for x in range(2, 8):
+        put(img, x, 6, cor("metal", 2))
+    put(img, 20, 3, cor("cenoura", 3)); put(img, 21, 3, cor("cenoura", 2))
+    return contornar(img, ESCURO)
+
+
+def forja():
+    """Fornalha de tijolos 32x44 (pegada 2x1) com o fogo aceso."""
+    img = nova(32, 44)
+    _sombra(img, 16, 42, 15, 2, 90)
+    for y in range(6, 40):
+        for x in range(1, 31):
+            fila = y // 4
+            desl = 3 if fila % 2 else 0
+            i = 3 if hash01((x + desl) // 6, fila, 99) > 0.3 else 2
+            if y % 4 == 3 or (x + desl) % 6 == 0:
+                i = 1
+            put(img, x, y, cor("tijolo", i))
+    for y in range(20, 34):  # boca com fogo
+        for x in range(7, 25):
+            if (x - 16) ** 2 / 81 + (y - 34) ** 2 / 196 <= 1:
+                fogo = hash01(x, y, 100)
+                c = cor("milho", 3) if y > 29 and fogo > 0.4 else cor("cenoura", 3 if fogo > 0.5 else 2) if y > 25 else hexc("#2a1810")
+                put(img, x, y, c)
+    for y in range(0, 8):  # chaminé
+        for x in range(10, 22):
+            put(img, x, y, cor("tijolo", 2 if (y + x) % 4 else 1))
+    return contornar(img, ESCURO)
+
+
+def pesos():
+    """Pesos de pedra do quintal da forja 32x20."""
+    img = nova(32, 20)
+    _sombra(img, 16, 18, 15, 2, 90)
+    for y in range(9, 12):
+        for x in range(2, 30):
+            put(img, x, y, cor("madeira", 3 if y == 9 else 2))
+    for cx in (5, 27):
+        for y in range(20):
+            for x in range(32):
+                if math.hypot(x + 0.5 - cx, y + 0.5 - 10) <= 4.5:
+                    put(img, x, y, cor("pedra", 4 if y < 9 else 3 if x < cx else 2))
+    return contornar(img, ESCURO)
+
+
+def lousa():
+    """Lousa 32x30 num cavalete, com a lista do dia riscada."""
+    img = nova(32, 30)
+    _sombra(img, 16, 28, 12, 2, 90)
+    for (x0, x1) in ((6, 8), (24, 26)):
+        for y in range(16, 28):
+            for x in range(x0, x1):
+                put(img, x, y, cor("madeira", 3))
+    for y in range(2, 20):
+        for x in range(2, 30):
+            borda = x in (2, 29) or y in (2, 19)
+            put(img, x, y, cor("madeira", 4) if borda else hexc("#2f3d36"))
+    for k, y in enumerate((6, 9, 12, 15)):
+        for x in range(5, 18 + (k % 2) * 6):
+            put(img, x, y, hexc("#d9e2dc"))
+        if k < 3:
+            for x in range(4, 22):
+                put(img, x, y, hexc("#e6efe9")) if x % 2 else None
+    return contornar(img, ESCURO)
+
+
 def leito():
     """Leito da clínica 16x32 (pegada 1x2)."""
     img = nova(16, 34)
@@ -564,7 +658,7 @@ def vaso():
 def gerar():
     salvar(fundo_casa(), caminho("interiores", "casa.png"))
     salvar(fundo_casa_noite(), caminho("interiores", "casa_noite.png"))
-    for n in ("mercado", "clinica", "sapataria"):
+    for n in ("mercado", "clinica", "sapataria", "ferreiro"):
         salvar(fundo_loja(n), caminho("interiores", n + ".png"))
         salvar(fundo_loja_noite(n), caminho("interiores", n + "_noite.png"))
     salvar(balcao(64), caminho("objetos", "balcao.png"))
@@ -575,6 +669,10 @@ def gerar():
     salvar(mesinha(), caminho("objetos", "mesinha.png"))
     salvar(forno_russo(), caminho("objetos", "forno_russo.png"))
     salvar(bancada(), caminho("objetos", "bancada.png"))
+    salvar(bigorna(), caminho("objetos", "bigorna.png"))
+    salvar(forja(), caminho("objetos", "forja.png"))
+    salvar(pesos(), caminho("objetos", "pesos.png"))
+    salvar(lousa(), caminho("objetos", "lousa.png"))
     salvar(cama(), caminho("objetos", "cama.png"))
     salvar(estante(), caminho("objetos", "estante.png"))
     salvar(mesa(), caminho("objetos", "mesa.png"))

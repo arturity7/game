@@ -1016,13 +1016,26 @@ def icones_itens():
             put(c, x, y, cor("metal", 4))
         for y in range(8, 11):
             put(c, 8, y, cor("milho", 2)); put(c, 7, y, cor("milho", 3))
+    def enxada_larga(c):
+        enxada(c)
+        for y in range(1, 8):
+            for x in range(8, 16):
+                if y - 1 <= (x - 8) + 2:
+                    put(c, x, y, cor("milho", 3 if y == 1 else 2 if x < 12 else 1))
+        put(c, 12, 4, cor("madeira", 1))
+    def regador_grande(c):
+        regador(c)
+        for x in range(4, 12):
+            put(c, x, 9, cor("milho", 2)); put(c, x, 10, cor("milho", 1))
+        for y in range(5, 14):
+            put(c, 3, y, cor("camisa", 4))
     lista = [_icone(enxada), _icone(regador), _pacote(("feijao", 1)), _icone(feijao),
              _pacote(("cenoura", 2)), _icone(cenoura), _pacote(("batata", 1)), _icone(batata),
              _pacote(("milho", 2)), _icone(milho), _icone(carta), _icone(bolo), _icone(chave), _icone(casaco),
              _icone(vara), _icone(peixe_icone("milho", listras=True)), _icone(peixe_icone("batata")), _icone(peixe_icone("pedra", bigode=True)),
              _icone(peixe_icone("oliva", comprido=3, listras=True)), _icone(peixe_icone("cevada", comprido=3, brilho="folha")),
              _icone(peixe_icone("metal", comprido=-2)), _icone(peixe_icone("calca", comprido=5)),
-             _icone(sonda), _icone(arca)]
+             _icone(sonda), _icone(arca), _icone(enxada_larga), _icone(regador_grande)]
     atlas = nova(16 * len(lista), 16)
     for i, ic in enumerate(lista):
         atlas[:, i * 16:(i + 1) * 16] = ic

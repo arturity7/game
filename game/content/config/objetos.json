@@ -12,7 +12,7 @@
   "cerca": {"cerca": "cerca.png", "pegada": [1, 1], "colisao": [16, 10]},
   "mercado": {"sprites": ["mercado.png"], "pegada": [7, 3], "ajuste": [0, 6], "porta": [3, 2], "luzes": [[18, 72], [94, 72]], "noite": "mercado_janelas.png"},
   "clinica": {"sprites": ["clinica.png"], "pegada": [7, 3], "ajuste": [0, 6], "porta": [3, 2], "luzes": [[18, 72], [94, 72]], "noite": "clinica_janelas.png"},
-  "ferreiro": {"sprites": ["ferreiro.png"], "pegada": [5, 3], "ajuste": [0, 6], "luzes": [[16, 72], [64, 72]], "noite": "ferreiro_janelas.png"},
+  "ferreiro": {"sprites": ["ferreiro.png"], "pegada": [5, 3], "ajuste": [0, 6], "luzes": [[16, 72], [64, 72]], "noite": "ferreiro_janelas.png", "porta": [2, 2]},
   "poste": {"sprites": ["poste.png"], "pegada": [1, 1], "ajuste": [0, 2], "colisao": [6, 6], "luzes": [[8, 4]]},
   "banco": {"sprites": ["banco.png"], "pegada": [2, 1], "ajuste": [0, 2], "colisao": [30, 8]},
   "canteiro_flores": {"sprites": ["canteiro_flores.png"], "pegada": [2, 1], "ajuste": [0, 1], "colisao": [30, 8]},
@@ -37,5 +37,10 @@
   "pilha_lenha": {"sprites": ["pilha_lenha.png"], "pegada": [2, 1], "ajuste": [0, 2], "colisao": [30, 10]},
   "portal": {"sprites": ["portal.png"], "pegada": [3, 1], "ajuste": [0, 3], "colisao": [46, 12]},
   "menir": {"sprites": ["menir.png"], "pegada": [1, 1], "ajuste": [0, 2], "colisao": [10, 8]},
-  "feijoeiro": {"sprites": ["feijoeiro.png"], "pegada": [1, 1], "ajuste": [0, 0], "solido": false}
+  "feijoeiro": {"sprites": ["feijoeiro.png"], "pegada": [1, 1], "ajuste": [0, 0], "solido": false},
+  "bigorna": {"sprites": ["bigorna.png"], "pegada": [2, 1], "ajuste": [0, 2], "colisao": [28, 10], "atende_atras": true},
+  "forja": {"sprites": ["forja.png"], "pegada": [2, 1], "ajuste": [0, 2], "colisao": [30, 12]},
+  "pesos": {"sprites": ["pesos.png"], "pegada": [2, 1], "ajuste": [0, 2], "colisao": [30, 8]},
+  "lousa": {"sprites": ["lousa.png"], "pegada": [2, 1], "ajuste": [0, 2], "colisao": [28, 8]},
+  "quiosque": {"sprites": ["quiosque.png"], "pegada": [2, 1], "ajuste": [0, 2], "colisao": [30, 10], "atende_atras": true}
 }

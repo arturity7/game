@@ -286,16 +286,25 @@ func usar(c: Vector2i) -> void:
 	if bool(def.get("sonda", false)):
 		sondar(c)
 		return
-	match str(s["id"]):
-		"vara_pesca":
+	var acao := str(def.get("acao", ""))
+	if acao == "" and str(s["id"]) in ["enxada", "regador", "vara_pesca"]:
+		acao = {"enxada": "arar", "regador": "regar", "vara_pesca": "pescar"}[str(s["id"])]
+	# ferramentas largas agem em 'largura' células em linha, na direção em que o jogador olha
+	var celulas: Array = []
+	for k in int(def.get("largura", 1)):
+		celulas.append(c + mundo.jogador.direcao * k)
+	match acao:
+		"pescar":
 			pescar(c)
 			return
-		"enxada":
-			var tipo := mundo.mapa.tipo_em(c) if mundo.mapa.objeto_em(c).is_empty() else "objeto"
-			feito = Fazenda.arar(d, mapa, c, tipo, cfg)
+		"arar":
+			for cel in celulas:
+				var tipo := mundo.mapa.tipo_em(cel) if mundo.mapa.objeto_em(cel).is_empty() else "objeto"
+				if Fazenda.arar(d, mapa, cel, tipo, cfg):
+					feito = true
 			Efeitos.ferramenta(mundo, c, icone, "enxada", esquerda)
 			Som.tocar("enxada")
-		"regador":
+		"regar":
 			if mundo.eh_agua_celula(c):
 				s["agua"] = int(def.get("capacidade", 20))
 				hud.avisar("Regador cheio.", 1.2)
@@ -304,11 +313,16 @@ func usar(c: Vector2i) -> void:
 				feito = true
 			elif int(s.get("agua", 0)) <= 0:
 				hud.avisar("O regador está vazio. Encha na água.", 1.5)
-			elif Fazenda.regar(d, mapa, c, cfg):
-				s["agua"] = int(s["agua"]) - 1
-				Efeitos.ferramenta(mundo, c, icone, "regador", esquerda)
-				Som.tocar("regar")
-				feito = true
+			else:
+				for cel in celulas:
+					if int(s["agua"]) > 0 and Fazenda.regar(d, mapa, cel, cfg):
+						s["agua"] = int(s["agua"]) - 1
+						feito = true
+						if cel != c:
+							Efeitos.gotas(mundo, Vector2(cel) * 16.0 + Vector2(8, 4))
+				if feito:
+					Efeitos.ferramenta(mundo, c, icone, "regador", esquerda)
+					Som.tocar("regar")
 		_:
 			if str(def.get("tipo", "")) == "semente":
 				if Fazenda.plantar(d, mapa, c, str(def.get("cultura", ""))):

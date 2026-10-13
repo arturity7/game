@@ -319,6 +319,29 @@ def canteiro_flores():
     return img
 
 
+def quiosque():
+    """Quiosque de revistas da praça 32x44 (pegada 2x1): toldo listrado, revistas e jornais."""
+    img = nova(32, 44)
+    _sombra(img, 16, 42, 15, 2, 90)
+    for y in range(18, 40):
+        for x in range(1, 31):
+            put(img, x, y, cor("tunica_azul", 3 if x < 16 else 2) if y > 20 else cor("tunica_azul", 4))
+    for y in range(22, 34):  # revistas na vitrine
+        for x in range(3, 29):
+            k = (x - 3) // 5
+            put(img, x, y, cor(("coracao", "milho", "folha", "flor_li", "cenoura", "camisa")[k % 6], 2 if (x - 3) % 5 else 0))
+    for y in range(6, 18):  # toldo
+        for x in range(0, 32):
+            listra = (x // 4) % 2
+            put(img, x, y, cor("coracao", 2 if y < 16 else 1) if listra else cor("flor_br", 2 if y < 16 else 1))
+    for x in range(0, 32, 4):
+        put(img, x + 1, 18, cor("coracao", 1))
+    for y in range(0, 6):  # placa
+        for x in range(8, 24):
+            put(img, x, y, cor("papel", 3) if 0 < y < 5 and 8 < x < 23 else cor("madeira", 1))
+    return contornar(img, ESCURO)
+
+
 # =============================== MORADORES ===============================
 
 def _recolorir(folha, trocas):
@@ -340,6 +363,7 @@ RAMPAS.update({
     "camisa_verde": ["#1d3a22", "#285030", "#356a3e", "#4a8a50", "#68a866"],
     "camisa_branca": ["#8f95a3", "#b4bac6", "#d6dbe3", "#eceff4", "#ffffff"],
     "camisa_vinho": ["#3c1420", "#58202d", "#76303c", "#94434e", "#b05d66"],
+    "camisa_xadrez": ["#3a2a12", "#5a4220", "#7d5e30", "#a07c44", "#c29c5e"],
 })
 
 
@@ -350,6 +374,7 @@ def moradores():
         "vendedora": {"cabelo": "cabelo_loiro", "camisa": "camisa_verde"},
         "enfermeira": {"cabelo": "cabelo_preto", "camisa": "camisa_branca"},
         "ferreiro": {"cabelo": "cabelo_grisalho", "camisa": "camisa_vinho"},
+        "jornaleiro": {"cabelo": "cabelo_preto", "camisa": "camisa_xadrez"},
     }
     r = {}
     for nome, t in tipos.items():
@@ -366,6 +391,7 @@ def gerar():
     salvar(poste(), caminho("objetos", "poste.png"))
     salvar(banco(), caminho("objetos", "banco.png"))
     salvar(canteiro_flores(), caminho("objetos", "canteiro_flores.png"))
+    salvar(quiosque(), caminho("objetos", "quiosque.png"))
     for q in range(3):
         salvar(fonte_agua(q), caminho("objetos", "chafariz_%d.png" % q))
     for nome, folha in moradores().items():

@@ -127,7 +127,7 @@ Primeira versão de código, em `game/`. Ainda sem livros: só a base em que ele
 | Comer e dormir | Botão direito com comida na mão enche a fome; botão direito na **cama** dorme (só das 18h às 6h; o tempo corre 30× até as 6h) |
 | Pesca | Vara de pescar (Mercado); a linha cai na água do mouse ou na primeira água à frente; espera, mordida com "!" e um instante para puxar (`scripts/world/pesca.gd`, sorteio em `scripts/core/peixes.gd`). Peixes por mapa em `peixes` (D-073) |
 | Mapas ao norte | Colina do Portal (`colina.json`: portal apagado, menires, trilhos) e Lago Walden (`walden.json`); trilhos são um tipo de chão com desenho simples (`tile` em `tiles.json`); a mata em volta de cada mapa pode ser de outro objeto (`mata`, ex.: pinheiro) (D-074) |
-| Cidade | `content/mapas/cidade.json`, a leste da fazenda: estrada de calçada, postes que acendem à noite, praça com chafariz. **Mercado** (8h–18h; porta trancada fora do horário): botão direito na vendedora (por cima do balcão) abre a loja (`scripts/ui/loja.gd`; clique compra/vende 1, Shift compra 5 ou vende tudo; dados em `content/config/lojas.json` e preços em `itens.json`). **Clínica**: quem desmaia acorda lá. **Ferreiro**: ainda fechado. Moradores parados com sprite próprio (`npcs` no mapa) (D-072) |
+| Cidade | `content/mapas/cidade.json`, a leste da fazenda: estrada de calçada, postes que acendem à noite, praça com chafariz. **Mercado** (8h–18h; porta trancada fora do horário): botão direito na vendedora (por cima do balcão) abre a loja (`scripts/ui/loja.gd`; clique compra/vende 1, Shift compra 5 ou vende tudo; dados em `content/config/lojas.json` e preços em `itens.json`). **Clínica**: quem desmaia acorda lá. **Forja do Ferreiro** (9h–17h): ferramentas melhores (enxada larga e regador grande, que pegam três células em linha). Moradores parados com sprite próprio (`npcs` no mapa) (D-072) |
 | Save | Versão 2 (inventário em espaços e canteiros), com migração da versão 1 |
 | Tela de jogo | Painéis de madeira: vida e fome, hora (sol ou lua) e dinheiro, barra de itens, avisos; o dia não aparece (GDD §6); luz muda com a hora |
 | Abertura | Logo sobre a fazenda; Continuar (se houver save), Novo jogo, Sair (`scripts/ui/tela_inicial.gd`) |
@@ -137,7 +137,7 @@ Primeira versão de código, em `game/`. Ainda sem livros: só a base em que ele
 | Testes | `bash ferramentas/testar_jogo.sh`: testes sem tela (`tests/run_tests.gd`: save, saves antigos de `tests/saves/`, migração, fome, vida, relógio, desmaio, mapa e objetos, arte citada nos dados, inventário, plantação) e autoteste da cena com tela virtual (`tests/autoteste.gd`: andar, colisão com a casa, fome, salvar, carregar, nadar, arar, regar, plantar, colher, comer, dormir) |
 | Exportação | `bash ferramentas/exportar_windows.sh` gera `game/build/LeafAndLore.exe` (um arquivo só, com os dados dentro; preset em `game/export_presets.cfg`). O `.exe` não vai para o Git |
 
-Ainda não há: animais, ferreiro aberto, moradores andando (rotina), combate, portal e a maior parte do conteúdo dos livros (o primeiro livro jogável é a Carta a Meneceu, §9).
+Ainda não há: animais, machado e corte de árvores, moradores andando (rotina), combate, portal e a maior parte do conteúdo dos livros (o primeiro livro jogável é a Carta a Meneceu, §9).
 
 ## 9. Conteúdo dos livros no jogo (formato dos dados) 🔵
 

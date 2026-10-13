@@ -111,6 +111,11 @@
    "tipo": "sapataria",
    "x": 25,
    "y": 5
+  },
+  {
+   "tipo": "quiosque",
+   "x": 14,
+   "y": 16
   }
  ],
  "npcs": [
@@ -140,6 +145,15 @@
    "y": 17,
    "olhar": "esquerda",
    "dialogo": "epicuro.dialogo.herodoto"
+  },
+  {
+   "id": "seja_util.npc.jornaleiro",
+   "nome": "Jornaleiro",
+   "sprite": "jornaleiro.png",
+   "x": 16,
+   "y": 16,
+   "olhar": "esquerda",
+   "dialogo": "seja_util.dialogo.jornaleiro"
   }
  ],
  "saidas": [
@@ -203,15 +217,20 @@
     7
    ],
    "olhar": "cima"
-  }
- ],
- "fechadas": [
+  },
   {
    "x": 35,
    "y": 7,
-   "aviso": "O ferreiro ainda não abriu."
+   "para": "ferreiro",
+   "chegada": [
+    5,
+    7
+   ],
+   "olhar": "cima",
+   "loja": "ferreiro"
   }
  ],
+ "fechadas": [],
  "inicio": [
   2,
   12

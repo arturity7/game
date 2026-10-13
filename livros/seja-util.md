@@ -295,19 +295,19 @@ Sem bioma próprio. Acrescenta ao mundo principal:
 
 | ID | Tipo | Onde | Status |
 |---|---|---|---|
-| `seja_util.npc.ferreiro_personalidade` | Personalidade de NPC (Ferreiro da cidade) | Forja | Criado (ficha) |
-| `seja_util.npc.jornaleiro` | NPC (inspirado) | Praça | Criado (ficha) |
+| `seja_util.npc.ferreiro_personalidade` | Personalidade de NPC (Ferreiro da cidade) | Forja | Implementado: forja aberta das 9h às 17h, loja de ferramentas melhores, "para quê?" |
+| `seja_util.npc.jornaleiro` | NPC (inspirado) | Praça | Implementado: perguntas do livro (cada acerto $ 5; todas dão a conquista Esponja) |
 | `seja_util.npc.reclamao` | NPC | Cidade | Criado (ficha) |
 | `seja_util.npc.sete_palavras` | NPC | Cidade | Criado (ficha) |
-| `seja_util.local.quiosque` | Local | Praça | Criado (ficha) |
+| `seja_util.local.quiosque` | Local | Praça | Implementado |
 | `seja_util.local.parque_cerca` | Local | Cidade | Criado (ficha) |
 | `seja_util.local.abrigo` | Local | Cidade | Criado (ficha) |
 | `seja_util.local.segundo_pico` | Local | Montanha | Criado (ficha) |
-| `seja_util.trilha.sete_ferramentas` | Trilha de lições | Forja | Criado (ficha) |
+| `seja_util.trilha.sete_ferramentas` | Trilha de lições | Forja | Implementado: missão `seja_util.missao.sete_ferramentas`, uma ferramenta por dia, cada uma com uma pergunta; as sete dão a conquista Seja útil |
 | `seja_util.interface.lousa_do_dia` | Interface | Casa do jogador | Criado (ficha) |
 | `seja_util.mecanica.caminhar_pensar` | Mecânica de dica | Mundo principal | Criado (ficha) |
 | `seja_util.mecanica.um_pouco_melhor` | Regra de missões | Todo o jogo | Criado (ficha) |
-| `seja_util.dialogo.para_que` | Diálogo | Forja | Criado (ficha) |
+| `seja_util.dialogo.para_que` | Diálogo | Forja | Implementado |
 | `seja_util.dialogo.espada_forjada` | Fala | Forja | Criado (ficha) |
 | `seja_util.dialogo.os_que_duvidam` | Escolha de diálogo | Cidade | Criado (ficha) |
 | `seja_util.dialogo.judo_conversa` | Diálogo | Cidade | Criado (ficha) |
@@ -338,4 +338,4 @@ Sem bioma próprio. Acrescenta ao mundo principal:
 | `seja_util.natureza.pedras_lago` | Atividade | Lago | Criado (ficha) |
 | `seja_util.item.livro_gratidao` | Item/diário | Casa do jogador | Criado (ficha) |
 
-Implementação no jogo: pendente (fase de código).
+Implementação no jogo: começou em 13/10/2026 (`game/content/livros/seja_util/`). A forja também vende a enxada larga e o regador grande (ferramentas melhores do GDD).

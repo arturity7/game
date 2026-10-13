@@ -145,6 +145,13 @@ func _rodar() -> void:
 	await _foto("15b_walden_cabana")
 	main.mundo.jogador.position = Vector2(27, 25) * 16.0 + Vector2(8, 8)
 	await _foto("15c_walden_lago")
+	main.trocar_mapa("ferreiro", Vector2i(5, 6), "cima")
+	await get_tree().create_timer(0.8).timeout
+	main.mundo.atualizar_luz(10.0)
+	await _foto("16_forja")
+	main.trocar_mapa("cidade", Vector2i(15, 18), "cima")
+	await get_tree().create_timer(0.8).timeout
+	await _foto("16b_quiosque")
 	main.trocar_mapa("sapataria", Vector2i(5, 6), "cima")
 	await get_tree().create_timer(0.8).timeout
 	main.mundo.atualizar_luz(10.0)

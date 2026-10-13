@@ -27,6 +27,7 @@ func _init() -> void:
 	_teste_tolstoi_sapataria(cfg)
 	_teste_pesca()
 	_teste_walden(cfg)
+	_teste_seja_util(cfg)
 	print("\n%d verificações, %d falha(s)" % [total, falhas])
 	quit(1 if falhas > 0 else 0)
 
@@ -168,7 +169,7 @@ func _teste_mapa_fazenda() -> void:
 	var porta_m := mcid.saida_em(Vector2i(7, 7))
 	checar(str(porta_m.get("para", "")) == "mercado" and str(porta_m.get("loja", "")) == "mercado", "cidade: porta do mercado com horário")
 	checar(str(mcid.saida_em(Vector2i(18, 7)).get("para", "")) == "clinica", "cidade: porta da clínica")
-	checar(not mcid.fechada_em(Vector2i(35, 7)).is_empty() and mcid.ocupada(Vector2i(35, 7)), "cidade: ferreiro fechado")
+	checar(str(mcid.saida_em(Vector2i(35, 7)).get("loja", "")) == "ferreiro" and not mcid.ocupada(Vector2i(35, 7)), "cidade: porta da forja (com horário)")
 	checar(mcid.chao_em(Vector2i(10, 12)) == "calcada" and not mcid.ocupada(mcid.inicio), "cidade: estrada de calçada")
 	for o in mcid.objetos:
 		checar(objetos.has(o["tipo"]), "cidade: objeto conhecido: " + str(o["tipo"]))
@@ -375,7 +376,7 @@ func _conversar(c: Node, d: GameData, id: String, errar := "") -> Array:
 	var no_id := Dialogo.no_inicial(d, conv)
 	var vistos: Array = []
 	var passos := 0
-	while no_id != "" and no_id != "fim" and passos < 100:
+	while no_id != "" and no_id != "fim" and passos < 500:
 		passos += 1
 		vistos.append(no_id)
 		var no: Dictionary = conv["nos"][no_id]
@@ -564,4 +565,22 @@ func _teste_walden(cfg: Dictionary) -> void:
 	var mc := MapData.de_dict(_json("res://content/mapas/colina.json"), c.objetos)
 	checar(mc.chao_em(Vector2i(5, 14)) == "trilho" and not mc.ocupada(Vector2i(15, 14)), "colina: trilhos e passagem no caminho")
 	checar(c.dialogos.has(str(mc.objeto_em(Vector2i(21, 6)).get("dialogo", ""))), "colina: o portal conversa")
+	c.free()
+
+
+
+func _teste_seja_util(cfg: Dictionary) -> void:
+	var c := _config()
+	var d := GameData.novo(cfg, "fazenda", Vector2.ZERO, c.itens)
+	_conversar_escolhendo(c, d, "seja_util.dialogo.ferreiro", ["Me ensina", "Até logo"])
+	checar(Progresso.tem_flag(d, "seja_util.ferramenta_1"), "seja útil: primeira ferramenta")
+	var vistos := _conversar_escolhendo(c, d, "seja_util.dialogo.ferreiro", ["Me ensina", "Até logo"])
+	checar("amanha" in vistos and not Progresso.tem_flag(d, "seja_util.ferramenta_2"), "seja útil: uma ferramenta por dia")
+	for dia in 6:
+		d.mundo["dia"] = int(d.mundo["dia"]) + 1
+		_conversar_escolhendo(c, d, "seja_util.dialogo.ferreiro", ["Me ensina", "Até logo"])
+	checar(Progresso.tem_flag(d, "seja_util.ferramenta_7") and Progresso.tem_conquista(d, "seja_util.conquista.seja_util"), "seja útil: as sete ferramentas")
+	checar(Progresso.missao(d, "seja_util.missao.sete_ferramentas") == "feita", "seja útil: missão concluída")
+	vistos = _conversar(c, d, "seja_util.dialogo.jornaleiro")
+	checar("quiz_fim" in vistos and Progresso.tem_conquista(d, "seja_util.conquista.esponja"), "seja útil: todas as perguntas do Jornaleiro")
 	c.free()

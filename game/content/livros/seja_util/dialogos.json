@@ -1,0 +1,861 @@
+{
+ "_sobre": "Conversas do livro Seja Útil (formato em scripts/core/dialogo.gd).",
+ "seja_util.dialogo.ferreiro": {
+  "quem": "Ferreiro",
+  "inicio": [
+   {
+    "se": {
+     "sem_flag": "seja_util.conheceu_ferreiro"
+    },
+    "ir": "chegada"
+   },
+   {
+    "ir": "menu"
+   }
+  ],
+  "nos": {
+   "chegada": {
+    "fala": [
+     "Entre, entre! Cuidado com o fogo.",
+     "Eu cresci numa casa sem água encanada. Meu pai sempre dizia: seja útil. É o que eu tento fazer aqui.",
+     "Se quiser, eu te ensino as minhas sete ferramentas. Uma por dia: ferro bom não se forja com pressa."
+    ],
+    "efeitos": [
+     {
+      "flag": "seja_util.conheceu_ferreiro"
+     },
+     {
+      "missao": "seja_util.missao.sete_ferramentas",
+      "estado": "ativa"
+     }
+    ],
+    "ir": "menu"
+   },
+   "menu": {
+    "fala": "Em que posso ser útil?",
+    "escolhas": [
+     {
+      "texto": "Me ensina uma ferramenta.",
+      "ir": "licao",
+      "se": {
+       "missao": "seja_util.missao.sete_ferramentas",
+       "estado": "ativa"
+      }
+     },
+     {
+      "texto": "Ver as ferramentas à venda.",
+      "ir": "loja"
+     },
+     {
+      "texto": "Para que tanto peso no quintal?",
+      "ir": "para_que"
+     },
+     {
+      "texto": "Até logo.",
+      "ir": "fim"
+     }
+    ]
+   },
+   "loja": {
+    "fala": "Abra o olho: ferramenta boa dura a vida inteira.",
+    "efeitos": [
+     {
+      "abrir_loja": "ferreiro"
+     }
+    ],
+    "ir": "fim"
+   },
+   "para_que": {
+    "fala": [
+     "E você? Quer ficar forte para quê? Rico para quê?",
+     "Enquanto a resposta não for clara, o treino não leva a lugar nenhum."
+    ],
+    "ir": "menu"
+   },
+   "licao": {
+    "ramos": [
+     {
+      "se": {
+       "flag": "seja_util.ferramenta_7"
+      },
+      "ir": "fim_trilha"
+     },
+     {
+      "se": {
+       "hoje": "seja_util.licao_hoje"
+      },
+      "ir": "amanha"
+     },
+     {
+      "se": {
+       "sem_flag": "seja_util.ferramenta_1"
+      },
+      "ir": "f1"
+     },
+     {
+      "se": {
+       "sem_flag": "seja_util.ferramenta_2"
+      },
+      "ir": "f2"
+     },
+     {
+      "se": {
+       "sem_flag": "seja_util.ferramenta_3"
+      },
+      "ir": "f3"
+     },
+     {
+      "se": {
+       "sem_flag": "seja_util.ferramenta_4"
+      },
+      "ir": "f4"
+     },
+     {
+      "se": {
+       "sem_flag": "seja_util.ferramenta_5"
+      },
+      "ir": "f5"
+     },
+     {
+      "se": {
+       "sem_flag": "seja_util.ferramenta_6"
+      },
+      "ir": "f6"
+     },
+     {
+      "se": {
+       "sem_flag": "seja_util.ferramenta_7"
+      },
+      "ir": "f7"
+     },
+     {
+      "ir": "fim_trilha"
+     }
+    ]
+   },
+   "amanha": {
+    "fala": "Uma ferramenta por dia. Volte amanhã: o ferro precisa esfriar.",
+    "ir": "menu"
+   },
+   "errou": {
+    "fala": "Hora de trocar de marcha. Pense nisso e volte quando quiser.",
+    "ir": "menu"
+   },
+   "fim_trilha": {
+    "fala": [
+     "Você aprendeu as sete ferramentas.",
+     "Agora não guarde para você: use-as para ser útil."
+    ],
+    "efeitos": [
+     {
+      "missao": "seja_util.missao.sete_ferramentas",
+      "estado": "feita"
+     },
+     {
+      "conquista": "seja_util.conquista.seja_util"
+     }
+    ],
+    "ir": "menu"
+   },
+   "f1": {
+    "fala": [
+     "Primeira ferramenta: tenha uma visão clara.",
+     "Quem não sabe aonde quer chegar treina muito e não chega a lugar nenhum."
+    ],
+    "pergunta": "seja_util.pergunta.f1",
+    "certo": "f1_ok",
+    "errado": "errou"
+   },
+   "f1_ok": {
+    "fala": "Isso. Guarde essa ferramenta. Tome uns trocados pela atenção.",
+    "efeitos": [
+     {
+      "flag": "seja_util.ferramenta_1"
+     },
+     {
+      "marcar_dia": "seja_util.licao_hoje"
+     },
+     {
+      "dinheiro": 10
+     }
+    ],
+    "ir": "menu"
+   },
+   "f2": {
+    "fala": [
+     "Segunda ferramenta: nunca pense pequeno.",
+     "Quando chegar ao topo, olhe em volta: sempre tem outra montanha."
+    ],
+    "pergunta": "seja_util.pergunta.f2",
+    "certo": "f2_ok",
+    "errado": "errou"
+   },
+   "f2_ok": {
+    "fala": "Isso. Guarde essa ferramenta. Tome uns trocados pela atenção.",
+    "efeitos": [
+     {
+      "flag": "seja_util.ferramenta_2"
+     },
+     {
+      "marcar_dia": "seja_util.licao_hoje"
+     },
+     {
+      "dinheiro": 10
+     }
+    ],
+    "ir": "menu"
+   },
+   "f3": {
+    "fala": [
+     "Terceira ferramenta: trabalhe sem parar.",
+     "Não existe atalho. Cada martelada conta, e repetição bem-feita é o que faz o ferro virar espada."
+    ],
+    "pergunta": "seja_util.pergunta.f3",
+    "certo": "f3_ok",
+    "errado": "errou"
+   },
+   "f3_ok": {
+    "fala": "Isso. Guarde essa ferramenta. Tome uns trocados pela atenção.",
+    "efeitos": [
+     {
+      "flag": "seja_util.ferramenta_3"
+     },
+     {
+      "marcar_dia": "seja_util.licao_hoje"
+     },
+     {
+      "dinheiro": 10
+     }
+    ],
+    "ir": "menu"
+   },
+   "f4": {
+    "fala": [
+     "Quarta ferramenta: venda, venda, venda.",
+     "Não basta ter uma boa ideia: é preciso explicar a ideia para quem vai decidir."
+    ],
+    "pergunta": "seja_util.pergunta.f4",
+    "certo": "f4_ok",
+    "errado": "errou"
+   },
+   "f4_ok": {
+    "fala": "Isso. Guarde essa ferramenta. Tome uns trocados pela atenção.",
+    "efeitos": [
+     {
+      "flag": "seja_util.ferramenta_4"
+     },
+     {
+      "marcar_dia": "seja_util.licao_hoje"
+     },
+     {
+      "dinheiro": 10
+     }
+    ],
+    "ir": "menu"
+   },
+   "f5": {
+    "fala": [
+     "Quinta ferramenta: troque de marcha.",
+     "Errou? Ótimo. Agora você sabe de um jeito que não funciona. Ajuste e tente de novo."
+    ],
+    "pergunta": "seja_util.pergunta.f5",
+    "certo": "f5_ok",
+    "errado": "errou"
+   },
+   "f5_ok": {
+    "fala": "Isso. Guarde essa ferramenta. Tome uns trocados pela atenção.",
+    "efeitos": [
+     {
+      "flag": "seja_util.ferramenta_5"
+     },
+     {
+      "marcar_dia": "seja_util.licao_hoje"
+     },
+     {
+      "dinheiro": 10
+     }
+    ],
+    "ir": "menu"
+   },
+   "f6": {
+    "fala": [
+     "Sexta ferramenta: cale a boca e escute.",
+     "Quem só fala não aprende. O mundo inteiro é uma escola."
+    ],
+    "pergunta": "seja_util.pergunta.f6",
+    "certo": "f6_ok",
+    "errado": "errou"
+   },
+   "f6_ok": {
+    "fala": "Isso. Guarde essa ferramenta. Tome uns trocados pela atenção.",
+    "efeitos": [
+     {
+      "flag": "seja_util.ferramenta_6"
+     },
+     {
+      "marcar_dia": "seja_util.licao_hoje"
+     },
+     {
+      "dinheiro": 10
+     }
+    ],
+    "ir": "menu"
+   },
+   "f7": {
+    "fala": [
+     "Sétima ferramenta: quebre seus espelhos.",
+     "Pare de olhar só para si. A força que você ganha serve para ajudar alguém."
+    ],
+    "pergunta": "seja_util.pergunta.f7",
+    "certo": "f7_ok",
+    "errado": "errou"
+   },
+   "f7_ok": {
+    "fala": "Isso. Guarde essa ferramenta. Tome uns trocados pela atenção.",
+    "efeitos": [
+     {
+      "flag": "seja_util.ferramenta_7"
+     },
+     {
+      "marcar_dia": "seja_util.licao_hoje"
+     },
+     {
+      "dinheiro": 10
+     }
+    ],
+    "ir": "licao"
+   }
+  }
+ },
+ "seja_util.dialogo.jornaleiro": {
+  "quem": "Jornaleiro",
+  "inicio": [
+   {
+    "ir": "oi"
+   }
+  ],
+  "nos": {
+   "oi": {
+    "fala": [
+     "Bom dia! Jornal, revista, notícia fresquinha!",
+     "Eu sei de tudo nesta cidade. E ensino a quem escuta: o mundo é a maior escola."
+    ],
+    "efeitos": [
+     {
+      "flag": "seja_util.conheceu_jornaleiro"
+     }
+    ],
+    "escolhas": [
+     {
+      "texto": "Me pergunta alguma coisa.",
+      "ir": "quiz"
+     },
+     {
+      "texto": "Até logo.",
+      "ir": "fim"
+     }
+    ]
+   },
+   "quiz": {
+    "ramos": [
+     {
+      "se": {
+       "nao_acertou": "seja_util.pergunta.conselho"
+      },
+      "ir": "q_conselho"
+     },
+     {
+      "se": {
+       "nao_acertou": "seja_util.pergunta.espada"
+      },
+      "ir": "q_espada"
+     },
+     {
+      "se": {
+       "nao_acertou": "seja_util.pergunta.ensaio"
+      },
+      "ir": "q_ensaio"
+     },
+     {
+      "se": {
+       "nao_acertou": "seja_util.pergunta.transicoes"
+      },
+      "ir": "q_transicoes"
+     },
+     {
+      "se": {
+       "nao_acertou": "seja_util.pergunta.thoreau"
+      },
+      "ir": "q_thoreau"
+     },
+     {
+      "se": {
+       "nao_acertou": "seja_util.pergunta.wenn_schon"
+      },
+      "ir": "q_wenn_schon"
+     },
+     {
+      "se": {
+       "nao_acertou": "seja_util.pergunta.plano_b"
+      },
+      "ir": "q_plano_b"
+     },
+     {
+      "se": {
+       "nao_acertou": "seja_util.pergunta.pessimistas"
+      },
+      "ir": "q_pessimistas"
+     },
+     {
+      "se": {
+       "nao_acertou": "seja_util.pergunta.papel"
+      },
+      "ir": "q_papel"
+     },
+     {
+      "se": {
+       "nao_acertou": "seja_util.pergunta.helicoptero"
+      },
+      "ir": "q_helicoptero"
+     },
+     {
+      "se": {
+       "nao_acertou": "seja_util.pergunta.lousa"
+      },
+      "ir": "q_lousa"
+     },
+     {
+      "se": {
+       "nao_acertou": "seja_util.pergunta.dor"
+      },
+      "ir": "q_dor"
+     },
+     {
+      "se": {
+       "nao_acertou": "seja_util.pergunta.prometeu"
+      },
+      "ir": "q_prometeu"
+     },
+     {
+      "se": {
+       "nao_acertou": "seja_util.pergunta.uma_hora"
+      },
+      "ir": "q_uma_hora"
+     },
+     {
+      "se": {
+       "nao_acertou": "seja_util.pergunta.uma_pagina"
+      },
+      "ir": "q_uma_pagina"
+     },
+     {
+      "se": {
+       "nao_acertou": "seja_util.pergunta.progresso"
+      },
+      "ir": "q_progresso"
+     },
+     {
+      "se": {
+       "nao_acertou": "seja_util.pergunta.serei"
+      },
+      "ir": "q_serei"
+     },
+     {
+      "se": {
+       "nao_acertou": "seja_util.pergunta.reclamar"
+      },
+      "ir": "q_reclamar"
+     },
+     {
+      "se": {
+       "nao_acertou": "seja_util.pergunta.lenha"
+      },
+      "ir": "q_lenha"
+     },
+     {
+      "se": {
+       "nao_acertou": "seja_util.pergunta.amor_fati"
+      },
+      "ir": "q_amor_fati"
+     },
+     {
+      "se": {
+       "nao_acertou": "seja_util.pergunta.sete_palavras"
+      },
+      "ir": "q_sete_palavras"
+     },
+     {
+      "se": {
+       "nao_acertou": "seja_util.pergunta.risco"
+      },
+      "ir": "q_risco"
+     },
+     {
+      "se": {
+       "nao_acertou": "seja_util.pergunta.escutar"
+      },
+      "ir": "q_escutar"
+     },
+     {
+      "se": {
+       "nao_acertou": "seja_util.pergunta.esponjas"
+      },
+      "ir": "q_esponjas"
+     },
+     {
+      "se": {
+       "nao_acertou": "seja_util.pergunta.usado"
+      },
+      "ir": "q_usado"
+     },
+     {
+      "se": {
+       "nao_acertou": "seja_util.pergunta.soma_zero"
+      },
+      "ir": "q_soma_zero"
+     },
+     {
+      "se": {
+       "nao_acertou": "seja_util.pergunta.contador"
+      },
+      "ir": "q_contador"
+     },
+     {
+      "se": {
+       "nao_acertou": "seja_util.pergunta.espelhos"
+      },
+      "ir": "q_espelhos"
+     },
+     {
+      "se": {
+       "nao_acertou": "seja_util.pergunta.casa_infancia"
+      },
+      "ir": "q_casa_infancia"
+     },
+     {
+      "se": {
+       "nao_acertou": "seja_util.pergunta.beethoven"
+      },
+      "ir": "q_beethoven"
+     },
+     {
+      "se": {
+       "nao_acertou": "seja_util.pergunta.aristoteles"
+      },
+      "ir": "q_aristoteles"
+     },
+     {
+      "se": {
+       "nao_acertou": "seja_util.pergunta.everest_data"
+      },
+      "ir": "q_everest_data"
+     },
+     {
+      "se": {
+       "nao_acertou": "seja_util.pergunta.tenzing"
+      },
+      "ir": "q_tenzing"
+     },
+     {
+      "se": {
+       "nao_acertou": "seja_util.pergunta.ocupado"
+      },
+      "ir": "q_ocupado"
+     },
+     {
+      "se": {
+       "nao_acertou": "seja_util.pergunta.discurso"
+      },
+      "ir": "q_discurso"
+     },
+     {
+      "se": {
+       "nao_acertou": "seja_util.pergunta.loja_ferragens"
+      },
+      "ir": "q_loja_ferragens"
+     },
+     {
+      "se": {
+       "nao_acertou": "seja_util.pergunta.explique"
+      },
+      "ir": "q_explique"
+     },
+     {
+      "se": {
+       "nao_acertou": "seja_util.pergunta.agachamentos"
+      },
+      "ir": "q_agachamentos"
+     },
+     {
+      "se": {
+       "nao_acertou": "seja_util.pergunta.wd40"
+      },
+      "ir": "q_wd40"
+     },
+     {
+      "se": {
+       "nao_acertou": "seja_util.pergunta.quiosques"
+      },
+      "ir": "q_quiosques"
+     },
+     {
+      "se": {
+       "nao_acertou": "seja_util.pergunta.zona_perigo"
+      },
+      "ir": "q_zona_perigo"
+     },
+     {
+      "se": {
+       "nao_acertou": "seja_util.pergunta.meditacoes"
+      },
+      "ir": "q_meditacoes"
+     },
+     {
+      "ir": "quiz_fim"
+     }
+    ]
+   },
+   "quiz_certo": {
+    "fala": "Isso aí! Leve um trocado, esponja.",
+    "efeitos": [
+     {
+      "dinheiro": 5
+     }
+    ],
+    "escolhas": [
+     {
+      "texto": "Outra!",
+      "ir": "quiz"
+     },
+     {
+      "texto": "Chega por hoje.",
+      "ir": "fim"
+     }
+    ]
+   },
+   "quiz_errado": {
+    "fala": "Errou, mas tudo bem: fracasso é só um relatório de progresso. Volte depois!",
+    "ir": "fim"
+   },
+   "quiz_fim": {
+    "fala": "Você é uma esponja de verdade! Não tenho mais nada para perguntar.",
+    "efeitos": [
+     {
+      "conquista": "seja_util.conquista.esponja"
+     }
+    ],
+    "ir": "fim"
+   },
+   "q_conselho": {
+    "pergunta": "seja_util.pergunta.conselho",
+    "certo": "quiz_certo",
+    "errado": "quiz_errado"
+   },
+   "q_espada": {
+    "pergunta": "seja_util.pergunta.espada",
+    "certo": "quiz_certo",
+    "errado": "quiz_errado"
+   },
+   "q_ensaio": {
+    "pergunta": "seja_util.pergunta.ensaio",
+    "certo": "quiz_certo",
+    "errado": "quiz_errado"
+   },
+   "q_transicoes": {
+    "pergunta": "seja_util.pergunta.transicoes",
+    "certo": "quiz_certo",
+    "errado": "quiz_errado"
+   },
+   "q_thoreau": {
+    "pergunta": "seja_util.pergunta.thoreau",
+    "certo": "quiz_certo",
+    "errado": "quiz_errado"
+   },
+   "q_wenn_schon": {
+    "pergunta": "seja_util.pergunta.wenn_schon",
+    "certo": "quiz_certo",
+    "errado": "quiz_errado"
+   },
+   "q_plano_b": {
+    "pergunta": "seja_util.pergunta.plano_b",
+    "certo": "quiz_certo",
+    "errado": "quiz_errado"
+   },
+   "q_pessimistas": {
+    "pergunta": "seja_util.pergunta.pessimistas",
+    "certo": "quiz_certo",
+    "errado": "quiz_errado"
+   },
+   "q_papel": {
+    "pergunta": "seja_util.pergunta.papel",
+    "certo": "quiz_certo",
+    "errado": "quiz_errado"
+   },
+   "q_helicoptero": {
+    "pergunta": "seja_util.pergunta.helicoptero",
+    "certo": "quiz_certo",
+    "errado": "quiz_errado"
+   },
+   "q_lousa": {
+    "pergunta": "seja_util.pergunta.lousa",
+    "certo": "quiz_certo",
+    "errado": "quiz_errado"
+   },
+   "q_dor": {
+    "pergunta": "seja_util.pergunta.dor",
+    "certo": "quiz_certo",
+    "errado": "quiz_errado"
+   },
+   "q_prometeu": {
+    "pergunta": "seja_util.pergunta.prometeu",
+    "certo": "quiz_certo",
+    "errado": "quiz_errado"
+   },
+   "q_uma_hora": {
+    "pergunta": "seja_util.pergunta.uma_hora",
+    "certo": "quiz_certo",
+    "errado": "quiz_errado"
+   },
+   "q_uma_pagina": {
+    "pergunta": "seja_util.pergunta.uma_pagina",
+    "certo": "quiz_certo",
+    "errado": "quiz_errado"
+   },
+   "q_progresso": {
+    "pergunta": "seja_util.pergunta.progresso",
+    "certo": "quiz_certo",
+    "errado": "quiz_errado"
+   },
+   "q_serei": {
+    "pergunta": "seja_util.pergunta.serei",
+    "certo": "quiz_certo",
+    "errado": "quiz_errado"
+   },
+   "q_reclamar": {
+    "pergunta": "seja_util.pergunta.reclamar",
+    "certo": "quiz_certo",
+    "errado": "quiz_errado"
+   },
+   "q_lenha": {
+    "pergunta": "seja_util.pergunta.lenha",
+    "certo": "quiz_certo",
+    "errado": "quiz_errado"
+   },
+   "q_amor_fati": {
+    "pergunta": "seja_util.pergunta.amor_fati",
+    "certo": "quiz_certo",
+    "errado": "quiz_errado"
+   },
+   "q_sete_palavras": {
+    "pergunta": "seja_util.pergunta.sete_palavras",
+    "certo": "quiz_certo",
+    "errado": "quiz_errado"
+   },
+   "q_risco": {
+    "pergunta": "seja_util.pergunta.risco",
+    "certo": "quiz_certo",
+    "errado": "quiz_errado"
+   },
+   "q_escutar": {
+    "pergunta": "seja_util.pergunta.escutar",
+    "certo": "quiz_certo",
+    "errado": "quiz_errado"
+   },
+   "q_esponjas": {
+    "pergunta": "seja_util.pergunta.esponjas",
+    "certo": "quiz_certo",
+    "errado": "quiz_errado"
+   },
+   "q_usado": {
+    "pergunta": "seja_util.pergunta.usado",
+    "certo": "quiz_certo",
+    "errado": "quiz_errado"
+   },
+   "q_soma_zero": {
+    "pergunta": "seja_util.pergunta.soma_zero",
+    "certo": "quiz_certo",
+    "errado": "quiz_errado"
+   },
+   "q_contador": {
+    "pergunta": "seja_util.pergunta.contador",
+    "certo": "quiz_certo",
+    "errado": "quiz_errado"
+   },
+   "q_espelhos": {
+    "pergunta": "seja_util.pergunta.espelhos",
+    "certo": "quiz_certo",
+    "errado": "quiz_errado"
+   },
+   "q_casa_infancia": {
+    "pergunta": "seja_util.pergunta.casa_infancia",
+    "certo": "quiz_certo",
+    "errado": "quiz_errado"
+   },
+   "q_beethoven": {
+    "pergunta": "seja_util.pergunta.beethoven",
+    "certo": "quiz_certo",
+    "errado": "quiz_errado"
+   },
+   "q_aristoteles": {
+    "pergunta": "seja_util.pergunta.aristoteles",
+    "certo": "quiz_certo",
+    "errado": "quiz_errado"
+   },
+   "q_everest_data": {
+    "pergunta": "seja_util.pergunta.everest_data",
+    "certo": "quiz_certo",
+    "errado": "quiz_errado"
+   },
+   "q_tenzing": {
+    "pergunta": "seja_util.pergunta.tenzing",
+    "certo": "quiz_certo",
+    "errado": "quiz_errado"
+   },
+   "q_ocupado": {
+    "pergunta": "seja_util.pergunta.ocupado",
+    "certo": "quiz_certo",
+    "errado": "quiz_errado"
+   },
+   "q_discurso": {
+    "pergunta": "seja_util.pergunta.discurso",
+    "certo": "quiz_certo",
+    "errado": "quiz_errado"
+   },
+   "q_loja_ferragens": {
+    "pergunta": "seja_util.pergunta.loja_ferragens",
+    "certo": "quiz_certo",
+    "errado": "quiz_errado"
+   },
+   "q_explique": {
+    "pergunta": "seja_util.pergunta.explique",
+    "certo": "quiz_certo",
+    "errado": "quiz_errado"
+   },
+   "q_agachamentos": {
+    "pergunta": "seja_util.pergunta.agachamentos",
+    "certo": "quiz_certo",
+    "errado": "quiz_errado"
+   },
+   "q_wd40": {
+    "pergunta": "seja_util.pergunta.wd40",
+    "certo": "quiz_certo",
+    "errado": "quiz_errado"
+   },
+   "q_quiosques": {
+    "pergunta": "seja_util.pergunta.quiosques",
+    "certo": "quiz_certo",
+    "errado": "quiz_errado"
+   },
+   "q_zona_perigo": {
+    "pergunta": "seja_util.pergunta.zona_perigo",
+    "certo": "quiz_certo",
+    "errado": "quiz_errado"
+   },
+   "q_meditacoes": {
+    "pergunta": "seja_util.pergunta.meditacoes",
+    "certo": "quiz_certo",
+    "errado": "quiz_errado"
+   }
+  }
+ }
+}
