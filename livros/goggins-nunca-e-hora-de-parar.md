@@ -348,7 +348,7 @@ Proporção (D-063): cerca de 35% memória e 65% releitura.
 | A chave mestra | Item simbólico | Prêmio da trilha do Sargento: "a disciplina abre todas as portas" | Cap. 5 |
 | Humildade treinada | Missões (Exercício 5) | Lavar pratos, grelhar no Mercado, varrer o salão, separar correspondência: aprender todas as partes de um negócio (liga com o "rei das latrinas") | Exercício 5 |
 | O Zelador | NPC + missão | Um zelador tímido que limpa a biblioteca. Num jornal velho, o jogador descobre que ele fez um ato de grande coragem no passado; ele continua limpando o chão | Exercício 5 |
-| Raso e fundo | Mecânica (se houver natação) | Treinar no raso sem parar no meio; só depois enfrentar a parte funda do lago | Cap. 6 |
+| Raso e fundo | Mecânica (natação, D-070) | Treinar no raso sem parar no meio; só depois enfrentar a parte funda do lago | Cap. 6 |
 | A travessia das rochas vermelhas | Evento (deserto do sul) | Trilha longa sem sinalização, com o mapa mostrando um triângulo que deve ficar na linha pontilhada, kit obrigatório e uma trilha estreita à beira de uma cratera | Cap. 6 |
 | Consciência situacional | Mecânica | Em expedições: conferir onde está no mapa (percepção), olhar os pontos cegos (360°) e prever o próximo trecho (projeção). Seguir pegadas sem conferir leva para fora do caminho | Cap. 6 |
 | Inspeção pontual | Mecânica | Antes de sair com um companheiro, conferir se ele tem os itens certos (mapa, lanterna, água) | Caps. 6–7 |
@@ -485,7 +485,7 @@ Sem bioma próprio. Acrescenta ao mundo principal:
 | `goggins_nunca.mecanica.isca` | Regra de provas | Provas longas | Criado (ficha) |
 | `goggins_nunca.mecanica.lista_que_some` | Progressão | Casa do Sargento | Criado (ficha) |
 | `goggins_nunca.mecanica.flexoes_ao_acordar` | Hábito | Casa do jogador | Criado (ficha) |
-| `goggins_nunca.mecanica.raso_e_fundo` | Mecânica (condicional: Q45, natação) | Lago | Criado (ficha) |
+| `goggins_nunca.mecanica.raso_e_fundo` | Mecânica | Lago | Criado (ficha) |
 | `goggins_nunca.mecanica.consciencia_situacional` | Mecânica | Expedições | Criado (ficha) |
 | `goggins_nunca.mecanica.inspecao_pontual` | Mecânica | Expedições | Criado (ficha) |
 | `goggins_nunca.mecanica.eu_voltei` | Mecânica | Desafios abandonados | Criado (ficha) |

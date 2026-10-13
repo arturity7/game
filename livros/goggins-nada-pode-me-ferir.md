@@ -323,7 +323,7 @@ Proporção (D-063): cerca de 35% memória e 65% releitura.
 | A professora rabugenta | NPC (inspirado) | Cara fechada e nenhuma desculpa aceita, mas dá ao jogador todo o tempo que ele precisar para aprender | Cap. 2 |
 | Copiar três vezes | Mecânica de estudo | Para decorar algo difícil (uma pergunta errada), copiar o trecho três vezes no caderno | Cap. 2 |
 | Rei das latrinas | Missão | Limpar os banheiros do abrigo com capricho: "dava para comer no chão" | Cap. 3 |
-| Livro de natação | Item | Se o jogo tiver natação: ler o livro para iniciantes e praticar no lago ensina a nadar (aprender com livros, tema do jogo) | Cap. 3 |
+| Livro de natação | Item | O jogo tem natação (D-070): ler o livro para iniciantes e praticar no lago ensina a nadar (aprender com livros, tema do jogo) | Cap. 3 |
 | O guaxinim da caçamba | Criatura cômica | Chia dentro da lixeira atrás do Mercado à noite | Cap. 3 |
 | Tirado do castigo | Humor | Se o jogador cumprir os castigos sorrindo, o instrutor o dispensa "por estar gostando demais" | Cap. 5 |
 | O atleta arrogante | NPC rival | Fala mal da própria equipe e se compara com todos; desiste no meio da Prova do Sino. Mais tarde assume o fracasso e segue em frente | Caps. 5, 11 |
@@ -484,7 +484,7 @@ Sem bioma próprio. Acrescenta ao mundo principal:
 | `goggins_nada.tutorial.fogueira` | Tutorial | Fazenda / acampamento | Criado (ficha) |
 | `goggins_nada.item.camiseta_marrom` | Item visual | Prova do Sino | Criado (ficha) |
 | `goggins_nada.item.pote_moedas` | Item | Casa do jogador | Criado (ficha) |
-| `goggins_nada.item.livro_natacao` | Item (condicional: Q45, natação) | Biblioteca / Mercado | Criado (ficha) |
+| `goggins_nada.item.livro_natacao` | Item | Biblioteca / Mercado | Criado (ficha) |
 | `goggins_nada.item.enxada_machado` | Ferramenta | Ferreiro | Criado (ficha) |
 | `goggins_nada.licao.pecas_reserva` | Lição | Trilha de bicicleta | Criado (ficha) |
 | `goggins_nada.licao.treine_outra_coisa` | Lição | Acampamento do Corredor | Criado (ficha) |

@@ -77,7 +77,7 @@
 | O pântano | Nunca É Hora de Parar | `goggins_nunca.local.pantano` | Em **Margrave** |
 | A travessia quente (do vale fervente ao portal da montanha) | Nada Pode Me Ferir | `goggins_nada.local.travessia_quente`, `goggins_nada.evento.travessia_quente` | No **deserto do sul**: sai da parte mais baixa e quente do deserto e sobe até a borda da Montanha pelo leste. Deixa de ser condicional |
 | O deserto de rochas vermelhas | Nunca É Hora de Parar | `goggins_nunca.local.rochas_vermelhas` | No **deserto do sul**, ao lado da travessia quente |
-| O livro de natação | Nada Pode Me Ferir | `goggins_nada.item.livro_natacao` | **Continua condicional**: depende de o jogo ter natação, que ainda não foi decidido (ver Q45 em `docs/perguntas-abertas.md`) |
+| O livro de natação | Nada Pode Me Ferir | `goggins_nada.item.livro_natacao` | **Entra**: o jogo tem natação, e de barco se anda mais rápido na água (D-070) |
 
 ## 5. Dimensões e chaves
 
@@ -97,14 +97,10 @@
 - **Séries que continuam**: Percy Jackson (cinco volumes na mesma dimensão), Maze Runner (três volumes na mesma dimensão), Jack Reacher (quatro livros em quatro biomas diferentes do mundo principal), Goggins (os dois livros no mesmo Corredor da Montanha), Rickson Gracie (os dois livros nos mesmos lugares de treino).
 - **Pontes entre o mundo principal e as dimensões**: as chaves (§5); o Jardim grego e os deuses de Percy; o Corredor da Montanha e os Corredores do Labirinto; o Diabo de Tolstói e o Inferno de Lewis.
 
-## 7. Candidatos a objetivo final (para a Q4b)
+## 7. Objetivo final
 
-Ideias de estrutura para o dono escolher; nenhuma inventa história nova:
-1. **As três dimensões**: o objetivo final é terminar as três dimensões (o último volume de cada uma) e voltar ao mundo principal.
-2. **Uma missão que junta os livros**: uma última missão no mundo principal que pede algo de cada livro terminado, no estilo das "histórias que se cruzam".
-3. **Outro objetivo**, definido pelo dono.
+**Não existe por enquanto** (D-069): o dono vai adicionando livros, então o jogo não tem um "final". As três dimensões e os biomas são explorados no ritmo do jogador, sem ordem obrigatória.
 
-## 8. Pendências
+## 8. Água: natação e barco
 
-- **Q4b** (objetivo final): pergunta ao dono.
-- **Q45** (natação): pergunta ao dono; decide o livro de natação, a volta a nado da pedra da praia e a travessia do rio largo.
+O jogador pode nadar, e de barco anda mais rápido na água (D-070). Com isso, entram sem condição: o livro de natação (`goggins_nada.item.livro_natacao`), o treino no raso e no fundo do lago (`goggins_nunca.mecanica.raso_e_fundo`), a volta a nado até a pedra da praia (`inabalavel.local.pedra_praia`) e a travessia do rio largo (`rickson_respire.local.rio_largo`). O mar entre a costa e a Costa do Canal (`dunkirk.local.costa_canal`) é o lugar natural para o barco.

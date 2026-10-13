@@ -17,7 +17,7 @@ Um jogo para PC, com o estilo e os gráficos do Stardew Valley, em que o jogador
 | P2 | **Lembrar é jogar.** Há desafios que só se resolve lembrando do livro — ou relendo-o. | ✅ |
 | P3 | **A vida no campo sustenta, não protagoniza.** Casa, fazenda, animais, fome e sono existem, mas não são o foco. | ✅ |
 | P4 | **Cara e sensação de Stardew Valley.** Pixel art e estilo de jogo inspirados nele. | ✅ |
-| P5 | **Sem pressa.** Existe um objetivo final, mas o jogador avança no próprio ritmo e pode passar o tempo que quiser melhorando e crescendo a fazenda (como no Minecraft). | ✅ |
+| P5 | **Sem pressa.** Não há objetivo final por enquanto (D-069); o jogador avança no próprio ritmo e pode passar o tempo que quiser melhorando e crescendo a fazenda (como no Minecraft). | ✅ |
 
 ## 3. O que o jogo é / não é
 
@@ -50,6 +50,7 @@ Um jogo para PC, com o estilo e os gráficos do Stardew Valley, em que o jogador
 | Energia | **Não existe.** O jogador tem só duas barras: fome e vida. O esforço (usar ferramentas, lutar) pesa apenas acelerando um pouco a fome (D-024). | ✅ | — |
 | Dormir / descansar | **Não é obrigatório** e não tem regras rígidas (sem horário limite nem desmaio). Dormir **faz a noite passar mais rápido**, o que ajuda a plantação a avançar. | ✅ | — |
 | Pesca | **Simples, como no Minecraft:** joga a linha, espera e puxa na hora certa. Sem minigame. | ✅ | — |
+| Natação e barco | O jogador **pode nadar**. Na água, **de barco ele anda mais rápido** do que nadando (D-070). | ✅ | — |
 | Árvores e construção | Cortar árvores para obter material e **construir** e **melhorar a fazenda**. Construção **por receitas pré-definidas**, como no Minecraft (ex.: cercado custa X de madeira), e **não** bloco a bloco livre. Na casa, funciona **quase como o modo construção do The Sims 4**: levantar paredes, ampliar cômodos e posicionar móveis. Itens construíveis: cercados, pequenos lagos de irrigação, galinheiro, celeiro, baús, caminhos, cercas decorativas, pontes, fogão/fogueira, paredes e móveis da casa. | ✅ | — |
 | Lojas e dinheiro | **Poucas lojas** na cidade (nem uma só, nem muitas), onde o jogador **vende produtos da fazenda** e compra **sementes, animais, comida, materiais, ferramentas e equipamentos**. 🔵 Divisão proposta pela IA: **Mercado** (compra produtos da fazenda; vende sementes, animais, comida e materiais) e **Ferreiro** (ferramentas, armas e equipamentos), além do **hospital** (itens de cura). | ✅ · 🔵 divisão | — |
 | Conquistas | Tela de **conquistas em forma de medalhas** (ex.: "terminou o livro X", "derrotou 100 monstros", "sobreviveu 365 dias"). É o único lugar onde a contagem de dias aparece. Cada livro novo traz suas próprias conquistas. | ✅ | — |
@@ -103,11 +104,11 @@ Não existem fases formais. O jogo avança por **desbloqueio**:
 | Histórias que se cruzam | ✅ Desbloquear um lugar de um livro pode exigir algo de outro livro (ex.: o lugar do livro 1 só abre com algo do livro 2) |
 | Dimensões | ✅ Livros **muito diferentes da vida real** (ex.: Harry Potter) ficam em uma **dimensão própria**, para onde o jogador viaja. Livros mais próximos da realidade viram bioma no mundo principal. A classificação de cada livro é feita na análise e registrada na ficha. |
 | Como viajar até as dimensões | ✅ Por um **portal fixo no mundo principal**. Para entrar, é preciso um item (algo como uma **chave**) conseguido cumprindo **outras missões**. **Uma chave para cada dimensão**, cada uma conquistada numa missão diferente. |
-| História principal | ✅ **Leve, de fundo:** um motivo simples para o protagonista estar ali e um objetivo final. Os livros continuam sendo o foco. |
+| História principal | ✅ **Leve, de fundo:** um motivo simples para o protagonista estar ali. Objetivo final: nenhum por enquanto (D-069). Os livros continuam sendo o foco. |
 | Ritmo da história | ✅ **Sem pressa e sem prazo.** A história não empurra o jogador; ele pode crescer e melhorar a fazenda à vontade e seguir a missão final quando quiser (como no Minecraft). |
 | Motivo do protagonista | ✅ **Nenhum.** É um mundo normal e o protagonista simplesmente começa a se aventurar, como no Minecraft. |
-| Objetivo final | ❓ Existe, mas ainda não foi definido. A decidir depois da análise dos primeiros livros. |
-| Depois do objetivo final | ✅ **O jogo continua**, como no Minecraft depois do dragão: fazenda, exploração e livros novos seguem normalmente. O jogo **nunca tem um fim definitivo**, porque sempre vão entrar livros novos. |
+| Objetivo final | ✅ **Não existe por enquanto** (D-069): como o dono vai adicionando livros novos, o jogo não tem um "final". O jogador explora os biomas e as dimensões no ritmo dele. |
+| Fim do jogo | ✅ O jogo **nunca tem um fim definitivo**, porque sempre vão entrar livros novos: fazenda, exploração e livros seguem normalmente. Se um dia existir um objetivo final, o jogo continua depois dele, como no Minecraft depois do dragão. |
 | Cidade | ✅ Existe, com lojas (ex.: no centro), um **hospital/clínica** e **moradores**, que podem ou não fazer parte da história. Moradores têm **rotina** como no Stardew: andam pela cidade e as lojas abrem e fecham em horários certos. |
 | Personagens dos livros na cidade | ✅ Podem aparecer na cidade e **ter um papel** ali. |
 | Amizade / relacionamentos | ✅ **Não existe** sistema de amizade (nada de corações). Moradores servem para **conversar e vender**; no máximo, uma conversa dá uma **pista** (ex.: como achar a chave de um portal). |
