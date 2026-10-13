@@ -1,0 +1,23 @@
+{
+ "_sobre": "Medalhas do livro da Babilônia (ficha §13).",
+ "babilonia.conquista.uma_parte": {
+  "nome": "Uma parte é minha",
+  "livro": "babilonia",
+  "descricao": "Guardou um décimo de todas as vendas por um mês."
+ },
+ "babilonia.conquista.pedra_rio": {
+  "nome": "Pedra no rio",
+  "livro": "babilonia",
+  "descricao": "Jogou uma pedra no rio por cem dias seguidos."
+ },
+ "babilonia.conquista.peca_bronze": {
+  "nome": "Peça de bronze",
+  "livro": "babilonia",
+  "descricao": "Quitou todos os credores de Dabasir."
+ },
+ "babilonia.conquista.muralhas": {
+  "nome": "As muralhas resistem",
+  "livro": "babilonia",
+  "descricao": "Venceu o cerco."
+ }
+}

@@ -15,9 +15,14 @@ extends RefCounted
 ##   "ramos"     [{"se", "ir"}] — vai direto para o primeiro ramo cuja condição vale (sem mostrar nada)
 ##   "ir"        próximo nó (sem escolhas); "fim" ou ausente = acaba
 ## Condições ("se", todas precisam valer):
-##   flag, sem_flag, item (+ qtd), sem_item, missao + estado, acertou, nao_acertou
+##   flag, sem_flag, item (+ qtd), sem_item, missao + estado, acertou, nao_acertou,
+##   dinheiro (tem pelo menos), conta + minimo (saldo guardado), flag_dias [flag, dias] (passaram
+##   'dias' desde o dia guardado na flag), conquista, sem_conquista
 ## Efeitos:
-##   flag, tirar_flag, dar_item (+ qtd), tirar_item (+ qtd), dinheiro, missao + estado, conquista, vida
+##   flag (+ valor), tirar_flag, marcar_dia (guarda o dia de hoje na flag), dar_item (+ qtd),
+##   tirar_item (+ qtd), dinheiro, missao + estado, conquista, vida,
+##   conta + depositar/sacar (número ou "tudo"; sai/volta da carteira) ou + render (aparece na conta)
+## Textos podem ter {dinheiro}, {dia} e {conta:<nome>} (trocados por Dialogo.texto)
 
 
 static func condicao(dados: GameData, se: Dictionary) -> bool:
@@ -45,6 +50,22 @@ static func condicao(dados: GameData, se: Dictionary) -> bool:
 					return false
 			"nao_acertou":
 				if Progresso.acertou(dados, str(v)):
+					return false
+			"dinheiro":
+				if int(dados.jogador["dinheiro"]) < int(v):
+					return false
+			"conta":
+				if Progresso.saldo(dados, str(v)) < int(se.get("minimo", 1)):
+					return false
+			"flag_dias":
+				var desde = Progresso.flag(dados, str(v[0]))
+				if desde == null or int(dados.mundo["dia"]) - int(desde) < int(v[1]):
+					return false
+			"conquista":
+				if not Progresso.tem_conquista(dados, str(v)):
+					return false
+			"sem_conquista":
+				if Progresso.tem_conquista(dados, str(v)):
 					return false
 	return true
 
@@ -88,7 +109,37 @@ static func aplicar(dados: GameData, efeitos: Array, itens: Dictionary) -> Array
 				avisos.append("Conquista!")
 		if e.has("vida"):
 			dados.jogador["vida"] = clampf(float(dados.jogador["vida"]) + float(e["vida"]), 1.0, 100.0)
+		if e.has("marcar_dia"):
+			Progresso.marcar(dados, str(e["marcar_dia"]), int(dados.mundo["dia"]))
+		if e.has("conta"):
+			var conta := str(e["conta"])
+			if e.has("depositar"):
+				var q := int(dados.jogador["dinheiro"]) if str(e["depositar"]) == "tudo" else mini(int(e["depositar"]), int(dados.jogador["dinheiro"]))
+				dados.jogador["dinheiro"] = int(dados.jogador["dinheiro"]) - q
+				Progresso.guardar(dados, conta, q)
+			if e.has("sacar"):
+				var q := Progresso.saldo(dados, conta) if str(e["sacar"]) == "tudo" else mini(int(e["sacar"]), Progresso.saldo(dados, conta))
+				Progresso.guardar(dados, conta, -q)
+				dados.jogador["dinheiro"] = int(dados.jogador["dinheiro"]) + q
+			if e.has("render"):
+				Progresso.guardar(dados, conta, int(e["render"]))
+				avisos.append("+$ %d guardados" % int(e["render"]))
 	return avisos
+
+
+## Troca {dinheiro}, {dia} e {conta:<nome>} pelos valores atuais.
+static func texto(dados: GameData, t: String) -> String:
+	if not "{" in t:
+		return t
+	t = t.replace("{dinheiro}", str(int(dados.jogador["dinheiro"]))).replace("{dia}", str(int(dados.mundo["dia"])))
+	while "{conta:" in t:
+		var i := t.find("{conta:")
+		var f := t.find("}", i)
+		if f < 0:
+			break
+		var nome := t.substr(i + 7, f - i - 7)
+		t = t.substr(0, i) + str(Progresso.saldo(dados, nome)) + t.substr(f + 1)
+	return t
 
 
 ## Primeiro ramo cuja condição vale ("" se nenhum).

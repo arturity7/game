@@ -6,7 +6,7 @@ import math
 from pixel import *  # noqa: F401,F403
 import gerar_arte as GA
 from gerar_arte import caminho, _sombra, contornar, copa
-from cidade import _recolorir
+from cidade import _recolorir  # noqa: F401  (também registra as rampas da cidade)
 
 ESCURO = hexc("#1e1420")
 
@@ -152,6 +152,8 @@ def gerar():
     for v in range(2):
         salvar(oliveira(v), caminho("objetos", "oliveira_%d.png" % v))
         salvar(horta(v), caminho("objetos", "horta_%d.png" % v))
+    salvar(personagem("cabelo_grisalho", "tunica_roxa", "tunica_ocre", barba=True), caminho("personagens", "arkad.png"))
+    salvar(personagem("cabelo_preto", "camisa_vinho", "tunica_ocre", barba=True), caminho("personagens", "mathon.png"))
     salvar(cevada(), caminho("objetos", "cevada.png"))
     salvar(mesa_comprida(), caminho("objetos", "mesa_comprida.png"))
     salvar(placa(), caminho("objetos", "placa.png"))

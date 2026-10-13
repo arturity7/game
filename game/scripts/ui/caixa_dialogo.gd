@@ -142,7 +142,7 @@ func _mostrar_avisos(avisos: Array) -> void:
 
 func _mostrar_pagina() -> void:
 	_estado = "texto"
-	_texto.text = str(_paginas[_pagina])
+	_texto.text = Dialogo.texto(GameState.dados, str(_paginas[_pagina]))
 	_texto.visible_characters = 0
 	_tempo = 0.0
 
@@ -217,7 +217,7 @@ func _fim_das_paginas() -> void:
 		_estado = "escolhas"
 		var lista: Array = []
 		for e in _escolhas:
-			lista.append(str(e.get("texto", "")))
+			lista.append(Dialogo.texto(GameState.dados, str(e.get("texto", ""))))
 		_montar_opcoes(lista, func(i): _entrar(str(_escolhas[i].get("ir", "fim"))))
 		return
 	_entrar(str(_no.get("ir", "fim")))

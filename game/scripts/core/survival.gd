@@ -30,6 +30,9 @@ static func desmaiar(dados: GameData, cfg: Dictionary, local_clinica: Vector2, m
 	var j := dados.jogador
 	var pct := float(cfg.get("perda_dinheiro_ao_desmaiar_pct", 10)) / 100.0
 	var perda := int(floor(int(j["dinheiro"]) * pct))
+	# "muralha" comprada com Mathon (livro da Babilônia): perde só a metade
+	if bool(dados.progresso["flags"].get(str(cfg.get("flag_muralha", "babilonia.muralha")), false)):
+		perda = perda / 2
 	j["dinheiro"] = int(j["dinheiro"]) - perda
 	j["vida"] = float(cfg.get("vida_max", 100.0)) * 0.5
 	j["fome"] = maxf(float(j["fome"]), float(cfg.get("fome_max", 100.0)) * 0.25)

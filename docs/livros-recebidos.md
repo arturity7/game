@@ -2,7 +2,7 @@
 
 > Lista dos livros que o dono já mandou. **Sem spoilers**: aqui só aparece o que foi recebido e em que pé está. Onde cada livro fica no mundo e o que ele vira no jogo estão em `livros/` (área com spoilers).
 >
-> Status: 📥 recebido · 📖 em análise · 📝 ficha pronta · 🎮 no jogo
+> Status: 📥 recebido · 📖 em análise · 📝 ficha pronta · 🎮 no jogo (🎮 em parte: o livro já tem conteúdo jogável, mas ainda falta parte do que a ficha prevê)
 
 ## Lote 1 — 11/10/2026
 
@@ -21,7 +21,7 @@
 | 11 | De Quanta Terra Precisa um Homem? e outras histórias | Liev Tolstói | EPUB | Português | 📝 |
 | 12 | Carta a Meneceu sobre a felicidade e outras cartas | Epicuro | EPUB | Português | 🎮 |
 | 13 | Cartas de um Diabo a seu Aprendiz | C. S. Lewis | EPUB | Português | 📝 |
-| 14 | O Homem Mais Rico da Babilônia | George S. Clason | AZW3 | Português | 📝 |
+| 14 | O Homem Mais Rico da Babilônia | George S. Clason | AZW3 | Português | 🎮 (em parte) |
 | 15 | Nada Pode Me Ferir | David Goggins | AZW3 | Português | 📝 |
 | 16 | Nunca É Hora de Parar | David Goggins | EPUB | Português | 📝 |
 | 17 | Respire: uma vida em movimento | Rickson Gracie e Peter Maguire | PDF | Português | 📝 |

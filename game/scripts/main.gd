@@ -351,8 +351,13 @@ func interagir(c: Vector2i) -> void:
 	var d: GameData = GameState.dados
 	# morador na célula; no balcão, quem atende fica atrás dele
 	var npc := mundo.mapa.npc_em(c)
-	if npc.is_empty() and bool(Config.objetos.get(mundo.mapa.tipo_em(c), {}).get("atende_atras", false)):
-		npc = mundo.mapa.npc_em(c + Vector2i(0, -1))
+	var balcao := mundo.mapa.objeto_em(c)
+	if npc.is_empty() and not balcao.is_empty() and bool(Config.objetos.get(str(balcao["tipo"]), {}).get("atende_atras", false)):
+		var peg: Array = Config.objetos[str(balcao["tipo"])].get("pegada", [1, 1])
+		for dx in int(peg[0]):
+			npc = mundo.mapa.npc_em(Vector2i(int(balcao["x"]) + dx, int(balcao["y"]) - 1))
+			if not npc.is_empty():
+				break
 	if not npc.is_empty():
 		mundo.jogador.olhar_para(c)
 		var loja := str(npc.get("loja", ""))

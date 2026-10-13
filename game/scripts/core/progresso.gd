@@ -69,6 +69,26 @@ static func responder(dados: GameData, id_pergunta: String, def: Dictionary, cer
 	return "errado_vida"
 
 
+## Dinheiro guardado com alguém (ex.: a poupança com Arkad): flag numérica "conta:<nome>".
+static func saldo(dados: GameData, conta: String) -> int:
+	return int(flag(dados, "conta:" + conta, 0))
+
+
+static func guardar(dados: GameData, conta: String, quantia: int) -> void:
+	marcar(dados, "conta:" + conta, maxi(0, saldo(dados, conta) + quantia))
+
+
+## Livro da Babilônia: quem combinou com Arkad guarda um décimo de cada venda (pague-se primeiro).
+## Retorna quanto foi guardado.
+static func guardar_decimo(dados: GameData, valor_venda: int) -> int:
+	if not tem_flag(dados, "babilonia.decimo"):
+		return 0
+	var parte := mini(maxi(1, valor_venda / 10), int(dados.jogador["dinheiro"]))
+	dados.jogador["dinheiro"] = int(dados.jogador["dinheiro"]) - parte
+	guardar(dados, "babilonia.poupanca", parte)
+	return parte
+
+
 ## Dá a conquista; retorna true se ela é nova.
 static func conquistar(dados: GameData, id: String) -> bool:
 	var c: Dictionary = dados.progresso["conquistas"]

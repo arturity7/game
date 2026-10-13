@@ -23,6 +23,7 @@ func _init() -> void:
 	_teste_conteudo_dos_livros(cfg)
 	_teste_mapas_ligados()
 	_teste_epicuro_do_comeco_ao_fim(cfg)
+	_teste_babilonia(cfg)
 	print("\n%d verificações, %d falha(s)" % [total, falhas])
 	quit(1 if falhas > 0 else 0)
 
@@ -169,9 +170,9 @@ func _teste_mapa_fazenda() -> void:
 	for o in mcid.objetos:
 		checar(objetos.has(o["tipo"]), "cidade: objeto conhecido: " + str(o["tipo"]))
 	var mm := MapData.de_dict(_json("res://content/mapas/mercado.json"), objetos)
-	checar(str(mm.npc_em(Vector2i(5, 3)).get("loja", "")) == "mercado" and mm.ocupada(Vector2i(5, 3)), "mercado: vendedora no balcão")
-	checar(bool(objetos[mm.tipo_em(Vector2i(5, 4))].get("atende_atras", false)), "mercado: balcão na frente dela")
-	checar(str(mm.saida_em(Vector2i(5, 8)).get("para", "")) == "cidade", "mercado: porta de volta")
+	checar(str(mm.npc_em(Vector2i(6, 3)).get("loja", "")) == "mercado" and mm.ocupada(Vector2i(6, 3)), "mercado: vendedora no balcão")
+	checar(bool(objetos[mm.tipo_em(Vector2i(6, 4))].get("atende_atras", false)), "mercado: balcão na frente dela")
+	checar(str(mm.saida_em(Vector2i(6, 9)).get("para", "")) == "cidade", "mercado: porta de volta")
 	var lojas := _defs("lojas")
 	var itens := _defs("itens")
 	for id in lojas["mercado"]["vende"]:
@@ -427,4 +428,64 @@ func _teste_epicuro_do_comeco_ao_fim(cfg: Dictionary) -> void:
 	var antes := Inventario.contar(inv, "epicuro.item.bolo_cevada")
 	vistos = _conversar(c, d, "epicuro.dialogo.epicuro")
 	checar("quiz_certo" in vistos and "quiz_fim" in vistos and Inventario.contar(inv, "epicuro.item.bolo_cevada") > antes, "epicuro: perguntas livres dão bolo")
+	c.free()
+
+
+
+## Segue uma conversa escolhendo, em cada menu, a opção com o texto pedido (na ordem da lista).
+func _conversar_escolhendo(c: Node, d: GameData, id: String, textos: Array) -> Array:
+	var conv: Dictionary = c.dialogos[id]
+	var no_id := Dialogo.no_inicial(d, conv)
+	var vistos: Array = []
+	var passos := 0
+	while no_id != "" and no_id != "fim" and passos < 200:
+		passos += 1
+		vistos.append(no_id)
+		var no: Dictionary = conv["nos"][no_id]
+		if no.has("ramos"):
+			no_id = Dialogo.escolher_ramo(d, no["ramos"])
+			continue
+		Dialogo.aplicar(d, no.get("efeitos", []), c.itens)
+		if no.has("pergunta"):
+			var pid := str(no["pergunta"])
+			Progresso.responder(d, pid, c.perguntas[pid], true, {})
+			no_id = str(no["certo"])
+			continue
+		var esc := Dialogo.escolhas_visiveis(d, no)
+		if not esc.is_empty():
+			var alvo := "fim"
+			if not textos.is_empty():
+				var quero := str(textos.pop_front())
+				for e in esc:
+					if str(e["texto"]).begins_with(quero):
+						alvo = str(e["ir"])
+			no_id = alvo
+			continue
+		no_id = str(no.get("ir", "fim"))
+	return vistos
+
+
+func _teste_babilonia(cfg: Dictionary) -> void:
+	var c := _config()
+	var d := GameData.novo(cfg, "fazenda", Vector2.ZERO, c.itens)
+	d.jogador["dinheiro"] = 500
+	_conversar_escolhendo(c, d, "babilonia.dialogo.arkad", ["Quero guardar", "Guardar $ 50", "Até logo"])
+	checar(Progresso.tem_flag(d, "babilonia.decimo") and Progresso.saldo(d, "babilonia.poupanca") == 50 and int(d.jogador["dinheiro"]) == 450, "babilônia: guarda o décimo e $ 50 com Arkad")
+	checar(Dialogo.texto(d, "tem $ {conta:babilonia.poupanca}") == "tem $ 50", "babilônia: texto mostra a poupança")
+	var g := Progresso.guardar_decimo(d, 100)
+	checar(g == 10 and Progresso.saldo(d, "babilonia.poupanca") == 60 and int(d.jogador["dinheiro"]) == 440, "babilônia: uma venda de $ 100 guarda $ 10")
+	_conversar_escolhendo(c, d, "babilonia.dialogo.arkad", ["Retirar tudo", "Até logo"])
+	checar(Progresso.saldo(d, "babilonia.poupanca") == 0 and int(d.jogador["dinheiro"]) == 500, "babilônia: retira tudo")
+	var vistos := _conversar_escolhendo(c, d, "babilonia.dialogo.arkad", ["Me ensina", "Outra", "Voltar", "Até logo"])
+	checar("licao_certa" in vistos and Progresso.saldo(d, "babilonia.poupanca") == 10, "babilônia: cada lição rende $ 5 na poupança")
+	d.mundo["dia"] = int(d.mundo["dia"]) + 30
+	_conversar_escolhendo(c, d, "babilonia.dialogo.arkad", ["Me ensina", "Até logo"])
+	checar(Progresso.tem_conquista(d, "babilonia.conquista.uma_parte"), "babilônia: um mês guardando o décimo dá a conquista")
+	var perda_sem := Survival.desmaiar(d, cfg, Vector2.ZERO, "clinica")
+	d.jogador["dinheiro"] = 500
+	_conversar_escolhendo(c, d, "babilonia.dialogo.mathon", ["O que é a muralha", "Quero a muralha", "Até logo"])
+	checar(Progresso.tem_flag(d, "babilonia.muralha") and int(d.jogador["dinheiro"]) == 400, "babilônia: compra a muralha de Mathon")
+	d.jogador["dinheiro"] = 500
+	var perda_com := Survival.desmaiar(d, cfg, Vector2.ZERO, "clinica")
+	checar(perda_com == perda_sem / 2, "babilônia: com a muralha, perde só metade ao desmaiar")
 	c.free()

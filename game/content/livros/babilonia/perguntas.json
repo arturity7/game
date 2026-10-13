@@ -1,0 +1,331 @@
+{
+ "_sobre": "Perguntas do livro da Babilônia (formato em docs/tecnico.md §9).",
+ "babilonia.pergunta.segredo": {
+  "texto": "Qual é o segredo de Arkad para ficar rico?",
+  "opcoes": [
+   "Guardar para si pelo menos um décimo de tudo o que ganha",
+   "Apostar tudo de uma vez",
+   "Pedir dinheiro emprestado ao rei",
+   "Gastar primeiro e guardar o que sobrar"
+  ],
+  "certa": 0,
+  "nivel": "memoria",
+  "peso": "simples",
+  "ref": "O homem mais rico da Babilônia"
+ },
+ "babilonia.pergunta.escriba": {
+  "texto": "Qual era a profissão de Arkad quando jovem?",
+  "opcoes": [
+   "Escriba",
+   "Ferreiro",
+   "Pastor",
+   "Soldado"
+  ],
+  "certa": 0,
+  "nivel": "memoria",
+  "peso": "simples",
+  "ref": "O homem mais rico da Babilônia"
+ },
+ "babilonia.pergunta.algamish": {
+  "texto": "Quem ensinou o segredo a Arkad?",
+  "opcoes": [
+   "Algamish, o emprestador de dinheiro",
+   "O rei da Babilônia",
+   "Um sacerdote do templo",
+   "O próprio pai"
+  ],
+  "certa": 0,
+  "nivel": "memoria",
+  "peso": "simples",
+  "ref": "O homem mais rico da Babilônia"
+ },
+ "babilonia.pergunta.sete": {
+  "texto": "Quantas soluções Arkad ensina para a falta de dinheiro?",
+  "opcoes": [
+   "Sete",
+   "Três",
+   "Cinco",
+   "Dez"
+  ],
+  "certa": 0,
+  "nivel": "memoria",
+  "peso": "simples",
+  "ref": "As sete soluções"
+ },
+ "babilonia.pergunta.cinco_leis": {
+  "texto": "Quantas são as leis do ouro?",
+  "opcoes": [
+   "Cinco",
+   "Sete",
+   "Três",
+   "Doze"
+  ],
+  "certa": 0,
+  "nivel": "memoria",
+  "peso": "simples",
+  "ref": "As cinco leis do ouro"
+ },
+ "babilonia.pergunta.cesto": {
+  "texto": "No exemplo do cesto, quantos ovos entram e quantos saem para ele um dia transbordar?",
+  "opcoes": [
+   "Entram dez, saem nove",
+   "Entram nove, saem dez",
+   "Entram dez, saem dez",
+   "Entra um, sai nenhum"
+  ],
+  "certa": 0,
+  "nivel": "memoria",
+  "peso": "simples",
+  "ref": "As sete soluções"
+ },
+ "babilonia.pergunta.nona_lei": {
+  "texto": "Que lei Arkad passou a noite copiando em troca do segredo?",
+  "opcoes": [
+   "A Nona Lei",
+   "A Primeira Lei",
+   "A Lei do Rei",
+   "A Décima Lei"
+  ],
+  "certa": 0,
+  "nivel": "releitura",
+  "dica": "no capítulo O homem mais rico da Babilônia",
+  "peso": "simples",
+  "ref": "O homem mais rico da Babilônia"
+ },
+ "babilonia.pergunta.azmur": {
+  "texto": "A quem Arkad confiou as primeiras economias, e perdeu?",
+  "opcoes": [
+   "Azmur, o oleiro, que comprou vidro achando que era joia",
+   "Um pastor de ovelhas",
+   "O ferreiro do bairro",
+   "Um mercador de tapetes"
+  ],
+  "certa": 0,
+  "nivel": "releitura",
+  "dica": "no capítulo O homem mais rico da Babilônia",
+  "peso": "simples",
+  "ref": "O homem mais rico da Babilônia"
+ },
+ "babilonia.pergunta.nippur": {
+  "texto": "Em que cidade ficavam as terras de Algamish?",
+  "opcoes": [
+   "Nippur",
+   "Nínive",
+   "Damasco",
+   "Atenas"
+  ],
+  "certa": 0,
+  "nivel": "releitura",
+  "dica": "no capítulo O homem mais rico da Babilônia",
+  "peso": "simples",
+  "ref": "O homem mais rico da Babilônia"
+ },
+ "babilonia.pergunta.cem_alunos": {
+  "texto": "Quantos alunos havia na aula de Arkad no Templo do Saber?",
+  "opcoes": [
+   "Cem",
+   "Dez",
+   "Mil",
+   "Doze"
+  ],
+  "certa": 0,
+  "nivel": "releitura",
+  "dica": "no começo de As sete soluções",
+  "peso": "simples",
+  "ref": "As sete soluções"
+ },
+ "babilonia.pergunta.quinta": {
+  "texto": "Qual é a quinta solução para a falta de dinheiro?",
+  "opcoes": [
+   "Ter o próprio lar",
+   "Aumentar a capacidade de ganhar",
+   "Garantir uma renda para o futuro",
+   "Controlar os gastos"
+  ],
+  "certa": 0,
+  "nivel": "releitura",
+  "dica": "em As sete soluções",
+  "peso": "simples",
+  "ref": "As sete soluções"
+ },
+ "babilonia.pergunta.bansir": {
+  "texto": "Qual era o ofício de Bansir, o amigo que se sentou desanimado na mureta?",
+  "opcoes": [
+   "Fabricante de carruagens",
+   "Músico",
+   "Padeiro",
+   "Oleiro"
+  ],
+  "certa": 0,
+  "nivel": "releitura",
+  "dica": "em O homem que desejava ouro",
+  "peso": "simples",
+  "ref": "O homem que desejava ouro"
+ },
+ "babilonia.pergunta.kobbi": {
+  "texto": "Que instrumento Kobbi tocava?",
+  "opcoes": [
+   "Lira",
+   "Flauta",
+   "Tambor",
+   "Harpa grande"
+  ],
+  "certa": 0,
+  "nivel": "releitura",
+  "dica": "em O homem que desejava ouro",
+  "peso": "simples",
+  "ref": "O homem que desejava ouro"
+ },
+ "babilonia.pergunta.rodan": {
+  "texto": "Quantas moedas de ouro Rodan ganhou do rei pela ponta de lança?",
+  "opcoes": [
+   "Cinquenta",
+   "Dez",
+   "Cem",
+   "Mil"
+  ],
+  "certa": 0,
+  "nivel": "releitura",
+  "dica": "em O emprestador de ouro da Babilônia",
+  "peso": "simples",
+  "ref": "O emprestador de ouro"
+ },
+ "babilonia.pergunta.tampa": {
+  "texto": "O que estava escrito na tampa da caixa de penhores?",
+  "opcoes": [
+   "Melhor uma pequena cautela que um grande remorso",
+   "Quem empresta, perde",
+   "Ouro chama ouro",
+   "Confie em todos"
+  ],
+  "certa": 0,
+  "nivel": "releitura",
+  "dica": "em O emprestador de ouro da Babilônia",
+  "peso": "simples",
+  "ref": "O emprestador de ouro"
+ },
+ "babilonia.pergunta.cavalo_asno": {
+  "texto": "Qual é a moral da história do cavalo e do asno?",
+  "opcoes": [
+   "Ajude o amigo, mas não ponha os fardos dele nos seus ombros",
+   "Quem trabalha mais deve ganhar menos",
+   "O asno sempre é mais esperto",
+   "Nunca ajude ninguém"
+  ],
+  "certa": 0,
+  "nivel": "releitura",
+  "dica": "em O emprestador de ouro da Babilônia",
+  "peso": "simples",
+  "ref": "O emprestador de ouro"
+ },
+ "babilonia.pergunta.dabasir": {
+  "texto": "Como Dabasir dividiu o que ganhava para pagar as dívidas?",
+  "opcoes": [
+   "Um décimo guardado, sete décimos para viver, dois décimos para os credores",
+   "Metade para os credores, metade para viver",
+   "Tudo para os credores",
+   "Nada guardado, tudo para viver"
+  ],
+  "certa": 0,
+  "nivel": "memoria",
+  "peso": "simples",
+  "ref": "As tabuinhas de argila"
+ },
+ "babilonia.pergunta.sira": {
+  "texto": "Como se chamava a esposa síria que ajudou Dabasir a fugir?",
+  "opcoes": [
+   "Sira",
+   "Ashtar",
+   "Semíramis",
+   "Swasti"
+  ],
+  "certa": 0,
+  "nivel": "releitura",
+  "dica": "em O negociante de camelos",
+  "peso": "simples",
+  "ref": "O negociante de camelos"
+ },
+ "babilonia.pergunta.doze_luas": {
+  "texto": "Em quantas luas Dabasir pagou todas as dívidas?",
+  "opcoes": [
+   "Doze",
+   "Três",
+   "Quarenta",
+   "Cem"
+  ],
+  "certa": 0,
+  "nivel": "releitura",
+  "dica": "em As tabuinhas de argila",
+  "peso": "simples",
+  "ref": "As tabuinhas de argila"
+ },
+ "babilonia.pergunta.semiramis": {
+  "texto": "Quem construiu as primeiras muralhas da Babilônia?",
+  "opcoes": [
+   "A rainha Semíramis",
+   "Arkad",
+   "O rei Sargão",
+   "Os assírios"
+  ],
+  "certa": 0,
+  "nivel": "releitura",
+  "dica": "em As muralhas da Babilônia",
+  "peso": "simples",
+  "ref": "As muralhas da Babilônia"
+ },
+ "babilonia.pergunta.assirios": {
+  "texto": "Quem cercou as muralhas da Babilônia?",
+  "opcoes": [
+   "Os assírios",
+   "Os gregos",
+   "Os egípcios",
+   "Os persas"
+  ],
+  "certa": 0,
+  "nivel": "releitura",
+  "dica": "em As muralhas da Babilônia",
+  "peso": "simples",
+  "ref": "As muralhas da Babilônia"
+ },
+ "babilonia.pergunta.megiddo": {
+  "texto": "Qual era a filosofia de Megiddo, o fazendeiro?",
+  "opcoes": [
+   "O trabalho é o melhor amigo",
+   "Quem dorme cedo enriquece",
+   "A sorte vem para quem espera",
+   "O ouro é o melhor amigo"
+  ],
+  "certa": 0,
+  "nivel": "memoria",
+  "peso": "simples",
+  "ref": "O homem de mais sorte na Babilônia"
+ },
+ "babilonia.pergunta.bolinhos": {
+  "texto": "Por quanto Sharru Nada vendia os bolinhos de mel?",
+  "opcoes": [
+   "Dois por uma moeda de cobre",
+   "Um por uma moeda de ouro",
+   "Dez por uma moeda de prata",
+   "Davam de graça"
+  ],
+  "certa": 0,
+  "nivel": "releitura",
+  "dica": "em O homem de mais sorte na Babilônia",
+  "peso": "simples",
+  "ref": "O homem de mais sorte na Babilônia"
+ },
+ "babilonia.pergunta.arad_gula": {
+  "texto": "Qual era o ofício de Arad Gula?",
+  "opcoes": [
+   "Comerciante de tapetes",
+   "Padeiro",
+   "Emprestador de ouro",
+   "Escriba"
+  ],
+  "certa": 0,
+  "nivel": "releitura",
+  "dica": "em O homem de mais sorte na Babilônia",
+  "peso": "simples",
+  "ref": "O homem de mais sorte na Babilônia"
+ }
+}

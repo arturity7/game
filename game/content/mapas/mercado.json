@@ -1,5 +1,5 @@
 {
- "_sobre": "Interior do mercado: balcão com a vendedora (botão direito nela abre a loja).",
+ "_sobre": "Interior do mercado: a vendedora no balcão (botão direito nela abre a loja); Arkad e Mathon (livro da Babilônia) atendem nas mesinhas dos lados.",
  "id": "mercado",
  "nome": "Mercado",
  "fundo": "mercado.png",
@@ -10,20 +10,21 @@
   ".": "piso"
  },
  "linhas": [
-  "###########",
-  "###########",
-  "###########",
-  "#.........#",
-  "#.........#",
-  "#.........#",
-  "#.........#",
-  "#.........#",
-  "#####.#####"
+  "#############",
+  "#############",
+  "#############",
+  "#...........#",
+  "#...........#",
+  "#...........#",
+  "#...........#",
+  "#...........#",
+  "#...........#",
+  "######.######"
  ],
  "objetos": [
   {
    "tipo": "balcao",
-   "x": 3,
+   "x": 5,
    "y": 4
   },
   {
@@ -33,34 +34,62 @@
   },
   {
    "tipo": "prateleira",
-   "x": 8,
+   "x": 10,
    "y": 3
   },
   {
+   "tipo": "mesinha",
+   "x": 1,
+   "y": 7
+  },
+  {
+   "tipo": "caixa_penhores",
+   "x": 10,
+   "y": 7
+  },
+  {
    "tipo": "caixotes",
-   "x": 8,
-   "y": 6
+   "x": 3,
+   "y": 3
   },
   {
    "tipo": "vaso",
-   "x": 1,
-   "y": 6
+   "x": 9,
+   "y": 3
   }
  ],
  "npcs": [
   {
    "id": "vendedora",
    "sprite": "vendedora.png",
-   "x": 5,
+   "x": 6,
    "y": 3,
    "olhar": "baixo",
    "loja": "mercado"
+  },
+  {
+   "id": "babilonia.npc.arkad",
+   "nome": "Arkad",
+   "sprite": "arkad.png",
+   "x": 2,
+   "y": 6,
+   "olhar": "baixo",
+   "dialogo": "babilonia.dialogo.arkad"
+  },
+  {
+   "id": "babilonia.npc.mathon",
+   "nome": "Mathon",
+   "sprite": "mathon.png",
+   "x": 10,
+   "y": 6,
+   "olhar": "baixo",
+   "dialogo": "babilonia.dialogo.mathon"
   }
  ],
  "saidas": [
   {
-   "x": 5,
-   "y": 8,
+   "x": 6,
+   "y": 9,
    "para": "cidade",
    "chegada": [
     7,
@@ -70,7 +99,7 @@
   }
  ],
  "inicio": [
-  5,
-  7
+  6,
+  8
  ]
 }

@@ -203,11 +203,11 @@ Ambiente: o **Vale do Eufrates**, um deserto quente cortado por canais de irriga
 | ID | Tipo | Onde | Status |
 |---|---|---|---|
 | `babilonia.bioma.vale_eufrates` | Bioma | Mundo principal | Criado (ficha) |
-| `babilonia.npc.arkad` | NPC banqueiro | Mercado / Babilônia | Criado (ficha) |
-| `babilonia.npc.mathon` | NPC emprestador | Mercado / Babilônia | Criado (ficha) |
+| `babilonia.npc.arkad` | NPC banqueiro | Mercado / Babilônia | Implementado no Mercado: poupança (guardar e retirar), o décimo de cada venda guardado automaticamente, lições (cada acerto rende $ 5 na poupança) |
+| `babilonia.npc.mathon` | NPC emprestador | Mercado / Babilônia | Implementado no Mercado: vende a muralha e faz perguntas (cada acerto dá $ 5); o empréstimo com penhor ainda falta |
 | `babilonia.mecanica.arvore_riqueza` | Sistema | Fazenda | Criado (ficha) |
 | `babilonia.mecanica.emprestimo_penhor` | Sistema | Mercado | Criado (ficha) |
-| `babilonia.mecanica.muralha_seguro` | Sistema | Mercado | Criado (ficha) |
+| `babilonia.mecanica.muralha_seguro` | Sistema | Mercado | Implementado: $ 100 com Mathon; ao desmaiar, perde só metade |
 | `babilonia.puzzle.cesto_ovos` | Puzzle | Fazenda | Criado (ficha) |
 | `babilonia.puzzle.conselho_certo` | Puzzle | Babilônia | Criado (ficha) |
 | `babilonia.puzzle.cinco_leis` | Puzzle / colecionável | Babilônia | Criado (ficha) |
@@ -218,4 +218,4 @@ Ambiente: o **Vale do Eufrates**, um deserto quente cortado por canais de irriga
 | `babilonia.receita.bolinho_mel` | Receita | — | Criado (ficha) |
 | `babilonia.maquina.roda_dagua` | Máquina | Loja | Criado (ficha) |
 
-Implementação no jogo: pendente (fase de código).
+Implementação no jogo: começou em 13/10/2026 (Arkad e Mathon no Mercado; `game/content/livros/babilonia/`). A conquista "Uma parte é minha" já funciona (um mês guardando o décimo, conferido ao pedir uma lição a Arkad). O Vale do Eufrates e o resto vêm depois.

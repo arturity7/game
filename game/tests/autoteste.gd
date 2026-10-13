@@ -129,8 +129,8 @@ func _rodar() -> void:
 	Input.action_release("mover_cima")
 	await _esperar(0.5)
 	checar(main.mundo.mapa.id == "mercado", "entra no mercado")
-	main.mundo.jogador.position = Vector2(5, 5) * 16.0 + Vector2(8, 8)
-	main.interagir(Vector2i(5, 4))
+	main.mundo.jogador.position = Vector2(6, 5) * 16.0 + Vector2(8, 8)
+	main.interagir(Vector2i(6, 4))
 	await _esperar(0.1)
 	var loja: Loja = null
 	for n in main.get_children():

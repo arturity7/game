@@ -6,6 +6,7 @@ tapete); os móveis são objetos separados, com profundidade e colisão (objetos
 import math
 from pixel import *  # noqa: F401,F403
 from gerar_arte import caminho, _sombra, contornar
+import cidade  # noqa: F401  (registra as rampas da cidade, ex.: tijolo)
 
 ESCURO = hexc("#1e1420")
 
@@ -154,9 +155,13 @@ def fundo_casa_noite():
     return img
 
 
+TAMANHO_LOJA = {"mercado": (13, 10), "clinica": (11, 9)}
+
+
 def fundo_loja(nome):
-    """Interior de loja 11x9 células: parede do fundo (linhas 0-2), piso (3-7), parede da frente com porta (8)."""
-    L, A = 11, 9
+    """Interior de loja L x A células: parede do fundo (linhas 0-2), piso, parede da frente com a porta no meio."""
+    L, A = TAMANHO_LOJA.get(nome, (11, 9))
+    P = L // 2  # coluna da porta
     W, H = L * 16, A * 16
     img = nova(W, H)
     retangulo(img, 0, 0, W, H, hexc("#120c10"))
@@ -209,19 +214,27 @@ def fundo_loja(nome):
     topo_parede(4, 0, 16, H)
     topo_parede(W - 16, 0, W - 4, H)
     topo_parede(4, 0, W - 4, 4)
-    topo_parede(4, H - 16, 5 * 16, H - 4)
-    topo_parede(6 * 16, H - 16, W - 4, H - 4)
+    topo_parede(4, H - 16, P * 16, H - 4)
+    topo_parede((P + 1) * 16, H - 16, W - 4, H - 4)
     for y in range(H - 16, H):
-        for x in range(5 * 16, 6 * 16):
+        for x in range(P * 16, (P + 1) * 16):
             put(img, x, y, cor("madeira", 2) if y < H - 4 else hexc("#120c10"))
     for y in range(H - 30, H - 19):
-        for x in range(5 * 16 + 1, 6 * 16 - 1):
+        for x in range(P * 16 + 1, (P + 1) * 16 - 1):
             put(img, x, y, cor("folha" if nome != "clinica" else "camisa", 3 if (x + y) % 4 < 2 else 2))
+    if nome == "mercado":  # tapetes de Arkad (esquerda) e Mathon (direita)
+        for (x0, rampa) in ((16 + 4, "tunica_roxa"), (W - 16 - 4 - 40, "coracao")):
+            for y in range(H - 16 - 46, H - 16 - 10):
+                for x in range(x0, x0 + 40):
+                    b = min(x - x0, y - (H - 62), x0 + 39 - x, H - 27 - y)
+                    c = cor(rampa, 1) if b == 0 else cor("flor_am", 1) if b == 2 else cor(rampa, 2 if ((x - x0) // 3 + (y // 3)) % 2 else 3)
+                    put(img, x, y, c)
     return img
 
 
 def fundo_loja_noite(nome):
-    W, H = 11 * 16, 9 * 16
+    L, A = TAMANHO_LOJA.get(nome, (11, 9))
+    W, H = L * 16, A * 16
     img = nova(W, H)
     for jx in (28, W - 60):
         for y in range(10, 29):
@@ -285,6 +298,49 @@ def caixotes():
                 put(img, x, y, cor("madeira", i))
         for k in range(6):
             put(img, bx + 2 + k * 2, by + 3, cor(r, 2)); put(img, bx + 3 + k * 2, by + 2, cor(r, 3))
+    return contornar(img, ESCURO)
+
+
+def caixa_penhores():
+    """Caixa de penhores de Mathon 32x26 (pegada 2x1): baú de couro vermelho com cantos de bronze."""
+    img = nova(32, 26)
+    _sombra(img, 16, 24, 15, 2, 90)
+    for y in range(6, 22):
+        for x in range(1, 31):
+            i = 3 if y < 12 else 2
+            if y == 6:
+                i = 4
+            if (x * 7 + y * 3) % 11 == 0:
+                i -= 1
+            put(img, x, y, cor("coracao", max(0, min(3, i))))
+    for x in range(1, 31):
+        put(img, x, 12, cor("coracao", 0)); put(img, x, 13, cor("milho", 1))
+    for (x, y) in ((1, 6), (2, 6), (1, 7), (29, 6), (30, 6), (30, 7), (1, 21), (2, 21), (30, 21), (29, 21)):
+        put(img, x, y, cor("milho", 2))
+    for y in range(11, 16):
+        for x in range(14, 18):
+            put(img, x, y, cor("milho", 3 if y < 13 else 2))
+    return contornar(img, ESCURO)
+
+
+def mesinha():
+    """Mesinha de contas 32x26 (pegada 2x1) com moedas e tabuinhas de argila."""
+    img = nova(32, 26)
+    _sombra(img, 16, 24, 15, 2, 90)
+    for y in range(5, 15):
+        for x in range(0, 32):
+            put(img, x, y, cor("madeira", 5 if y < 7 else 4))
+    for y in range(15, 18):
+        for x in range(0, 32):
+            put(img, x, y, cor("madeira", 2))
+    for x in (2, 29):
+        for y in range(18, 24):
+            put(img, x, y, cor("madeira", 2)); put(img, x + 1, y, cor("madeira", 3))
+    for (x, y) in ((5, 6), (8, 7), (6, 8), (9, 9)):  # moedas
+        put(img, x, y, cor("milho", 3)); put(img, x + 1, y, cor("milho", 2))
+    for y in range(4, 11):  # tabuinhas
+        for x in range(18, 26):
+            put(img, x, y, cor("tijolo", 3 if y < 6 else 4) if (x + y) % 5 else cor("tijolo", 2))
     return contornar(img, ESCURO)
 
 
@@ -458,6 +514,8 @@ def gerar():
     salvar(prateleira_mercado(), caminho("objetos", "prateleira.png"))
     salvar(caixotes(), caminho("objetos", "caixotes.png"))
     salvar(leito(), caminho("objetos", "leito.png"))
+    salvar(caixa_penhores(), caminho("objetos", "caixa_penhores.png"))
+    salvar(mesinha(), caminho("objetos", "mesinha.png"))
     salvar(cama(), caminho("objetos", "cama.png"))
     salvar(estante(), caminho("objetos", "estante.png"))
     salvar(mesa(), caminho("objetos", "mesa.png"))

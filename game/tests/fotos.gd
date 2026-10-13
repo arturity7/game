@@ -90,7 +90,7 @@ func _rodar() -> void:
 	main.mundo.jogador.position = Vector2(14, 12) * 16.0 + Vector2(8, 8)
 	await _foto("10c_cidade_noite")
 	d.mundo["hora"] = 10.0
-	main.trocar_mapa("mercado", Vector2i(5, 5), "cima")
+	main.trocar_mapa("mercado", Vector2i(6, 6), "cima")
 	await get_tree().create_timer(0.8).timeout
 	main.mundo.atualizar_luz(10.0)
 	await _foto("11_mercado")

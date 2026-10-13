@@ -1,0 +1,598 @@
+{
+ "_sobre": "Conversas do livro da Babilônia (formato em scripts/core/dialogo.gd).",
+ "babilonia.dialogo.arkad": {
+  "quem": "Arkad",
+  "inicio": [
+   {
+    "se": {
+     "sem_flag": "babilonia.conheceu_arkad"
+    },
+    "ir": "chegada"
+   },
+   {
+    "ir": "menu"
+   }
+  ],
+  "nos": {
+   "chegada": {
+    "fala": [
+     "Sou Arkad. Na Babilônia, me chamavam de o homem mais rico.",
+     "E o meu segredo cabe numa frase: uma parte de tudo o que você ganha é sua para guardar."
+    ],
+    "efeitos": [
+     {
+      "flag": "babilonia.conheceu_arkad"
+     }
+    ],
+    "ir": "oferta"
+   },
+   "oferta": {
+    "fala": [
+     "Se quiser, eu guardo um décimo de cada venda que você fizer aqui no Mercado.",
+     "O que fica comigo está seguro: nem um desmaio leva embora."
+    ],
+    "escolhas": [
+     {
+      "texto": "Quero guardar o décimo.",
+      "ir": "aceita"
+     },
+     {
+      "texto": "Agora não.",
+      "ir": "menu"
+     }
+    ]
+   },
+   "aceita": {
+    "fala": "Ótimo. A riqueza cresce como uma árvore: começa com uma semente.",
+    "efeitos": [
+     {
+      "flag": "babilonia.decimo"
+     },
+     {
+      "marcar_dia": "babilonia.decimo_desde"
+     }
+    ],
+    "ir": "menu"
+   },
+   "parar": {
+    "fala": "Como quiser. Mas quem não guarda nada nunca terá nada.",
+    "efeitos": [
+     {
+      "tirar_flag": "babilonia.decimo"
+     },
+     {
+      "tirar_flag": "babilonia.decimo_desde"
+     }
+    ],
+    "ir": "menu"
+   },
+   "menu": {
+    "fala": "Você tem $ {conta:babilonia.poupanca} guardados comigo.",
+    "escolhas": [
+     {
+      "texto": "Guardar $ 50",
+      "ir": "dep50",
+      "se": {
+       "dinheiro": 50
+      }
+     },
+     {
+      "texto": "Guardar tudo o que tenho",
+      "ir": "deptudo",
+      "se": {
+       "dinheiro": 1
+      }
+     },
+     {
+      "texto": "Retirar $ 50",
+      "ir": "saq50",
+      "se": {
+       "conta": "babilonia.poupanca",
+       "minimo": 50
+      }
+     },
+     {
+      "texto": "Retirar tudo",
+      "ir": "saqtudo",
+      "se": {
+       "conta": "babilonia.poupanca",
+       "minimo": 1
+      }
+     },
+     {
+      "texto": "Guardar o décimo das vendas",
+      "ir": "aceita",
+      "se": {
+       "sem_flag": "babilonia.decimo"
+      }
+     },
+     {
+      "texto": "Parar de guardar o décimo",
+      "ir": "parar",
+      "se": {
+       "flag": "babilonia.decimo"
+      }
+     },
+     {
+      "texto": "Me ensina algo?",
+      "ir": "licao"
+     },
+     {
+      "texto": "Até logo.",
+      "ir": "fim"
+     }
+    ]
+   },
+   "dep50": {
+    "efeitos": [
+     {
+      "conta": "babilonia.poupanca",
+      "depositar": 50
+     }
+    ],
+    "fala": "Guardado.",
+    "ir": "menu"
+   },
+   "deptudo": {
+    "efeitos": [
+     {
+      "conta": "babilonia.poupanca",
+      "depositar": "tudo"
+     }
+    ],
+    "fala": "Guardado. Uma parte é sua, lembre-se.",
+    "ir": "menu"
+   },
+   "saq50": {
+    "efeitos": [
+     {
+      "conta": "babilonia.poupanca",
+      "sacar": 50
+     }
+    ],
+    "fala": "Aqui está.",
+    "ir": "menu"
+   },
+   "saqtudo": {
+    "efeitos": [
+     {
+      "conta": "babilonia.poupanca",
+      "sacar": "tudo"
+     }
+    ],
+    "fala": "Aqui está tudo. Gaste com sabedoria.",
+    "ir": "menu"
+   },
+   "licao": {
+    "ramos": [
+     {
+      "se": {
+       "flag": "babilonia.decimo",
+       "flag_dias": [
+        "babilonia.decimo_desde",
+        30
+       ],
+       "sem_conquista": "babilonia.conquista.uma_parte"
+      },
+      "ir": "conquista"
+     },
+     {
+      "se": {
+       "nao_acertou": "babilonia.pergunta.segredo"
+      },
+      "ir": "q_segredo"
+     },
+     {
+      "se": {
+       "nao_acertou": "babilonia.pergunta.escriba"
+      },
+      "ir": "q_escriba"
+     },
+     {
+      "se": {
+       "nao_acertou": "babilonia.pergunta.algamish"
+      },
+      "ir": "q_algamish"
+     },
+     {
+      "se": {
+       "nao_acertou": "babilonia.pergunta.sete"
+      },
+      "ir": "q_sete"
+     },
+     {
+      "se": {
+       "nao_acertou": "babilonia.pergunta.cinco_leis"
+      },
+      "ir": "q_cinco_leis"
+     },
+     {
+      "se": {
+       "nao_acertou": "babilonia.pergunta.cesto"
+      },
+      "ir": "q_cesto"
+     },
+     {
+      "se": {
+       "nao_acertou": "babilonia.pergunta.nona_lei"
+      },
+      "ir": "q_nona_lei"
+     },
+     {
+      "se": {
+       "nao_acertou": "babilonia.pergunta.azmur"
+      },
+      "ir": "q_azmur"
+     },
+     {
+      "se": {
+       "nao_acertou": "babilonia.pergunta.nippur"
+      },
+      "ir": "q_nippur"
+     },
+     {
+      "se": {
+       "nao_acertou": "babilonia.pergunta.cem_alunos"
+      },
+      "ir": "q_cem_alunos"
+     },
+     {
+      "se": {
+       "nao_acertou": "babilonia.pergunta.quinta"
+      },
+      "ir": "q_quinta"
+     },
+     {
+      "se": {
+       "nao_acertou": "babilonia.pergunta.bansir"
+      },
+      "ir": "q_bansir"
+     },
+     {
+      "se": {
+       "nao_acertou": "babilonia.pergunta.kobbi"
+      },
+      "ir": "q_kobbi"
+     },
+     {
+      "ir": "licao_fim"
+     }
+    ]
+   },
+   "licao_certa": {
+    "fala": "Isso. Ponho $ 5 na sua poupança por essa.",
+    "efeitos": [
+     {
+      "conta": "babilonia.poupanca",
+      "render": 5
+     }
+    ],
+    "escolhas": [
+     {
+      "texto": "Outra lição.",
+      "ir": "licao"
+     },
+     {
+      "texto": "Voltar.",
+      "ir": "menu"
+     }
+    ]
+   },
+   "licao_errada": {
+    "fala": "Não foi bem isso. As tabuinhas guardam a resposta... releia e volte.",
+    "ir": "menu"
+   },
+   "licao_fim": {
+    "fala": "Já te ensinei tudo o que sei. Agora é guardar e deixar a árvore crescer.",
+    "ir": "menu"
+   },
+   "conquista": {
+    "fala": "Um mês inteiro guardando o décimo! Agora você entende o meu segredo.",
+    "efeitos": [
+     {
+      "conquista": "babilonia.conquista.uma_parte"
+     }
+    ],
+    "ir": "menu"
+   },
+   "q_segredo": {
+    "pergunta": "babilonia.pergunta.segredo",
+    "certo": "licao_certa",
+    "errado": "licao_errada"
+   },
+   "q_escriba": {
+    "pergunta": "babilonia.pergunta.escriba",
+    "certo": "licao_certa",
+    "errado": "licao_errada"
+   },
+   "q_algamish": {
+    "pergunta": "babilonia.pergunta.algamish",
+    "certo": "licao_certa",
+    "errado": "licao_errada"
+   },
+   "q_sete": {
+    "pergunta": "babilonia.pergunta.sete",
+    "certo": "licao_certa",
+    "errado": "licao_errada"
+   },
+   "q_cinco_leis": {
+    "pergunta": "babilonia.pergunta.cinco_leis",
+    "certo": "licao_certa",
+    "errado": "licao_errada"
+   },
+   "q_cesto": {
+    "pergunta": "babilonia.pergunta.cesto",
+    "certo": "licao_certa",
+    "errado": "licao_errada"
+   },
+   "q_nona_lei": {
+    "pergunta": "babilonia.pergunta.nona_lei",
+    "certo": "licao_certa",
+    "errado": "licao_errada"
+   },
+   "q_azmur": {
+    "pergunta": "babilonia.pergunta.azmur",
+    "certo": "licao_certa",
+    "errado": "licao_errada"
+   },
+   "q_nippur": {
+    "pergunta": "babilonia.pergunta.nippur",
+    "certo": "licao_certa",
+    "errado": "licao_errada"
+   },
+   "q_cem_alunos": {
+    "pergunta": "babilonia.pergunta.cem_alunos",
+    "certo": "licao_certa",
+    "errado": "licao_errada"
+   },
+   "q_quinta": {
+    "pergunta": "babilonia.pergunta.quinta",
+    "certo": "licao_certa",
+    "errado": "licao_errada"
+   },
+   "q_bansir": {
+    "pergunta": "babilonia.pergunta.bansir",
+    "certo": "licao_certa",
+    "errado": "licao_errada"
+   },
+   "q_kobbi": {
+    "pergunta": "babilonia.pergunta.kobbi",
+    "certo": "licao_certa",
+    "errado": "licao_errada"
+   }
+  }
+ },
+ "babilonia.dialogo.mathon": {
+  "quem": "Mathon",
+  "inicio": [
+   {
+    "se": {
+     "sem_flag": "babilonia.conheceu_mathon"
+    },
+    "ir": "chegada"
+   },
+   {
+    "ir": "menu"
+   }
+  ],
+  "nos": {
+   "chegada": {
+    "fala": [
+     "Sou Mathon, emprestador de ouro e joalheiro.",
+     "Nesta caixa de couro vermelho guardo os penhores de quem me pede dinheiro."
+    ],
+    "efeitos": [
+     {
+      "flag": "babilonia.conheceu_mathon"
+     }
+    ],
+    "ir": "menu"
+   },
+   "menu": {
+    "fala": "Precisa de alguma coisa?",
+    "escolhas": [
+     {
+      "texto": "O que é a muralha?",
+      "ir": "muralha",
+      "se": {
+       "sem_flag": "babilonia.muralha"
+      }
+     },
+     {
+      "texto": "Me ensina algo?",
+      "ir": "licao"
+     },
+     {
+      "texto": "Até logo.",
+      "ir": "fim"
+     }
+    ]
+   },
+   "muralha": {
+    "fala": [
+     "Na Babilônia, as muralhas protegiam a cidade dos inimigos.",
+     "Por $ 100, eu te dou uma muralha: se um dia você desmaiar, perde só metade do que perderia."
+    ],
+    "escolhas": [
+     {
+      "texto": "Quero a muralha ($ 100).",
+      "ir": "compra",
+      "se": {
+       "dinheiro": 100
+      }
+     },
+     {
+      "texto": "Agora não.",
+      "ir": "menu"
+     }
+    ]
+   },
+   "compra": {
+    "fala": "Feito. Agora você está protegido.",
+    "efeitos": [
+     {
+      "dinheiro": -100
+     },
+     {
+      "flag": "babilonia.muralha"
+     }
+    ],
+    "ir": "menu"
+   },
+   "licao": {
+    "ramos": [
+     {
+      "se": {
+       "nao_acertou": "babilonia.pergunta.dabasir"
+      },
+      "ir": "q_dabasir"
+     },
+     {
+      "se": {
+       "nao_acertou": "babilonia.pergunta.megiddo"
+      },
+      "ir": "q_megiddo"
+     },
+     {
+      "se": {
+       "nao_acertou": "babilonia.pergunta.rodan"
+      },
+      "ir": "q_rodan"
+     },
+     {
+      "se": {
+       "nao_acertou": "babilonia.pergunta.tampa"
+      },
+      "ir": "q_tampa"
+     },
+     {
+      "se": {
+       "nao_acertou": "babilonia.pergunta.cavalo_asno"
+      },
+      "ir": "q_cavalo_asno"
+     },
+     {
+      "se": {
+       "nao_acertou": "babilonia.pergunta.sira"
+      },
+      "ir": "q_sira"
+     },
+     {
+      "se": {
+       "nao_acertou": "babilonia.pergunta.doze_luas"
+      },
+      "ir": "q_doze_luas"
+     },
+     {
+      "se": {
+       "nao_acertou": "babilonia.pergunta.semiramis"
+      },
+      "ir": "q_semiramis"
+     },
+     {
+      "se": {
+       "nao_acertou": "babilonia.pergunta.assirios"
+      },
+      "ir": "q_assirios"
+     },
+     {
+      "se": {
+       "nao_acertou": "babilonia.pergunta.bolinhos"
+      },
+      "ir": "q_bolinhos"
+     },
+     {
+      "se": {
+       "nao_acertou": "babilonia.pergunta.arad_gula"
+      },
+      "ir": "q_arad_gula"
+     },
+     {
+      "ir": "licao_fim"
+     }
+    ]
+   },
+   "licao_certa": {
+    "fala": "Muito bem. Tome, $ 5 pela boa memória.",
+    "efeitos": [
+     {
+      "dinheiro": 5
+     }
+    ],
+    "escolhas": [
+     {
+      "texto": "Outra.",
+      "ir": "licao"
+     },
+     {
+      "texto": "Voltar.",
+      "ir": "menu"
+     }
+    ]
+   },
+   "licao_errada": {
+    "fala": "Hum, não. Quem empresta sem pensar se arrepende; quem responde sem lembrar também.",
+    "ir": "menu"
+   },
+   "licao_fim": {
+    "fala": "Você já sabe tudo o que eu sei contar.",
+    "ir": "menu"
+   },
+   "q_dabasir": {
+    "pergunta": "babilonia.pergunta.dabasir",
+    "certo": "licao_certa",
+    "errado": "licao_errada"
+   },
+   "q_megiddo": {
+    "pergunta": "babilonia.pergunta.megiddo",
+    "certo": "licao_certa",
+    "errado": "licao_errada"
+   },
+   "q_rodan": {
+    "pergunta": "babilonia.pergunta.rodan",
+    "certo": "licao_certa",
+    "errado": "licao_errada"
+   },
+   "q_tampa": {
+    "pergunta": "babilonia.pergunta.tampa",
+    "certo": "licao_certa",
+    "errado": "licao_errada"
+   },
+   "q_cavalo_asno": {
+    "pergunta": "babilonia.pergunta.cavalo_asno",
+    "certo": "licao_certa",
+    "errado": "licao_errada"
+   },
+   "q_sira": {
+    "pergunta": "babilonia.pergunta.sira",
+    "certo": "licao_certa",
+    "errado": "licao_errada"
+   },
+   "q_doze_luas": {
+    "pergunta": "babilonia.pergunta.doze_luas",
+    "certo": "licao_certa",
+    "errado": "licao_errada"
+   },
+   "q_semiramis": {
+    "pergunta": "babilonia.pergunta.semiramis",
+    "certo": "licao_certa",
+    "errado": "licao_errada"
+   },
+   "q_assirios": {
+    "pergunta": "babilonia.pergunta.assirios",
+    "certo": "licao_certa",
+    "errado": "licao_errada"
+   },
+   "q_bolinhos": {
+    "pergunta": "babilonia.pergunta.bolinhos",
+    "certo": "licao_certa",
+    "errado": "licao_errada"
+   },
+   "q_arad_gula": {
+    "pergunta": "babilonia.pergunta.arad_gula",
+    "certo": "licao_certa",
+    "errado": "licao_errada"
+   }
+  }
+ }
+}

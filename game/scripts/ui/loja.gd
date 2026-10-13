@@ -181,6 +181,9 @@ func _clique(e: InputEvent, id: String, preco: int) -> void:
 		if vendidas > 0:
 			Som.tocar("colher")
 			_aviso.text = "Vendeu %d." % vendidas
+			var guardado := Progresso.guardar_decimo(d, preco * vendidas)
+			if guardado > 0:
+				_aviso.text += " Arkad guardou $ %d." % guardado
 	_atualizar()
 
 

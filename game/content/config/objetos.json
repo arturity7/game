@@ -25,5 +25,7 @@
   "cevada": {"sprites": ["cevada.png"], "pegada": [1, 1], "ajuste": [0, 1], "solido": false},
   "horta": {"sprites": ["horta_0.png", "horta_1.png"], "pegada": [1, 1], "ajuste": [0, 0], "solido": false},
   "mesa_comprida": {"sprites": ["mesa_comprida.png"], "pegada": [4, 1], "ajuste": [0, 2], "colisao": [62, 10]},
-  "placa": {"sprites": ["placa.png"], "pegada": [1, 1], "ajuste": [0, 2], "colisao": [6, 6]}
+  "placa": {"sprites": ["placa.png"], "pegada": [1, 1], "ajuste": [0, 2], "colisao": [6, 6]},
+  "caixa_penhores": {"sprites": ["caixa_penhores.png"], "pegada": [2, 1], "ajuste": [0, 2], "colisao": [30, 10], "atende_atras": true},
+  "mesinha": {"sprites": ["mesinha.png"], "pegada": [2, 1], "ajuste": [0, 2], "colisao": [30, 10], "atende_atras": true}
 }
