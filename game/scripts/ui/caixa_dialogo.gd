@@ -19,6 +19,7 @@ var _pergunta: Dictionary = {}
 var _id_pergunta := ""
 var _depois_do_aviso: Callable
 var _loja_no_fim := ""      # efeito "abrir_loja": a loja abre quando a conversa acaba
+var _viagem_no_fim: Dictionary = {}   # efeito "viajar": {"mapa", "x", "y", "olhar"} quando a conversa acaba
 var _tempo := 0.0
 
 var _raiz: Control
@@ -93,6 +94,9 @@ func fechar() -> void:
 	var main := get_parent()
 	if _loja_no_fim != "" and main and main.has_method("abrir_loja"):
 		main.abrir_loja.call_deferred(_loja_no_fim)
+	if not _viagem_no_fim.is_empty() and main and main.has_method("trocar_mapa"):
+		var v := _viagem_no_fim
+		main.trocar_mapa.call_deferred(str(v["mapa"]), Vector2i(int(v.get("x", 0)), int(v.get("y", 0))), str(v.get("olhar", "")))
 	queue_free()
 
 
@@ -109,6 +113,8 @@ func _entrar(id: String) -> void:
 	for e in _no.get("efeitos", []):
 		if e.has("abrir_loja"):
 			_loja_no_fim = str(e["abrir_loja"])
+		if e.has("viajar"):
+			_viagem_no_fim = e["viajar"]
 	_mostrar_avisos(avisos)
 	_nome.text = str(_no.get("quem", conversa.get("quem", "")))
 	_nome_caixa.visible = _nome.text != ""

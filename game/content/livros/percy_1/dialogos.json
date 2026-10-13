@@ -1,0 +1,637 @@
+{
+ "_sobre": "Conversas de Percy Jackson e o Ladrão de Raios. O jogador vive a história no papel de Percy (ficha §10).",
+ "percy_1.dialogo.grover_estrada": {
+  "quem": "Grover",
+  "inicio": [
+   {
+    "se": {
+     "flag": "venceu:percy_1.boss.homem_touro"
+    },
+    "ir": "venceu"
+   },
+   {
+    "se": {
+     "flag": "percy_1.estrada_avisado"
+    },
+    "ir": "dica"
+   },
+   {
+    "ir": "aviso"
+   }
+  ],
+  "nos": {
+   "aviso": {
+    "fala": [
+     "Percy! Você está bem? O carro foi parar na vala...",
+     "Está vendo aquele pinheiro lá no alto da colina? Do outro lado é seguro. Ele não passa da fronteira.",
+     "Ele... está vindo. Não diga o nome dele! Os nomes têm poder.",
+     "Ele enxerga e ouve mal. Vai pelo cheiro. Quando bater o pé e baixar a cabeça, vai correr reto!",
+     "Espere até o último segundo e pule de lado. Se ele bater numa pedra ou numa árvore, fica tonto.",
+     "Na terceira vez que ele ficar tonto... é a sua chance. Chegue perto e use o botão direito!"
+    ],
+    "efeitos": [
+     {
+      "flag": "percy_1.estrada_avisado"
+     },
+     {
+      "missao": "percy_1.missao.pinheiro",
+      "estado": "ativa"
+     }
+    ],
+    "ir": "fim"
+   },
+   "dica": {
+    "fala": [
+     "Pule de lado no último segundo! Faça ele bater nas pedras e nas árvores!"
+    ],
+    "ir": "fim"
+   },
+   "venceu": {
+    "fala": [
+     "Você conseguiu! Agora para o pinheiro, rápido!"
+    ],
+    "ir": "fim"
+   }
+  }
+ },
+ "percy_1.dialogo.depois_touro": {
+  "quem": "Grover",
+  "inicio": "a",
+  "nos": {
+   "a": {
+    "fala": [
+     "Ele... virou areia! O vento levou tudo. Só sobrou o chifre.",
+     "Monstros não morrem de verdade, sabe? Um dia eles voltam. Mas hoje não!",
+     "Guarde esse chifre. E vamos: o pinheiro está logo ali em cima."
+    ],
+    "efeitos": [
+     {
+      "conquista": "percy_1.conquista.ole"
+     }
+    ],
+    "ir": "fim"
+   }
+  }
+ },
+ "percy_1.dialogo.portal_volta": {
+  "quem": "Portal",
+  "inicio": "a",
+  "nos": {
+   "a": {
+    "fala": "A névoa azul gira dentro do arco. Do outro lado, a Colina do Portal.",
+    "escolhas": [
+     {
+      "texto": "Voltar para casa",
+      "ir": "volta"
+     },
+     {
+      "texto": "Ficar",
+      "ir": "fim"
+     }
+    ]
+   },
+   "volta": {
+    "efeitos": [
+     {
+      "viajar": {
+       "mapa": "colina",
+       "x": 21,
+       "y": 7,
+       "olhar": "baixo"
+      }
+     }
+    ],
+    "ir": "fim"
+   }
+  }
+ },
+ "percy_1.dialogo.despertar": {
+  "quem": "Annabeth",
+  "inicio": "a",
+  "nos": {
+   "a": {
+    "fala": [
+     "Ei. Você baba quando está dormindo.",
+     "Você ficou dois dias apagado. Grover trouxe você até o pinheiro e daí para cá.",
+     "Isto é o Acampamento Meio-Sangue. Quíron quer falar com você. Ele está na frente da Casa Grande."
+    ],
+    "efeitos": [
+     {
+      "flag": "percy_1.chegou_acampamento"
+     },
+     {
+      "conquista": "percy_1.conquista.voce_baba"
+     },
+     {
+      "missao": "percy_1.missao.pinheiro",
+      "estado": "feita"
+     }
+    ],
+    "ir": "fim"
+   }
+  }
+ },
+ "percy_1.dialogo.annabeth": {
+  "quem": "Annabeth",
+  "inicio": "a",
+  "nos": {
+   "a": {
+    "fala": [
+     "Quíron está ali na frente da Casa Grande.",
+     "E não fique parado olhando para o sótão. Ninguém sobe lá."
+    ],
+    "ir": "fim"
+   }
+  }
+ },
+ "percy_1.dialogo.quiron": {
+  "quem": "Quíron",
+  "inicio": [
+   {
+    "se": {
+     "sem_flag": "percy_1.conheceu_quiron"
+    },
+    "ir": "chegada"
+   },
+   {
+    "ir": "menu"
+   }
+  ],
+  "nos": {
+   "chegada": {
+    "fala": [
+     "Ah, Percy. Que bom ver você de pé. Já me conhecia como sr. Brunner, das aulas de latim.",
+     "Os deuses gregos estão vivos. O Olimpo mudou de lugar com o Ocidente; hoje fica bem longe da Grécia.",
+     "Este vale é o Acampamento Meio-Sangue, um lugar seguro para semideuses como você.",
+     "E sim: sou um centauro. A cadeira de rodas era só um disfarce. A Névoa faz o resto."
+    ],
+    "efeitos": [
+     {
+      "flag": "percy_1.conheceu_quiron"
+     }
+    ],
+    "ir": "menu"
+   },
+   "menu": {
+    "fala": "Em que posso ajudar?",
+    "escolhas": [
+     {
+      "texto": "O que eu faço aqui?",
+      "ir": "tarefa",
+      "se": {
+       "missao": "percy_1.missao.esgrima",
+       "estado": "nova"
+      }
+     },
+     {
+      "texto": "Me faça uma pergunta.",
+      "ir": "quiz"
+     },
+     {
+      "texto": "O que é a Névoa?",
+      "ir": "nevoa"
+     },
+     {
+      "texto": "Até logo.",
+      "ir": "fim"
+     }
+    ]
+   },
+   "tarefa": {
+    "fala": [
+     "Todo campista treina. Vá à arena, ali embaixo à esquerda. Pegue uma espada de bronze no suporte.",
+     "Luke cuida da aula de esgrima. Bronze celestial só fere monstros; com gente, não faz nada."
+    ],
+    "efeitos": [
+     {
+      "missao": "percy_1.missao.esgrima",
+      "estado": "ativa"
+     }
+    ],
+    "ir": "menu"
+   },
+   "nevoa": {
+    "fala": [
+     "É um véu que esconde o nosso mundo dos olhos dos mortais.",
+     "Uma espada vira um taco; um monstro vira um cachorro grande. Eles veem o que conseguem entender."
+    ],
+    "ir": "menu"
+   },
+   "quiz": {
+    "ramos": [
+     {
+      "se": {
+       "nao_acertou": "percy_1.pergunta.estela"
+      },
+      "ir": "q_estela"
+     },
+     {
+      "se": {
+       "nao_acertou": "percy_1.pergunta.dodds"
+      },
+      "ir": "q_dodds"
+     },
+     {
+      "se": {
+       "nao_acertou": "percy_1.pergunta.parcas"
+      },
+      "ir": "q_parcas"
+     },
+     {
+      "se": {
+       "nao_acertou": "percy_1.pergunta.grover_bode"
+      },
+      "ir": "q_grover_bode"
+     },
+     {
+      "se": {
+       "nao_acertou": "percy_1.pergunta.cheiro"
+      },
+      "ir": "q_cheiro"
+     },
+     {
+      "se": {
+       "nao_acertou": "percy_1.pergunta.cueca"
+      },
+      "ir": "q_cueca"
+     },
+     {
+      "se": {
+       "nao_acertou": "percy_1.pergunta.argola"
+      },
+      "ir": "q_argola"
+     },
+     {
+      "se": {
+       "nao_acertou": "percy_1.pergunta.quiron"
+      },
+      "ir": "q_quiron"
+     },
+     {
+      "se": {
+       "nao_acertou": "percy_1.pergunta.sr_d"
+      },
+      "ir": "q_sr_d"
+     },
+     {
+      "se": {
+       "nao_acertou": "percy_1.pergunta.dois_dias"
+      },
+      "ir": "q_dois_dias"
+     },
+     {
+      "se": {
+       "nao_acertou": "percy_1.pergunta.nectar"
+      },
+      "ir": "q_nectar"
+     },
+     {
+      "se": {
+       "nao_acertou": "percy_1.pergunta.casa_cor"
+      },
+      "ir": "q_casa_cor"
+     },
+     {
+      "se": {
+       "nao_acertou": "percy_1.pergunta.casa_andares"
+      },
+      "ir": "q_casa_andares"
+     },
+     {
+      "se": {
+       "nao_acertou": "percy_1.pergunta.fruta"
+      },
+      "ir": "q_fruta"
+     },
+     {
+      "se": {
+       "nao_acertou": "percy_1.pergunta.sotao"
+      },
+      "ir": "q_sotao"
+     },
+     {
+      "se": {
+       "nao_acertou": "percy_1.pergunta.pinheiro"
+      },
+      "ir": "q_pinheiro"
+     },
+     {
+      "se": {
+       "nao_acertou": "percy_1.pergunta.monstros"
+      },
+      "ir": "q_monstros"
+     },
+     {
+      "ir": "quiz_fim"
+     }
+    ]
+   },
+   "quiz_certo": {
+    "fala": "Muito bem. Tome um dracma: é a moeda dos deuses.",
+    "efeitos": [
+     {
+      "dar_item": "percy_1.item.dracma"
+     }
+    ],
+    "escolhas": [
+     {
+      "texto": "Outra!",
+      "ir": "quiz"
+     },
+     {
+      "texto": "Chega por hoje.",
+      "ir": "fim"
+     }
+    ]
+   },
+   "certo_estela": {
+    "fala": "Exatamente. Lembra do museu? Agora vale mais que meio ponto.",
+    "efeitos": [
+     {
+      "conquista": "percy_1.conquista.meio_ponto"
+     },
+     {
+      "dar_item": "percy_1.item.dracma"
+     }
+    ],
+    "escolhas": [
+     {
+      "texto": "Outra!",
+      "ir": "quiz"
+     },
+     {
+      "texto": "Chega por hoje.",
+      "ir": "fim"
+     }
+    ]
+   },
+   "quiz_errado": {
+    "fala": "Não exatamente. Pense com calma; de você, aceito apenas o melhor.",
+    "ir": "fim"
+   },
+   "quiz_fim": {
+    "fala": "Você aprende depressa. Por hoje, chega de perguntas.",
+    "ir": "fim"
+   },
+   "q_estela": {
+    "pergunta": "percy_1.pergunta.estela",
+    "certo": "certo_estela",
+    "errado": "quiz_errado"
+   },
+   "q_dodds": {
+    "pergunta": "percy_1.pergunta.dodds",
+    "certo": "quiz_certo",
+    "errado": "quiz_errado"
+   },
+   "q_parcas": {
+    "pergunta": "percy_1.pergunta.parcas",
+    "certo": "quiz_certo",
+    "errado": "quiz_errado"
+   },
+   "q_grover_bode": {
+    "pergunta": "percy_1.pergunta.grover_bode",
+    "certo": "quiz_certo",
+    "errado": "quiz_errado"
+   },
+   "q_cheiro": {
+    "pergunta": "percy_1.pergunta.cheiro",
+    "certo": "quiz_certo",
+    "errado": "quiz_errado"
+   },
+   "q_cueca": {
+    "pergunta": "percy_1.pergunta.cueca",
+    "certo": "quiz_certo",
+    "errado": "quiz_errado"
+   },
+   "q_argola": {
+    "pergunta": "percy_1.pergunta.argola",
+    "certo": "quiz_certo",
+    "errado": "quiz_errado"
+   },
+   "q_quiron": {
+    "pergunta": "percy_1.pergunta.quiron",
+    "certo": "quiz_certo",
+    "errado": "quiz_errado"
+   },
+   "q_sr_d": {
+    "pergunta": "percy_1.pergunta.sr_d",
+    "certo": "quiz_certo",
+    "errado": "quiz_errado"
+   },
+   "q_dois_dias": {
+    "pergunta": "percy_1.pergunta.dois_dias",
+    "certo": "quiz_certo",
+    "errado": "quiz_errado"
+   },
+   "q_nectar": {
+    "pergunta": "percy_1.pergunta.nectar",
+    "certo": "quiz_certo",
+    "errado": "quiz_errado"
+   },
+   "q_casa_cor": {
+    "pergunta": "percy_1.pergunta.casa_cor",
+    "certo": "quiz_certo",
+    "errado": "quiz_errado"
+   },
+   "q_casa_andares": {
+    "pergunta": "percy_1.pergunta.casa_andares",
+    "certo": "quiz_certo",
+    "errado": "quiz_errado"
+   },
+   "q_fruta": {
+    "pergunta": "percy_1.pergunta.fruta",
+    "certo": "quiz_certo",
+    "errado": "quiz_errado"
+   },
+   "q_sotao": {
+    "pergunta": "percy_1.pergunta.sotao",
+    "certo": "quiz_certo",
+    "errado": "quiz_errado"
+   },
+   "q_pinheiro": {
+    "pergunta": "percy_1.pergunta.pinheiro",
+    "certo": "quiz_certo",
+    "errado": "quiz_errado"
+   },
+   "q_monstros": {
+    "pergunta": "percy_1.pergunta.monstros",
+    "certo": "quiz_certo",
+    "errado": "quiz_errado"
+   }
+  }
+ },
+ "percy_1.dialogo.estante": {
+  "quem": "Arena",
+  "inicio": [
+   {
+    "se": {
+     "item": "percy_1.item.espada_acampamento"
+    },
+    "ir": "tem"
+   },
+   {
+    "ir": "pega"
+   }
+  ],
+  "nos": {
+   "pega": {
+    "fala": [
+     "Espadas de bronze celestial do acampamento, cada uma de um tamanho.",
+     "Você pega uma que não pesa demais."
+    ],
+    "efeitos": [
+     {
+      "dar_item": "percy_1.item.espada_acampamento"
+     }
+    ],
+    "ir": "fim"
+   },
+   "tem": {
+    "fala": "Você já tem uma espada de bronze.",
+    "ir": "fim"
+   }
+  }
+ },
+ "percy_1.dialogo.luke": {
+  "quem": "Luke",
+  "inicio": [
+   {
+    "se": {
+     "missao": "percy_1.missao.esgrima",
+     "estado": "feita"
+    },
+    "ir": "quiz"
+   },
+   {
+    "se": {
+     "contador": "percy_1.bonecos",
+     "minimo": 3
+    },
+    "ir": "aprovado"
+   },
+   {
+    "se": {
+     "missao": "percy_1.missao.esgrima",
+     "estado": "ativa"
+    },
+    "ir": "treino"
+   },
+   {
+    "ir": "oi"
+   }
+  ],
+  "nos": {
+   "oi": {
+    "fala": [
+     "Novo por aqui? Sou Luke, do chalé 11. Fale com Quíron primeiro, depois venha treinar."
+    ],
+    "ir": "fim"
+   },
+   "treino": {
+    "fala": [
+     "Pegue uma espada no suporte e derrube os bonecos de palha. Três, para começar.",
+     "Use o botão esquerdo para golpear na direção do mouse."
+    ],
+    "ir": "fim"
+   },
+   "aprovado": {
+    "fala": [
+     "Nada mal! Você tem jeito para a coisa.",
+     "Um dia eu ensino o golpe de desarmar: gira a lâmina contra a do outro e empurra para baixo.",
+     "Antes, uma pergunta. Prestou atenção nas aulas?"
+    ],
+    "efeitos": [
+     {
+      "missao": "percy_1.missao.esgrima",
+      "estado": "feita"
+     },
+     {
+      "dar_item": "percy_1.item.dracma",
+      "qtd": 2
+     }
+    ],
+    "ir": "quiz"
+   },
+   "quiz": {
+    "ramos": [
+     {
+      "se": {
+       "nao_acertou": "percy_1.pergunta.desarmar"
+      },
+      "ir": "q_desarmar"
+     },
+     {
+      "se": {
+       "nao_acertou": "percy_1.pergunta.melhor_espadachim"
+      },
+      "ir": "q_melhor"
+     },
+     {
+      "se": {
+       "nao_acertou": "percy_1.pergunta.luke_chale"
+      },
+      "ir": "q_chale"
+     },
+     {
+      "ir": "quiz_fim"
+     }
+    ]
+   },
+   "q_desarmar": {
+    "pergunta": "percy_1.pergunta.desarmar",
+    "certo": "quiz_certo",
+    "errado": "quiz_errado"
+   },
+   "q_melhor": {
+    "pergunta": "percy_1.pergunta.melhor_espadachim",
+    "certo": "quiz_certo",
+    "errado": "quiz_errado"
+   },
+   "q_chale": {
+    "pergunta": "percy_1.pergunta.luke_chale",
+    "certo": "quiz_certo",
+    "errado": "quiz_errado"
+   },
+   "quiz_certo": {
+    "fala": "Isso aí. Leve um dracma.",
+    "efeitos": [
+     {
+      "dar_item": "percy_1.item.dracma"
+     }
+    ],
+    "escolhas": [
+     {
+      "texto": "Outra!",
+      "ir": "quiz"
+     },
+     {
+      "texto": "Até mais.",
+      "ir": "fim"
+     }
+    ]
+   },
+   "quiz_errado": {
+    "fala": "Errou, mas tudo bem. Volte amanhã e tente de novo.",
+    "ir": "fim"
+   },
+   "quiz_fim": {
+    "fala": "Os bonecos ali não aguentam mais você. Bom treino!",
+    "ir": "fim"
+   }
+  }
+ },
+ "percy_1.dialogo.grover_acampamento": {
+  "quem": "Grover",
+  "inicio": "a",
+  "nos": {
+   "a": {
+    "fala": [
+     "Eu sou um sátiro. Meu trabalho era cuidar de você na escola.",
+     "E esse chifre que você trouxe? Guarde bem. É o seu troféu!",
+     "Um dia eu quero a licença de buscador... mas isso é outra história."
+    ],
+    "ir": "fim"
+   }
+  }
+ }
+}

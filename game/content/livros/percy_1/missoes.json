@@ -1,0 +1,13 @@
+{
+ "_sobre": "Missões de Percy Jackson e o Ladrão de Raios.",
+ "percy_1.missao.pinheiro": {
+  "nome": "A noite da tempestade",
+  "livro": "percy_1",
+  "descricao": "Fuja do homem-touro e chegue ao pinheiro no alto da colina. Espere ele correr e pule de lado no último segundo."
+ },
+ "percy_1.missao.esgrima": {
+  "nome": "Aula de esgrima",
+  "livro": "percy_1",
+  "descricao": "Pegue uma espada de bronze na arena, derrube três bonecos de palha (botão esquerdo) e fale com Luke."
+ }
+}

@@ -1,0 +1,133 @@
+{
+ "_sobre": "Percy Jackson e o Ladrão de Raios (livros/percy-jackson-1-ladrao-de-raios.md §10): a estrada de Long Island na noite da tempestade. O carro na vala, Grover, o homem-touro no campo e o pinheiro no alto da colina, a fronteira do Acampamento Meio-Sangue. O portal aceso leva de volta à Colina do Portal.",
+ "id": "pj_estrada",
+ "nome": "A noite da tempestade",
+ "legenda": {
+  ".": "grama",
+  "=": "caminho",
+  "E": "estrada",
+  "^": "morro",
+  "Y": "pinheiro@morro",
+  "P": "pinheiro",
+  "A": "arvore",
+  "p": "pedra",
+  "b": "arbusto"
+ },
+ "linhas": [
+  "PPPPPPPPPPPPPPPPPP=PPPPPPPPPPPPPPPPP",
+  "P^^Y^^^^^^^Y^^^^..=..^^Y^^^^^^^Y^^^P",
+  "P^^^^^^Y^^^^^^Y^..=..^^^^^^Y^^^^^^^P",
+  "P^^^^Y^^^^^^^^^^..=..^^^^^^^^Y^^^Y^P",
+  "P.................=................P",
+  "P.................=................P",
+  "P.........A...............A........P",
+  "P...A..............................P",
+  "P.............b............p.......P",
+  "P.......p..........................P",
+  "P.....................b.........A..P",
+  "P..................................P",
+  "P....p.............................P",
+  "P...........p...........p..........P",
+  "P..................................P",
+  "P...................A.........p....P",
+  "P..................................P",
+  "P..................................P",
+  "PEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEP",
+  "PEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEP",
+  "P..................................P",
+  "PPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPP"
+ ],
+ "mata": "pinheiro",
+ "clima": "tempestade",
+ "hora_fixa": 23.5,
+ "objetos": [
+  {
+   "tipo": "pinheiro_thalia",
+   "x": 17,
+   "y": 3,
+   "nome": "O pinheiro",
+   "texto": [
+    "Um pinheiro enorme no alto da colina.",
+    "Daqui para lá, é o vale. Daqui para cá, é a estrada."
+   ]
+  },
+  {
+   "tipo": "carro_vala",
+   "x": 6,
+   "y": 15,
+   "nome": "O carro",
+   "texto": [
+    "O carro caiu na vala da estrada. Os faróis ainda estão acesos na chuva."
+   ]
+  },
+  {
+   "tipo": "portal_aceso",
+   "x": 1,
+   "y": 16,
+   "dialogo": "percy_1.dialogo.portal_volta",
+   "nome": "Portal"
+  }
+ ],
+ "npcs": [
+  {
+   "id": "grover_estrada",
+   "sprite": "grover.png",
+   "x": 10,
+   "y": 17,
+   "olhar": "esquerda",
+   "nome": "Grover",
+   "dialogo": "percy_1.dialogo.grover_estrada"
+  }
+ ],
+ "inimigos": [
+  {
+   "id": "percy_1.boss.homem_touro",
+   "tipo": "percy_1.boss.homem_touro",
+   "x": 18,
+   "y": 9,
+   "unico": true,
+   "se": {
+    "flag": "percy_1.estrada_avisado"
+   },
+   "ao_vencer": [
+    {
+     "dar_item": "percy_1.item.chifre_minotauro"
+    }
+   ],
+   "dialogo_vencer": "percy_1.dialogo.depois_touro"
+  }
+ ],
+ "saidas": [
+  {
+   "x": 18,
+   "y": 0,
+   "para": "pj_acampamento",
+   "chegada": [
+    21,
+    1
+   ],
+   "olhar": "baixo",
+   "se": {
+    "flag": "venceu:percy_1.boss.homem_touro"
+   },
+   "aviso": "O homem-touro está no caminho!"
+  }
+ ],
+ "ao_entrar": [
+  {
+   "se": {
+    "sem_flag": "percy_1.estrada_avisado"
+   },
+   "dialogo": "percy_1.dialogo.grover_estrada"
+  }
+ ],
+ "desmaio": {
+  "mapa": "pj_estrada",
+  "x": 3,
+  "y": 17
+ },
+ "inicio": [
+  3,
+  17
+ ]
+}

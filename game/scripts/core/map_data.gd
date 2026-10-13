@@ -10,7 +10,7 @@ var largura := 0
 var altura := 0
 var inicio := Vector2i.ZERO
 var objetos: Array = []   # [{"tipo", "x", "y"}] — x, y = canto de cima à esquerda da pegada
-var saidas: Array = []    # [{"x", "y", "para", "chegada": Vector2i, "olhar"}]
+var saidas: Array = []    # [{"x", "y", "para", "chegada": Vector2i, "olhar", "loja", "se", "aviso"}]
 var fundo := ""           # interiores: imagem do cômodo em assets/sprites/interiores/
 var interior := false
 var musica := ""
@@ -22,6 +22,11 @@ var luzes: Array = []     # interiores: pontos (em pixels) que acendem à noite
 var peixes: Array = []    # o que se pesca aqui: [{"item", "peso", "noite", "dia"}]
 var corte := false        # dá para cortar árvores aqui (machado)? Ver Corte
 var animais := false      # dá para soltar animais e pôr construções aqui? Ver Animais, Construcao
+var inimigos: Array = []  # [{"id", "tipo" (Config.inimigos), "x", "y", "se", "unico"}]
+var clima := ""           # "tempestade" ou "chuva": chuva caindo (e relâmpagos na tempestade)
+var hora_fixa := -1.0     # >= 0: a luz do mapa fica sempre nessa hora (ex.: a noite da tempestade)
+var desmaio: Dictionary = {}   # onde acorda quem desmaia aqui: {"mapa", "x", "y"} (senão, a clínica)
+var ao_entrar: Array = []       # conversas que abrem ao chegar: [{"dialogo", "se"}] (a primeira que vale)
 var sondagem: Dictionary = {}  # lago com fundo medível: {"ponto", "maximo", "raio", "flag", "efeitos", "texto"}
 var _grade: Array = []    # Array[Array[String]] de tipos de chão
 var _ocupado := {}        # "x,y" -> tipo do objeto que ocupa a célula
@@ -42,17 +47,23 @@ static func de_dict(d: Dictionary, defs_objetos := {}) -> MapData:
 	m.sondagem = d.get("sondagem", {})
 	m.corte = bool(d.get("corte", false))
 	m.animais = bool(d.get("animais", false))
+	m.inimigos = d.get("inimigos", [])
+	m.clima = str(d.get("clima", ""))
+	m.hora_fixa = float(d.get("hora_fixa", -1.0))
+	m.desmaio = d.get("desmaio", {})
+	m.ao_entrar = d.get("ao_entrar", [])
 	for l in d.get("luzes", []):
 		m.luzes.append(Vector2(float(l[0]), float(l[1])))
 	for s in d.get("saidas", []):
 		var ch: Array = s.get("chegada", [0, 0])
 		m.saidas.append({"x": int(s.get("x", 0)), "y": int(s.get("y", 0)), "para": str(s.get("para", "")),
-			"chegada": Vector2i(int(ch[0]), int(ch[1])), "olhar": str(s.get("olhar", "")), "loja": str(s.get("loja", ""))})
+			"chegada": Vector2i(int(ch[0]), int(ch[1])), "olhar": str(s.get("olhar", "")), "loja": str(s.get("loja", "")),
+			"se": s.get("se", {}), "aviso": str(s.get("aviso", ""))})
 	for n in d.get("npcs", []):
 		m.npcs.append({"id": str(n.get("id", "")), "sprite": str(n.get("sprite", "")), "x": int(n.get("x", 0)),
 			"y": int(n.get("y", 0)), "olhar": str(n.get("olhar", "baixo")), "loja": str(n.get("loja", "")),
 			"fala": str(n.get("fala", "")), "dialogo": str(n.get("dialogo", "")), "nome": str(n.get("nome", "")),
-			"se": n.get("se", {})})
+			"se": n.get("se", {}), "quadro": n.get("quadro", [16, 32])})
 	for f in d.get("fechadas", []):
 		m.fechadas.append({"x": int(f.get("x", 0)), "y": int(f.get("y", 0)), "aviso": str(f.get("aviso", ""))})
 	var legenda: Dictionary = d.get("legenda", {})

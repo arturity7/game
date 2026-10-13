@@ -66,5 +66,12 @@
     "solido": true,
     "paredao": "paredao.png",
     "altura_paredao": 2
+  },
+  "estrada": {
+    "tile": "estrada.png"
+  },
+  "areia": {
+    "terreno": "areia.png",
+    "ordem": 5
   }
 }

@@ -1,0 +1,270 @@
+{
+ "_sobre": "Perguntas de Percy Jackson e o Ladrão de Raios (formato em docs/tecnico.md §9; ficha §9).",
+ "percy_1.pergunta.estela": {
+  "texto": "No museu, o que estava esculpido na estela que o sr. Brunner mostrou?",
+  "opcoes": [
+   "Cronos comendo os filhos",
+   "Zeus lançando um raio",
+   "Poseidon com o tridente",
+   "Atena com uma coruja"
+  ],
+  "certa": 0,
+  "nivel": "memoria",
+  "peso": "simples",
+  "ref": "Cap. 1"
+ },
+ "percy_1.pergunta.dodds": {
+  "texto": "Em que a sra. Dodds se desfez quando foi atingida pela espada?",
+  "opcoes": [
+   "Em pó amarelo",
+   "Em fumaça preta",
+   "Em água",
+   "Em pedra"
+  ],
+  "certa": 0,
+  "nivel": "memoria",
+  "peso": "simples",
+  "ref": "Cap. 1"
+ },
+ "percy_1.pergunta.parcas": {
+  "texto": "O que as três velhas da banca de frutas tricotavam?",
+  "opcoes": [
+   "Meias azuis gigantes",
+   "Um cachecol vermelho",
+   "Uma rede de pesca",
+   "Luvas de lã"
+  ],
+  "certa": 0,
+  "nivel": "memoria",
+  "peso": "simples",
+  "ref": "Cap. 2"
+ },
+ "percy_1.pergunta.grover_bode": {
+  "texto": "O que Grover é da cintura para baixo?",
+  "opcoes": [
+   "Bode",
+   "Cavalo",
+   "Peixe",
+   "Touro"
+  ],
+  "certa": 0,
+  "nivel": "memoria",
+  "peso": "simples",
+  "ref": "Cap. 4"
+ },
+ "percy_1.pergunta.cheiro": {
+  "texto": "Como o homem-touro se orienta?",
+  "opcoes": [
+   "Pelo cheiro",
+   "Pela visão",
+   "Pelo som",
+   "Pelo calor"
+  ],
+  "certa": 0,
+  "nivel": "memoria",
+  "peso": "simples",
+  "ref": "Cap. 4"
+ },
+ "percy_1.pergunta.cueca": {
+  "texto": "Qual era a única roupa do homem-touro?",
+  "opcoes": [
+   "Uma cueca branca",
+   "Uma capa vermelha",
+   "Um saiote de couro",
+   "Uma armadura de bronze"
+  ],
+  "certa": 0,
+  "nivel": "releitura",
+  "peso": "simples",
+  "ref": "Cap. 4",
+  "dica": "no capítulo 4, na noite da tempestade"
+ },
+ "percy_1.pergunta.argola": {
+  "texto": "O que o homem-touro tinha no focinho?",
+  "opcoes": [
+   "Um anel de bronze",
+   "Uma corrente de ferro",
+   "Uma pena de águia",
+   "Nada"
+  ],
+  "certa": 0,
+  "nivel": "releitura",
+  "peso": "simples",
+  "ref": "Cap. 4",
+  "dica": "no capítulo 4, quando ele aparece no alto da colina"
+ },
+ "percy_1.pergunta.quiron": {
+  "texto": "O que Quíron é de verdade?",
+  "opcoes": [
+   "Um centauro",
+   "Um sátiro",
+   "Um ciclope",
+   "Um deus do Olimpo"
+  ],
+  "certa": 0,
+  "nivel": "memoria",
+  "peso": "simples",
+  "ref": "Cap. 5"
+ },
+ "percy_1.pergunta.sr_d": {
+  "texto": "Quem é o sr. D, o diretor do acampamento?",
+  "opcoes": [
+   "Dioniso",
+   "Hermes",
+   "Apolo",
+   "Hades"
+  ],
+  "certa": 0,
+  "nivel": "memoria",
+  "peso": "simples",
+  "ref": "Cap. 5"
+ },
+ "percy_1.pergunta.dois_dias": {
+  "texto": "Quanto tempo Percy ficou desacordado depois da noite da tempestade?",
+  "opcoes": [
+   "Dois dias",
+   "Uma semana",
+   "Uma noite",
+   "Três horas"
+  ],
+  "certa": 0,
+  "nivel": "releitura",
+  "peso": "simples",
+  "ref": "Cap. 5",
+  "dica": "no capítulo 5, quando ele acorda na Casa Grande"
+ },
+ "percy_1.pergunta.nectar": {
+  "texto": "Que gosto o néctar tem para Percy?",
+  "opcoes": [
+   "Dos biscoitos azuis da mãe",
+   "De mel com leite",
+   "De suco de laranja",
+   "De água do mar"
+  ],
+  "certa": 0,
+  "nivel": "memoria",
+  "peso": "simples",
+  "ref": "Cap. 5"
+ },
+ "percy_1.pergunta.casa_cor": {
+  "texto": "De que cor é a Casa Grande?",
+  "opcoes": [
+   "Azul-céu com acabamento branco",
+   "Vermelha com telhado verde",
+   "Branca com janelas azuis",
+   "Amarela"
+  ],
+  "certa": 0,
+  "nivel": "releitura",
+  "peso": "simples",
+  "ref": "Cap. 6",
+  "dica": "no capítulo 6 (ou olhe bem para ela)"
+ },
+ "percy_1.pergunta.casa_andares": {
+  "texto": "Quantos andares tem a Casa Grande?",
+  "opcoes": [
+   "Quatro",
+   "Três",
+   "Cinco",
+   "Dois"
+  ],
+  "certa": 0,
+  "nivel": "releitura",
+  "peso": "simples",
+  "ref": "Cap. 6",
+  "dica": "no capítulo 6 (ou conte as fileiras de janelas)"
+ },
+ "percy_1.pergunta.fruta": {
+  "texto": "Que fruta o acampamento planta e vende?",
+  "opcoes": [
+   "Morango",
+   "Uva",
+   "Maçã",
+   "Mirtilo"
+  ],
+  "certa": 0,
+  "nivel": "releitura",
+  "peso": "simples",
+  "ref": "Cap. 6",
+  "dica": "no capítulo 6, no passeio pelo vale"
+ },
+ "percy_1.pergunta.sotao": {
+  "texto": "O que mora no sótão da Casa Grande, segundo Quíron?",
+  "opcoes": [
+   "Nada vivo",
+   "Um dragão",
+   "Os troféus que falam",
+   "A coruja de Atena"
+  ],
+  "certa": 0,
+  "nivel": "memoria",
+  "peso": "simples",
+  "ref": "Cap. 6"
+ },
+ "percy_1.pergunta.pinheiro": {
+  "texto": "O que marca o limite do acampamento no alto da colina?",
+  "opcoes": [
+   "Um pinheiro",
+   "Um carvalho",
+   "Uma pedra grande",
+   "Um arco de mármore"
+  ],
+  "certa": 0,
+  "nivel": "memoria",
+  "peso": "simples",
+  "ref": "Cap. 4"
+ },
+ "percy_1.pergunta.monstros": {
+  "texto": "Complete o que Quíron ensina: os monstros não ___; eles podem ser vencidos, mas voltam.",
+  "opcoes": [
+   "Morrem",
+   "Dormem",
+   "Falam",
+   "Comem"
+  ],
+  "certa": 0,
+  "nivel": "memoria",
+  "peso": "simples",
+  "ref": "Cap. 6"
+ },
+ "percy_1.pergunta.desarmar": {
+  "texto": "Que golpe Percy acerta contra Luke na aula de esgrima?",
+  "opcoes": [
+   "Desarmar",
+   "Estocada dupla",
+   "Giro do escorpião",
+   "Golpe de escudo"
+  ],
+  "certa": 0,
+  "nivel": "memoria",
+  "peso": "simples",
+  "ref": "Cap. 8"
+ },
+ "percy_1.pergunta.melhor_espadachim": {
+  "texto": "Luke é chamado de o melhor espadachim dos últimos quantos anos?",
+  "opcoes": [
+   "Trezentos",
+   "Cem",
+   "Mil",
+   "Cinquenta"
+  ],
+  "certa": 0,
+  "nivel": "releitura",
+  "peso": "simples",
+  "ref": "Cap. 8",
+  "dica": "no capítulo 8, na arena"
+ },
+ "percy_1.pergunta.luke_chale": {
+  "texto": "De qual chalé Luke é o conselheiro?",
+  "opcoes": [
+   "Do chalé 11, de Hermes",
+   "Do chalé 5, de Ares",
+   "Do chalé 6, de Atena",
+   "Do chalé 3, de Poseidon"
+  ],
+  "certa": 0,
+  "nivel": "memoria",
+  "peso": "simples",
+  "ref": "Cap. 6"
+ }
+}

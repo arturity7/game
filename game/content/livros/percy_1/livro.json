@@ -1,0 +1,11 @@
+{
+ "id": "percy_1",
+ "titulo": "Percy Jackson e o Ladrão de Raios",
+ "autor": "Rick Riordan",
+ "ficha": "livros/percy-jackson-1-ladrao-de-raios.md",
+ "lugares": [
+  "pj_estrada",
+  "pj_acampamento"
+ ],
+ "_sobre": "Conteúdo do livro no jogo (área com spoilers). Por enquanto (parte 1): o portal de Além da Névoa, a noite da tempestade com o homem-touro e a chegada ao Acampamento Meio-Sangue (Quíron, Annabeth, Grover, Luke e a arena)."
+}

@@ -27,6 +27,14 @@ func _ate(cond: Callable, limite: float) -> void:
 		t += get_process_delta_time()
 
 
+## A caixa de conversa aberta agora (ou null).
+func _caixa() -> CaixaDialogo:
+	for n in main.get_children():
+		if n is CaixaDialogo and not n.is_queued_for_deletion():
+			return n
+	return null
+
+
 func checar(cond: bool, nome: String) -> void:
 	if not cond:
 		falhas.append(nome)
@@ -262,6 +270,72 @@ func _rodar() -> void:
 	checar(get_tree().paused, "o menu Construir pausa o jogo")
 	tela.fechar()
 	await _esperar(0.1)
+	# Além da Névoa: a chave acende o portal; a noite da tempestade e o homem-touro
+	if Inventario.contar(inv, "epicuro.item.chave_alem_nevoa") == 0:
+		Inventario.adicionar(inv, "epicuro.item.chave_alem_nevoa", 1, Config.itens)
+	main.trocar_mapa("colina", Vector2i(21, 7), "cima")
+	await _esperar(0.7)
+	var cp: CaixaDialogo = main.conversar("mundo.dialogo.portal", "Portal")
+	await _esperar(0.1)
+	checar(Progresso.tem_flag(d, "portal.alem_da_nevoa"), "a chave acende o portal")
+	cp.fechar()
+	await _esperar(0.1)
+	main.trocar_mapa("pj_estrada", Vector2i(3, 17), "direita")
+	await _esperar(1.3)
+	var aviso := _caixa()
+	checar(aviso != null and main.mundo.mapa.id == "pj_estrada", "Grover avisa na noite da tempestade")
+	if aviso:
+		aviso.fechar()
+	await _esperar(0.2)
+	checar(main.mundo.clima != null, "chove na noite da tempestade")
+	var touro: Inimigo = null
+	for n in main.mundo.inimigos:
+		touro = n
+	checar(touro != null, "o homem-touro aparece depois do aviso")
+	checar(not Dialogo.condicao(d, main.mundo.mapa.saida_em(Vector2i(18, 0)).get("se", {})), "o caminho do pinheiro fica fechado")
+	if touro:
+		for k in 3:
+			touro._bateu()
+		checar(touro.pode_finalizar, "na terceira batida ele fica tonto de vez")
+		main.mundo.jogador.position = touro.global_position + Vector2(0, 14)
+		main.interagir(main.mundo.celula_de(touro.global_position))
+		await _esperar(1.4)
+	checar(Progresso.tem_flag(d, "venceu:percy_1.boss.homem_touro") and Inventario.contar(inv, "percy_1.item.chifre_minotauro") == 1, "vence o homem-touro e fica com o chifre")
+	var depois := _caixa()
+	if depois:
+		depois.fechar()
+	await _esperar(0.1)
+	main.trocar_mapa("pj_acampamento", Vector2i(21, 1), "baixo")
+	await _esperar(1.3)
+	var acordou := _caixa()
+	checar(acordou != null and main.mundo.mapa.id == "pj_acampamento", "Annabeth fala na chegada ao acampamento")
+	if acordou:
+		acordou.fechar()
+	await _esperar(0.1)
+	checar(Progresso.tem_conquista(d, "percy_1.conquista.voce_baba") and Progresso.missao(d, "percy_1.missao.pinheiro") == "feita", "chegar ao acampamento conclui a missão")
+	# arena: espada de bronze e os bonecos de palha
+	main.mundo.jogador.position = Vector2(4, 21) * 16.0 + Vector2(8, 8)
+	main.interagir(Vector2i(4, 20))
+	await _esperar(0.1)
+	var rack := _caixa()
+	if rack:
+		rack.fechar()
+	checar(Inventario.contar(inv, "percy_1.item.espada_acampamento") == 1, "pega a espada de bronze no suporte")
+	inv[8] = Inventario.novo_slot("percy_1.item.espada_acampamento", 1, Config.itens)
+	main.selecionar(8)
+	var bonecos: int = main.mundo.inimigos.size()
+	for x in [5, 8, 11]:
+		main.mundo.jogador.position = Vector2(x, 23) * 16.0 + Vector2(8, 8)
+		for k in 3:
+			main.usar(Vector2i(x, 24))
+			await _esperar(0.4)
+	checar(bonecos == 3 and int(Progresso.flag(d, "contador:percy_1.bonecos", 0)) >= 3, "a espada derruba os três bonecos de palha")
+	# o homem-touro fere quem fica na frente dele
+	var vida_antes := float(d.jogador["vida"])
+	main.mundo.jogador.receber_dano(10.0, main.mundo.jogador.global_position + Vector2(10, 0))
+	checar(float(d.jogador["vida"]) < vida_antes and main.mundo.jogador.invulneravel > 0.0, "levar um golpe tira vida e pisca")
+	main.trocar_mapa("fazenda", Vector2i(7, 8))
+	await _esperar(0.6)
 	# dormir à noite faz o tempo correr até as 6h
 	d.mundo["hora"] = 22.0
 	main.dormir()

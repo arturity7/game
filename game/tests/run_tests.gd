@@ -306,8 +306,12 @@ func _teste_conteudo_dos_livros(_cfg: Dictionary) -> void:
 		var conv: Dictionary = c.dialogos[id]
 		var nos: Dictionary = conv.get("nos", {})
 		var alvos: Array = []
-		for e in conv.get("inicio", []):
-			alvos.append(e.get("ir", ""))
+		var ini = conv.get("inicio", [])
+		if typeof(ini) == TYPE_STRING:
+			alvos.append(ini)
+		else:
+			for e in ini:
+				alvos.append(e.get("ir", ""))
 		for nid in nos:
 			var no: Dictionary = nos[nid]
 			for k in ["ir", "certo", "errado", "bloqueada"]:
@@ -326,8 +330,22 @@ func _teste_conteudo_dos_livros(_cfg: Dictionary) -> void:
 					checar(c.missoes.has(str(e["missao"])), "%s: missão existe (%s)" % [id, e["missao"]])
 				if e.has("conquista"):
 					checar(c.conquistas.has(str(e["conquista"])), "%s: conquista existe (%s)" % [id, e["conquista"]])
+				if e.has("viajar"):
+					checar(FileAccess.file_exists("res://content/mapas/%s.json" % str(e["viajar"].get("mapa", ""))), "%s: viagem para mapa que existe" % id)
 		for a in alvos:
 			checar(str(a) == "fim" or nos.has(str(a)), "%s: nó existe (%s)" % [id, a])
+	for id in c.inimigos:
+		var ini_def: Dictionary = c.inimigos[id]
+		checar(ResourceLoader.exists("res://assets/sprites/inimigos/" + str(ini_def.get("folha", ""))), "inimigo com arte: " + id)
+		checar(str(ini_def.get("comportamento", "")) in ["perseguir", "investida", "parado"], "inimigo com comportamento: " + id)
+	var dir_m := DirAccess.open("res://content/mapas")
+	for f in dir_m.get_files():
+		if f.ends_with(".json"):
+			for e in _json("res://content/mapas/" + f).get("inimigos", []):
+				checar(c.inimigos.has(str(e.get("tipo", ""))), "%s: inimigo existe (%s)" % [f, e.get("tipo", "")])
+				checar(str(e.get("id", "")) != "", "%s: inimigo com id" % f)
+			for e in _json("res://content/mapas/" + f).get("ao_entrar", []):
+				checar(c.dialogos.has(str(e.get("dialogo", ""))), "%s: conversa ao entrar existe" % f)
 	var n_icones: int = (load("res://assets/sprites/itens/itens.png") as Texture2D).get_width() / 16
 	for id in c.itens:
 		var it: Dictionary = c.itens[id]

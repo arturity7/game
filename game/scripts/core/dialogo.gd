@@ -16,13 +16,15 @@ extends RefCounted
 ##   "ir"        próximo nó (sem escolhas); "fim" ou ausente = acaba
 ## Condições ("se", todas precisam valer):
 ##   flag, sem_flag, item (+ qtd), sem_item, missao + estado, acertou, nao_acertou,
-##   dinheiro (tem pelo menos), conta + minimo (saldo guardado), flag_dias [flag, dias] (passaram
+##   dinheiro (tem pelo menos), conta + minimo (saldo guardado), contador + minimo, flag_dias [flag, dias] (passaram
 ##   'dias' desde o dia guardado na flag), hoje (a flag guarda o dia de hoje), conquista, sem_conquista
 ## Efeitos:
 ##   flag (+ valor), tirar_flag, marcar_dia (guarda o dia de hoje na flag), dar_item (+ qtd),
 ##   tirar_item (+ qtd), dinheiro, missao + estado, conquista, vida,
 ##   conta + depositar/sacar (número ou "tudo"; sai/volta da carteira) ou + render (aparece na conta),
-##   abrir_loja (a loja abre quando a conversa termina; tratado pela caixa de conversa)
+##   contar (soma 1 no contador "contador:<nome>", sem aviso),
+##   abrir_loja (a loja abre quando a conversa termina; tratado pela caixa de conversa),
+##   viajar {"mapa", "x", "y", "olhar"} (vai para outro mapa quando a conversa termina; idem)
 ## Textos podem ter {dinheiro}, {dia} e {conta:<nome>} (trocados por Dialogo.texto)
 
 
@@ -69,6 +71,9 @@ static func condicao(dados: GameData, se: Dictionary) -> bool:
 			"conquista":
 				if not Progresso.tem_conquista(dados, str(v)):
 					return false
+			"contador":
+				if int(Progresso.flag(dados, "contador:" + str(v), 0)) < int(se.get("minimo", 1)):
+					return false
 			"sem_conquista":
 				if Progresso.tem_conquista(dados, str(v)):
 					return false
@@ -114,6 +119,9 @@ static func aplicar(dados: GameData, efeitos: Array, itens: Dictionary) -> Array
 				avisos.append("Conquista!")
 		if e.has("vida"):
 			dados.jogador["vida"] = clampf(float(dados.jogador["vida"]) + float(e["vida"]), 1.0, 100.0)
+		if e.has("contar"):
+			var k := "contador:" + str(e["contar"])
+			Progresso.marcar(dados, k, int(Progresso.flag(dados, k, 0)) + 1)
 		if e.has("marcar_dia"):
 			Progresso.marcar(dados, str(e["marcar_dia"]), int(dados.mundo["dia"]))
 		if e.has("conta"):

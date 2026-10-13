@@ -1,5 +1,7 @@
 class_name Mundo
 extends Node2D
+
+signal inimigo_vencido(inimigo: Inimigo, entrada: Dictionary)
 ## Monta o mapa a partir dos dados (content/mapas): chão em grade dupla (bordas arredondadas),
 ## objetos com profundidade (quem está mais embaixo fica na frente), plantação e luz do dia.
 ##
@@ -37,6 +39,9 @@ var _copas := PackedVector2Array()   # copas da mata em volta (folhas caindo)
 var _copas_obj := {}                   # índice do objeto -> copa (folhas caindo)
 var _corpos := {}                      # índice do objeto -> nó (para trocar quando muda, ex.: árvore cortada)
 var animais_nos := {}                  # id do animal -> Animal
+var inimigos: Array = []               # Inimigo vivos neste mapa
+var _vencidos := {}                    # ids vencidos nesta visita (não voltam até remontar o mapa)
+var clima: Clima
 var _chao_nos := {}                    # "x,y" -> Sprite2D de um item no chão (ovo)
 
 
@@ -89,6 +94,8 @@ func montar(id_mapa: String) -> void:
 		_criar_mata_em_volta()
 		ambiente = Ambiente.new()
 		ambiente.name = "Ambiente"
+		ambiente.visible = mapa.clima == ""
+		ambiente.process_mode = Node.PROCESS_MODE_INHERIT if mapa.clima == "" else Node.PROCESS_MODE_DISABLED
 		_atualizar_copas()
 		add_child(ambiente)
 	jogador = Jogador.new()
@@ -99,6 +106,11 @@ func montar(id_mapa: String) -> void:
 		Animais.novo_dia(GameState.dados, mapa.id, Config.animais, livre_para_produto)
 		atualizar_animais()
 		atualizar_no_chao()
+	_criar_inimigos()
+	if mapa.clima != "":
+		clima = Clima.new()
+		clima.tipo = mapa.clima
+		add_child(clima)
 	var cam := Camera2D.new()
 	var tela := Vector2(480, 270)
 	var w := mapa.largura * TAM
@@ -325,8 +337,9 @@ func _criar_npcs() -> void:
 		spr.texture = load(SPRITES + "personagens/" + str(n["sprite"]))
 		spr.centered = false
 		spr.region_enabled = true
-		spr.region_rect = Rect2(0, int(linhas.get(n["olhar"], 0)) * 32, 16, 32)
-		spr.offset = Vector2(-8, -30)
+		var q: Array = n.get("quadro", [16, 32])
+		spr.region_rect = Rect2(0, int(linhas.get(n["olhar"], 0)) * int(q[1]), int(q[0]), int(q[1]))
+		spr.offset = Vector2(-int(q[0]) / 2.0, -int(q[1]) + 2)
 		corpo.add_child(spr)
 		var forma := CollisionShape2D.new()
 		var ret := RectangleShape2D.new()
@@ -422,6 +435,9 @@ func _criar_objeto(i: int) -> void:
 		corpo.add_child(anim)
 	else:
 		var lista: Array = def.get("sprites", [])
+		var alt: Dictionary = def.get("alternativo", {})
+		if not alt.is_empty() and GameState.dados != null and Dialogo.condicao(GameState.dados, alt.get("se", {})):
+			lista = alt.get("sprites", lista)
 		if lista.is_empty():
 			spr.free()
 			corpo.free()
@@ -592,6 +608,65 @@ func por_construcao(c: Vector2i, tipo_objeto: String) -> void:
 	_refazer_vizinhos(c)
 
 
+# ---------- inimigos ----------
+
+## Cria os inimigos do mapa (os chefes já vencidos não voltam: flag "venceu:<id>").
+func _criar_inimigos() -> void:
+	for e in mapa.inimigos:
+		var def: Dictionary = Config.inimigos.get(str(e.get("tipo", "")), {})
+		if def.is_empty() or not npc_visivel(e):
+			continue
+		if bool(e.get("unico", false)) and GameState.dados != null and Progresso.tem_flag(GameState.dados, "venceu:" + str(e.get("id", ""))):
+			continue
+		var n := Inimigo.new()
+		n.id = str(e.get("id", e.get("tipo", "")))
+		n.def = def
+		n.mundo = self
+		n.position = Vector2(int(e["x"]) * TAM + TAM / 2.0, int(e["y"]) * TAM + 13)
+		n.name = "Inimigo_" + n.id.replace(".", "_")
+		var entrada: Dictionary = e
+		n.vencido.connect(func(quem): _vencido(quem, entrada))
+		profundidade.add_child(n)
+		inimigos.append(n)
+
+
+## Depois de uma conversa: cria os inimigos que passaram a valer (ex.: o chefe que aparece depois
+## do aviso) e redesenha os objetos com "alternativo" (ex.: o portal que acende).
+func atualizar_depois_de_conversa() -> void:
+	var ja := {}
+	for n in inimigos:
+		ja[(n as Inimigo).id] = true
+	var antes := mapa.inimigos.duplicate()
+	mapa.inimigos = []
+	for e in antes:
+		if not ja.has(str(e.get("id", e.get("tipo", "")))) and not _vencidos.has(str(e.get("id", ""))):
+			mapa.inimigos.append(e)
+	_criar_inimigos()
+	mapa.inimigos = antes
+	for i in mapa.objetos.size():
+		var o: Dictionary = mapa.objetos[i]
+		if str(o["tipo"]) != "" and Config.objetos.get(str(o["tipo"]), {}).has("alternativo") and _corpos.has(i):
+			_corpos[i].queue_free()
+			_corpos.erase(i)
+			_criar_objeto(i)
+
+
+func _vencido(quem: Inimigo, entrada: Dictionary) -> void:
+	_vencidos[quem.id] = true
+	inimigos.erase(quem)
+	inimigo_vencido.emit(quem, entrada)
+
+
+## O inimigo que pode ser terminado (tonto pela última vez) perto da célula, ou null.
+func inimigo_para_terminar(c: Vector2i) -> Inimigo:
+	var centro := Vector2(c) * TAM + Vector2(8, 10)
+	for n in inimigos:
+		var i: Inimigo = n
+		if i.pode_finalizar and i.global_position.distance_to(centro) < 22.0:
+			return i
+	return null
+
+
 # ---------- animais ----------
 
 ## Célula onde um animal pode pisar (e onde não há outro animal nem o jogador).
@@ -760,7 +835,11 @@ func bloqueada(c: Vector2i) -> bool:
 
 
 func atualizar_luz(hora: float) -> void:
+	if mapa.hora_fixa >= 0.0:
+		hora = mapa.hora_fixa
 	luz.color = Survival.cor_do_ceu(hora)
+	if mapa.clima == "tempestade":
+		luz.color = luz.color.darkened(0.25)
 	if ambiente != null:
 		ambiente.hora = hora
 	if mapa.interior:

@@ -1213,6 +1213,8 @@ def icones_itens():
              _icone(tesoura), _icone(cerca_ic), _icone(porteira_ic)]
     import animais
     lista += [animais.icone(e) for e in ("galinha", "vaca", "ovelha", "porco")]
+    import percy
+    lista += [_icone(percy.icone_espada), _icone(percy.icone_chifre), _icone(percy.icone_dracma)]
     atlas = nova(16 * len(lista), 16)
     for i, ic in enumerate(lista):
         atlas[:, i * 16:(i + 1) * 16] = ic
@@ -1486,6 +1488,8 @@ if __name__ == "__main__":
     animais.gerar(caminho, salvar)
     import livros
     livros.gerar()
+    import percy
+    percy.gerar()
     if len(sys.argv) > 1 and sys.argv[1] == "--previa":
         previa_terreno(os.path.join(RAIZ, "..", "..", "content", "mapas", "fazenda.json"), sys.argv[2])
     print("ok")

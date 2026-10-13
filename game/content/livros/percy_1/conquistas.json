@@ -1,0 +1,18 @@
+{
+ "_sobre": "Medalhas de Percy Jackson e o Ladrão de Raios (ficha §13).",
+ "percy_1.conquista.meio_ponto": {
+  "nome": "Meio ponto",
+  "livro": "percy_1",
+  "descricao": "Respondeu à pergunta sobre Cronos do museu."
+ },
+ "percy_1.conquista.ole": {
+  "nome": "Olé",
+  "livro": "percy_1",
+  "descricao": "Venceu o homem-touro debaixo da chuva."
+ },
+ "percy_1.conquista.voce_baba": {
+  "nome": "Você baba quando dorme",
+  "livro": "percy_1",
+  "descricao": "Acordou no Acampamento Meio-Sangue."
+ }
+}

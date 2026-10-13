@@ -77,6 +77,37 @@ static func colheita(pai: Node, celula: Vector2i, icone: int) -> void:
 	particulas(pai, Vector2(celula) * 16.0 + Vector2(8, 10), Color("#63a63d"), 6, 35.0)
 
 
+## Meia-lua do corte de espada na direção 'dir', que some rápido.
+static func corte(pai: Node, origem: Vector2, dir: Vector2) -> void:
+	var c := Corte_.new()
+	c.position = origem
+	c.rotation = dir.angle()
+	c.z_index = 8
+	pai.add_child(c)
+
+
+class Corte_:
+	extends Node2D
+	var vida := 0.18
+
+	func _process(delta: float) -> void:
+		vida -= delta
+		if vida <= 0.0:
+			queue_free()
+			return
+		queue_redraw()
+
+	func _draw() -> void:
+		var k := 1.0 - vida / 0.18
+		var a := 1.0 - k
+		var abre := lerpf(-1.2, 1.2, minf(1.0, k * 1.6))
+		for i in 7:
+			var ang := lerpf(-1.2, abre, i / 6.0)
+			var p := Vector2.from_angle(ang) * 14.0
+			draw_rect(Rect2(p.round() - Vector2(1, 1), Vector2(3, 3)), Color(1, 1, 0.92, 0.85 * a))
+			draw_rect(Rect2((p * 0.8).round(), Vector2(1, 1)), Color(0.8, 0.9, 1.0, 0.6 * a))
+
+
 static var _tex_coracao: Texture2D
 
 

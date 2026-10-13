@@ -209,6 +209,44 @@ func _rodar() -> void:
 	main.trocar_mapa("cidade", Vector2i(27, 9), "cima")
 	await get_tree().create_timer(0.8).timeout
 	await _foto("13b_cidade_sapataria")
+	# Além da Névoa: a noite da tempestade e o acampamento
+	Progresso.marcar(d, "percy_1.estrada_avisado")
+	main.trocar_mapa("pj_estrada", Vector2i(18, 13), "cima")
+	await get_tree().create_timer(1.0).timeout
+	for n in main.get_children():
+		if n is CaixaDialogo:
+			n.fechar()
+	var touro: Inimigo = null
+	for n in main.mundo.inimigos:
+		touro = n
+	if touro:
+		touro.position = Vector2(18, 8) * 16.0 + Vector2(8, 13)
+		touro.estado = "preparando"
+		touro._tempo = 5.0
+		touro._lado = "baixo"
+	await _foto("20_tempestade")
+	if touro:
+		touro.estado = "tonto"
+		touro.pode_finalizar = true
+		touro._tempo = 5.0
+	await _foto("20b_touro_tonto")
+	main.trocar_mapa("pj_acampamento", Vector2i(21, 15), "cima")
+	await get_tree().create_timer(1.2).timeout
+	for n in main.get_children():
+		if n is CaixaDialogo:
+			n.fechar()
+	d.mundo["hora"] = 10.0
+	main.mundo.atualizar_luz(10.0)
+	await _foto("21_acampamento")
+	main.mundo.jogador.position = Vector2(30, 13) * 16.0 + Vector2(8, 8)
+	await _foto("21b_morangos")
+	main.mundo.jogador.position = Vector2(8, 21) * 16.0 + Vector2(8, 8)
+	d.jogador["inventario"][8] = Inventario.novo_slot("percy_1.item.espada_acampamento", 1, Config.itens)
+	main.selecionar(8)
+	main.usar(Vector2i(8, 24))
+	await get_tree().create_timer(0.06).timeout
+	await RenderingServer.frame_post_draw
+	get_viewport().get_texture().get_image().save_png(pasta.path_join("21c_arena.png"))
 	main._abrir_tela_inicial()
 	await get_tree().create_timer(0.5).timeout
 	await _foto("8_abertura")

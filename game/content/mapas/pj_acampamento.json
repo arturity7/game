@@ -1,0 +1,196 @@
+{
+ "_sobre": "Percy Jackson e o Ladrão de Raios (ficha §10 e §12): o Acampamento Meio-Sangue, o hub da dimensão Além da Névoa. Parte 1: o pinheiro na colina, a Casa Grande (azul-céu e branca, quatro andares, cata-vento de águia), os campos de morangos, a arena com bonecos de palha e o lago de canoagem. Os chalés e o resto do vale entram depois.",
+ "id": "pj_acampamento",
+ "nome": "Acampamento Meio-Sangue",
+ "legenda": {
+  ".": "grama",
+  "=": "caminho",
+  "t": "terra",
+  "m": "morangueiro@terra",
+  "s": "areia",
+  "#": "cerca",
+  "~": "agua",
+  "^": "morro",
+  "R": "arvore@morro",
+  "A": "arvore"
+ },
+ "linhas": [
+  "AAAAAAAAAAAAAAAAAAAAA=AAAAAAAAAAAAAAAAAAAAAA",
+  "A^^R^^^^^^^^^R^^^^^..=..^^^R^^^^^^^^R^^^^^^A",
+  "A^^^^^^^R^^^^^^^^^^..=..^^^^^^^R^^^^^^^^^^^A",
+  "A^^^^R^^^^^^^^^^R^^..=..^^^^^^^^^^R^^^^^R^^A",
+  "A....................=.....................A",
+  "A....................=.....................A",
+  "A....................=.....................A",
+  "A..........A.........=.....tmtmtmtmtmtm....A",
+  "A...A................=.....tttttttttttt....A",
+  "A....................=.....tmtmtmtmtmtm....A",
+  "A...........A........=.....tttttttttttt....A",
+  "A.....A..............=.....tmtmtmtmtmtm....A",
+  "A....................=.....tttttttttttt....A",
+  "A....................=.....................A",
+  "A.......==============================.....A",
+  "A..A....=.........................=......A.A",
+  "A.......=.........................=........A",
+  "A.......=................A........=....A...A",
+  "A.######=#######..................=........A",
+  "A.#ssssssssssss#..................=........A",
+  "A.#ssssssssssss#...........~~~~~~~~~~~~~...A",
+  "A.#ssssssssssss#..........~~~~~~~~~~~~~~~..A",
+  "A.#ssssssssssss#.A........~~~~~~~~~~~~~~~..A",
+  "A.#ssssssssssss#..........~~~~~~~~~~~~~~~..A",
+  "A.#ssssssssssss#........A.~~~~~~~~~~~~~~~..A",
+  "A.#ssssssssssss#..........~~~~~~~~~~~~~~~..A",
+  "A.#ssssssssssss#....A.....~~~~~~~~~~~~~~~..A",
+  "A.##############...........~~~~~~~~~~~~~...A",
+  "A..........................................A",
+  "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+ ],
+ "objetos": [
+  {
+   "tipo": "pinheiro_thalia",
+   "x": 20,
+   "y": 3,
+   "nome": "O pinheiro",
+   "texto": [
+    "O pinheiro no alto da colina marca a fronteira do vale.",
+    "Dizem que ele guarda o acampamento."
+   ]
+  },
+  {
+   "tipo": "casa_grande",
+   "x": 14,
+   "y": 10
+  },
+  {
+   "tipo": "estante_armas",
+   "x": 4,
+   "y": 20,
+   "dialogo": "percy_1.dialogo.estante",
+   "nome": "Arena"
+  }
+ ],
+ "fechadas": [
+  {
+   "x": 17,
+   "y": 12,
+   "aviso": "A porta está fechada. Quíron está aqui na frente."
+  }
+ ],
+ "npcs": [
+  {
+   "id": "quiron",
+   "sprite": "quiron.png",
+   "quadro": [
+    32,
+    40
+   ],
+   "x": 19,
+   "y": 13,
+   "olhar": "baixo",
+   "nome": "Quíron",
+   "dialogo": "percy_1.dialogo.quiron"
+  },
+  {
+   "id": "annabeth",
+   "sprite": "annabeth.png",
+   "x": 23,
+   "y": 13,
+   "olhar": "esquerda",
+   "nome": "Annabeth",
+   "dialogo": "percy_1.dialogo.annabeth"
+  },
+  {
+   "id": "grover",
+   "sprite": "grover.png",
+   "x": 25,
+   "y": 10,
+   "olhar": "baixo",
+   "nome": "Grover",
+   "dialogo": "percy_1.dialogo.grover_acampamento"
+  },
+  {
+   "id": "luke",
+   "sprite": "luke.png",
+   "x": 11,
+   "y": 20,
+   "olhar": "baixo",
+   "nome": "Luke",
+   "dialogo": "percy_1.dialogo.luke"
+  }
+ ],
+ "inimigos": [
+  {
+   "id": "boneco_1",
+   "tipo": "percy_1.inimigo.boneco_palha",
+   "x": 5,
+   "y": 24,
+   "ao_vencer": [
+    {
+     "contar": "percy_1.bonecos"
+    }
+   ]
+  },
+  {
+   "id": "boneco_2",
+   "tipo": "percy_1.inimigo.boneco_palha",
+   "x": 8,
+   "y": 24,
+   "ao_vencer": [
+    {
+     "contar": "percy_1.bonecos"
+    }
+   ]
+  },
+  {
+   "id": "boneco_3",
+   "tipo": "percy_1.inimigo.boneco_palha",
+   "x": 11,
+   "y": 24,
+   "ao_vencer": [
+    {
+     "contar": "percy_1.bonecos"
+    }
+   ]
+  }
+ ],
+ "saidas": [
+  {
+   "x": 21,
+   "y": 0,
+   "para": "pj_estrada",
+   "chegada": [
+    18,
+    1
+   ],
+   "olhar": "baixo"
+  }
+ ],
+ "ao_entrar": [
+  {
+   "se": {
+    "sem_flag": "percy_1.chegou_acampamento"
+   },
+   "dialogo": "percy_1.dialogo.despertar"
+  }
+ ],
+ "peixes": [
+  {
+   "item": "perca",
+   "peso": 5
+  },
+  {
+   "item": "carpa",
+   "peso": 3
+  }
+ ],
+ "desmaio": {
+  "mapa": "pj_acampamento",
+  "x": 21,
+  "y": 15
+ },
+ "inicio": [
+  21,
+  15
+ ]
+}

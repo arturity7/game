@@ -19,9 +19,13 @@ var _lado := "baixo"
 var _tempo_passo := 0.0
 var _acao := 0.0          # segundos restantes da pose de usar ferramenta
 var _celula := Vector2i(-999, -999)
+var _empurrao := Vector2.ZERO   # recuo depois de levar um golpe
+var invulneravel := 0.0         # segundos sem levar dano depois de um golpe
 
 
 func _ready() -> void:
+	collision_layer = 2     # inimigos e animais não esbarram no jogador como se fosse parede
+	collision_mask = 1
 	sprite = Sprite2D.new()
 	sprite.texture = TEXTURA
 	sprite.centered = false
@@ -48,7 +52,10 @@ func _physics_process(delta: float) -> void:
 	nadando = mundo != null and mundo.eh_agua(global_position)
 	var cfg: Dictionary = Config.balanceamento
 	var vel := float(cfg.get("velocidade_nadar" if nadando else "velocidade_andar", 80.0))
-	velocity = dir * vel
+	velocity = dir * vel + _empurrao
+	_empurrao = _empurrao.move_toward(Vector2.ZERO, 700.0 * delta)
+	invulneravel = maxf(0.0, invulneravel - delta)
+	sprite.visible = invulneravel <= 0.0 or int(invulneravel * 16.0) % 2 == 0
 	andando = dir != Vector2.ZERO
 	if andando:
 		_virar(dir)
@@ -75,6 +82,43 @@ func _virar(dir: Vector2) -> void:
 	else:
 		_lado = "baixo" if dir.y > 0 else "cima"
 	direcao = {"baixo": Vector2i(0, 1), "cima": Vector2i(0, -1), "esquerda": Vector2i(-1, 0), "direita": Vector2i(1, 0)}[_lado]
+
+
+## Leva um golpe: perde vida, é empurrado para longe de 'origem' e pisca um instante sem levar dano.
+func receber_dano(dano: float, origem: Vector2, forca := 150.0) -> void:
+	if invulneravel > 0.0 or parado or GameState.dados == null:
+		return
+	var d: GameData = GameState.dados
+	d.jogador["vida"] = maxf(0.0, float(d.jogador["vida"]) - dano)
+	invulneravel = 0.9
+	var para := global_position - origem
+	_empurrao = (para.normalized() if para.length() > 0.1 else Vector2.DOWN) * forca
+	Efeitos.particulas(get_parent(), global_position + Vector2(0, -14), Color("#ec5a5a"), 6, 40.0)
+	Som.tocar("dano")
+
+
+## Golpe de espada na direção 'dir' (vetor): mostra o corte e acerta os inimigos na frente.
+## Retorna quantos acertou.
+func atacar(dir: Vector2, dano: float, alcance: float) -> int:
+	if dir.length() < 0.01:
+		dir = Vector2(direcao)
+	_virar(dir)
+	acao(0.25)
+	Efeitos.corte(get_parent(), global_position + Vector2(0, -10), dir)
+	Som.tocar("espada")
+	var acertos := 0
+	if mundo == null:
+		return 0
+	var centro := global_position + Vector2(0, -8)
+	for n in mundo.inimigos.duplicate():
+		if not is_instance_valid(n):
+			continue
+		var alvo: Inimigo = n
+		var para := alvo.global_position + Vector2(0, -8) - centro
+		if para.length() <= alcance and para.normalized().dot(dir.normalized()) > 0.3:
+			alvo.receber_golpe(dano, global_position)
+			acertos += 1
+	return acertos
 
 
 ## Pose de usar ferramenta por um instante (o jogador para enquanto isso).

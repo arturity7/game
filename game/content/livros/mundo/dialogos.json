@@ -5,6 +5,12 @@
   "inicio": [
    {
     "se": {
+     "flag": "portal.alem_da_nevoa"
+    },
+    "ir": "aceso"
+   },
+   {
+    "se": {
      "item": "epicuro.item.chave_alem_nevoa"
     },
     "ir": "com_chave"
@@ -24,7 +30,68 @@
    "com_chave": {
     "fala": [
      "A chave de Além da Névoa esquenta na sua mão perto do arco.",
-     "Uma névoa azul aparece lá dentro por um instante... e some. O caminho ainda não abriu."
+     "Você encosta a chave na pedra. Uma névoa azul enche o arco e não some mais.",
+     "Do outro lado, chove forte. Dá para ouvir um trovão... e uma estrada."
+    ],
+    "efeitos": [
+     {
+      "flag": "portal.alem_da_nevoa"
+     }
+    ],
+    "escolhas": [
+     {
+      "texto": "Atravessar",
+      "ir": "ir_nevoa"
+     },
+     {
+      "texto": "Agora não",
+      "ir": "fim"
+     }
+    ]
+   },
+   "aceso": {
+    "fala": "A névoa azul gira dentro do arco. Do outro lado: Além da Névoa.",
+    "escolhas": [
+     {
+      "texto": "Atravessar (a estrada)",
+      "ir": "ir_nevoa"
+     },
+     {
+      "texto": "Ir ao Acampamento Meio-Sangue",
+      "ir": "ir_acampamento",
+      "se": {
+       "flag": "percy_1.chegou_acampamento"
+      }
+     },
+     {
+      "texto": "Agora não",
+      "ir": "fim"
+     }
+    ]
+   },
+   "ir_nevoa": {
+    "efeitos": [
+     {
+      "viajar": {
+       "mapa": "pj_estrada",
+       "x": 3,
+       "y": 17,
+       "olhar": "direita"
+      }
+     }
+    ],
+    "ir": "fim"
+   },
+   "ir_acampamento": {
+    "efeitos": [
+     {
+      "viajar": {
+       "mapa": "pj_acampamento",
+       "x": 21,
+       "y": 5,
+       "olhar": "baixo"
+      }
+     }
     ],
     "ir": "fim"
    }

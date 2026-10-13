@@ -10,6 +10,7 @@ var _redesenhar_em := 0.0
 var _inicio: TelaInicial
 var _passeio := 0.0
 var _rng := RandomNumberGenerator.new()
+var _pronto_para_golpe := 0.0
 var _trocando := false        # true durante a passagem de um mapa para outro
 var pesca: Pesca = null       # linha na água (D-056)
 var _cortina: ColorRect       # tela preta da passagem
@@ -98,6 +99,7 @@ func _montar_mundo() -> void:
 	add_child(mundo)
 	move_child(mundo, 0)
 	mundo.montar(str(GameState.dados.jogador["mapa"]))
+	mundo.inimigo_vencido.connect(_inimigo_vencido)
 	mundo.jogador.position = GameState.dados.posicao()
 	if mundo.bloqueada(mundo.celula_de(mundo.jogador.position)):
 		# save de uma versão do mapa em que ali era livre: volta para o início
@@ -106,6 +108,11 @@ func _montar_mundo() -> void:
 	mundo.desenhar_plantacao(GameState.dados)
 	_acordar()
 	Som.musica(mundo.mapa.musica if mundo.mapa.musica != "" else "musica_fazenda")
+	for e in mundo.mapa.ao_entrar:
+		if Dialogo.condicao(GameState.dados, e.get("se", {})):
+			var dlg := str(e.get("dialogo", ""))
+			get_tree().create_timer(0.6).timeout.connect(func(): if em_jogo and not dormindo: conversar(dlg))
+			break
 
 
 func _process(delta: float) -> void:
@@ -132,7 +139,12 @@ func _process(delta: float) -> void:
 		var saida := mundo.mapa.saida_em(mundo.celula_de(mundo.jogador.position))
 		if not saida.is_empty():
 			var loja := str(saida.get("loja", ""))
-			if loja != "" and not loja_aberta(loja):
+			if not Dialogo.condicao(d, saida.get("se", {})):
+				# caminho ainda fechado (ex.: um chefe no caminho): volta um passo
+				mundo.jogador.position -= Vector2(mundo.jogador.direcao) * 8.0
+				if str(saida.get("aviso", "")) != "":
+					hud.avisar(str(saida["aviso"]), 2.0)
+			elif loja != "" and not loja_aberta(loja):
 				# porta trancada fora do horário: o jogador volta um passo
 				mundo.jogador.position += Vector2(0, 8)
 				var def: Dictionary = Config.lojas.get(loja, {})
@@ -142,12 +154,17 @@ func _process(delta: float) -> void:
 	if float(d.jogador["vida"]) <= 0.0:
 		# acorda na clínica da cidade (GDD: vida zerada) e perde um pouco de dinheiro
 		var id_clinica := str(cfg.get("mapa_clinica", "clinica"))
+		var onde: Dictionary = mundo.mapa.desmaio   # mapas especiais (dimensões) dizem onde acordar
+		if not onde.is_empty():
+			id_clinica = str(onde.get("mapa", mundo.mapa.id))
 		if not FileAccess.file_exists("res://content/mapas/%s.json" % id_clinica):
 			id_clinica = "fazenda"
 		var clinica: MapData = Config.mapa(id_clinica)
 		var inicio := Vector2(clinica.inicio) * 16.0 + Vector2(8, 8)
+		if not onde.is_empty() and onde.has("x"):
+			inicio = Vector2(int(onde["x"]), int(onde["y"])) * 16.0 + Vector2(8, 8)
 		var perda := Survival.desmaiar(d, cfg, inicio, clinica.id)
-		if mundo.mapa.id != clinica.id:
+		if mundo.mapa.id != clinica.id or not onde.is_empty():
 			_montar_mundo()
 		mundo.jogador.position = inicio
 		_acordar()
@@ -319,6 +336,9 @@ func usar(c: Vector2i) -> void:
 		"construcao":
 			_construir_em(c, s, def)
 			return
+	if str(def.get("tipo", "")) == "arma":
+		_atacar(c, def)
+		return
 	var acao := str(def.get("acao", ""))
 	if acao == "" and str(s["id"]) in ["enxada", "regador", "vara_pesca"]:
 		acao = {"enxada": "arar", "regador": "regar", "vara_pesca": "pescar"}[str(s["id"])]
@@ -466,6 +486,34 @@ func _construir_em(c: Vector2i, s, def: Dictionary) -> void:
 	Som.tocar("enxada", -6.0)
 
 
+## Golpe com a arma da mão (espada) na direção do alvo; 'recarga' segundos entre golpes.
+func _atacar(c: Vector2i, def: Dictionary) -> void:
+	var agora := Time.get_ticks_msec() / 1000.0
+	if agora < _pronto_para_golpe:
+		return
+	_pronto_para_golpe = agora + float(def.get("recarga", 0.4))
+	var alvo := Vector2(c) * 16.0 + Vector2(8, 8)
+	var dir := alvo - (mundo.jogador.position + Vector2(0, -6))
+	if dir.length() < 4.0:
+		dir = Vector2(mundo.jogador.direcao)
+	mundo.jogador.atacar(dir, float(def.get("dano", 1)), float(def.get("alcance", 20)))
+	Survival.tick(GameState.dados, {"fome_por_segundo": float(Config.balanceamento.get("fome_por_uso_ferramenta", 0.3))}, 1.0, false)
+
+
+## Um inimigo virou pó: chefes únicos não voltam; aplica os efeitos do mapa ("ao_vencer") e,
+## se houver, abre a conversa ("dialogo_vencer").
+func _inimigo_vencido(quem: Inimigo, entrada: Dictionary) -> void:
+	var d: GameData = GameState.dados
+	if bool(entrada.get("unico", false)):
+		Progresso.marcar(d, "venceu:" + str(entrada.get("id", quem.id)))
+	var avisos := Dialogo.aplicar(d, entrada.get("ao_vencer", []), Config.itens)
+	if not avisos.is_empty():
+		hud.avisar("  ".join(avisos), 3.0)
+	var dlg := str(entrada.get("dialogo_vencer", ""))
+	if dlg != "":
+		get_tree().create_timer(0.9).timeout.connect(func(): conversar(dlg))
+
+
 ## A loja está aberta agora? (horário em lojas.json)
 func loja_aberta(id: String) -> bool:
 	var def: Dictionary = Config.lojas.get(id, {})
@@ -477,7 +525,10 @@ func loja_aberta(id: String) -> bool:
 func conversar(id_dialogo: String, quem := "") -> CaixaDialogo:
 	var c := CaixaDialogo.new()
 	add_child(c)
-	c.acabou.connect(func(): if mundo: mundo.atualizar_npcs())
+	c.acabou.connect(func():
+		if mundo:
+			mundo.atualizar_npcs()
+			mundo.atualizar_depois_de_conversa())
 	c.abrir(id_dialogo, quem)
 	return c
 
@@ -614,6 +665,14 @@ func interagir(c: Vector2i) -> void:
 	if dormindo:
 		return
 	var d: GameData = GameState.dados
+	var tonto := mundo.inimigo_para_terminar(c)
+	if tonto == null:
+		tonto = mundo.inimigo_para_terminar(mundo.celula_de(mundo.jogador.position))
+	if tonto != null:
+		mundo.jogador.olhar_para(mundo.celula_de(tonto.global_position))
+		mundo.jogador.acao(0.35)
+		tonto.vencer()
+		return
 	# morador na célula; no balcão, quem atende fica atrás dele
 	var npc := mundo.mapa.npc_em(c)
 	var balcao := mundo.mapa.objeto_em(c)

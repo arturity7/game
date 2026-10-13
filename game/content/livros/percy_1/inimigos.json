@@ -1,0 +1,40 @@
+{
+ "_sobre": "Inimigos de Percy Jackson e o Ladrão de Raios (formato em scripts/world/inimigo.gd). Os monstros viram pó ou areia quando vencidos e, segundo o livro, um dia voltam.",
+ "percy_1.boss.homem_touro": {
+  "nome": "Homem-touro",
+  "folha": "homem_touro.png",
+  "quadro": [
+   32,
+   40
+  ],
+  "vida": 99,
+  "invencivel": true,
+  "comportamento": "investida",
+  "velocidade": 22,
+  "multiplicador_investida": 6.0,
+  "distancia_investida": 280,
+  "preparo_s": 1.0,
+  "tonto_s": 2.2,
+  "tontos_para_vencer": 3,
+  "tonto_final_s": 6.0,
+  "dano": 10,
+  "dano_investida": 22,
+  "raio": 15,
+  "largura_pes": 16,
+  "cor_po": "#d8c38a",
+  "ref": "Cap. 4"
+ },
+ "percy_1.inimigo.boneco_palha": {
+  "nome": "Boneco de palha",
+  "folha": "boneco_palha.png",
+  "quadro": [
+   16,
+   32
+  ],
+  "vida": 3,
+  "comportamento": "parado",
+  "recuo": 0,
+  "cor_po": "#dcbd62",
+  "ref": "Cap. 8"
+ }
+}

@@ -139,6 +139,56 @@ def tombar():
     return range_ + batida + folhas
 
 
+def espada():
+    """Corte no ar: chiado que sobe e some."""
+    global rng
+    rng = np.random.default_rng(53)
+    d = 0.18
+    n = ruido(d)
+    alto = n - passa_baixa(n, 2500)
+    e = np.sin(np.pi * np.clip(t_(d) / d, 0, 1)) ** 2
+    return alto * e + seno(lambda t: 900 + 1400 * t / d, d) * e * 0.08
+
+
+def dano():
+    """Levou um golpe: 'tum' curto e grave com um apito descendo."""
+    global rng
+    rng = np.random.default_rng(59)
+    d = 0.22
+    x = seno(lambda t: 320 - 600 * t, d) * np.exp(-t_(d) * 18) * 0.8
+    x += passa_baixa(ruido(d), 900) * np.exp(-t_(d) * 30) * 0.6
+    return x
+
+
+def trovao():
+    """Trovão longe: estrondo grave que rola e se apaga."""
+    global rng
+    rng = np.random.default_rng(61)
+    d = 2.6
+    t = t_(d)
+    x = passa_baixa(ruido(d), 160) * 2.2
+    x *= (np.exp(-t * 1.6) * (0.6 + 0.4 * np.sin(t * 9) ** 2)) * np.clip(t / 0.08, 0, 1)
+    x += passa_baixa(ruido(d), 600) * np.exp(-t * 6) * 0.5 * (t < 0.6)
+    return x
+
+
+def chuva():
+    """Chuva contínua (3 s, toca em laço): chiado médio com pingos."""
+    global rng
+    rng = np.random.default_rng(67)
+    d = 3.0
+    n = ruido(d)
+    x = passa_baixa(n, 5000) - passa_baixa(n, 400)
+    pingos = np.zeros_like(x)
+    for i in rng.integers(0, len(x) - 400, 260):
+        pingos[i:i + 300] += np.exp(-np.arange(300) / 40.0) * rng.uniform(-1, 1) * 0.6
+    x = x * 0.5 + pingos
+    # emenda suave para o laço
+    k = 600
+    x[:k] = x[:k] * np.linspace(0, 1, k) + x[-k:] * np.linspace(1, 0, k)
+    return x[:-k]
+
+
 def enxada():
     n = ruido(0.16)
     x = passa_baixa(n, 700) * np.exp(-t_(0.16) * 28) * 1.3
@@ -338,4 +388,8 @@ if __name__ == "__main__":
     salvar("mato", mato(), 0.35)
     salvar("machado", machado(), 0.7)
     salvar("tombar", tombar(), 0.7)
+    salvar("espada", espada(), 0.5)
+    salvar("dano", dano(), 0.7)
+    salvar("trovao", trovao(), 0.8)
+    salvar("chuva", chuva(), 0.6)
     print("ok")

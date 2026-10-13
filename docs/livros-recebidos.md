@@ -15,7 +15,7 @@
 | 5 | Maze Runner: Correr ou Morrer (vol. 1) | James Dashner | EPUB | Português | 📝 |
 | 6 | Maze Runner: Prova de Fogo (vol. 2) | James Dashner | PDF | Português | 📝 |
 | 7 | Maze Runner: A Cura Mortal (vol. 3) | James Dashner | PDF | Português | 📝 |
-| 8 | Percy Jackson e os Olimpianos (box com 5 livros: O Ladrão de Raios, O Mar de Monstros, A Maldição do Titã, A Batalha do Labirinto, O Último Olimpiano) | Rick Riordan | EPUB | Português | 📝 |
+| 8 | Percy Jackson e os Olimpianos (box com 5 livros: O Ladrão de Raios, O Mar de Monstros, A Maldição do Titã, A Batalha do Labirinto, O Último Olimpiano) | Rick Riordan | EPUB | Português | 🎮 (em parte: O Ladrão de Raios) |
 | 9 | Dunkirk | Joshua Levine | PDF | Inglês | 📝 |
 | 10 | Walden, ou a Vida nos Bosques | Henry David Thoreau | EPUB | Português | 🎮 (em parte) |
 | 11 | De Quanta Terra Precisa um Homem? e outras histórias | Liev Tolstói | EPUB | Português | 🎮 (em parte) |

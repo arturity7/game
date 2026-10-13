@@ -726,12 +726,12 @@ Entrada: pelo portal, com a chave da dimensão (D-017, D-048). Do outro lado, o 
 
 | ID | Tipo | Onde | Status |
 |---|---|---|---|
-| `percy_1.dimensao.alem_da_nevoa` | Dimensão | Portal | Criado (ficha) |
-| `percy_1.local.colina_meio_sangue` | Local / hub | Além da Névoa | Criado (ficha) |
-| `percy_1.local.pinheiro_thalia` | Local / fronteira | Colina Meio-Sangue | Criado (ficha) |
-| `percy_1.local.casa_grande` | Local | Colina Meio-Sangue | Criado (ficha) |
+| `percy_1.dimensao.alem_da_nevoa` | Dimensão | Portal | Implementado (portal e estrada) |
+| `percy_1.local.colina_meio_sangue` | Local / hub | Além da Névoa | Implementado em parte (mapa `pj_acampamento`) |
+| `percy_1.local.pinheiro_thalia` | Local / fronteira | Colina Meio-Sangue | Implementado |
+| `percy_1.local.casa_grande` | Local | Colina Meio-Sangue | Implementado (por fora) |
 | `percy_1.local.sotao` | Local | Casa Grande | Criado (ficha) |
-| `percy_1.local.campos_morangos` | Local | Colina Meio-Sangue | Criado (ficha) |
+| `percy_1.local.campos_morangos` | Local | Colina Meio-Sangue | Implementado (cenário) |
 | `percy_1.local.bosque` | Local / área de combate | Colina Meio-Sangue | Criado (ficha) |
 | `percy_1.local.regato` | Local | Bosque | Criado (ficha) |
 | `percy_1.local.chales` | Local | Colina Meio-Sangue | Criado (ficha) |
@@ -740,10 +740,10 @@ Entrada: pelo portal, com a chave da dimensão (D-017, D-048). Do outro lado, o 
 | `percy_1.local.pavilhao_refeitorio` | Local | Colina Meio-Sangue | Criado (ficha) |
 | `percy_1.local.fogueira` | Local | Chalés | Criado (ficha) |
 | `percy_1.local.anfiteatro` | Local | Colina Meio-Sangue | Criado (ficha) |
-| `percy_1.local.arena` | Local | Colina Meio-Sangue | Criado (ficha) |
+| `percy_1.local.arena` | Local | Colina Meio-Sangue | Implementado |
 | `percy_1.local.parede_lava` | Local | Colina Meio-Sangue | Criado (ficha) |
 | `percy_1.local.oficina_metais` | Local | Colina Meio-Sangue | Criado (ficha) |
-| `percy_1.local.lago_canoagem` | Local | Colina Meio-Sangue | Criado (ficha) |
+| `percy_1.local.lago_canoagem` | Local | Colina Meio-Sangue | Implementado (cenário, pesca) |
 | `percy_1.local.estabulos` | Local | Colina Meio-Sangue | Criado (ficha) |
 | `percy_1.local.loja_acampamento` | Local / comércio | Colina Meio-Sangue | Criado (ficha) |
 | `percy_1.local.academia_yancy` | Local | Nova York | Criado (ficha) |
@@ -778,11 +778,11 @@ Entrada: pelo portal, com a chave da dimensão (D-017, D-048). Do outro lado, o 
 | `percy_1.local.palacio_hades` | Local | Mundo Inferior | Criado (ficha) |
 | `percy_1.local.jardim_persefone` | Local | Palácio de Hades | Criado (ficha) |
 | `percy_1.npc.percy` | NPC / papel do jogador | Além da Névoa | Criado (ficha) |
-| `percy_1.npc.annabeth` | NPC / companheira | Além da Névoa | Criado (ficha) |
-| `percy_1.npc.grover` | NPC / companheiro | Além da Névoa | Criado (ficha) |
-| `percy_1.npc.quiron` | NPC | Colina Meio-Sangue | Criado (ficha) |
+| `percy_1.npc.annabeth` | NPC / companheira | Além da Névoa | Implementado (conversa) |
+| `percy_1.npc.grover` | NPC / companheiro | Além da Névoa | Implementado (conversas) |
+| `percy_1.npc.quiron` | NPC | Colina Meio-Sangue | Implementado (conversa e perguntas) |
 | `percy_1.npc.sr_d` | NPC | Casa Grande | Criado (ficha) |
-| `percy_1.npc.luke` | NPC | Chalé 11 | Criado (ficha) |
+| `percy_1.npc.luke` | NPC | Chalé 11 | Implementado (aula de esgrima e perguntas) |
 | `percy_1.npc.clarisse` | NPC / rival | Chalé 5 | Criado (ficha) |
 | `percy_1.npc.argos` | NPC | Colina Meio-Sangue | Criado (ficha) |
 | `percy_1.npc.sally` | NPC | Nova York | Criado (ficha) |
@@ -812,7 +812,7 @@ Entrada: pelo portal, com a chave da dimensão (D-017, D-048). Do outro lado, o 
 | `percy_1.inimigo.equidna` | Inimigo | Arco de St. Louis | Criado (ficha) |
 | `percy_1.inimigo.javali_ares` | Inimigo | Santa Monica | Criado (ficha) |
 | `percy_1.inimigo.escorpiao` | Inimigo | Regato | Criado (ficha) |
-| `percy_1.boss.homem_touro` | Boss | Pinheiro de Thalia | Criado (ficha) |
+| `percy_1.boss.homem_touro` | Boss | Pinheiro de Thalia | Implementado |
 | `percy_1.boss.furias_onibus` | Boss | Túnel Lincoln | Criado (ficha) |
 | `percy_1.boss.tia_eme` | Boss | Empório da Tia Eme | Criado (ficha) |
 | `percy_1.boss.crosta` | Boss (conversa) | Palácio das Camas-d'Água | Criado (ficha) |
@@ -833,7 +833,7 @@ Entrada: pelo portal, com a chave da dimensão (D-017, D-048). Do outro lado, o 
 | `percy_1.minijogo.captura_bandeira` | Minijogo de equipes | Bosque | Criado (ficha) |
 | `percy_1.minijogo.parede_lava` | Minijogo | Parede de lava | Criado (ficha) |
 | `percy_1.minijogo.canoagem` | Minijogo | Lago de canoagem | Criado (ficha) |
-| `percy_1.minijogo.esgrima` | Minijogo | Arena | Criado (ficha) |
+| `percy_1.minijogo.esgrima` | Minijogo | Arena | Implementado em parte (bonecos de palha) |
 | `percy_1.minijogo.arco_flecha` | Minijogo | Linha de tiro com arco | Criado (ficha) |
 | `percy_1.minijogo.pinochle` | Minijogo (cartas, sem apostas) | Casa Grande | Criado (ficha) |
 | `percy_1.minijogo.embaixadinha_maca` | Minijogo | Terminal de ônibus | Criado (ficha) |
@@ -869,10 +869,10 @@ Entrada: pelo portal, com a chave da dimensão (D-017, D-048). Do outro lado, o 
 | `percy_1.item.contracorrente` | Arma principal | Inventário | Criado (ficha) |
 | `percy_1.item.bone_invisivel` | Item (de Annabeth) | Companheira | Criado (ficha) |
 | `percy_1.item.tenis_alados` | Item | Inventário | Criado (ficha) |
-| `percy_1.item.chifre_minotauro` | Troféu | Chalé 3 | Criado (ficha) |
+| `percy_1.item.chifre_minotauro` | Troféu | Chalé 3 | Implementado |
 | `percy_1.item.nectar` | Item de cura | Inventário | Criado (ficha) |
 | `percy_1.item.ambrosia` | Item de cura | Inventário | Criado (ficha) |
-| `percy_1.item.dracma` | Moeda | Inventário | Criado (ficha) |
+| `percy_1.item.dracma` | Moeda | Inventário | Implementado (recompensa das perguntas) |
 | `percy_1.item.cartao_grover` | Item | Inventário | Criado (ficha) |
 | `percy_1.item.flautas_grover` | Item (de Grover) | Companheiro | Criado (ficha) |
 | `percy_1.item.esfera_espelhada` | Item | Empório da Tia Eme | Criado (ficha) |

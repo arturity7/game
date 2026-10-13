@@ -1,0 +1,24 @@
+{
+ "_sobre": "Itens de Percy Jackson e o Ladrão de Raios. 'icone' = posição em assets/sprites/itens/itens.png.",
+ "percy_1.item.espada_acampamento": {
+  "nome": "Espada de bronze",
+  "tipo": "arma",
+  "icone": 39,
+  "pilha": 1,
+  "dano": 1,
+  "alcance": 22,
+  "recarga": 0.35
+ },
+ "percy_1.item.chifre_minotauro": {
+  "nome": "Chifre do homem-touro",
+  "tipo": "trofeu",
+  "icone": 40,
+  "pilha": 1
+ },
+ "percy_1.item.dracma": {
+  "nome": "Dracma de ouro",
+  "tipo": "moeda",
+  "icone": 41,
+  "pilha": 99
+ }
+}
