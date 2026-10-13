@@ -1,0 +1,105 @@
+{
+ "_sobre": "Sapataria de Simon (livro de Tolstói, conto Dos que vivem): isbá com forno, bancada e o ajudante Michael. Área com spoilers do livro.",
+ "id": "sapataria",
+ "nome": "Sapataria",
+ "livro": "tolstoi",
+ "fundo": "sapataria.png",
+ "noite": "sapataria_noite.png",
+ "interior": true,
+ "legenda": {
+  "#": "parede",
+  ".": "piso"
+ },
+ "linhas": [
+  "###########",
+  "###########",
+  "###########",
+  "#.........#",
+  "#.........#",
+  "#.........#",
+  "#.........#",
+  "#.........#",
+  "#####.#####"
+ ],
+ "luzes": [
+  [
+   40,
+   56
+  ]
+ ],
+ "objetos": [
+  {
+   "tipo": "forno_russo",
+   "x": 1,
+   "y": 3
+  },
+  {
+   "tipo": "bancada",
+   "x": 6,
+   "y": 5
+  },
+  {
+   "tipo": "prateleira",
+   "x": 8,
+   "y": 3
+  },
+  {
+   "tipo": "mesa",
+   "x": 2,
+   "y": 6
+  },
+  {
+   "tipo": "cadeira",
+   "x": 4,
+   "y": 6
+  }
+ ],
+ "npcs": [
+  {
+   "id": "tolstoi.npc.simon",
+   "nome": "Simon",
+   "sprite": "simon.png",
+   "x": 6,
+   "y": 4,
+   "olhar": "baixo",
+   "dialogo": "tolstoi.dialogo.simon"
+  },
+  {
+   "id": "tolstoi.npc.michael",
+   "nome": "Michael",
+   "sprite": "michael.png",
+   "x": 7,
+   "y": 4,
+   "olhar": "baixo",
+   "dialogo": "tolstoi.dialogo.michael",
+   "se": {
+    "sem_flag": "tolstoi.revelacao"
+   }
+  },
+  {
+   "id": "tolstoi.npc.matryona",
+   "nome": "Matryona",
+   "sprite": "matryona.png",
+   "x": 3,
+   "y": 4,
+   "olhar": "baixo",
+   "dialogo": "tolstoi.dialogo.matryona"
+  }
+ ],
+ "saidas": [
+  {
+   "x": 5,
+   "y": 8,
+   "para": "cidade",
+   "chegada": [
+    27,
+    8
+   ],
+   "olhar": "baixo"
+  }
+ ],
+ "inicio": [
+  5,
+  7
+ ]
+}

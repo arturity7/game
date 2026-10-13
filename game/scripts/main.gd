@@ -318,6 +318,7 @@ func loja_aberta(id: String) -> bool:
 func conversar(id_dialogo: String, quem := "") -> CaixaDialogo:
 	var c := CaixaDialogo.new()
 	add_child(c)
+	c.acabou.connect(func(): if mundo: mundo.atualizar_npcs())
 	c.abrir(id_dialogo, quem)
 	return c
 
@@ -353,11 +354,15 @@ func interagir(c: Vector2i) -> void:
 	var npc := mundo.mapa.npc_em(c)
 	var balcao := mundo.mapa.objeto_em(c)
 	if npc.is_empty() and not balcao.is_empty() and bool(Config.objetos.get(str(balcao["tipo"]), {}).get("atende_atras", false)):
+		# primeiro quem está bem atrás da célula; depois qualquer um atrás do balcão
+		npc = mundo.mapa.npc_em(Vector2i(c.x, int(balcao["y"]) - 1))
 		var peg: Array = Config.objetos[str(balcao["tipo"])].get("pegada", [1, 1])
 		for dx in int(peg[0]):
-			npc = mundo.mapa.npc_em(Vector2i(int(balcao["x"]) + dx, int(balcao["y"]) - 1))
-			if not npc.is_empty():
+			if not npc.is_empty() and mundo.npc_visivel(npc):
 				break
+			npc = mundo.mapa.npc_em(Vector2i(int(balcao["x"]) + dx, int(balcao["y"]) - 1))
+	if not npc.is_empty() and not mundo.npc_visivel(npc):
+		npc = {}
 	if not npc.is_empty():
 		mundo.jogador.olhar_para(c)
 		var loja := str(npc.get("loja", ""))

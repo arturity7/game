@@ -1,0 +1,179 @@
+{
+ "_sobre": "Perguntas do livro de Tolstói (formato em docs/tecnico.md §9).",
+ "tolstoi.pergunta.ultimo_pao": {
+  "texto": "Quando o estranho chegou com fome e sem roupa, o que Matryona acabou fazendo?",
+  "opcoes": [
+   "Serviu a ele o último pedaço de pão",
+   "Mandou-o embora",
+   "Chamou os vizinhos para expulsá-lo",
+   "Pediu dinheiro a ele"
+  ],
+  "certa": 0,
+  "nivel": "memoria",
+  "peso": "simples",
+  "ref": "Dos que vivem §3-4"
+ },
+ "tolstoi.pergunta.chinelos": {
+  "texto": "Um cavalheiro exigiu botas que durassem um ano. O que Michael fez com o couro?",
+  "opcoes": [
+   "Chinelos macios",
+   "Botas de cano alto",
+   "Um cinto",
+   "Nada; devolveu o couro"
+  ],
+  "certa": 0,
+  "nivel": "memoria",
+  "peso": "simples",
+  "ref": "Dos que vivem §6-7"
+ },
+ "tolstoi.pergunta.gemeas": {
+  "texto": "Quem cuidou das gêmeas que ficaram órfãs?",
+  "opcoes": [
+   "Uma vizinha, que as amamentou junto com o próprio filho",
+   "Simon e Matryona",
+   "O cavalheiro rico",
+   "Ninguém; viviam sozinhas"
+  ],
+  "certa": 0,
+  "nivel": "memoria",
+  "peso": "simples",
+  "ref": "Dos que vivem §8-9"
+ },
+ "tolstoi.pergunta.do_que_vivem": {
+  "texto": "Do que vivem os homens?",
+  "opcoes": [
+   "Do amor",
+   "Do pão",
+   "Do trabalho",
+   "Do dinheiro"
+  ],
+  "certa": 0,
+  "nivel": "memoria",
+  "peso": "simples",
+  "ref": "Dos que vivem §12"
+ },
+ "tolstoi.pergunta.la": {
+  "texto": "O que Simon tinha saído para comprar no dia em que achou o estranho?",
+  "opcoes": [
+   "Lã de ovelha para um casaco",
+   "Pão para o jantar",
+   "Couro para botas",
+   "Uma vaca"
+  ],
+  "certa": 0,
+  "nivel": "memoria",
+  "peso": "simples",
+  "ref": "Dos que vivem §1"
+ },
+ "tolstoi.pergunta.tres": {
+  "texto": "Quantas vezes Michael sorriu em seis anos?",
+  "opcoes": [
+   "Três",
+   "Uma",
+   "Nenhuma",
+   "Sete"
+  ],
+  "certa": 0,
+  "nivel": "memoria",
+  "peso": "simples",
+  "ref": "Dos que vivem §10"
+ },
+ "tolstoi.pergunta.couro_preco": {
+  "texto": "Quanto valia o couro alemão do cavalheiro?",
+  "opcoes": [
+   "Vinte rublos",
+   "Dez rublos",
+   "Três rublos",
+   "Mil rublos"
+  ],
+  "certa": 0,
+  "nivel": "releitura",
+  "dica": "no conto Dos que vivem, seção 6",
+  "peso": "simples",
+  "ref": "Dos que vivem §6"
+ },
+ "tolstoi.pergunta.pagaria": {
+  "texto": "Quanto o cavalheiro prometeu pagar pelas botas?",
+  "opcoes": [
+   "Dez rublos",
+   "Vinte rublos",
+   "Um rublo",
+   "Cem rublos"
+  ],
+  "certa": 0,
+  "nivel": "releitura",
+  "dica": "no conto Dos que vivem, seção 6",
+  "peso": "simples",
+  "ref": "Dos que vivem §6"
+ },
+ "tolstoi.pergunta.martha": {
+  "texto": "Como se chamava a vizinha que emprestava pão?",
+  "opcoes": [
+   "Martha",
+   "Mary",
+   "Matryona",
+   "Sira"
+  ],
+  "certa": 0,
+  "nivel": "releitura",
+  "dica": "no conto Dos que vivem, seção 4",
+  "peso": "simples",
+  "ref": "Dos que vivem §4"
+ },
+ "tolstoi.pergunta.fedka": {
+  "texto": "Como se chamava o lacaio do cavalheiro?",
+  "opcoes": [
+   "Fedka",
+   "Pahom",
+   "Trifonof",
+   "Simon"
+  ],
+  "certa": 0,
+  "nivel": "releitura",
+  "dica": "no conto Dos que vivem, seções 6 e 7",
+  "peso": "simples",
+  "ref": "Dos que vivem §6-7"
+ },
+ "tolstoi.pergunta.perna": {
+  "texto": "Uma das gêmeas mancava. De qual perna?",
+  "opcoes": [
+   "Da esquerda",
+   "Da direita",
+   "Das duas",
+   "De nenhuma; era do braço"
+  ],
+  "certa": 0,
+  "nivel": "releitura",
+  "dica": "no conto Dos que vivem, seção 8",
+  "peso": "simples",
+  "ref": "Dos que vivem §8"
+ },
+ "tolstoi.pergunta.lenhador": {
+  "texto": "Qual era o ofício do pai das gêmeas?",
+  "opcoes": [
+   "Lenhador",
+   "Sapateiro",
+   "Ferreiro",
+   "Pescador"
+  ],
+  "certa": 0,
+  "nivel": "releitura",
+  "dica": "no conto Dos que vivem, seção 9",
+  "peso": "simples",
+  "ref": "Dos que vivem §9"
+ },
+ "tolstoi.pergunta.sexto_ano": {
+  "texto": "Em que ano de Michael na oficina as gêmeas apareceram?",
+  "opcoes": [
+   "No sexto",
+   "No primeiro",
+   "No terceiro",
+   "No décimo"
+  ],
+  "certa": 0,
+  "nivel": "releitura",
+  "dica": "no conto Dos que vivem, seção 8",
+  "peso": "simples",
+  "ref": "Dos que vivem §8"
+ }
+}

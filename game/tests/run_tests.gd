@@ -24,6 +24,7 @@ func _init() -> void:
 	_teste_mapas_ligados()
 	_teste_epicuro_do_comeco_ao_fim(cfg)
 	_teste_babilonia(cfg)
+	_teste_tolstoi_sapataria(cfg)
 	print("\n%d verificações, %d falha(s)" % [total, falhas])
 	quit(1 if falhas > 0 else 0)
 
@@ -319,9 +320,10 @@ func _teste_conteudo_dos_livros(_cfg: Dictionary) -> void:
 					checar(c.conquistas.has(str(e["conquista"])), "%s: conquista existe (%s)" % [id, e["conquista"]])
 		for a in alvos:
 			checar(str(a) == "fim" or nos.has(str(a)), "%s: nó existe (%s)" % [id, a])
+	var n_icones: int = (load("res://assets/sprites/itens/itens.png") as Texture2D).get_width() / 16
 	for id in c.itens:
 		var it: Dictionary = c.itens[id]
-		checar(int(it.get("icone", -1)) >= 0 and int(it.get("icone", 0)) < 13, "item com ícone: " + id)
+		checar(int(it.get("icone", -1)) >= 0 and int(it.get("icone", 0)) < n_icones, "item com ícone: " + id)
 		if it.has("conquista_simples"):
 			checar(c.conquistas.has(str(it["conquista_simples"])), "item: conquista existe: " + id)
 	c.free()
@@ -488,4 +490,28 @@ func _teste_babilonia(cfg: Dictionary) -> void:
 	d.jogador["dinheiro"] = 500
 	var perda_com := Survival.desmaiar(d, cfg, Vector2.ZERO, "clinica")
 	checar(perda_com == perda_sem / 2, "babilônia: com a muralha, perde só metade ao desmaiar")
+	c.free()
+
+
+
+func _teste_tolstoi_sapataria(cfg: Dictionary) -> void:
+	var c := _config()
+	var d := GameData.novo(cfg, "fazenda", Vector2.ZERO, c.itens)
+	var inv: Array = d.jogador["inventario"]
+	var vistos := _conversar(c, d, "tolstoi.dialogo.michael")
+	checar("calado" in vistos, "tolstói: Michael calado antes de conhecer Simon")
+	_conversar(c, d, "tolstoi.dialogo.simon")
+	checar(Progresso.missao(d, "tolstoi.missao.tres_sorrisos") == "ativa", "tolstói: Simon apresenta o ajudante")
+	_conversar(c, d, "tolstoi.dialogo.michael", "tolstoi.pergunta.ultimo_pao")
+	checar(not Progresso.tem_flag(d, "tolstoi.sorriso_1"), "tolstói: errar não faz sorrir")
+	_conversar(c, d, "tolstoi.dialogo.michael")
+	_conversar(c, d, "tolstoi.dialogo.michael")
+	checar(Progresso.tem_flag(d, "tolstoi.sorriso_2") and not Progresso.tem_flag(d, "tolstoi.sorriso_3"), "tolstói: dois sorrisos")
+	_conversar(c, d, "tolstoi.dialogo.michael")
+	checar(Progresso.tem_flag(d, "tolstoi.revelacao") and Progresso.tem_conquista(d, "tolstoi.conquista.tres_sorrisos"), "tolstói: terceiro sorriso e revelação")
+	var m := MapData.de_dict(_json("res://content/mapas/sapataria.json"), c.objetos)
+	var michael := m.npc_em(Vector2i(7, 4))
+	checar(not Dialogo.condicao(d, michael.get("se", {})), "tolstói: Michael some depois da revelação")
+	_conversar(c, d, "tolstoi.dialogo.simon")
+	checar(Inventario.contar(inv, "tolstoi.item.casaco_la") == 1 and Progresso.missao(d, "tolstoi.missao.tres_sorrisos") == "feita", "tolstói: Simon entrega o casaco de lã")
 	c.free()

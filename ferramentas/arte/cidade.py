@@ -71,6 +71,7 @@ PREDIOS = {
     "mercado": {"largura": 7, "telhado": "telhado_verde", "parede": "reboco", "placa": "MERCADO", "toldo": "folha"},
     "clinica": {"largura": 7, "telhado": "telhado_azul", "parede": "reboco_branco", "placa": "CLÍNICA", "cruz": True},
     "ferreiro": {"largura": 5, "telhado": "telhado_ardosia", "parede": "tijolo", "placa": "FERREIRO", "chamine": True},
+    "sapataria": {"largura": 5, "telhado": "telhado", "parede": "reboco", "placa": "SAPATEIRO", "chamine": True},
 }
 
 

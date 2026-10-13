@@ -1,0 +1,10 @@
+{
+ "_sobre": "Itens do livro de Tolstói.",
+ "tolstoi.item.casaco_la": {
+  "nome": "Casaco de lã",
+  "tipo": "roupa",
+  "icone": 13,
+  "pilha": 1,
+  "protege": "frio"
+ }
+}

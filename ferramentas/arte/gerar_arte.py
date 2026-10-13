@@ -937,9 +937,28 @@ def icones_itens():
             put(c, 7 + k, 7 + k, cor("milho", 2)); put(c, 8 + k, 7 + k, cor("milho", 1))
         for (x, y) in ((12, 14), (13, 13), (10, 12), (11, 11)):
             put(c, x, y, cor("milho", 2))
+    def casaco(c):
+        """Casaco de pele de carneiro: corpo marrom, mangas abertas e lã branca na gola e nos punhos."""
+        for y in range(4, 15):
+            for x in range(5, 11):
+                put(c, x, y, cor("madeira", 4 if x < 8 else 3))
+        for k in range(7):  # mangas
+            for w in range(3):
+                put(c, 4 - k // 2 - w + 1, 4 + k, cor("madeira", 4))
+                put(c, 11 + k // 2 + w - 1, 4 + k, cor("madeira", 3))
+        for (x, y) in ((1, 10), (2, 10), (3, 10), (12, 10), (13, 10), (14, 10)):  # punhos de lã
+            put(c, x, y, cor("flor_br", 2))
+        for y in range(4, 15):  # abertura e botões
+            put(c, 8, y, cor("madeira", 1))
+        for y in (7, 10, 13):
+            put(c, 7, y, cor("milho", 2))
+        for (x, y) in ((5, 3), (6, 3), (7, 3), (8, 3), (9, 3), (10, 3), (6, 4), (9, 4), (7, 5)):  # gola
+            put(c, x, y, cor("flor_br", 2 if y < 4 else 1))
+        for x in range(5, 11):
+            put(c, x, 14, cor("flor_br", 1))
     lista = [_icone(enxada), _icone(regador), _pacote(("feijao", 1)), _icone(feijao),
              _pacote(("cenoura", 2)), _icone(cenoura), _pacote(("batata", 1)), _icone(batata),
-             _pacote(("milho", 2)), _icone(milho), _icone(carta), _icone(bolo), _icone(chave)]
+             _pacote(("milho", 2)), _icone(milho), _icone(carta), _icone(bolo), _icone(chave), _icone(casaco)]
     atlas = nova(16 * len(lista), 16)
     for i, ic in enumerate(lista):
         atlas[:, i * 16:(i + 1) * 16] = ic

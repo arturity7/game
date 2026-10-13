@@ -1,0 +1,383 @@
+{
+ "_sobre": "Conversas do livro de Tolstói (formato em scripts/core/dialogo.gd).",
+ "tolstoi.dialogo.simon": {
+  "quem": "Simon",
+  "inicio": [
+   {
+    "se": {
+     "sem_flag": "tolstoi.conheceu_simon"
+    },
+    "ir": "chegada"
+   },
+   {
+    "se": {
+     "flag": "tolstoi.revelacao",
+     "sem_flag": "tolstoi.casaco_entregue"
+    },
+    "ir": "presente"
+   },
+   {
+    "se": {
+     "flag": "tolstoi.casaco_entregue"
+    },
+    "ir": "depois"
+   },
+   {
+    "ir": "durante"
+   }
+  ],
+  "nos": {
+   "chegada": {
+    "fala": [
+     "Bom dia! Sou Simon, o sapateiro. Faço e conserto botas.",
+     "Aquele rapaz quieto é o Michael, meu ajudante. Aprende tudo num instante, mas quase não fala... e quase nunca sorri.",
+     "Quem sabe ele se abre com você?"
+    ],
+    "efeitos": [
+     {
+      "flag": "tolstoi.conheceu_simon"
+     },
+     {
+      "missao": "tolstoi.missao.tres_sorrisos",
+      "estado": "ativa"
+     }
+    ],
+    "ir": "fim"
+   },
+   "durante": {
+    "fala": "Converse com o Michael. Ele escuta mais do que fala.",
+    "ir": "menu_curto"
+   },
+   "menu_curto": {
+    "escolhas": [
+     {
+      "texto": "Me pergunta algo do livro?",
+      "ir": "quiz"
+     },
+     {
+      "texto": "Até logo.",
+      "ir": "fim"
+     }
+    ]
+   },
+   "presente": {
+    "fala": [
+     "O Michael se foi... mas deixou isto pronto antes de ir.",
+     "Um casaco de lã. Lá nas terras frias, ele vai te fazer falta."
+    ],
+    "efeitos": [
+     {
+      "flag": "tolstoi.casaco_entregue"
+     },
+     {
+      "dar_item": "tolstoi.item.casaco_la"
+     },
+     {
+      "missao": "tolstoi.missao.tres_sorrisos",
+      "estado": "feita"
+     }
+    ],
+    "ir": "fim"
+   },
+   "depois": {
+    "fala": "A oficina ficou quieta sem o Michael. Mas as botas continuam saindo bem-feitas.",
+    "ir": "menu_curto"
+   },
+   "quiz": {
+    "ramos": [
+     {
+      "se": {
+       "nao_acertou": "tolstoi.pergunta.la"
+      },
+      "ir": "q_la"
+     },
+     {
+      "se": {
+       "nao_acertou": "tolstoi.pergunta.tres"
+      },
+      "ir": "q_tres"
+     },
+     {
+      "se": {
+       "nao_acertou": "tolstoi.pergunta.couro_preco"
+      },
+      "ir": "q_couro_preco"
+     },
+     {
+      "se": {
+       "nao_acertou": "tolstoi.pergunta.pagaria"
+      },
+      "ir": "q_pagaria"
+     },
+     {
+      "se": {
+       "nao_acertou": "tolstoi.pergunta.martha"
+      },
+      "ir": "q_martha"
+     },
+     {
+      "se": {
+       "nao_acertou": "tolstoi.pergunta.fedka"
+      },
+      "ir": "q_fedka"
+     },
+     {
+      "se": {
+       "nao_acertou": "tolstoi.pergunta.perna"
+      },
+      "ir": "q_perna"
+     },
+     {
+      "se": {
+       "nao_acertou": "tolstoi.pergunta.lenhador"
+      },
+      "ir": "q_lenhador"
+     },
+     {
+      "se": {
+       "nao_acertou": "tolstoi.pergunta.sexto_ano"
+      },
+      "ir": "q_sexto_ano"
+     },
+     {
+      "ir": "quiz_fim"
+     }
+    ]
+   },
+   "quiz_certo": {
+    "fala": "Isso mesmo! Tome, pelo bom ouvido.",
+    "efeitos": [
+     {
+      "dinheiro": 8
+     }
+    ],
+    "escolhas": [
+     {
+      "texto": "Outra!",
+      "ir": "quiz"
+     },
+     {
+      "texto": "Chega por hoje.",
+      "ir": "fim"
+     }
+    ]
+   },
+   "quiz_errado": {
+    "fala": "Não foi bem assim... Quem conta um conto aumenta um ponto, mas releia e volte.",
+    "ir": "fim"
+   },
+   "quiz_fim": {
+    "fala": "Você sabe essa história melhor do que eu!",
+    "ir": "fim"
+   },
+   "q_la": {
+    "pergunta": "tolstoi.pergunta.la",
+    "certo": "quiz_certo",
+    "errado": "quiz_errado"
+   },
+   "q_tres": {
+    "pergunta": "tolstoi.pergunta.tres",
+    "certo": "quiz_certo",
+    "errado": "quiz_errado"
+   },
+   "q_couro_preco": {
+    "pergunta": "tolstoi.pergunta.couro_preco",
+    "certo": "quiz_certo",
+    "errado": "quiz_errado"
+   },
+   "q_pagaria": {
+    "pergunta": "tolstoi.pergunta.pagaria",
+    "certo": "quiz_certo",
+    "errado": "quiz_errado"
+   },
+   "q_martha": {
+    "pergunta": "tolstoi.pergunta.martha",
+    "certo": "quiz_certo",
+    "errado": "quiz_errado"
+   },
+   "q_fedka": {
+    "pergunta": "tolstoi.pergunta.fedka",
+    "certo": "quiz_certo",
+    "errado": "quiz_errado"
+   },
+   "q_perna": {
+    "pergunta": "tolstoi.pergunta.perna",
+    "certo": "quiz_certo",
+    "errado": "quiz_errado"
+   },
+   "q_lenhador": {
+    "pergunta": "tolstoi.pergunta.lenhador",
+    "certo": "quiz_certo",
+    "errado": "quiz_errado"
+   },
+   "q_sexto_ano": {
+    "pergunta": "tolstoi.pergunta.sexto_ano",
+    "certo": "quiz_certo",
+    "errado": "quiz_errado"
+   }
+  }
+ },
+ "tolstoi.dialogo.michael": {
+  "quem": "Michael",
+  "inicio": [
+   {
+    "se": {
+     "flag": "tolstoi.sorriso_3"
+    },
+    "ir": "revelacao"
+   },
+   {
+    "se": {
+     "flag": "tolstoi.sorriso_2"
+    },
+    "ir": "terceiro"
+   },
+   {
+    "se": {
+     "flag": "tolstoi.sorriso_1"
+    },
+    "ir": "segundo"
+   },
+   {
+    "se": {
+     "missao": "tolstoi.missao.tres_sorrisos",
+     "estado": "ativa"
+    },
+    "ir": "primeiro"
+   },
+   {
+    "ir": "calado"
+   }
+  ],
+  "nos": {
+   "calado": {
+    "fala": "...",
+    "ir": "fim"
+   },
+   "primeiro": {
+    "fala": [
+     "(Michael olha para você por um tempo. Depois fala, baixinho:)",
+     "Quando eu cheguei aqui, com fome e sem roupa, Matryona estava brava comigo.",
+     "Mas o que ela acabou fazendo?"
+    ],
+    "pergunta": "tolstoi.pergunta.ultimo_pao",
+    "certo": "sorriso1",
+    "errado": "silencio"
+   },
+   "sorriso1": {
+    "fala": [
+     "(Michael sorri pela primeira vez.)",
+     "Aprendi a primeira verdade naquela noite: o que existe dentro das pessoas."
+    ],
+    "efeitos": [
+     {
+      "flag": "tolstoi.sorriso_1"
+     }
+    ],
+    "ir": "fim"
+   },
+   "segundo": {
+    "fala": [
+     "Um cavalheiro rico trouxe um couro caro e pediu botas que durassem um ano.",
+     "Mas ninguém sabe do que vai precisar. O que eu fiz com aquele couro?"
+    ],
+    "pergunta": "tolstoi.pergunta.chinelos",
+    "certo": "sorriso2",
+    "errado": "silencio"
+   },
+   "sorriso2": {
+    "fala": [
+     "(Michael sorri pela segunda vez.)",
+     "Essa foi a segunda verdade: o que não é dado às pessoas saber."
+    ],
+    "efeitos": [
+     {
+      "flag": "tolstoi.sorriso_2"
+     }
+    ],
+    "ir": "fim"
+   },
+   "terceiro": {
+    "fala": [
+     "Um dia uma mulher trouxe duas meninas gêmeas para fazer sapatos. Não eram filhas dela.",
+     "Quem cuidou daquelas meninas quando ficaram órfãs?"
+    ],
+    "pergunta": "tolstoi.pergunta.gemeas",
+    "certo": "sorriso3",
+    "errado": "silencio"
+   },
+   "sorriso3": {
+    "fala": [
+     "(Michael sorri pela terceira vez. Uma luz forte enche a oficina.)",
+     "Agora eu sei a terceira verdade."
+    ],
+    "efeitos": [
+     {
+      "flag": "tolstoi.sorriso_3"
+     }
+    ],
+    "ir": "revelacao"
+   },
+   "revelacao": {
+    "fala": [
+     "Eu não sou daqui. Fui mandado à terra para aprender três verdades, e agora posso voltar.",
+     "Me diga você, para eu ter certeza: do que vivem os homens?"
+    ],
+    "pergunta": "tolstoi.pergunta.do_que_vivem",
+    "certo": "adeus",
+    "errado": "pense"
+   },
+   "pense": {
+    "fala": "Pense em Matryona, no pão, nas gêmeas... e volte para me dizer.",
+    "ir": "fim"
+   },
+   "adeus": {
+    "fala": [
+     "Do amor. As pessoas vivem do amor que existe nas outras.",
+     "Obrigado. Diga a Simon e a Matryona que eu nunca vou esquecer esta casa.",
+     "(Michael some numa luz suave.)"
+    ],
+    "efeitos": [
+     {
+      "flag": "tolstoi.revelacao"
+     },
+     {
+      "conquista": "tolstoi.conquista.tres_sorrisos"
+     }
+    ],
+    "ir": "fim"
+   },
+   "silencio": {
+    "fala": "(Michael abaixa os olhos e volta ao trabalho, em silêncio.)",
+    "ir": "fim"
+   }
+  }
+ },
+ "tolstoi.dialogo.matryona": {
+  "quem": "Matryona",
+  "inicio": [
+   {
+    "se": {
+     "flag": "tolstoi.revelacao"
+    },
+    "ir": "depois"
+   },
+   {
+    "ir": "antes"
+   }
+  ],
+  "nos": {
+   "antes": {
+    "fala": [
+     "Quando Simon trouxe aquele rapaz para casa, eu quase o pus para fora.",
+     "Hoje não sei o que faríamos sem o Michael."
+    ],
+    "ir": "fim"
+   },
+   "depois": {
+    "fala": "A casa ficou vazia sem ele. Mas aprendemos muito naqueles seis anos.",
+    "ir": "fim"
+   }
+  }
+ }
+}

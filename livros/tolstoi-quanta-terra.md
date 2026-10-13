@@ -203,8 +203,8 @@ Ambiente: a **aldeia russa** (choupanas com forno, santuário na estrada, bosque
 | ID | Tipo | Onde | Status |
 |---|---|---|---|
 | `tolstoi.bioma.estepe` | Bioma | Mundo principal | Criado (ficha) |
-| `tolstoi.npc.simon` | NPC sapateiro | Cidade | Criado (ficha) |
-| `tolstoi.npc.michael` | NPC / história paralela | Cidade | Criado (ficha) |
+| `tolstoi.npc.simon` | NPC sapateiro | Cidade (sapataria, entre a clínica e o ferreiro) | Implementado: apresenta Michael, faz perguntas do conto (cada acerto $ 8) e entrega o casaco de lã no fim |
+| `tolstoi.npc.michael` | NPC / história paralela | Cidade (sapataria) | Implementado: missão `tolstoi.missao.tres_sorrisos`; cada sorriso vem de uma pergunta (o pão de Matryona, os chinelos, as gêmeas); a revelação pergunta do que vivem os homens; depois ele some |
 | `tolstoi.npc.ermitao` | NPC | Bosque | Criado (ficha) |
 | `tolstoi.desafio.corrida_terra` | Desafio | Estepe | Criado (ficha) |
 | `tolstoi.puzzle.botas_chinelos` | Puzzle | Sapataria | Criado (ficha) |
@@ -213,4 +213,6 @@ Ambiente: a **aldeia russa** (choupanas com forno, santuário na estrada, bosque
 | `tolstoi.boss.diabo_forno` | Boss | Estepe | Criado (ficha) |
 | `tolstoi.item.lanterna_coco` | Item | — | Criado (ficha) |
 
-Implementação no jogo: pendente (fase de código).
+Também implementados: `tolstoi.npc.matryona` (sapataria), `tolstoi.item.casaco_la` (proteção contra o frio, para quando houver área fria), a conquista Três sorrisos.
+
+Implementação no jogo: começou em 13/10/2026 (`game/content/livros/tolstoi/`). Faltam a estepe, o ermitão, a cafeteria de Surat e o Diabo.

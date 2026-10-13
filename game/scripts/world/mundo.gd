@@ -28,6 +28,7 @@ var luz: CanvasModulate
 var cursor: Cursor
 var irrigadas := {}         # "x,y" -> true: células regadas pelo lago
 var _canteiros_desenhados := {}
+var _npcs := {}             # id -> [StaticBody2D, dados do mapa]
 var luzes: Array = []       # luzes (PointLight2D) e janelas acesas (Sprite2D) que aparecem à noite
 var _textura_luz: Texture2D
 
@@ -71,6 +72,7 @@ func montar(id_mapa: String) -> void:
 	_criar_paredes()
 	_criar_objetos()
 	_criar_npcs()
+	atualizar_npcs()
 	if not mapa.interior:
 		_criar_enfeites()
 		_criar_mata_em_volta()
@@ -199,6 +201,7 @@ func _criar_npcs() -> void:
 	var linhas := {"baixo": 0, "cima": 1, "esquerda": 2, "direita": 3}
 	for n in mapa.npcs:
 		var corpo := StaticBody2D.new()
+		_npcs[str(n["id"])] = [corpo, n]
 		corpo.name = "NPC_" + str(n["id"])
 		corpo.position = Vector2(int(n["x"]) * TAM + TAM / 2.0, int(n["y"]) * TAM + TAM / 2.0 + 6)
 		var spr := Sprite2D.new()
@@ -215,6 +218,20 @@ func _criar_npcs() -> void:
 		forma.position = Vector2(0, -3)
 		corpo.add_child(forma)
 		profundidade.add_child(corpo)
+
+
+## O morador só aparece se a condição "se" dele valer (ex.: some depois do fim da história).
+func npc_visivel(n: Dictionary) -> bool:
+	return GameState.dados == null or Dialogo.condicao(GameState.dados, n.get("se", {}))
+
+
+## Mostra ou esconde os moradores conforme o avanço (chamado ao montar e depois de cada conversa).
+func atualizar_npcs() -> void:
+	for id in _npcs:
+		var corpo: StaticBody2D = _npcs[id][0]
+		var vis := npc_visivel(_npcs[id][1])
+		corpo.visible = vis
+		corpo.collision_layer = 1 if vis else 0
 
 
 ## Chão sólido (paredes dos interiores): um bloqueio por trecho de células seguidas na linha.

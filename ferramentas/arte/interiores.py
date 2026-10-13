@@ -155,7 +155,7 @@ def fundo_casa_noite():
     return img
 
 
-TAMANHO_LOJA = {"mercado": (13, 10), "clinica": (11, 9)}
+TAMANHO_LOJA = {"mercado": (13, 10), "clinica": (11, 9), "sapataria": (11, 9)}
 
 
 def fundo_loja(nome):
@@ -174,14 +174,23 @@ def fundo_loja(nome):
                     c = hexc("#aab6be")
                 put(img, x, y, c)
         papel = (hexc("#cfe3dc"), hexc("#bcd6cd"), hexc("#a9c7bc"))
+    elif nome == "sapataria":  # isbá: paredes de troncos e piso de tábuas
+        _piso(img, 16, 48, W - 16, H - 16)
+        papel = (cor("madeira", 4), cor("madeira", 3), cor("madeira", 2))
     else:
         _piso(img, 16, 48, W - 16, H - 16)
         papel = (hexc("#d9e6c2"), hexc("#c9d9ae"), hexc("#b5c896"))
     for y in range(4, 48):
         for x in range(16, W - 16):
-            c = papel[0] if (x // 8) % 2 else papel[1]
-            if x % 8 == 0:
-                c = papel[2]
+            if nome == "sapataria":  # troncos deitados
+                yy = (y - 4) % 7
+                c = papel[0] if yy in (1, 2) else papel[1] if yy < 5 else papel[2]
+                if yy == 6:
+                    c = cor("madeira", 1)
+            else:
+                c = papel[0] if (x // 8) % 2 else papel[1]
+                if x % 8 == 0:
+                    c = papel[2]
             if y >= 32:
                 c = cor("madeira", 3 if (x - 16) % 8 else 1)
                 if y == 32:
@@ -341,6 +350,54 @@ def mesinha():
     for y in range(4, 11):  # tabuinhas
         for x in range(18, 26):
             put(img, x, y, cor("tijolo", 3 if y < 6 else 4) if (x + y) % 5 else cor("tijolo", 2))
+    return contornar(img, ESCURO)
+
+
+def forno_russo():
+    """Forno de barro caiado 32x44 (pegada 2x1), com a boca do fogo e o banco de dormir em cima."""
+    img = nova(32, 44)
+    _sombra(img, 16, 42, 15, 2, 90)
+    for y in range(4, 40):
+        for x in range(1, 31):
+            i = 3 if x < 10 else 2 if x < 26 else 1
+            if y < 7:
+                i = 4
+            put(img, x, y, cor("reboco_branco", i))
+    for y in range(22, 34):  # boca do forno
+        for x in range(9, 23):
+            if (x - 16) ** 2 / 49 + (y - 34) ** 2 / 144 <= 1:
+                put(img, x, y, hexc("#2a1810") if y < 30 else cor("cenoura", 2 if (x + y) % 3 else 3))
+    for y in range(0, 6):  # chaminé
+        for x in range(22, 29):
+            put(img, x, y, cor("reboco_branco", 2))
+    return contornar(img, ESCURO)
+
+
+def bancada():
+    """Bancada do sapateiro 32x28 (pegada 2x1): forma de bota, martelo, couro e botas prontas."""
+    img = nova(32, 28)
+    _sombra(img, 16, 26, 15, 2, 90)
+    for y in range(6, 16):
+        for x in range(0, 32):
+            put(img, x, y, cor("madeira", 5 if y < 8 else 4))
+    for y in range(16, 19):
+        for x in range(0, 32):
+            put(img, x, y, cor("madeira", 2))
+    for x in (2, 29):
+        for y in range(19, 25):
+            put(img, x, y, cor("madeira", 2)); put(img, x + 1, y, cor("madeira", 3))
+    for (x0, y0) in ((3, 0), (11, 1)):  # botas de feltro
+        for y in range(y0, y0 + 9):
+            for x in range(x0, x0 + 4):
+                put(img, x, y, cor("calca", 2 if x < x0 + 2 else 1))
+        for x in range(x0, x0 + 7):
+            put(img, x, y0 + 8, cor("calca", 2)); put(img, x, y0 + 9, cor("calca", 1))
+    for y in range(7, 11):  # couro
+        for x in range(20, 29):
+            put(img, x, y, cor("madeira", 3 if (x + y) % 3 else 2))
+    for x in range(17, 22):  # martelo
+        put(img, x, 12, cor("madeira", 1))
+    put(img, 22, 11, cor("metal", 3)); put(img, 22, 12, cor("metal", 2)); put(img, 23, 12, cor("metal", 2))
     return contornar(img, ESCURO)
 
 
@@ -507,7 +564,7 @@ def vaso():
 def gerar():
     salvar(fundo_casa(), caminho("interiores", "casa.png"))
     salvar(fundo_casa_noite(), caminho("interiores", "casa_noite.png"))
-    for n in ("mercado", "clinica"):
+    for n in ("mercado", "clinica", "sapataria"):
         salvar(fundo_loja(n), caminho("interiores", n + ".png"))
         salvar(fundo_loja_noite(n), caminho("interiores", n + "_noite.png"))
     salvar(balcao(64), caminho("objetos", "balcao.png"))
@@ -516,6 +573,8 @@ def gerar():
     salvar(leito(), caminho("objetos", "leito.png"))
     salvar(caixa_penhores(), caminho("objetos", "caixa_penhores.png"))
     salvar(mesinha(), caminho("objetos", "mesinha.png"))
+    salvar(forno_russo(), caminho("objetos", "forno_russo.png"))
+    salvar(bancada(), caminho("objetos", "bancada.png"))
     salvar(cama(), caminho("objetos", "cama.png"))
     salvar(estante(), caminho("objetos", "estante.png"))
     salvar(mesa(), caminho("objetos", "mesa.png"))

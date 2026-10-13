@@ -41,7 +41,8 @@ static func de_dict(d: Dictionary, defs_objetos := {}) -> MapData:
 	for n in d.get("npcs", []):
 		m.npcs.append({"id": str(n.get("id", "")), "sprite": str(n.get("sprite", "")), "x": int(n.get("x", 0)),
 			"y": int(n.get("y", 0)), "olhar": str(n.get("olhar", "baixo")), "loja": str(n.get("loja", "")),
-			"fala": str(n.get("fala", "")), "dialogo": str(n.get("dialogo", "")), "nome": str(n.get("nome", ""))})
+			"fala": str(n.get("fala", "")), "dialogo": str(n.get("dialogo", "")), "nome": str(n.get("nome", "")),
+			"se": n.get("se", {})})
 	for f in d.get("fechadas", []):
 		m.fechadas.append({"x": int(f.get("x", 0)), "y": int(f.get("y", 0)), "aviso": str(f.get("aviso", ""))})
 	var legenda: Dictionary = d.get("legenda", {})

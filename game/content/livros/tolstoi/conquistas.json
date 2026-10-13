@@ -1,0 +1,18 @@
+{
+ "_sobre": "Medalhas do livro de Tolstói (ficha §13).",
+ "tolstoi.conquista.tres_sorrisos": {
+  "nome": "Três sorrisos",
+  "livro": "tolstoi",
+  "descricao": "Viu os três sorrisos de Michael."
+ },
+ "tolstoi.conquista.um_metro_oitenta": {
+  "nome": "Um metro e oitenta",
+  "livro": "tolstoi",
+  "descricao": "Completou a corrida da terra voltando a tempo."
+ },
+ "tolstoi.conquista.agora": {
+  "nome": "Agora",
+  "livro": "tolstoi",
+  "descricao": "Respondeu às três perguntas do rei."
+ }
+}

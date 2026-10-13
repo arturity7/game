@@ -120,6 +120,13 @@ func _rodar() -> void:
 	var dj: Diario = main.abrir_diario()
 	await _foto("12e_diario")
 	dj.fechar()
+	main.trocar_mapa("sapataria", Vector2i(5, 6), "cima")
+	await get_tree().create_timer(0.8).timeout
+	main.mundo.atualizar_luz(10.0)
+	await _foto("13_sapataria")
+	main.trocar_mapa("cidade", Vector2i(27, 9), "cima")
+	await get_tree().create_timer(0.8).timeout
+	await _foto("13b_cidade_sapataria")
 	main._abrir_tela_inicial()
 	await get_tree().create_timer(0.5).timeout
 	await _foto("8_abertura")

@@ -27,5 +27,8 @@
   "mesa_comprida": {"sprites": ["mesa_comprida.png"], "pegada": [4, 1], "ajuste": [0, 2], "colisao": [62, 10]},
   "placa": {"sprites": ["placa.png"], "pegada": [1, 1], "ajuste": [0, 2], "colisao": [6, 6]},
   "caixa_penhores": {"sprites": ["caixa_penhores.png"], "pegada": [2, 1], "ajuste": [0, 2], "colisao": [30, 10], "atende_atras": true},
-  "mesinha": {"sprites": ["mesinha.png"], "pegada": [2, 1], "ajuste": [0, 2], "colisao": [30, 10], "atende_atras": true}
+  "mesinha": {"sprites": ["mesinha.png"], "pegada": [2, 1], "ajuste": [0, 2], "colisao": [30, 10], "atende_atras": true},
+  "sapataria": {"sprites": ["sapataria.png"], "pegada": [5, 3], "ajuste": [0, 6], "porta": [2, 2], "luzes": [[16, 72], [64, 72]], "noite": "sapataria_janelas.png"},
+  "forno_russo": {"sprites": ["forno_russo.png"], "pegada": [2, 1], "ajuste": [0, 2], "colisao": [30, 12]},
+  "bancada": {"sprites": ["bancada.png"], "pegada": [2, 1], "ajuste": [0, 2], "colisao": [30, 10], "atende_atras": true}
 }
