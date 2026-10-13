@@ -140,35 +140,59 @@ def colar(dest, src, ox, oy):
 # Máscara: TL=1, TR=2, BL=4, BR=8 (a mesma usada em game/scripts/world/mundo.gd).
 CANTOS = [(0, 0, 1), (16, 0, 2), (0, 16, 4), (16, 16, 8)]
 
-def _smin(a, b, k):
-    h = max(k - abs(a - b), 0.0) / k
-    return min(a, b) - h * h * k * 0.25
+def _caixa_canto(px, py, qx, qy, r):
+    """SDF de um quadrante do tile (canto qx, qy em 0/1) com o canto interno (8, 8) arredondado.
+    Os outros lados do quadrante vão até a borda do tile, então não são arredondados."""
+    ux = (px - 8) if qx == 0 else (8 - px)   # positivo = saindo do quadrante pelo centro
+    uy = (py - 8) if qy == 0 else (8 - py)
+    ax, ay = ux + r, uy + r
+    fora = math.hypot(max(ax, 0.0), max(ay, 0.0))
+    dentro = min(max(ax, ay), 0.0)
+    return fora + dentro - r
 
-def sdf_dual(mascara, x, y, raio=8.0, p=4.0, suavizar=4.0, ruido=0.0, semente=0):
-    """Distância com sinal da forma (negativo = dentro) no pixel (x, y) do tile de exibição."""
+QUADRANTES = [(0, 0, 1), (1, 0, 2), (0, 1, 4), (1, 1, 8)]
+
+def sdf_dual(mascara, x, y, raio=5.0, ruido=0.0, semente=0, **_):
+    """Distância com sinal da forma (negativo = dentro) no pixel (x, y) do tile de exibição.
+    Cada canto marcado cobre o seu quadrante; o encontro no centro é arredondado:
+    canto convexo (1 quadrante), côncavo (3), reto (2 vizinhos) ou sela (2 opostos)."""
     px, py = x + 0.5, y + 0.5
-    d = 99.0
-    for cx, cy, bit in CANTOS:
-        if mascara & bit:
-            dx, dy = abs(px - cx), abs(py - cy)
-            di = (dx ** p + dy ** p) ** (1.0 / p) - raio
-            d = di if d == 99.0 else _smin(d, di, suavizar)
-    if ruido:
+    marcados = [(qx, qy) for qx, qy, bit in QUADRANTES if mascara & bit]
+    n = len(marcados)
+    if n == 0:
+        d = 99.0
+    elif n == 4:
+        d = -99.0
+    elif n == 3:
+        falta = [(qx, qy) for qx, qy, bit in QUADRANTES if not mascara & bit][0]
+        d = -_caixa_canto(px, py, falta[0], falta[1], raio)
+    elif n == 1 or (n == 2 and marcados[0][0] != marcados[1][0] and marcados[0][1] != marcados[1][1]):
+        d = min(_caixa_canto(px, py, qx, qy, raio) for qx, qy in marcados)
+    else:  # dois vizinhos: meio-plano reto
+        (ax, ay), (bx, by) = marcados
+        if ay == by:
+            d = (py - 8) if ay == 0 else (8 - py)
+        else:
+            d = (px - 8) if ax == 0 else (8 - px)
+    if ruido and -50 < d < 50:
         wx, wy = (x + 8) % 16, (y + 8) % 16
         d += (valor_suave(wx, wy, 4, semente) - 0.5) * 2 * ruido
     return d
 
-def tiles_dual(pintar, n_quadros=1, **kw):
-    """Gera o atlas 16 máscaras (colunas) × n_quadros (linhas).
-    pintar(img, x, y, sdf, wx, wy, quadro, mascara) desenha um pixel."""
-    atlas = nova(16 * 16, 16 * n_quadros)
+def tiles_dual(pintar, n_quadros=1, variantes=0, **kw):
+    """Gera o atlas: colunas 0..15 = máscaras; colunas 16.. = variações do tile cheio (máscara 15);
+    linhas = quadros de animação. pintar(img, x, y, sdf, wx, wy, quadro, mascara) desenha um pixel.
+    Nas variações, wx/wy vêm deslocados (múltiplos de 4 na vertical) para quebrar a repetição."""
+    atlas = nova(16 * (16 + variantes), 16 * n_quadros)
     for q in range(n_quadros):
-        for m in range(16):
+        for col in range(16 + variantes):
+            m = col if col < 16 else 15
+            dx, dy = (0, 0) if col < 16 else (5 * (col - 15), 4 * (col - 15))
             tile = nova(16, 16)
             if m:
                 for y in range(16):
                     for x in range(16):
                         s = sdf_dual(m, x, y, **kw)
-                        pintar(tile, x, y, s, (x + 8) % 16, (y + 8) % 16, q, m)
-            atlas[q * 16:(q + 1) * 16, m * 16:(m + 1) * 16] = tile
+                        pintar(tile, x, y, s, (x + 8 + dx) % 16, (y + 8 + dy) % 16, q, m)
+            atlas[q * 16:(q + 1) * 16, col * 16:(col + 1) * 16] = tile
     return atlas
