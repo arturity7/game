@@ -36,3 +36,18 @@ func tipo_em(celula: Vector2i) -> String:
 	if celula.x < 0 or celula.x >= fila.size():
 		return ""
 	return fila[celula.x]
+
+
+## Células a até 'dist' tiles de alguma água (distância de xadrez, como no Minecraft; D-053).
+## Retorna um dicionário "x,y" -> true.
+func celulas_irrigadas(dist: int, defs_tiles: Dictionary) -> Dictionary:
+	var r := {}
+	for y in altura:
+		for x in largura:
+			var tipo := tipo_em(Vector2i(x, y))
+			if not bool(defs_tiles.get(tipo, {}).get("agua", false)):
+				continue
+			for dy in range(-dist, dist + 1):
+				for dx in range(-dist, dist + 1):
+					r["%d,%d" % [x + dx, y + dy]] = true
+	return r

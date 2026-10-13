@@ -61,6 +61,43 @@ func _rodar() -> void:
 	await _esperar(0.3)
 	checar(main.mundo.jogador.nadando, "na água o jogador nada (D-070)")
 	Input.action_release("mover_direita")
+	# plantação: arar, regar, plantar, crescer, colher, comer
+	var d: GameData = GameState.dados
+	var inv: Array = d.jogador["inventario"]
+	main.mundo.jogador.position = Vector2(14, 12) * 16.0 + Vector2(8, 8)
+	var alvo := Vector2i(15, 12)
+	main.selecionar(0)
+	main.usar(alvo)
+	checar(Fazenda.canteiro(d, "fazenda", alvo) != null, "a enxada ara")
+	main.selecionar(1)
+	var agua_antes := int(inv[1]["agua"])
+	main.usar(alvo)
+	checar(int(inv[1]["agua"]) == agua_antes - 1, "o regador gasta água")
+	main.selecionar(2)
+	var sementes := Inventario.contar(inv, "semente_feijao")
+	main.usar(alvo)
+	checar(Inventario.contar(inv, "semente_feijao") == sementes - 1, "plantar gasta uma semente")
+	main.avancar_tempo(20.0)
+	main.selecionar(1)
+	main.usar(alvo)
+	main.avancar_tempo(20.0)
+	main.interagir(alvo)
+	checar(Inventario.contar(inv, "feijao") >= 1, "colhe o feijão")
+	d.jogador["fome"] = 50.0
+	for i in 10:
+		if inv[i] != null and inv[i]["id"] == "feijao":
+			main.selecionar(i)
+	main.interagir(alvo)
+	checar(float(d.jogador["fome"]) > 50.0, "comer o feijão enche a fome")
+	# dormir à noite faz o tempo correr até as 6h
+	d.mundo["hora"] = 22.0
+	main.dormir()
+	checar(main.dormindo, "dorme à noite")
+	main.avancar_tempo(10.0)
+	checar(not main.dormindo and absf(float(d.mundo["hora"]) - 6.0) < 0.01, "acorda às 6h")
+	d.mundo["hora"] = 10.0
+	main.dormir()
+	checar(not main.dormindo, "não dorme de dia")
 	DirAccess.remove_absolute(ProjectSettings.globalize_path(SaveSystem.ARQUIVO))
 	print("autoteste: %d falha(s)" % falhas.size())
 	get_tree().quit(1 if falhas.size() > 0 else 0)

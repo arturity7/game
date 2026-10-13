@@ -8,6 +8,8 @@ const ACOES := {
 	"mover_esquerda": [KEY_A, KEY_LEFT],
 	"mover_direita": [KEY_D, KEY_RIGHT],
 	"menu": [KEY_ESCAPE],
+	"barra_1": [KEY_1], "barra_2": [KEY_2], "barra_3": [KEY_3], "barra_4": [KEY_4], "barra_5": [KEY_5],
+	"barra_6": [KEY_6], "barra_7": [KEY_7], "barra_8": [KEY_8], "barra_9": [KEY_9], "barra_10": [KEY_0],
 }
 
 

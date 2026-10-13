@@ -17,7 +17,11 @@ PALETA = {
     "caminho": (196, 170, 120), "caminho_esc": (166, 142, 98),
     "pele": (236, 188, 150), "cabelo": (92, 58, 36), "camisa": (60, 110, 170), "calca": (66, 66, 90),
     "contorno": (40, 32, 36),
+    "metal": (170, 176, 186), "metal_esc": (110, 116, 128), "verde_broto": (120, 190, 80),
+    "feijao": (150, 70, 60), "cenoura": (236, 128, 40), "batata": (196, 156, 96), "milho": (240, 210, 70),
+    "papel": (226, 214, 180), "papel_esc": (180, 160, 120),
 }
+CULTURAS = ["feijao", "cenoura", "batata", "milho"]  # ordem = linha no atlas (content/config/culturas.json)
 SAIDA = os.path.join(os.path.dirname(__file__), "..", "..", "game", "assets", "sprites", "placeholder")
 
 def ruido(img, x0, base, pontos, seed):
@@ -96,8 +100,72 @@ def jogador():
             p(x, 31, "contorno")
     img.save(os.path.join(SAIDA, "jogador.png"))
 
+def plantacao():
+    """Linha 0: solo arado seco e molhado. Linhas 1+: uma cultura por linha, 4 estágios."""
+    img = Image.new("RGBA", (64, 16 * (1 + len(CULTURAS))), (0, 0, 0, 0))
+    for i, (base, esc) in enumerate([("terra", "terra_esc"), ("terra_esc", "contorno")]):
+        for y in range(16):
+            for x in range(16):
+                cor = PALETA[base]
+                if y % 4 == 1 and 2 <= x <= 13:
+                    cor = PALETA[esc]
+                img.putpixel((i * 16 + x, y), cor)
+    for linha, c in enumerate(CULTURAS, start=1):
+        y0 = linha * 16
+        for est in range(4):
+            x0 = est * 16
+            altura = [2, 5, 9, 12][est]
+            for y in range(16 - altura, 15):
+                img.putpixel((x0 + 7, y0 + y), PALETA["folha"])
+                img.putpixel((x0 + 8, y0 + y), PALETA["folha_esc"])
+            if est >= 1:
+                for dx in (-2, -1, 2, 3):
+                    img.putpixel((x0 + 7 + dx, y0 + 15 - altura + 2), PALETA["verde_broto"])
+            if est >= 2:
+                for dx in (-3, -2, 3, 4):
+                    img.putpixel((x0 + 7 + dx, y0 + 15 - altura // 2), PALETA["folha"])
+            if est == 3:  # pronto: o fruto aparece
+                for dy in range(3):
+                    for dx in range(3):
+                        img.putpixel((x0 + 6 + dx, y0 + 15 - altura - 1 + dy), PALETA[c])
+    img.save(os.path.join(SAIDA, "plantacao.png"))
+
+def itens():
+    """Ícones 16x16: enxada, regador, depois semente e produto de cada cultura."""
+    n = 2 + 2 * len(CULTURAS)
+    img = Image.new("RGBA", (16 * n, 16), (0, 0, 0, 0))
+    def p(i, x, y, c):
+        img.putpixel((i * 16 + x, y), PALETA[c])
+    for k in range(10):  # enxada: cabo na diagonal
+        p(0, 3 + k, 13 - k, "madeira")
+    for x in range(10, 15):
+        p(0, x, 2, "metal"); p(0, x, 3, "metal_esc")
+    for y in range(6, 14):  # regador
+        for x in range(3, 11):
+            p(1, x, y, "metal" if y > 6 else "metal_esc")
+    for k in range(5):
+        p(1, 11 + k // 2, 8 - k, "metal_esc")
+    for y in range(4, 7):
+        p(1, 6, y, "metal_esc")
+    for i, c in enumerate(CULTURAS):
+        s = 2 + 2 * i
+        for y in range(3, 14):  # pacote de sementes
+            for x in range(4, 12):
+                p(s, x, y, "papel" if y > 4 else "papel_esc")
+        for y in range(7, 11):
+            for x in range(6, 10):
+                p(s, x, y, c)
+        for y in range(5, 13):  # produto
+            for x in range(4, 12):
+                if (x - 7.5) ** 2 / 16 + (y - 9) ** 2 / 16 <= 1:
+                    p(s + 1, x, y, c)
+        p(s + 1, 7, 4, "folha"); p(s + 1, 8, 3, "folha")
+    img.save(os.path.join(SAIDA, "itens.png"))
+
 if __name__ == "__main__":
     os.makedirs(SAIDA, exist_ok=True)
     tiles()
     jogador()
+    plantacao()
+    itens()
     print("ok")

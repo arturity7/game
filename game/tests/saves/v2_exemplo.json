@@ -1,0 +1,80 @@
+{
+ "save_version": 2,
+ "jogador": {
+  "mapa": "fazenda",
+  "posicao": [
+   232.0,
+   200.0
+  ],
+  "fome": 64.0,
+  "vida": 100.0,
+  "dinheiro": 450,
+  "inventario": [
+   {
+    "id": "enxada",
+    "qtd": 1
+   },
+   {
+    "id": "regador",
+    "qtd": 1,
+    "agua": 12
+   },
+   {
+    "id": "semente_feijao",
+    "qtd": 7
+   },
+   null,
+   null,
+   null,
+   null,
+   null,
+   null,
+   null,
+   null,
+   null,
+   null,
+   null,
+   null,
+   null,
+   null,
+   null,
+   null,
+   null,
+   null,
+   null,
+   null,
+   null,
+   null,
+   null,
+   null,
+   null,
+   null,
+   null
+  ],
+  "barra_selecionada": 2
+ },
+ "mundo": {
+  "dia": 4,
+  "hora": 9.5,
+  "canteiros": {
+   "fazenda": {
+    "15,12": {
+     "molhado_ate": 80.0,
+     "cultura": "feijao",
+     "crescimento": 12.0
+    },
+    "16,12": {
+     "molhado_ate": -1.0,
+     "cultura": "",
+     "crescimento": 0.0
+    }
+   }
+  }
+ },
+ "progresso": {
+  "flags": {},
+  "perguntas": {},
+  "livros": {},
+  "conquistas": {}
+ }
+}

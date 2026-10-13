@@ -10,5 +10,47 @@
   "perda_dinheiro_ao_desmaiar_pct": 10,
   "velocidade_andar": 80.0,
   "velocidade_nadar": 45.0,
-  "dinheiro_inicial": 500
+  "dinheiro_inicial": 500,
+  "slots_inventario": 30,
+  "slots_barra": 10,
+  "inventario_inicial": [
+    [
+      "enxada",
+      1
+    ],
+    [
+      "regador",
+      1
+    ],
+    [
+      "semente_feijao",
+      10
+    ],
+    [
+      "semente_cenoura",
+      10
+    ],
+    [
+      "semente_batata",
+      5
+    ],
+    [
+      "semente_milho",
+      5
+    ],
+    [
+      "cenoura",
+      3
+    ]
+  ],
+  "fome_por_uso_ferramenta": 0.3,
+  "horas_solo_molhado": 24,
+  "distancia_irrigacao_lago": 4,
+  "alcance_ferramenta_tiles": 1,
+  "velocidade_tempo_dormindo": 30,
+  "hora_acordar": 6.0,
+  "tipos_de_chao_aravel": [
+    "grama",
+    "terra"
+  ]
 }

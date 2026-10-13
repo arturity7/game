@@ -1,0 +1,13 @@
+{
+  "_sobre": "Itens básicos (fora dos livros). 'icone' = posição em itens.png. IDs nunca mudam (tecnico.md §5).",
+  "enxada": {"nome": "Enxada", "tipo": "ferramenta", "icone": 0, "pilha": 1},
+  "regador": {"nome": "Regador", "tipo": "ferramenta", "icone": 1, "pilha": 1, "capacidade": 20},
+  "semente_feijao": {"nome": "Sementes de feijão", "tipo": "semente", "icone": 2, "pilha": 99, "cultura": "feijao"},
+  "feijao": {"nome": "Feijão", "tipo": "comida", "icone": 3, "pilha": 99, "fome": 8},
+  "semente_cenoura": {"nome": "Sementes de cenoura", "tipo": "semente", "icone": 4, "pilha": 99, "cultura": "cenoura"},
+  "cenoura": {"nome": "Cenoura", "tipo": "comida", "icone": 5, "pilha": 99, "fome": 6},
+  "semente_batata": {"nome": "Sementes de batata", "tipo": "semente", "icone": 6, "pilha": 99, "cultura": "batata"},
+  "batata": {"nome": "Batata", "tipo": "comida", "icone": 7, "pilha": 99, "fome": 10},
+  "semente_milho": {"nome": "Sementes de milho", "tipo": "semente", "icone": 8, "pilha": 99, "cultura": "milho"},
+  "milho": {"nome": "Milho", "tipo": "comida", "icone": 9, "pilha": 99, "fome": 12}
+}

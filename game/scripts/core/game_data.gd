@@ -13,11 +13,13 @@ var jogador := {
 	"fome": 100.0,
 	"vida": 100.0,
 	"dinheiro": 0,
-	"inventario": {},
+	"inventario": [],      # slots; ver Inventario
+	"barra_selecionada": 0,
 }
 var mundo := {
 	"dia": 1,          # contagem interna; não aparece na tela (GDD §6)
 	"hora": 6.0,       # hora do dia, de 0.0 a 24.0
+	"canteiros": {},   # id do mapa -> "x,y" -> canteiro; ver Fazenda
 }
 var progresso := {
 	"flags": {},
@@ -29,8 +31,9 @@ var progresso := {
 var extras_desconhecidos := {}
 
 
-static func novo(config: Dictionary, mapa_inicial: String, inicio: Vector2) -> GameData:
+static func novo(config: Dictionary, mapa_inicial: String, inicio: Vector2, itens := {}) -> GameData:
 	var d := GameData.new()
+	d.jogador["inventario"] = Inventario.criar(config, itens)
 	d.jogador["mapa"] = mapa_inicial
 	d.jogador["posicao"] = [inicio.x, inicio.y]
 	d.jogador["fome"] = float(config.get("fome_max", 100.0))

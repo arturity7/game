@@ -3,11 +3,15 @@ extends Node
 
 var balanceamento := {}
 var tiles := {}
+var itens := {}
+var culturas := {}
 
 
 func _ready() -> void:
 	balanceamento = ler_json("res://content/config/balanceamento.json")
 	tiles = ler_json("res://content/config/tiles.json")
+	itens = _sem_comentarios(ler_json("res://content/config/itens.json"))
+	culturas = _sem_comentarios(ler_json("res://content/config/culturas.json"))
 
 
 static func ler_json(caminho: String) -> Dictionary:
@@ -20,6 +24,15 @@ static func ler_json(caminho: String) -> Dictionary:
 		push_error("JSON inválido: " + caminho)
 		return {}
 	return data
+
+
+## Tira as chaves que começam com "_" (comentários nos JSON).
+static func _sem_comentarios(d: Dictionary) -> Dictionary:
+	var r := {}
+	for k in d:
+		if not str(k).begins_with("_"):
+			r[k] = d[k]
+	return r
 
 
 func mapa(id: String) -> MapData:

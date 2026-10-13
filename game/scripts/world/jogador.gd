@@ -9,6 +9,8 @@ var mundo: Mundo
 var sprite: Sprite2D
 var nadando := false
 var andando := false
+var parado := false      # true enquanto dorme
+var direcao := Vector2i(0, 1)
 
 
 func _ready() -> void:
@@ -27,7 +29,7 @@ func _ready() -> void:
 
 
 func _physics_process(_delta: float) -> void:
-	var dir := Input.get_vector("mover_esquerda", "mover_direita", "mover_cima", "mover_baixo")
+	var dir := Vector2.ZERO if parado else Input.get_vector("mover_esquerda", "mover_direita", "mover_cima", "mover_baixo")
 	nadando = mundo != null and mundo.eh_agua(global_position)
 	var cfg: Dictionary = Config.balanceamento
 	var vel := float(cfg.get("velocidade_nadar" if nadando else "velocidade_andar", 80.0))
@@ -46,3 +48,4 @@ func _virar(dir: Vector2) -> void:
 	else:
 		lado = "baixo" if dir.y > 0 else "cima"
 	sprite.region_rect = Rect2(QUADROS[lado] * 16, 0, 16, 32)
+	direcao = {"baixo": Vector2i(0, 1), "cima": Vector2i(0, -1), "esquerda": Vector2i(-1, 0), "direita": Vector2i(1, 0)}[lado]
