@@ -95,10 +95,10 @@ Delegada à IA pelo dono (D-021). Estilo pedido pelo dono em 13/10/2026: **parec
    - `gerar_arte.py`: terreno, objetos, personagem, plantação, ícones de itens e interface. `python3 ferramentas/arte/gerar_arte.py` regrava os PNGs em `game/assets/sprites/`.
    - `fonte.py`: a fonte de pixel própria **Leaf Pixel** (formato BMFont: `game/assets/fontes/leaf_pixel.fnt` + `.png`), com acentos do português.
 2. **Terreno em grade dupla:** a grama é a base (com variações: tufos e flores em manchas). Terra, caminho, água (animada, com espuma e barranco) e o solo arado e molhado são desenhados por cima, com bordas arredondadas. Cada camada fica deslocada meio tile; cada tile olha as 4 células nos seus cantos (máscara TL=1, TR=2, BL=4, BR=8). São 16 desenhos por terreno, mais variações do tile cheio para não repetir.
-3. **Objetos com profundidade:** casa (96×112), árvores (32×48 e 48×72), arbustos, pedras e cercas que se ligam às vizinhas. Quem está mais embaixo na tela fica na frente (y-sort): o jogador passa atrás da copa das árvores e do telhado. Em volta do mapa há mata fechada só de enfeite.
-4. **Personagem:** 16×32, 4 direções × 4 quadros de caminhada, com sombra. Nadando, só o tronco aparece, com ondinhas.
+3. **Objetos com profundidade:** casa (96×112), árvores (32×48 e 48×72), arbustos, pedras e cercas que se ligam às vizinhas; enfeites soltos na grama (mato alto, flores, cogumelos, pedrinhas) que não bloqueiam e somem se a célula for arada. Quem está mais embaixo na tela fica na frente (y-sort): o jogador passa atrás da copa das árvores e do telhado. Em volta do mapa há mata fechada só de enfeite.
+4. **Personagem:** 16×32, 4 direções × 4 quadros de caminhada + 1 pose de usar ferramenta (vira para a célula e para por um instante), com sombra. Nadando, só o tronco aparece, com ondinhas.
 5. **Plantação:** quadros de 16×32 por estágio (4 estágios por cultura); o último mostra o fruto.
-6. **Interface:** painéis de madeira com pergaminho (9-patch), espaços da barra de itens, ícones de vida, fome, sol, lua e moeda. Fonte Leaf Pixel no tamanho 13 (1 pixel do desenho = 1 pixel da tela) e 26 nos títulos; a Pixelify Sans (licença OFL) fica de reserva para caracteres que a Leaf Pixel não tem.
+6. **Interface:** tela de abertura com o logo sobre a fazenda (câmera passeando; Continuar, Novo jogo, Sair); painéis de madeira com pergaminho (9-patch), espaços da barra de itens, ícones de vida, fome, sol, lua e moeda. Fonte Leaf Pixel no tamanho 13 (1 pixel do desenho = 1 pixel da tela) e 26 nos títulos; a Pixelify Sans (licença OFL) fica de reserva para caracteres que a Leaf Pixel não tem.
 7. **Noite e efeitos:** à noite as janelas da casa acendem (luz quente com `PointLight2D` + vidros acesos, `objetos.json` → `luzes` e `noite`). Ferramentas balançam sobre a célula, com terra ou gotas voando; a colheita sobe e some (`scripts/world/efeitos.gd`).
 8. **Conferir:** `bash ferramentas/fotos_jogo.sh <pasta>` tira fotos da cena (casa, plantação, lago nadando, noite, menu) em 480×270 e ampliadas 3×.
 9. **Conteúdo dos livros** (inimigos, bosses, lugares, itens): mesmo processo, mesma paleta e escala (tiles de 16×16, personagens de 16×32).
@@ -126,6 +126,7 @@ Primeira versão de código, em `game/`. Ainda sem livros: só a base em que ele
 | Comer e dormir | Botão direito com comida na mão enche a fome; na casa, dorme (só das 18h às 6h; o tempo corre 30× até as 6h) |
 | Save | Versão 2 (inventário em espaços e canteiros), com migração da versão 1 |
 | Tela de jogo | Painéis de madeira: vida e fome, hora (sol ou lua) e dinheiro, barra de itens, avisos; o dia não aparece (GDD §6); luz muda com a hora |
+| Abertura | Logo sobre a fazenda; Continuar (se houver save), Novo jogo, Sair (`scripts/ui/tela_inicial.gd`) |
 | Menu | Esc: Continuar, Salvar, Carregar, Sair (GDD §8) |
 | Teclas | Registradas em código (`scripts/autoload/controles.gd`) |
 | Arte | Gerada por código, estilo Pokémon/Stardew (§7) |

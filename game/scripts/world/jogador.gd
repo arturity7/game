@@ -17,6 +17,7 @@ var parado := false      # true enquanto dorme
 var direcao := Vector2i(0, 1)
 var _lado := "baixo"
 var _tempo_passo := 0.0
+var _acao := 0.0          # segundos restantes da pose de usar ferramenta
 
 
 func _ready() -> void:
@@ -41,7 +42,8 @@ func _ready() -> void:
 
 
 func _physics_process(delta: float) -> void:
-	var dir := Vector2.ZERO if parado else Input.get_vector("mover_esquerda", "mover_direita", "mover_cima", "mover_baixo")
+	_acao = maxf(0.0, _acao - delta)
+	var dir := Vector2.ZERO if parado or _acao > 0.0 else Input.get_vector("mover_esquerda", "mover_direita", "mover_cima", "mover_baixo")
 	nadando = mundo != null and mundo.eh_agua(global_position)
 	var cfg: Dictionary = Config.balanceamento
 	var vel := float(cfg.get("velocidade_nadar" if nadando else "velocidade_andar", 80.0))
@@ -68,10 +70,26 @@ func _virar(dir: Vector2) -> void:
 	direcao = {"baixo": Vector2i(0, 1), "cima": Vector2i(0, -1), "esquerda": Vector2i(-1, 0), "direita": Vector2i(1, 0)}[_lado]
 
 
-## Quadro da animação: parado, passo, parado, passo. Nadando, só o tronco aparece, com ondinhas.
+## Pose de usar ferramenta por um instante (o jogador para enquanto isso).
+func acao(segundos := 0.22) -> void:
+	_acao = segundos
+	_atualizar_quadro()
+
+
+## Vira o jogador para uma célula vizinha (ou para a direção dela).
+func olhar_para(celula: Vector2i) -> void:
+	var d := Vector2(celula) * 16.0 + Vector2(8, 8) - position
+	if d.length() > 2.0:
+		_virar(d)
+
+
+## Quadro da animação: parado, passo, parado, passo; coluna 4 = usando ferramenta.
+## Nadando, só o tronco aparece, com ondinhas.
 func _atualizar_quadro() -> void:
 	var q := 0
-	if andando:
+	if _acao > 0.0 and not nadando:
+		q = 4
+	elif andando:
 		q = int(_tempo_passo * QUADROS_POR_SEGUNDO) % 4
 	var y: int = int(LINHAS[_lado]) * 32
 	if nadando:

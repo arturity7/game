@@ -72,5 +72,8 @@ func _rodar() -> void:
 	main.menu._abrir()
 	await _foto("5_menu")
 	main.menu._fechar()
+	main._abrir_tela_inicial()
+	await get_tree().create_timer(0.5).timeout
+	await _foto("8_abertura")
 	DirAccess.remove_absolute(ProjectSettings.globalize_path(SaveSystem.ARQUIVO))
 	get_tree().quit(0)

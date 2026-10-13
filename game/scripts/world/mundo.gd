@@ -22,6 +22,7 @@ var arado: TileMapLayer
 var molhado: TileMapLayer
 var profundidade: Node2D    # nós ordenados pela altura na tela: objetos, plantas e jogador
 var plantas := {}           # "x,y" -> Sprite2D
+var enfeites := {}          # "x,y" -> Sprite2D (mato, flores...; não bloqueiam)
 var jogador: Jogador
 var luz: CanvasModulate
 var cursor: Cursor
@@ -57,6 +58,7 @@ func montar(id_mapa: String) -> void:
 	profundidade.y_sort_enabled = true
 	add_child(profundidade)
 	_criar_objetos()
+	_criar_enfeites()
 	_criar_mata_em_volta()
 	jogador = Jogador.new()
 	jogador.name = "Jogador"
@@ -203,6 +205,37 @@ func _criar_objetos() -> void:
 		profundidade.add_child(corpo)
 
 
+## Enfeites soltos na grama: só onde a célula e as 8 vizinhas são grama livre.
+func _criar_enfeites() -> void:
+	var def: Dictionary = Config.tiles.get("grama", {})
+	var lista: Array = def.get("enfeites", [])
+	var dens := float(def.get("densidade_enfeites", 0.0))
+	if lista.is_empty() or dens <= 0.0:
+		return
+	var texs: Array = []
+	for s in lista:
+		texs.append(load(SPRITES + "objetos/" + str(s)))
+	for y in mapa.altura:
+		for x in mapa.largura:
+			if ruido(x, y, 31) >= dens:
+				continue
+			var livre := true
+			for dy in range(-1, 2):
+				for dx in range(-1, 2):
+					var c := Vector2i(x + dx, y + dy)
+					if mapa.chao_em(c) != "grama" or mapa.ocupada(c):
+						livre = false
+			if not livre:
+				continue
+			var spr := Sprite2D.new()
+			spr.texture = texs[int(ruido(x, y, 32) * texs.size()) % texs.size()]
+			spr.centered = false
+			spr.position = Vector2(x * TAM + 8 + roundf((ruido(x, y, 33) - 0.5) * 6.0), y * TAM + 13)
+			spr.offset = Vector2(-8, -15)
+			profundidade.add_child(spr)
+			enfeites["%d,%d" % [x, y]] = spr
+
+
 ## Mata fechada fora do mapa (só desenho): esconde a borda e deixa ver a copa das árvores da beira.
 func _criar_mata_em_volta() -> void:
 	var def: Dictionary = Config.objetos.get("arvore", {})
@@ -312,6 +345,8 @@ func desenhar_plantacao(dados: GameData) -> void:
 			_pintar_dupla(arado, d, e_arado)
 			_pintar_dupla(molhado, d, e_molhado)
 		_canteiros_desenhados = estado
+		for k in enfeites:
+			enfeites[k].visible = not estado.has(k)
 	var vistas := {}
 	for k in cs:
 		var cant: Dictionary = cs[k]

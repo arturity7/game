@@ -6,6 +6,7 @@ signal pediu_salvar
 signal pediu_carregar
 
 var _caixa: PanelContainer
+var ativo := true   # o Esc só abre o menu durante o jogo (não na tela de abertura)
 
 
 func _ready() -> void:
@@ -42,7 +43,7 @@ func _ready() -> void:
 
 
 func _unhandled_input(evento: InputEvent) -> void:
-	if evento.is_action_pressed("menu"):
+	if ativo and evento.is_action_pressed("menu"):
 		if visible:
 			_fechar()
 		else:

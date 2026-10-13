@@ -423,6 +423,54 @@ def casa_janelas():
     return img
 
 
+def enfeite(tipo, variante=0):
+    """Enfeites pequenos (16x16) que não bloqueiam: mato alto, flores, cogumelo, pedrinhas."""
+    c = nova(16, 16)
+    s = 400 + variante * 7 + len(tipo)
+    if tipo == "mato":
+        _sombra(c, 8, 13.5, 5, 1.4, 60)
+        for k in range(7):
+            x0 = 4 + int(hash01(s, k, 1) * 8)
+            h = 5 + int(hash01(s, k, 2) * 5)
+            inc = -1 if hash01(s, k, 3) < 0.5 else 1
+            for j in range(h):
+                x = x0 + (inc if j > h * 0.6 else 0)
+                put(c, x, 13 - j, cor("grama", 5 if j > h - 3 else 4 if j > h // 2 else 2))
+        contornar(c, hexc("#1d3a1a"))
+    elif tipo == "flores":
+        rampa = ["flor_am", "flor_li", "flor_rs", "flor_br"][variante % 4]
+        for k, (fx, fy) in enumerate(((5, 7), (10, 6), (8, 10), (4, 11), (11, 10))):
+            for j in range(13 - fy):
+                put(c, fx, fy + 1 + j, cor("folha", 4))
+            put(c, fx - 1, fy + 3, cor("folha", 5)); put(c, fx + 1, fy + 4, cor("folha", 5))
+        contornar(c, hexc("#1d3a1a"))
+        for k, (fx, fy) in enumerate(((5, 7), (10, 6), (8, 10), (4, 11), (11, 10))):
+            for (dx, dy) in ((0, -1), (-1, 0), (1, 0), (0, 1)):
+                put(c, fx + dx, fy + dy, cor(rampa, 2 if dy < 0 or dx < 0 else 1))
+            put(c, fx, fy, cor("flor_am", 0) if rampa != "flor_am" else cor("tronco", 3))
+    elif tipo == "cogumelo":
+        _sombra(c, 8, 13.5, 4.5, 1.3, 70)
+        for (cx, cy, r) in ((7, 9, 3.2), (11, 11, 2.2)):
+            for y in range(int(cy), 14):
+                put(c, int(cx), y, cor("papel", 3)); put(c, int(cx) - 1, y, cor("papel", 2)) if r > 3 else None
+            for y in range(16):
+                for x in range(16):
+                    dx, dy = (x + 0.5 - cx) / r, (y + 0.5 - cy) / (r * 0.75)
+                    if dx * dx + dy * dy <= 1 and y + 0.5 <= cy + 0.3:
+                        put(c, x, y, cor("coracao", 3 if dy < -0.4 and dx < 0.2 else 2 if dx < 0.4 else 1))
+            put(c, int(cx) - 1, int(cy) - 2, cor("flor_br", 2)); put(c, int(cx) + 1, int(cy) - 1, cor("flor_br", 1))
+        contornar(c, hexc("#2a1414"))
+    elif tipo == "pedrinhas":
+        for (cx, cy, rx, ry) in ((6, 11, 2.6, 1.8), (10.5, 12, 1.8, 1.3), (8.5, 8.5, 1.4, 1.1)):
+            for y in range(16):
+                for x in range(16):
+                    dx, dy = (x + 0.5 - cx) / rx, (y + 0.5 - cy) / ry
+                    if dx * dx + dy * dy <= 1:
+                        put(c, x, y, cor("pedra", 4 if dy < -0.2 else 3 if dx < 0.3 else 2))
+        contornar(c, hexc("#25252b"))
+    return c
+
+
 def gerar_objetos():
     for v in range(3):
         salvar(arvore(v), caminho("objetos", "arvore_%d.png" % v))
@@ -431,6 +479,10 @@ def gerar_objetos():
         salvar(arbusto(v), caminho("objetos", "arbusto_%d.png" % v))
         salvar(pedra(v), caminho("objetos", "pedra_%d.png" % v))
     salvar(cercas(), caminho("objetos", "cerca.png"))
+    for nome, tipo, v in (("mato_0", "mato", 0), ("mato_1", "mato", 1), ("mato_2", "mato", 2),
+                          ("flores_0", "flores", 0), ("flores_1", "flores", 1), ("flores_2", "flores", 2),
+                          ("flores_3", "flores", 3), ("cogumelo", "cogumelo", 0), ("pedrinhas", "pedrinhas", 0)):
+        salvar(enfeite(tipo, v), caminho("objetos", "enfeite_%s.png" % nome))
     salvar(casa(), caminho("objetos", "casa.png"))
     salvar(casa_janelas(), caminho("objetos", "casa_janelas.png"))
 
@@ -522,15 +574,18 @@ def _bloco(c, x0, y0, x1, y1, rampa, base, luz_esq=True):
 
 
 def quadro_jogador(direcao, passo):
-    """Um quadro 16x32. passo: 0 parado, 1 passo com a perna esquerda, -1 com a direita.
-    Pés no y=29 (contorno no 30)."""
+    """Um quadro 16x32. passo: 0 parado, 1 passo com a perna esquerda, -1 com a direita,
+    2 usando ferramenta (mãos juntas à frente). Pés no y=29 (contorno no 30)."""
     img = nova(16, 32)
     _sombra(img, 8, 30, 5.5, 1.8, 90)
     lado = direcao in ("esquerda", "direita")
     esp = direcao == "direita"
     def X(x):  # espelha para a direita
         return 15 - x if esp else x
-    cab_y = 6 - (1 if passo == 0 else 0) + 1
+    usar = passo == 2
+    if usar:
+        passo = 0
+    cab_y = 6 - (1 if passo == 0 and not usar else 0) + 1
     if not lado:
         # pernas (frente/costas)
         def pernas(c):
@@ -548,6 +603,16 @@ def quadro_jogador(direcao, passo):
             if direcao == "baixo":
                 put(c, 7, 19, cor("camisa", 1)); put(c, 8, 19, cor("camisa", 1))  # gola
             for i, x0 in enumerate((3, 11)):
+                if usar:  # braços dobrados para a frente, mãos juntas no meio
+                    dentro = 1 if i == 0 else -1
+                    for y in (18, 19):
+                        for x in (x0, x0 + 1):
+                            put(c, x, y, cor("camisa", 3 if x == x0 and i == 0 else 2 if x == x0 else 1))
+                    for x in (x0 + dentro, x0 + 1 + dentro):
+                        put(c, x, 20, cor("camisa", 2))
+                    for x in (x0 + 2 * dentro, x0 + 1 + 2 * dentro):
+                        put(c, x, 21, cor("pele", 3 if i == 0 else 2))
+                    continue
                 sobe = 1 if (passo == 1 and i == 0) or (passo == -1 and i == 1) else 0
                 fim = 22 - sobe
                 for y in range(18, fim + 1):
@@ -589,6 +654,14 @@ def quadro_jogador(direcao, passo):
                 put(c, X(x), 23, cor("madeira", 1))
         _parte(img, tronco_lado)
         def braco(c):
+            if usar:  # braço esticado para a frente
+                for x in range(3, 8):
+                    for y in (19, 20):
+                        if x >= 5:
+                            put(c, X(x), y, cor("camisa", 3 if y == 19 else 2))
+                        else:
+                            put(c, X(x), y, cor("pele", 3 if y == 19 else 2))
+                return
             d = (-1 if passo == -1 else 1 if passo == 1 else 0)
             for y in range(18, 23):
                 for x in (6 + d, 7 + d):
@@ -602,10 +675,10 @@ def quadro_jogador(direcao, passo):
 
 
 def jogador():
-    """Folha 64x128: linhas baixo, cima, esquerda, direita; colunas parado, passo, parado, passo."""
-    folha = nova(64, 128)
+    """Folha 80x128: linhas baixo, cima, esquerda, direita; colunas parado, passo, parado, passo, usando."""
+    folha = nova(80, 128)
     for li, d in enumerate(("baixo", "cima", "esquerda", "direita")):
-        for co, p in enumerate((0, 1, 0, -1)):
+        for co, p in enumerate((0, 1, 0, -1, 2)):
             folha[li * 32:(li + 1) * 32, co * 16:(co + 1) * 16] = quadro_jogador(d, p)
     return folha
 
@@ -958,6 +1031,80 @@ def gerar_interface():
     salvar(icones_hud(), caminho("ui", "icones_hud.png"))
 
 
+
+# =============================== LOGO ===============================
+
+def logo():
+    """'Leaf & Lore' com a fonte Leaf Pixel em negrito, ampliada 3x: 'Leaf' verde, '&' creme,
+    'Lore' dourado; contorno escuro duplo, sombra e uma folha sobre o 'L'."""
+    import fonte as F
+    texto = "Leaf & Lore"
+    esc = 3
+    glifos = []
+    for ch in texto:
+        m = F.bitmap(ch)
+        w = len(m[0]) + 1  # negrito: soma o glifo deslocado 1 px para a direita
+        b = [[0] * w for _ in range(F.ALTURA)]
+        for yy, linha in enumerate(m):
+            for xx, v in enumerate(linha):
+                if v:
+                    b[yy][xx] = 1
+                    b[yy][xx + 1] = 1
+        glifos.append((ch, b))
+    larg = sum(len(b[0]) + 1 for _, b in glifos) - 1
+    W, H = larg * esc + 16, (F.ALTURA - F.TOPO) * esc + 16
+    img = nova(W, H)
+    x = 8
+    for k, (ch, b) in enumerate(glifos):
+        rampa = "folha" if k < 4 else ("papel" if ch == "&" else "milho")
+        for yy, linha in enumerate(b):
+            for xx, v in enumerate(linha):
+                if not v:
+                    continue
+                rel = (yy - F.TOPO) / 7.0
+                for dy in range(esc):
+                    for dx in range(esc):
+                        r = rel + dy / (7.0 * esc)
+                        if rampa == "folha":
+                            i = 6 if r < 0.2 else 5 if r < 0.5 else 4 if r < 0.8 else 3
+                        elif rampa == "papel":
+                            i = 3 if r < 0.5 else 2
+                        else:
+                            i = 3 if r < 0.3 else 2 if r < 0.75 else 1
+                        topo = yy == 0 or not b[yy - 1][xx]
+                        if topo and dy == 0:
+                            i = min(len(RAMPAS[rampa]) - 1, i + 1)
+                        put(img, x + xx * esc + dx, 8 + (yy - F.TOPO) * esc + dy, cor(rampa, i))
+        x += (len(b[0]) + 1) * esc
+    contornar(img, hexc("#1e1420"), diagonais=True)
+    contornar(img, hexc("#1e1420"), diagonais=False)
+    a = img[:, :, 3] > 0
+    final = nova(W + 3, H + 3)
+    final[3:, 3:][a] = (30, 20, 32, 150)
+    final[:H, :W][a] = img[a]
+    # folha grande inclinada sobre o 'L'
+    folha = nova(16, 14)
+    for y in range(14):
+        for xx in range(16):
+            u, v = (xx + 0.5 - 8) / 7.0, (y + 0.5 - 7) / 4.2
+            # elipse girada 30 graus
+            c, s = math.cos(-0.55), math.sin(-0.55)
+            ru, rv = u * c - v * s * 0.6, u * s / 0.6 + v * c
+            if ru * ru + rv * rv <= 1:
+                i = 5 if rv < -0.2 else 4 if rv < 0.3 else 3
+                if abs(rv - ru * 0.15) < 0.12:
+                    i = 6  # nervura
+                put(folha, xx, y, cor("folha", i))
+    put(folha, 2, 12, cor("tronco", 3)); put(folha, 1, 13, cor("tronco", 3)); put(folha, 3, 11, cor("tronco", 3))
+    contornar(folha, hexc("#1e1420"))
+    colar(final, folha, 1, 0)
+    return final
+
+
+def gerar_logo():
+    salvar(logo(), caminho("ui", "logo.png"))
+
+
 # =============================== PRÉVIA ===============================
 
 def previa_terreno(mapa_json, saida, escala=3):
@@ -1010,6 +1157,7 @@ if __name__ == "__main__":
     gerar_objetos()
     gerar_personagens()
     gerar_interface()
+    gerar_logo()
     if len(sys.argv) > 1 and sys.argv[1] == "--previa":
         previa_terreno(os.path.join(RAIZ, "..", "..", "content", "mapas", "fazenda.json"), sys.argv[2])
     print("ok")

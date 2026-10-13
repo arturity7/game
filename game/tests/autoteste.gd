@@ -98,6 +98,13 @@ func _rodar() -> void:
 	d.mundo["hora"] = 10.0
 	main.dormir()
 	checar(not main.dormindo, "não dorme de dia")
+	# tela de abertura: abre por cima da fazenda e "Novo jogo" volta ao jogo
+	main._abrir_tela_inicial()
+	await _esperar(0.1)
+	checar(not main.em_jogo and main._inicio != null and not main.hud.visible, "abre a tela de abertura")
+	main._comecar("novo")
+	await _esperar(0.1)
+	checar(main.em_jogo and main.hud.visible and main.mundo.jogador.visible, "novo jogo sai da abertura")
 	DirAccess.remove_absolute(ProjectSettings.globalize_path(SaveSystem.ARQUIVO))
 	print("autoteste: %d falha(s)" % falhas.size())
 	get_tree().quit(1 if falhas.size() > 0 else 0)

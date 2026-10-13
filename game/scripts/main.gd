@@ -5,7 +5,10 @@ var mundo: Mundo
 var hud: Hud
 var menu: MenuPausa
 var dormindo := false
+var em_jogo := false          # false enquanto a tela de abertura está aberta
 var _redesenhar_em := 0.0
+var _inicio: TelaInicial
+var _passeio := 0.0
 
 
 func _ready() -> void:
@@ -15,21 +18,58 @@ func _ready() -> void:
 	add_child(menu)
 	menu.pediu_salvar.connect(_salvar)
 	menu.pediu_carregar.connect(_carregar)
+	var teste := false
 	if "--autoteste" in OS.get_cmdline_user_args():
 		var t: Node = load("res://tests/autoteste.gd").new()
 		t.main = self
 		add_child(t)
+		teste = true
 	for a in OS.get_cmdline_user_args():
 		if a.begins_with("--fotos="):
 			var f: Node = load("res://tests/fotos.gd").new()
 			f.main = self
 			add_child(f)
-	if SaveSystem.existe() and _carregar():
-		pass
+			teste = true
+	if teste:
+		_comecar("continuar" if SaveSystem.existe() else "novo")
 	else:
-		GameState.nova_partida()
-		_montar_mundo()
-		hud.avisar("Bem-vindo à fazenda. Esc abre o menu.")
+		_abrir_tela_inicial()
+
+
+## Abertura: a fazenda ao fundo, a câmera passeando, e as opções por cima.
+func _abrir_tela_inicial() -> void:
+	em_jogo = false
+	menu.ativo = false
+	GameState.nova_partida()
+	_montar_mundo()
+	mundo.jogador.visible = false
+	mundo.jogador.parado = true
+	mundo.cursor.visible = false
+	mundo.atualizar_luz(10.0)
+	hud.visible = false
+	_inicio = TelaInicial.new()
+	add_child(_inicio)
+	_inicio.escolheu.connect(_comecar)
+
+
+func _comecar(opcao: String) -> void:
+	match opcao:
+		"sair":
+			get_tree().quit()
+			return
+		"continuar":
+			if not _carregar():
+				return
+		_:
+			GameState.nova_partida()
+			_montar_mundo()
+			hud.avisar("Bem-vindo à fazenda. Esc abre o menu.")
+	if _inicio:
+		_inicio.queue_free()
+		_inicio = null
+	em_jogo = true
+	menu.ativo = true
+	hud.visible = true
 
 
 func _montar_mundo() -> void:
@@ -53,6 +93,10 @@ func _montar_mundo() -> void:
 func _process(delta: float) -> void:
 	var d: GameData = GameState.dados
 	if d == null or mundo == null:
+		return
+	if not em_jogo:
+		_passeio += delta
+		mundo.jogador.position = Vector2(24.0 * 16.0 + sin(_passeio * 0.07) * 13.0 * 16.0, 13.0 * 16.0)
 		return
 	var cfg: Dictionary = Config.balanceamento
 	d.definir_posicao(mundo.jogador.position)
@@ -107,7 +151,7 @@ func _acordar() -> void:
 # ---------- ações do jogador (mouse para ferramentas; D-036) ----------
 
 func _unhandled_input(evento: InputEvent) -> void:
-	if GameState.dados == null or mundo == null or get_tree().paused:
+	if not em_jogo or GameState.dados == null or mundo == null or get_tree().paused:
 		return
 	for i in 10:
 		if evento.is_action_pressed("barra_%d" % (i + 1)):
@@ -196,6 +240,8 @@ func usar(c: Vector2i) -> void:
 					Som.tocar("plantar")
 					feito = true
 	if feito:
+		mundo.jogador.olhar_para(c)
+		mundo.jogador.acao()
 		Survival.tick(d, {"fome_por_segundo": float(cfg.get("fome_por_uso_ferramenta", 0.3))}, 1.0, false)
 		mundo.desenhar_plantacao(d)
 
