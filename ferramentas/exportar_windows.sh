@@ -7,5 +7,5 @@ G="${1:-/home/claude/godot/Godot_v4.3-stable_linux.x86_64}"
 cd "$(dirname "$0")/../game"
 mkdir -p build
 timeout 300 "$G" --headless --path . --export-release "Windows Desktop" build/LeafAndLore.exe >/dev/null 2>&1
-cd build && rm -f LeafAndLore.zip && python3 -c "import zipfile;z=zipfile.ZipFile('LeafAndLore.zip','w',zipfile.ZIP_DEFLATED);z.write('LeafAndLore.exe');z.close()"
+cd build && rm -f LeafAndLore.zip && python3 -c "import zipfile;z=zipfile.ZipFile('LeafAndLore.zip','w',zipfile.ZIP_DEFLATED,compresslevel=9);z.write('LeafAndLore.exe');z.close()"
 ls -la LeafAndLore.exe LeafAndLore.zip

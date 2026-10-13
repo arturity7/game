@@ -29,8 +29,12 @@ func _volume(chave: String, padrao: float) -> float:
 
 func _carregar(nome: String) -> AudioStream:
 	if not _efeitos.has(nome):
-		var caminho := PASTA + nome + ".wav"
-		_efeitos[nome] = load(caminho) if ResourceLoader.exists(caminho) else null
+		_efeitos[nome] = null
+		for ext in [".ogg", ".wav"]:
+			var caminho: String = PASTA + nome + str(ext)
+			if ResourceLoader.exists(caminho):
+				_efeitos[nome] = load(caminho)
+				break
 	return _efeitos[nome]
 
 

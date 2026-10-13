@@ -1,7 +1,7 @@
 """Gera os sons e a música do Leaf & Lore por código (D-039, tecnico.md §7).
 
 Uso: python3 ferramentas/som/gerar_sons.py
-Saída: game/assets/sons/*.wav (22050 Hz, 16 bits, mono).
+Saída: game/assets/sons/*.wav (22050 Hz, 16 bits, mono); a música vira .ogg (precisa do ffmpeg).
 Estilo: sons curtos e macios; música em estilo de console portátil (ondas quadradas e
 triangulares), composição própria.
 """
@@ -77,6 +77,18 @@ def salvar(nome, x, volume=0.8):
         w.setsampwidth(2)
         w.setframerate(TAXA)
         w.writeframes(dados.tobytes())
+
+
+def para_ogg(nome):
+    """Converte a música para OGG Vorbis (bem menor que WAV) com o ffmpeg, se houver; apaga o WAV."""
+    import shutil
+    import subprocess
+    if not shutil.which("ffmpeg"):
+        return
+    wav = os.path.join(SAIDA, nome + ".wav")
+    ogg = os.path.join(SAIDA, nome + ".ogg")
+    subprocess.run(["ffmpeg", "-y", "-loglevel", "error", "-i", wav, "-c:a", "libvorbis", "-q:a", "4", ogg], check=True)
+    os.remove(wav)
 
 
 # ============================== EFEITOS ==============================
@@ -284,4 +296,5 @@ if __name__ == "__main__":
     salvar("dormir", dormir(), 0.5)
     salvar("salvar", salvar_jogo(), 0.45)
     salvar("musica_fazenda", musica_fazenda(), 0.7)
+    para_ogg("musica_fazenda")
     print("ok")
