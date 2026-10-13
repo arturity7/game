@@ -9,12 +9,14 @@ var em_jogo := false          # false enquanto a tela de abertura está aberta
 var _redesenhar_em := 0.0
 var _inicio: TelaInicial
 var _passeio := 0.0
+var _rng := RandomNumberGenerator.new()
 var _trocando := false        # true durante a passagem de um mapa para outro
 var pesca: Pesca = null       # linha na água (D-056)
 var _cortina: ColorRect       # tela preta da passagem
 
 
 func _ready() -> void:
+	_rng.randomize()
 	hud = Hud.new()
 	add_child(hud)
 	menu = MenuPausa.new()
@@ -304,6 +306,17 @@ func usar(c: Vector2i) -> void:
 					feito = true
 			Efeitos.ferramenta(mundo, c, icone, "enxada", esquerda)
 			Som.tocar("enxada")
+		"cortar":
+			Efeitos.ferramenta(mundo, c, icone, "machado", esquerda)
+			Som.tocar("machado")
+			feito = true
+			var r := mundo.golpear(c, -1.0 if esquerda else 1.0, _rng)
+			if str(r["resultado"]) == "caiu" and int(r["madeira"]) > 0:
+				var sobra := Inventario.adicionar(d.jogador["inventario"], "madeira", int(r["madeira"]), Config.itens)
+				hud.avisar("+%d Madeira" % (int(r["madeira"]) - sobra) if sobra < int(r["madeira"]) else "Inventário cheio.", 1.5)
+				Som.tocar("tombar" if str(r["vira"]) != "" else "colher", -2.0)
+			elif str(r["resultado"]) == "nada" and not mundo.mapa.objeto_em(c).is_empty() and Config.objetos.get(str(mundo.mapa.objeto_em(c)["tipo"]), {}).has("corte"):
+				hud.avisar("Essa árvore não dá para cortar.", 1.8)
 		"regar":
 			if mundo.eh_agua_celula(c):
 				s["agua"] = int(def.get("capacidade", 20))

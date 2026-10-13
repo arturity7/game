@@ -18,13 +18,17 @@ static func ferramenta(pai: Node, celula: Vector2i, icone: int, tipo: String, es
 	var centro := Vector2(celula) * 16.0 + Vector2(8, 8)
 	var sinal := -1.0 if esquerda else 1.0
 	var tw := s.create_tween()
-	if tipo == "enxada":
+	if tipo == "enxada" or tipo == "machado":
 		# ponto de giro no fim do cabo (canto de baixo); a lâmina bate na célula
+		var machado := tipo == "machado"
 		s.offset = Vector2(-12, -13) if esquerda else Vector2(-4, -13)
-		s.position = centro + Vector2(-6 * sinal, 4)
+		s.position = centro + Vector2(-6 * sinal, 4 if not machado else -2)
 		s.rotation = deg_to_rad(-75.0 * sinal)
-		tw.tween_property(s, "rotation", deg_to_rad(25.0 * sinal), 0.14).set_ease(Tween.EASE_IN)
-		tw.tween_callback(func(): particulas(pai, centro + Vector2(0, 2), Color("#755034"), 7, 40.0))
+		tw.tween_property(s, "rotation", deg_to_rad((25.0 if not machado else 10.0) * sinal), 0.14).set_ease(Tween.EASE_IN)
+		if machado:
+			tw.tween_callback(func(): particulas(pai, centro + Vector2(-3 * sinal, -4), Color("#c98c58"), 6, 45.0))
+		else:
+			tw.tween_callback(func(): particulas(pai, centro + Vector2(0, 2), Color("#755034"), 7, 40.0))
 		tw.tween_interval(0.08)
 	else:
 		s.offset = Vector2(-8, -8)

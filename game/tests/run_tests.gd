@@ -28,6 +28,7 @@ func _init() -> void:
 	_teste_pesca()
 	_teste_walden(cfg)
 	_teste_seja_util(cfg)
+	_teste_corte(cfg)
 	print("\n%d verificações, %d falha(s)" % [total, falhas])
 	quit(1 if falhas > 0 else 0)
 
@@ -584,3 +585,52 @@ func _teste_seja_util(cfg: Dictionary) -> void:
 	vistos = _conversar(c, d, "seja_util.dialogo.jornaleiro")
 	checar("quiz_fim" in vistos and Progresso.tem_conquista(d, "seja_util.conquista.esponja"), "seja útil: todas as perguntas do Jornaleiro")
 	c.free()
+
+
+func _teste_corte(cfg: Dictionary) -> void:
+	var objs := _defs("objetos")
+	var itens := _defs("itens")
+	var d := GameData.novo(cfg, "fazenda", Vector2.ZERO, itens)
+	checar(Inventario.contar(d.jogador["inventario"], "machado") == 1, "corte: jogo novo começa com machado")
+	var m := MapData.de_dict(_json("res://content/mapas/fazenda.json"), objs)
+	checar(m.corte, "corte: a fazenda deixa cortar")
+	var arv := Vector2i(-1, -1)
+	for o in m.objetos:
+		var c := Vector2i(int(o["x"]), int(o["y"]))
+		if str(o["tipo"]) == "arvore" and Corte.pode(m, c, objs):
+			arv = c
+			break
+	checar(arv != Vector2i(-1, -1), "corte: há árvore cortável na fazenda")
+	checar(not Corte.pode(m, Vector2i(0, 5), objs), "corte: árvore da beira do mapa não")
+	var rng := RandomNumberGenerator.new()
+	rng.seed = 3
+	var golpes := int(objs["arvore"]["corte"]["golpes"])
+	for k in golpes - 1:
+		checar(str(Corte.golpear(d, m, arv, objs, cfg, rng)["resultado"]) == "golpe", "corte: golpe %d só balança" % (k + 1))
+	var r := Corte.golpear(d, m, arv, objs, cfg, rng)
+	checar(str(r["resultado"]) == "caiu" and int(r["madeira"]) >= 3 and int(r["madeira"]) <= 5, "corte: a árvore cai e dá madeira")
+	checar(m.tipo_em(arv) == "toco" and m.ocupada(arv), "corte: fica um toco no lugar")
+	# recarregar o mapa: o toco continua; depois de alguns dias, rebrota
+	var m2 := MapData.de_dict(_json("res://content/mapas/fazenda.json"), objs)
+	Corte.aplicar(d, m2, objs, cfg)
+	checar(m2.tipo_em(arv) == "toco", "corte: o toco continua ao voltar ao mapa")
+	d.mundo["dia"] = int(d.mundo["dia"]) + int(cfg.get("dias_rebrotar", 6))
+	var m3 := MapData.de_dict(_json("res://content/mapas/fazenda.json"), objs)
+	Corte.aplicar(d, m3, objs, cfg)
+	checar(m3.tipo_em(arv) == "arvore", "corte: o toco rebrota em árvore com os dias")
+	# arrancar o toco libera a célula de vez
+	for k in golpes:
+		Corte.golpear(d, m3, arv, objs, cfg, rng)
+	checar(m3.tipo_em(arv) == "toco", "corte: derrubada de novo")
+	var r2 := {}
+	for k in int(objs["toco"]["corte"]["golpes"]):
+		r2 = Corte.golpear(d, m3, arv, objs, cfg, rng)
+	checar(str(r2["resultado"]) == "caiu" and str(r2["vira"]) == "" and not m3.ocupada(arv) and m3.objeto_em(arv).is_empty(), "corte: o toco sai e a célula fica livre")
+	var m4 := MapData.de_dict(_json("res://content/mapas/fazenda.json"), objs)
+	d.mundo["dia"] = int(d.mundo["dia"]) + 30
+	Corte.aplicar(d, m4, objs, cfg)
+	checar(not m4.ocupada(arv), "corte: célula livre continua livre no save")
+	var gd := GameData.from_dict(d.to_dict(2))
+	checar(gd.mundo.get("arvores", {}).get("fazenda", {}).size() == 1, "corte: estado vai para o save")
+	var cidade := MapData.de_dict(_json("res://content/mapas/cidade.json"), objs)
+	checar(not cidade.corte, "corte: na cidade não")

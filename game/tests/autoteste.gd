@@ -215,6 +215,18 @@ func _rodar() -> void:
 	main.usar(Vector2i(14, 13))
 	checar(Fazenda.canteiro(d, "fazenda", Vector2i(14, 13)) != null and Fazenda.canteiro(d, "fazenda", Vector2i(16, 13)) != null, "a enxada larga ara três células")
 	await _esperar(0.3)
+	# machado: derruba uma árvore da fazenda, ganha madeira e fica o toco
+	inv[8] = Inventario.novo_slot("machado", 1, Config.itens)
+	main.selecionar(8)
+	var madeira_antes := Inventario.contar(inv, "madeira")
+	main.mundo.jogador.position = Vector2(4, 12) * 16.0 + Vector2(8, 8)
+	main.mundo.jogador.virar_para("esquerda")
+	for k in 4:
+		main.usar(Vector2i(3, 12))
+		await _esperar(0.25)
+	checar(Inventario.contar(inv, "madeira") > madeira_antes, "o machado derruba a árvore e dá madeira")
+	checar(main.mundo.mapa.tipo_em(Vector2i(3, 12)) == "toco", "fica um toco no lugar da árvore")
+	await _esperar(0.8)
 	# dormir à noite faz o tempo correr até as 6h
 	d.mundo["hora"] = 22.0
 	main.dormir()

@@ -5,6 +5,14 @@ set -e
 G="${1:-/home/claude/godot/Godot_v4.3-stable_linux.x86_64}"
 cd "$(dirname "$0")/../game"
 timeout 120 "$G" --headless --path . --import >/dev/null 2>&1 || true
+echo "== scripts compilam"
+ERROS=""
+for f in $(find scripts -name "*.gd"); do
+  R=$(timeout 60 "$G" --headless --path . --check-only --script "res://$f" 2>&1 | grep -A1 "Parse Error" || true)
+  [ -n "$R" ] && ERROS="$ERROS\n$f: $R"
+done
+[ -n "$ERROS" ] && { echo -e "ERRO DE SCRIPT:$ERROS"; exit 1; }
+echo "ok"
 echo "== testes unitários"
 U=$(timeout 120 "$G" --headless --path . --script res://tests/run_tests.gd 2>&1); echo "$U" | grep -E "FALHOU|verificações|SCRIPT ERROR"
 echo "$U" | grep -q " 0 falha" || { echo "TESTES UNITÁRIOS FALHARAM"; exit 1; }

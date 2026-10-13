@@ -20,6 +20,7 @@ var fechadas: Array = []  # [{"x", "y", "aviso"}] — portas trancadas (botão d
 var noite := ""           # interiores: imagem por cima à noite (janelas escuras)
 var luzes: Array = []     # interiores: pontos (em pixels) que acendem à noite
 var peixes: Array = []    # o que se pesca aqui: [{"item", "peso", "noite", "dia"}]
+var corte := false        # dá para cortar árvores aqui (machado)? Ver Corte
 var sondagem: Dictionary = {}  # lago com fundo medível: {"ponto", "maximo", "raio", "flag", "efeitos", "texto"}
 var _grade: Array = []    # Array[Array[String]] de tipos de chão
 var _ocupado := {}        # "x,y" -> tipo do objeto que ocupa a célula
@@ -38,6 +39,7 @@ static func de_dict(d: Dictionary, defs_objetos := {}) -> MapData:
 	m.noite = str(d.get("noite", ""))
 	m.peixes = d.get("peixes", [])
 	m.sondagem = d.get("sondagem", {})
+	m.corte = bool(d.get("corte", false))
 	for l in d.get("luzes", []):
 		m.luzes.append(Vector2(float(l[0]), float(l[1])))
 	for s in d.get("saidas", []):
@@ -94,6 +96,35 @@ static func de_dict(d: Dictionary, defs_objetos := {}) -> MapData:
 	var ini: Array = d.get("inicio", [0, 0])
 	m.inicio = Vector2i(int(ini[0]), int(ini[1]))
 	return m
+
+
+## Troca o objeto de 1 célula que está em 'c' por outro tipo (ex.: árvore cortada → toco).
+func trocar_objeto(c: Vector2i, tipo: String, defs_objetos: Dictionary) -> void:
+	var k := "%d,%d" % [c.x, c.y]
+	var i = _indice.get(k)
+	if i == null:
+		return
+	objetos[i]["tipo"] = tipo
+	if bool(defs_objetos.get(tipo, {}).get("solido", true)):
+		_ocupado[k] = tipo
+	else:
+		_ocupado.erase(k)
+
+
+## Índice em 'objetos' do objeto que cobre a célula, ou -1.
+func indice_em(c: Vector2i) -> int:
+	return int(_indice.get("%d,%d" % [c.x, c.y], -1))
+
+
+## Tira o objeto de 1 célula que está em 'c' (ele fica na lista com tipo "", para os índices não mudarem).
+func remover_objeto(c: Vector2i) -> void:
+	var k := "%d,%d" % [c.x, c.y]
+	var i = _indice.get(k)
+	if i == null:
+		return
+	objetos[i]["tipo"] = ""
+	_ocupado.erase(k)
+	_indice.erase(k)
 
 
 ## O que há na célula: o objeto que a ocupa ou, se não houver, o tipo de chão. "" fora do mapa.

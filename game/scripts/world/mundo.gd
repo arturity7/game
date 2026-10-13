@@ -33,11 +33,15 @@ var luzes: Array = []       # luzes (PointLight2D) e janelas acesas (Sprite2D) q
 var _textura_luz: Texture2D
 var ambiente: Ambiente      # borboletas, folhas e vaga-lumes (só ao ar livre)
 var paredoes := {}          # Vector2i -> linha do paredão (0 = de cima): células abaixo da beira de um morro
-var _copas := PackedVector2Array()
+var _copas := PackedVector2Array()   # copas da mata em volta (folhas caindo)
+var _copas_obj := {}                   # índice do objeto -> copa (folhas caindo)
+var _corpos := {}                      # índice do objeto -> nó (para trocar quando muda, ex.: árvore cortada)
 
 
 func montar(id_mapa: String) -> void:
 	mapa = Config.mapa(id_mapa)
+	if GameState.dados != null:
+		Corte.aplicar(GameState.dados, mapa, Config.objetos, Config.balanceamento)
 	if mapa.fundo != "":
 		var fundo := Sprite2D.new()
 		fundo.name = "Fundo"
@@ -82,7 +86,7 @@ func montar(id_mapa: String) -> void:
 		_criar_mata_em_volta()
 		ambiente = Ambiente.new()
 		ambiente.name = "Ambiente"
-		ambiente.arvores = _copas
+		_atualizar_copas()
 		add_child(ambiente)
 	jogador = Jogador.new()
 	jogador.name = "Jogador"
@@ -370,81 +374,92 @@ func _criar_paredes() -> void:
 
 
 func _criar_objetos() -> void:
-	for o in mapa.objetos:
-		var def: Dictionary = Config.objetos.get(o["tipo"], {})
-		var x := int(o["x"])
-		var y := int(o["y"])
-		var peg: Array = def.get("pegada", [1, 1])
-		var base := Vector2((x + float(peg[0]) / 2.0) * TAM, (y + int(peg[1])) * TAM)
-		var corpo := StaticBody2D.new()
-		corpo.name = "%s_%d_%d" % [o["tipo"], x, y]
-		corpo.position = base
-		var spr := Sprite2D.new()
-		spr.centered = false
-		if def.has("cerca"):
-			spr.texture = load(SPRITES + "objetos/" + str(def["cerca"]))
-			spr.region_enabled = true
-			spr.region_rect = Rect2(_mascara_cerca(Vector2i(x, y)) * TAM, 0, TAM, TAM * 2)
-			spr.offset = Vector2(-TAM / 2.0, -TAM * 2.0)
-		elif def.has("quadros"):
-			var quadros := SpriteFrames.new()
-			quadros.set_animation_speed("default", 5.0)
-			for q in def["quadros"]:
-				quadros.add_frame("default", load(SPRITES + "objetos/" + str(q)))
-			var anim := AnimatedSprite2D.new()
-			anim.sprite_frames = quadros
-			anim.centered = false
-			var t0: Texture2D = quadros.get_frame_texture("default", 0)
-			var aj0: Array = def.get("ajuste", [0, 0])
-			anim.offset = Vector2(-t0.get_width() / 2.0 + float(aj0[0]), -t0.get_height() + float(aj0[1]))
-			anim.play()
+	for i in mapa.objetos.size():
+		_criar_objeto(i)
+
+
+## Cria o nó de um objeto do mapa (índice em mapa.objetos); objetos com tipo "" (removidos) não aparecem.
+func _criar_objeto(i: int) -> void:
+	var o: Dictionary = mapa.objetos[i]
+	if str(o["tipo"]) == "":
+		return
+	var def: Dictionary = Config.objetos.get(o["tipo"], {})
+	var x := int(o["x"])
+	var y := int(o["y"])
+	var peg: Array = def.get("pegada", [1, 1])
+	var base := Vector2((x + float(peg[0]) / 2.0) * TAM, (y + int(peg[1])) * TAM)
+	var corpo := StaticBody2D.new()
+	corpo.name = "%s_%d_%d" % [o["tipo"], x, y]
+	corpo.position = base
+	var spr := Sprite2D.new()
+	spr.centered = false
+	if def.has("cerca"):
+		spr.texture = load(SPRITES + "objetos/" + str(def["cerca"]))
+		spr.region_enabled = true
+		spr.region_rect = Rect2(_mascara_cerca(Vector2i(x, y)) * TAM, 0, TAM, TAM * 2)
+		spr.offset = Vector2(-TAM / 2.0, -TAM * 2.0)
+	elif def.has("quadros"):
+		var quadros := SpriteFrames.new()
+		quadros.set_animation_speed("default", 5.0)
+		for q in def["quadros"]:
+			quadros.add_frame("default", load(SPRITES + "objetos/" + str(q)))
+		var anim := AnimatedSprite2D.new()
+		anim.sprite_frames = quadros
+		anim.centered = false
+		var t0: Texture2D = quadros.get_frame_texture("default", 0)
+		var aj0: Array = def.get("ajuste", [0, 0])
+		anim.offset = Vector2(-t0.get_width() / 2.0 + float(aj0[0]), -t0.get_height() + float(aj0[1]))
+		anim.play()
+		spr.free()
+		spr = null
+		corpo.add_child(anim)
+	else:
+		var lista: Array = def.get("sprites", [])
+		if lista.is_empty():
 			spr.free()
-			spr = null
-			corpo.add_child(anim)
-		else:
-			var lista: Array = def.get("sprites", [])
-			if lista.is_empty():
-				continue
-			var tex: Texture2D = load(SPRITES + "objetos/" + str(lista[int(ruido(x, y, 5) * lista.size()) % lista.size()]))
-			var aj: Array = def.get("ajuste", [0, 0])
-			spr.texture = tex
-			spr.offset = Vector2(-tex.get_width() / 2.0 + float(aj[0]), -tex.get_height() + float(aj[1]))
-			if bool(def.get("folhas", false)):
-				_copas.append(base + Vector2(0, -tex.get_height() * 0.62))
-		if spr != null:
-			corpo.add_child(spr)
-		if def.has("noite") and spr != null:
-			var acesas := Sprite2D.new()
-			acesas.texture = load(SPRITES + "objetos/" + str(def["noite"]))
-			acesas.centered = false
-			acesas.offset = spr.offset
-			acesas.modulate.a = 0.0
-			corpo.add_child(acesas)
-			luzes.append(acesas)
-		for l in def.get("luzes", []):
-			if spr == null:
-				break
-			var luz_janela := PointLight2D.new()
-			luz_janela.texture = _luz()
-			luz_janela.color = Color(1.0, 0.78, 0.42)
-			luz_janela.energy = 0.0
-			luz_janela.texture_scale = 1.0
-			luz_janela.position = spr.offset + Vector2(float(l[0]), float(l[1]))
-			corpo.add_child(luz_janela)
-			luzes.append(luz_janela)
-		if def.has("porta"):
-			_colisao_com_porta(corpo, peg, def["porta"])
-		elif not bool(def.get("solido", true)):
-			pass
-		else:
-			var tam: Array = def.get("colisao", [int(peg[0]) * TAM, int(peg[1]) * TAM])
-			var forma := CollisionShape2D.new()
-			var ret := RectangleShape2D.new()
-			ret.size = Vector2(float(tam[0]), float(tam[1]))
-			forma.shape = ret
-			forma.position = Vector2(0, -float(tam[1]) / 2.0)
-			corpo.add_child(forma)
-		profundidade.add_child(corpo)
+			corpo.free()
+			return
+		var tex: Texture2D = load(SPRITES + "objetos/" + str(lista[int(ruido(x, y, 5) * lista.size()) % lista.size()]))
+		var aj: Array = def.get("ajuste", [0, 0])
+		spr.texture = tex
+		spr.offset = Vector2(-tex.get_width() / 2.0 + float(aj[0]), -tex.get_height() + float(aj[1]))
+		if bool(def.get("folhas", false)):
+			_copas.append(base + Vector2(0, -tex.get_height() * 0.62))
+	if spr != null:
+		corpo.add_child(spr)
+	if def.has("noite") and spr != null:
+		var acesas := Sprite2D.new()
+		acesas.texture = load(SPRITES + "objetos/" + str(def["noite"]))
+		acesas.centered = false
+		acesas.offset = spr.offset
+		acesas.modulate.a = 0.0
+		corpo.add_child(acesas)
+		luzes.append(acesas)
+	for l in def.get("luzes", []):
+		if spr == null:
+			break
+		var luz_janela := PointLight2D.new()
+		luz_janela.texture = _luz()
+		luz_janela.color = Color(1.0, 0.78, 0.42)
+		luz_janela.energy = 0.0
+		luz_janela.texture_scale = 1.0
+		luz_janela.position = spr.offset + Vector2(float(l[0]), float(l[1]))
+		corpo.add_child(luz_janela)
+		luzes.append(luz_janela)
+	if def.has("porta"):
+		_colisao_com_porta(corpo, peg, def["porta"])
+	elif not bool(def.get("solido", true)):
+		pass
+	else:
+		var tam: Array = def.get("colisao", [int(peg[0]) * TAM, int(peg[1]) * TAM])
+		var forma := CollisionShape2D.new()
+		var ret := RectangleShape2D.new()
+		ret.size = Vector2(float(tam[0]), float(tam[1]))
+		forma.shape = ret
+		forma.position = Vector2(0, -float(tam[1]) / 2.0)
+		corpo.add_child(forma)
+	profundidade.add_child(corpo)
+	_corpos[i] = corpo
 
 
 ## Pegada inteira sólida, menos a célula da porta (a origem do corpo é o meio da base da pegada).
@@ -497,6 +512,56 @@ func _criar_enfeites() -> void:
 			spr.offset = Vector2(-8, -15)
 			profundidade.add_child(spr)
 			enfeites["%d,%d" % [x, y]] = spr
+
+
+func _atualizar_copas() -> void:
+	if ambiente == null:
+		return
+	var p := PackedVector2Array(_copas)
+	for v in _copas_obj.values():
+		p.append(v)
+	ambiente.arvores = p
+
+
+## Um golpe de machado na célula (ver Corte): balança a árvore ou a derruba (cai para o lado
+## 'lado': -1 = esquerda, 1 = direita) e põe o toco no lugar. Retorna o resultado de Corte.golpear.
+func golpear(c: Vector2i, lado: float, rng: RandomNumberGenerator) -> Dictionary:
+	var i := mapa.indice_em(c)
+	var r := Corte.golpear(GameState.dados, mapa, c, Config.objetos, Config.balanceamento, rng)
+	var corpo: Node2D = _corpos.get(i)
+	if corpo == null:
+		return r
+	var centro := Vector2(c) * TAM + Vector2(TAM / 2.0, TAM / 2.0)
+	match str(r["resultado"]):
+		"golpe":
+			var x0 := corpo.position.x
+			var tw := corpo.create_tween()
+			tw.tween_property(corpo, "position:x", x0 + lado * 1.5, 0.04)
+			tw.tween_property(corpo, "position:x", x0 - lado * 1.0, 0.06)
+			tw.tween_property(corpo, "position:x", x0, 0.06)
+			Efeitos.particulas(self, centro + Vector2(0, -10), Color("#6dab4f"), 4, 30.0)
+		"caiu":
+			var era_arvore := str(r["vira"]) != ""
+			_corpos.erase(i)
+			_copas_obj.erase(i)
+			if era_arvore:
+				# a copa tomba para o lado e some; o toco aparece no lugar
+				var queda := Node2D.new()
+				queda.position = corpo.position
+				profundidade.add_child(queda)
+				for filho in corpo.get_children():
+					if filho is Sprite2D:
+						filho.reparent(queda, false)
+				var tw := queda.create_tween()
+				tw.tween_property(queda, "rotation", lado * PI / 2.0, 0.55).set_trans(Tween.TRANS_QUAD).set_ease(Tween.EASE_IN)
+				tw.tween_callback(func(): Efeitos.particulas(self, queda.position + Vector2(lado * 26.0, -4), Color("#529242"), 14, 50.0))
+				tw.tween_property(queda, "modulate:a", 0.0, 0.35)
+				tw.tween_callback(queda.queue_free)
+			Efeitos.particulas(self, centro, Color("#c98c58"), 8, 40.0)
+			corpo.queue_free()
+			_criar_objeto(i)
+			_atualizar_copas()
+	return r
 
 
 ## Mato e flores balançam quando alguém passa por cima (só desenho).

@@ -1,5 +1,5 @@
 {
-  "_sobre": "Itens básicos (fora dos livros). 'icone' = posição em assets/sprites/itens/itens.png. 'preco' = quanto custa na loja; 'venda' = quanto a loja paga. 'acao' (ferramentas) = arar, regar ou pescar; 'largura' = quantas células em linha ela pega. IDs nunca mudam (tecnico.md §5).",
+  "_sobre": "Itens básicos (fora dos livros). 'icone' = posição em assets/sprites/itens/itens.png. 'preco' = quanto custa na loja; 'venda' = quanto a loja paga. 'acao' (ferramentas) = arar, regar, pescar ou cortar (machado: árvores e tocos); 'largura' = quantas células em linha ela pega. IDs nunca mudam (tecnico.md §5).",
   "enxada": {"nome": "Enxada", "tipo": "ferramenta", "icone": 0, "pilha": 1, "acao": "arar"},
   "regador": {"nome": "Regador", "tipo": "ferramenta", "icone": 1, "pilha": 1, "capacidade": 20, "acao": "regar"},
   "semente_feijao": {"nome": "Sementes de feijão", "tipo": "semente", "icone": 2, "pilha": 99, "cultura": "feijao", "preco": 20},
@@ -15,5 +15,7 @@
   "carpa": {"nome": "Carpa", "tipo": "comida", "icone": 16, "pilha": 99, "fome": 7, "venda": 20},
   "bagre": {"nome": "Bagre", "tipo": "comida", "icone": 17, "pilha": 99, "fome": 6, "venda": 25},
   "enxada_larga": {"nome": "Enxada larga", "tipo": "ferramenta", "icone": 24, "pilha": 1, "acao": "arar", "largura": 3, "preco": 200},
-  "regador_grande": {"nome": "Regador grande", "tipo": "ferramenta", "icone": 25, "pilha": 1, "acao": "regar", "capacidade": 40, "largura": 3, "preco": 150}
+  "regador_grande": {"nome": "Regador grande", "tipo": "ferramenta", "icone": 25, "pilha": 1, "acao": "regar", "capacidade": 40, "largura": 3, "preco": 150},
+  "machado": {"nome": "Machado", "tipo": "ferramenta", "icone": 26, "pilha": 1, "acao": "cortar", "preco": 60},
+  "madeira": {"nome": "Madeira", "tipo": "material", "icone": 27, "pilha": 99, "venda": 3}
 }

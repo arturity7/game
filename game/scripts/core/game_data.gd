@@ -20,6 +20,7 @@ var mundo := {
 	"dia": 1,          # contagem interna; não aparece na tela (GDD §6)
 	"hora": 6.0,       # hora do dia, de 0.0 a 24.0
 	"canteiros": {},   # id do mapa -> "x,y" -> canteiro; ver Fazenda
+	"arvores": {},     # id do mapa -> "x,y" -> árvore cortada/toco; ver Corte
 }
 var progresso := {
 	"flags": {},

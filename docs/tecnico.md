@@ -79,6 +79,7 @@ O jogo vai receber atualizações e **nenhuma atualização pode quebrar ou apag
 - **Backup automático:** antes de migrar, o jogo copia o save antigo (`save.bak`).
 - **Teste obrigatório:** cada atualização é testada carregando saves de versões anteriores guardados no repositório (`game/tests/saves/`).
 - **Formato legível:** save em JSON, fácil de inspecionar e consertar se algo der errado.
+- **Chave nova com valor padrão não pede migração:** ao carregar, cada parte do save (`jogador`, `mundo`, `progresso`) parte dos valores padrão e recebe por cima o que veio do arquivo. Assim, um save antigo sem `mundo.arvores` (árvores cortadas, 13/10/2026) abre com `{}`. Migração só quando um dado existente muda de forma.
 
 ## 6. Git 🔵
 
@@ -125,6 +126,7 @@ Primeira versão de código, em `game/`. Ainda sem livros: só a base em que ele
 | Inventário | 30 espaços, barra de 10 (teclas 1–0 ou roda do mouse); `scripts/core/inventario.gd`, `content/config/itens.json`. Ferramentas no botão esquerdo, mirando a célula sob o mouse (se ao alcance) ou a da frente |
 | Casa por dentro | Entra pela porta da casa (passagem com a tela escurecendo); cômodo com cama, mesa, cadeiras, estante de livros e vaso (`content/mapas/casa.json`, fundo desenhado em `ferramentas/arte/interiores.py`). À noite, a janela escurece e a vela da mesa acende |
 | Comer e dormir | Botão direito com comida na mão enche a fome; botão direito na **cama** dorme (só das 18h às 6h; o tempo corre 30× até as 6h) |
+| Machado e árvores | Machado (jogo novo já começa com um; também no Ferreiro por $ 60): 4 golpes derrubam uma árvore da fazenda (ela tomba para o lado e some), dão 3 a 5 de madeira e deixam um toco; 2 golpes arrancam o toco (1 ou 2 de madeira) e liberam a célula. Toco que ninguém arranca rebrota em árvore depois de 6 dias. Só nos mapas com `"corte": true` (por enquanto a fazenda) e nunca na beira do mapa. Regras em `objetos.json` → `corte`; estado no save em `mundo.arvores` (`scripts/core/corte.gd`) (D-076) |
 | Pesca | Vara de pescar (Mercado); a linha cai na água do mouse ou na primeira água à frente; espera, mordida com "!" e um instante para puxar (`scripts/world/pesca.gd`, sorteio em `scripts/core/peixes.gd`). Peixes por mapa em `peixes` (D-073) |
 | Mapas ao norte | Colina do Portal (`colina.json`: portal apagado, menires, trilhos) e Lago Walden (`walden.json`); trilhos são um tipo de chão com desenho simples (`tile` em `tiles.json`); a mata em volta de cada mapa pode ser de outro objeto (`mata`, ex.: pinheiro) (D-074) |
 | Cidade | `content/mapas/cidade.json`, a leste da fazenda: estrada de calçada, postes que acendem à noite, praça com chafariz. **Mercado** (8h–18h; porta trancada fora do horário): botão direito na vendedora (por cima do balcão) abre a loja (`scripts/ui/loja.gd`; clique compra/vende 1, Shift compra 5 ou vende tudo; dados em `content/config/lojas.json` e preços em `itens.json`). **Clínica**: quem desmaia acorda lá. **Forja do Ferreiro** (9h–17h): ferramentas melhores (enxada larga e regador grande, que pegam três células em linha). Moradores parados com sprite próprio (`npcs` no mapa) (D-072) |
@@ -137,7 +139,7 @@ Primeira versão de código, em `game/`. Ainda sem livros: só a base em que ele
 | Testes | `bash ferramentas/testar_jogo.sh`: testes sem tela (`tests/run_tests.gd`: save, saves antigos de `tests/saves/`, migração, fome, vida, relógio, desmaio, mapa e objetos, arte citada nos dados, inventário, plantação) e autoteste da cena com tela virtual (`tests/autoteste.gd`: andar, colisão com a casa, fome, salvar, carregar, nadar, arar, regar, plantar, colher, comer, dormir) |
 | Exportação | `bash ferramentas/exportar_windows.sh` gera `game/build/LeafAndLore.exe` (um arquivo só, com os dados dentro; preset em `game/export_presets.cfg`). O `.exe` não vai para o Git |
 
-Ainda não há: animais, machado e corte de árvores, moradores andando (rotina), combate, portal e a maior parte do conteúdo dos livros (o primeiro livro jogável é a Carta a Meneceu, §9).
+Ainda não há: animais, construção (cercados etc.), moradores andando (rotina), combate, portal e a maior parte do conteúdo dos livros (o primeiro livro jogável é a Carta a Meneceu, §9).
 
 ## 9. Conteúdo dos livros no jogo (formato dos dados) 🔵
 

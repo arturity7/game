@@ -23,7 +23,8 @@
       "walden.item.faneca",
       "walden.item.lucio_dourado",
       "walden.item.enguia",
-      "walden.item.arca_ferro"
+      "walden.item.arca_ferro",
+      "madeira"
     ]
   },
   "ferreiro": {
@@ -31,6 +32,7 @@
     "abre": 9,
     "fecha": 17,
     "vende": [
+      "machado",
       "enxada_larga",
       "regador_grande"
     ],

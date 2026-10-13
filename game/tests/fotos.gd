@@ -135,6 +135,21 @@ func _rodar() -> void:
 		await RenderingServer.frame_post_draw
 		get_viewport().get_texture().get_image().save_png(pasta.path_join("14b_mordida.png"))
 		main.pesca.cancelar()
+	# machado: golpes numa árvore até ela cair
+	d.jogador["inventario"][8] = Inventario.novo_slot("machado", 1, Config.itens)
+	main.selecionar(8)
+	main.mundo.jogador.position = Vector2(4, 12) * 16.0 + Vector2(8, 8)
+	main.mundo.jogador.virar_para("esquerda")
+	await get_tree().create_timer(0.3).timeout
+	for k in 3:
+		main.usar(Vector2i(3, 12))
+		await get_tree().create_timer(0.3).timeout
+	main.usar(Vector2i(3, 12))
+	await get_tree().create_timer(0.35).timeout
+	await RenderingServer.frame_post_draw
+	get_viewport().get_texture().get_image().save_png(pasta.path_join("18_arvore_caindo.png"))
+	await get_tree().create_timer(1.0).timeout
+	await _foto("18b_toco")
 	main.mundo.jogador.position = Vector2(37, 7) * 16.0 + Vector2(8, 8)
 	main.mundo.atualizar_luz(10.0)
 	await _foto("17_fazenda_morro")

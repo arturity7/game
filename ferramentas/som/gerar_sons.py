@@ -111,6 +111,34 @@ def mato():
     return passa_baixa(alto, 7000) * e
 
 
+def machado():
+    """Golpe seco do machado na madeira: estalo + 'toc' grave."""
+    global rng
+    rng = np.random.default_rng(43)
+    n = ruido(0.14)
+    x = passa_baixa(n, 2500) * np.exp(-t_(0.14) * 45) * 0.9
+    x += seno(lambda t: 190 - 80 * t / 0.14, 0.14) * np.exp(-t_(0.14) * 30) * 1.0
+    x += seno(380, 0.14) * np.exp(-t_(0.14) * 60) * 0.35
+    return x
+
+
+def tombar():
+    """Árvore caindo: rangido que desce e a batida no chão com folhas."""
+    global rng
+    rng = np.random.default_rng(47)
+    d = 0.9
+    t = t_(d)
+    range_ = seno(lambda tt: 120 + 60 * np.sin(tt * 30) - 60 * tt, d) * 0.25 * (t < 0.55)
+    batida = np.zeros_like(t)
+    i0 = int(0.55 * TAXA)
+    m = len(t) - i0
+    tb = t_(m / TAXA)
+    batida[i0:] = (passa_baixa(ruido(m / TAXA), 500) * 1.4 + seno(60, m / TAXA) * 0.9) * np.exp(-tb * 9)
+    folhas = ruido(d) - passa_baixa(ruido(d), 2000)
+    folhas = folhas * 0.25 * np.exp(-((t - 0.65) / 0.15) ** 2)
+    return range_ + batida + folhas
+
+
 def enxada():
     n = ruido(0.16)
     x = passa_baixa(n, 700) * np.exp(-t_(0.16) * 28) * 1.3
@@ -308,4 +336,6 @@ if __name__ == "__main__":
     salvar("musica_fazenda", musica_fazenda(), 0.7)
     para_ogg("musica_fazenda")
     salvar("mato", mato(), 0.35)
+    salvar("machado", machado(), 0.7)
+    salvar("tombar", tombar(), 0.7)
     print("ok")

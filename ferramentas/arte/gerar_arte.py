@@ -272,6 +272,27 @@ def arbusto(variante=0):
     return img
 
 
+def toco():
+    """Toco de árvore cortada (16x16): anéis no topo, raízes e sombra."""
+    img = nova(16, 16)
+    _sombra(img, 8, 13.5, 7, 2.2)
+    for y in range(7, 14):
+        for x in range(3, 13):
+            f = (x - 3) / 9.0
+            put(img, x, y, cor("tronco", 3 if f < 0.3 else 2 if f < 0.75 else 1))
+    for (x, y) in ((2, 12), (2, 13), (13, 12), (13, 13), (5, 14), (11, 14)):
+        put(img, x, y, cor("tronco", 2))
+    for y in range(4, 9):   # topo cortado (elipse) com anéis
+        for x in range(3, 13):
+            dx, dy = (x + 0.5 - 8) / 5.0, (y + 0.5 - 6.8) / 2.2
+            r = dx * dx + dy * dy
+            if r <= 1:
+                put(img, x, y, cor("madeira", 4 if r > 0.55 else 5 if r > 0.2 else 4))
+    put(img, 8, 6, cor("madeira", 2)); put(img, 7, 6, cor("madeira", 3))
+    contornar(img, hexc("#21140d"))
+    return img
+
+
 def pedra(variante=0):
     img = nova(16, 16)
     _sombra(img, 8, 13, 6.5, 2)
@@ -506,6 +527,7 @@ def gerar_objetos():
         salvar(arbusto(v), caminho("objetos", "arbusto_%d.png" % v))
         salvar(pedra(v), caminho("objetos", "pedra_%d.png" % v))
     salvar(cercas(), caminho("objetos", "cerca.png"))
+    salvar(toco(), caminho("objetos", "toco.png"))
     for nome, tipo, v in (("mato_0", "mato", 0), ("mato_1", "mato", 1), ("mato_2", "mato", 2),
                           ("flores_0", "flores", 0), ("flores_1", "flores", 1), ("flores_2", "flores", 2),
                           ("flores_3", "flores", 3), ("cogumelo", "cogumelo", 0), ("pedrinhas", "pedrinhas", 0)):
@@ -1056,13 +1078,33 @@ def icones_itens():
             put(c, x, 9, cor("milho", 2)); put(c, x, 10, cor("milho", 1))
         for y in range(5, 14):
             put(c, 3, y, cor("camisa", 4))
+    def machado(c):
+        for k in range(11):  # cabo na diagonal
+            put(c, 3 + k, 14 - k, cor("madeira", 4)); put(c, 4 + k, 14 - k, cor("madeira", 2))
+        for y in range(1, 9):  # lâmina em leque
+            for x in range(8, 15):
+                dx, dy = x - 11, y - 4.5
+                if dx * dx / 10.0 + dy * dy / 14.0 <= 1 and x - 8 >= abs(dy) * 0.4:
+                    put(c, x, y, cor("metal", 4 if x >= 13 else 3 if y < 5 else 2))
+        put(c, 14, 2, cor("metal", 4)); put(c, 14, 7, cor("metal", 2))
+        put(c, 10, 5, cor("madeira", 1)); put(c, 11, 4, cor("madeira", 1))
+    def madeira(c):
+        for (x0, y0) in ((2, 8), (5, 4), (8, 9)):
+            for y in range(4):
+                for x in range(7):
+                    put(c, x0 + x, y0 + y, cor("tronco", 3 if y == 0 else 2 if y < 3 else 1))
+            for y in range(4):   # ponta cortada com anéis
+                put(c, x0 + 6, y0 + y, cor("madeira", 5 if 0 < y < 3 else 4))
+            put(c, x0 + 6, y0 + 1, cor("madeira", 6)); put(c, x0 + 6, y0 + 2, cor("madeira", 4))
+            put(c, x0 + 2, y0 + 1, cor("tronco", 1))
     lista = [_icone(enxada), _icone(regador), _pacote(("feijao", 1)), _icone(feijao),
              _pacote(("cenoura", 2)), _icone(cenoura), _pacote(("batata", 1)), _icone(batata),
              _pacote(("milho", 2)), _icone(milho), _icone(carta), _icone(bolo), _icone(chave), _icone(casaco),
              _icone(vara), _icone(peixe_icone("milho", listras=True)), _icone(peixe_icone("batata")), _icone(peixe_icone("pedra", bigode=True)),
              _icone(peixe_icone("oliva", comprido=3, listras=True)), _icone(peixe_icone("cevada", comprido=3, brilho="folha")),
              _icone(peixe_icone("metal", comprido=-2)), _icone(peixe_icone("calca", comprido=5)),
-             _icone(sonda), _icone(arca), _icone(enxada_larga), _icone(regador_grande)]
+             _icone(sonda), _icone(arca), _icone(enxada_larga), _icone(regador_grande),
+             _icone(machado), _icone(madeira)]
     atlas = nova(16 * len(lista), 16)
     for i, ic in enumerate(lista):
         atlas[:, i * 16:(i + 1) * 16] = ic
