@@ -9,5 +9,9 @@
   "semente_batata": {"nome": "Sementes de batata", "tipo": "semente", "icone": 6, "pilha": 99, "cultura": "batata", "preco": 25},
   "batata": {"nome": "Batata", "tipo": "comida", "icone": 7, "pilha": 99, "fome": 10, "venda": 18},
   "semente_milho": {"nome": "Sementes de milho", "tipo": "semente", "icone": 8, "pilha": 99, "cultura": "milho", "preco": 30},
-  "milho": {"nome": "Milho", "tipo": "comida", "icone": 9, "pilha": 99, "fome": 12, "venda": 22}
+  "milho": {"nome": "Milho", "tipo": "comida", "icone": 9, "pilha": 99, "fome": 12, "venda": 22},
+  "vara_pesca": {"nome": "Vara de pescar", "tipo": "ferramenta", "icone": 14, "pilha": 1, "preco": 40},
+  "perca": {"nome": "Perca", "tipo": "comida", "icone": 15, "pilha": 99, "fome": 5, "venda": 15},
+  "carpa": {"nome": "Carpa", "tipo": "comida", "icone": 16, "pilha": 99, "fome": 7, "venda": 20},
+  "bagre": {"nome": "Bagre", "tipo": "comida", "icone": 17, "pilha": 99, "fome": 6, "venda": 25}
 }

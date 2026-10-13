@@ -191,6 +191,22 @@ func _rodar() -> void:
 	checar(not get_tree().paused, "fecha o diário")
 	main.trocar_mapa("fazenda", Vector2i(7, 8))
 	await _esperar(0.6)
+	# pesca no lago da fazenda: joga a linha, espera a mordida e puxa
+	inv[9] = Inventario.novo_slot("vara_pesca", 1, Config.itens)
+	main.selecionar(9)
+	main.mundo.jogador.position = Vector2(30, 23) * 16.0 + Vector2(8, 8)
+	main.mundo.jogador.virar_para("direita")
+	d.mundo["hora"] = 12.0
+	var peixes_antes := Inventario.contar(inv, "perca") + Inventario.contar(inv, "carpa")
+	main.usar(Vector2i(31, 23))
+	checar(main.pesca != null, "joga a linha na água")
+	if main.pesca:
+		main.pesca._espera = 0.05
+		await _esperar(0.2)
+		main.pesca.puxar()
+	await _esperar(0.1)
+	checar(main.pesca == null and Inventario.contar(inv, "perca") + Inventario.contar(inv, "carpa") == peixes_antes + 1, "pesca um peixe")
+	checar(not main.mundo.jogador.parado, "depois de pescar, volta a andar")
 	# dormir à noite faz o tempo correr até as 6h
 	d.mundo["hora"] = 22.0
 	main.dormir()

@@ -1,0 +1,33 @@
+{
+ "_sobre": "Conversas do mundo do jogo.",
+ "mundo.dialogo.portal": {
+  "quem": "Portal",
+  "inicio": [
+   {
+    "se": {
+     "item": "epicuro.item.chave_alem_nevoa"
+    },
+    "ir": "com_chave"
+   },
+   {
+    "ir": "apagado"
+   }
+  ],
+  "nos": {
+   "apagado": {
+    "fala": [
+     "Um arco de pedra muito antigo, no meio de um círculo de menires.",
+     "Lá dentro, só escuridão. Parece esperar por alguma coisa... uma chave, talvez."
+    ],
+    "ir": "fim"
+   },
+   "com_chave": {
+    "fala": [
+     "A chave de Além da Névoa esquenta na sua mão perto do arco.",
+     "Uma névoa azul aparece lá dentro por um instante... e some. O caminho ainda não abriu."
+    ],
+    "ir": "fim"
+   }
+  }
+ }
+}

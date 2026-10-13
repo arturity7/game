@@ -1,20 +1,29 @@
 {
-  "_sobre": "Lojas da cidade (GDD: poucas lojas; divisão proposta pela IA). 'vende' = o que o jogador pode comprar (preço em itens.json 'preco'); 'compra' = o que a loja compra do jogador ('venda'). 'abre'/'fecha' = horário (a porta fica trancada fora dele).",
-  "mercado": {
-    "nome": "Mercado",
-    "abre": 8,
-    "fecha": 18,
-    "vende": [
-      "semente_feijao",
-      "semente_cenoura",
-      "semente_batata",
-      "semente_milho"
-    ],
-    "compra": [
-      "feijao",
-      "cenoura",
-      "batata",
-      "milho"
-    ]
-  }
+ "_sobre": "Lojas da cidade (GDD: poucas lojas; divisão proposta pela IA). 'vende' = o que o jogador pode comprar (preço em itens.json 'preco'); 'compra' = o que a loja compra do jogador ('venda'). 'abre'/'fecha' = horário (a porta fica trancada fora dele).",
+ "mercado": {
+  "nome": "Mercado",
+  "abre": 8,
+  "fecha": 18,
+  "vende": [
+   "semente_feijao",
+   "semente_cenoura",
+   "semente_batata",
+   "semente_milho",
+   "vara_pesca"
+  ],
+  "compra": [
+   "feijao",
+   "cenoura",
+   "batata",
+   "milho",
+   "perca",
+   "carpa",
+   "bagre",
+   "walden.item.lucio",
+   "walden.item.faneca",
+   "walden.item.lucio_dourado",
+   "walden.item.enguia",
+   "walden.item.arca_ferro"
+  ]
+ }
 }

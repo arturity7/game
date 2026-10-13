@@ -14,10 +14,13 @@ var saidas: Array = []    # [{"x", "y", "para", "chegada": Vector2i, "olhar"}]
 var fundo := ""           # interiores: imagem do cômodo em assets/sprites/interiores/
 var interior := false
 var musica := ""
+var mata := "arvore"      # objeto da mata fechada desenhada em volta do mapa
 var npcs: Array = []      # [{"id", "sprite", "x", "y", "olhar", "loja", "fala"}] — moradores parados
 var fechadas: Array = []  # [{"x", "y", "aviso"}] — portas trancadas (botão direito mostra o aviso)
 var noite := ""           # interiores: imagem por cima à noite (janelas escuras)
 var luzes: Array = []     # interiores: pontos (em pixels) que acendem à noite
+var peixes: Array = []    # o que se pesca aqui: [{"item", "peso", "noite", "dia"}]
+var sondagem: Dictionary = {}  # lago com fundo medível: {"ponto", "maximo", "raio", "flag", "efeitos", "texto"}
 var _grade: Array = []    # Array[Array[String]] de tipos de chão
 var _ocupado := {}        # "x,y" -> tipo do objeto que ocupa a célula
 var _livre := {}          # "x,y" -> true: célula de porta (dentro de uma pegada, mas passável)
@@ -31,7 +34,10 @@ static func de_dict(d: Dictionary, defs_objetos := {}) -> MapData:
 	m.fundo = str(d.get("fundo", ""))
 	m.interior = bool(d.get("interior", false))
 	m.musica = str(d.get("musica", ""))
+	m.mata = str(d.get("mata", "arvore"))
 	m.noite = str(d.get("noite", ""))
+	m.peixes = d.get("peixes", [])
+	m.sondagem = d.get("sondagem", {})
 	for l in d.get("luzes", []):
 		m.luzes.append(Vector2(float(l[0]), float(l[1])))
 	for s in d.get("saidas", []):
@@ -122,6 +128,19 @@ func porta(celula: Vector2i) -> bool:
 func objeto_em(celula: Vector2i) -> Dictionary:
 	var i = _indice.get("%d,%d" % [celula.x, celula.y])
 	return objetos[i] if i != null else {}
+
+
+## Profundidade (em metros) da água nesta célula, se o mapa tiver "sondagem"; 0 se não tiver.
+## Cresce de forma suave até o "maximo" no "ponto" mais fundo.
+func profundidade(celula: Vector2i) -> int:
+	if sondagem.is_empty():
+		return 0
+	var p: Array = sondagem.get("ponto", [0, 0])
+	var dist := Vector2(celula).distance_to(Vector2(float(p[0]), float(p[1])))
+	if dist < 0.5:
+		return int(sondagem.get("maximo", 30))
+	var k := clampf(1.0 - dist / float(sondagem.get("raio", 10)), 0.04, 0.97)
+	return maxi(1, int(round(float(sondagem.get("maximo", 30)) * k)))
 
 
 ## O morador parado nesta célula, ou {} se não houver.

@@ -289,9 +289,9 @@ Adaptação ao jogo sem estações: o Walden fica sempre líquido. O conteúdo d
 
 | ID | Tipo | Onde | Status |
 |---|---|---|---|
-| `walden.local.bosque_lago` | Bioma / local | Mundo principal | Criado (ficha) |
-| `walden.local.cabana` | Local | Bosque e Lago Walden | Criado (ficha) |
-| `walden.local.feijoal` | Local | Bosque e Lago Walden | Criado (ficha) |
+| `walden.local.bosque_lago` | Bioma / local | Mundo principal (mapa `walden`, ao norte da Colina do Portal) | Implementado |
+| `walden.local.cabana` | Local | Bosque e Lago Walden | Implementado por fora (o interior fica para a missão da cabana) |
+| `walden.local.feijoal` | Local | Bosque e Lago Walden | Implementado como enfeite (as ervas e Héctor ficam para depois) |
 | `walden.local.lago_flint` | Local (área fria) | Região dos lagos | Criado (ficha) |
 | `walden.local.lago_white` | Local | Região dos lagos | Criado (ficha) |
 | `walden.local.fair_haven_hill` | Local | Região dos lagos | Criado (ficha) |
@@ -299,7 +299,7 @@ Adaptação ao jogo sem estações: o Walden fica sempre líquido. O conteúdo d
 | `walden.local.ruinas_antigos_moradores` | Local | Brister's Hill | Criado (ficha) |
 | `walden.local.castelo_quoil` | Local | Mata de Walden | Criado (ficha) |
 | `walden.local.barranco_degelo` | Local | Ferrovia | Criado (ficha) |
-| `walden.npc.thoreau` | NPC | Cabana | Criado (ficha) |
+| `walden.npc.thoreau` | NPC | Cabana | Implementado: as três cadeiras na chegada, "a Natureza não faz perguntas", perguntas do livro (cada acerto dá feijão) e a linha com pedra |
 | `walden.npc.lenhador` | NPC | Mata de Walden | Criado (ficha) |
 | `walden.npc.john_field` | NPC | Baker Farm | Criado (ficha) |
 | `walden.npc.senhora_ervas` | NPC | Mata de Walden | Criado (ficha) |
@@ -310,7 +310,7 @@ Adaptação ao jogo sem estações: o Walden fica sempre líquido. O conteúdo d
 | `walden.missao.cajado_kourou` | Missão | Mundo principal | Criado (ficha) |
 | `walden.puzzle.contas_thoreau` | Puzzle | Cabana | Criado (ficha) |
 | `walden.puzzle.machado_gelo` | Puzzle | Lago de Flint | Criado (ficha) |
-| `walden.puzzle.fundo_walden` | Puzzle | Lago Walden | Criado (ficha) |
+| `walden.puzzle.fundo_walden` | Puzzle | Lago Walden | Implementado: missão `walden.missao.fundo`; a linha mostra os metros e só no ponto mais fundo (cruzamento do comprimento com a largura) dá 31 m. Dá para nadar até lá |
 | `walden.puzzle.ligacao_subterranea` | Puzzle | Lago Walden | Criado (ficha) |
 | `walden.puzzle.coro_ras` | Puzzle | Lago Walden (noite) | Criado (ficha) |
 | `walden.puzzle.filhotes_perdiz` | Puzzle | Mata de Walden | Criado (ficha) |
@@ -319,13 +319,13 @@ Adaptação ao jogo sem estações: o Walden fica sempre líquido. O conteúdo d
 | `walden.evento.arco_iris` | Evento | Bosque | Criado (ficha) |
 | `walden.inimigo.erva_daninha` | Inimigo fraco | Feijoal | Criado (ficha) |
 | `walden.inimigo.hector` | Mini-chefe | Feijoal | Criado (ficha) |
-| `walden.item.arca_ferro` | Tesouro | Fundo do Walden | Criado (ficha) |
+| `walden.item.arca_ferro` | Tesouro | Fundo do Walden | Implementado: vem presa na linha quando se acha o ponto mais fundo (vale $ 150 no Mercado) |
 | `walden.item.ponta_flecha` | Colecionável | Feijoal | Criado (ficha) |
 | `walden.item.ar_da_manha` | Item | Bosque | Criado (ficha) |
-| `walden.peixe.lucio_dourado` | Peixe raro | Lago Walden | Criado (ficha) |
+| `walden.peixe.lucio_dourado` | Peixe raro | Lago Walden | Implementado como item `walden.item.lucio_dourado`, junto com lúcio, faneca e enguia (pesca, D-073) |
 | `walden.receita.pao_centeio_milho` | Receita | — | Criado (ficha) |
 | `walden.receita.beldroega` | Receita | — | Criado (ficha) |
 | `walden.receita.falsa_glicinia` | Receita | — | Criado (ficha) |
 | `walden.receita.cal_conchas` | Receita de construção | — | Criado (ficha) |
 
-Implementação no jogo: pendente (fase de código).
+Implementação no jogo: começou em 13/10/2026 (`game/content/livros/walden/`). Conquistas que já funcionam: Fundo firme e A arca de ferro.

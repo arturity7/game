@@ -1,0 +1,83 @@
+{
+ "_sobre": "A Colina do Portal (livros/_MUNDO.md §5): morro baixo entre a fazenda e o bosque de Walden, com o portal de pedra apagado no meio de um círculo de menires e a ferrovia cortando a encosta.",
+ "id": "colina",
+ "nome": "Colina do Portal",
+ "legenda": {
+  ".": "grama",
+  "=": "caminho",
+  "T": "trilho",
+  "A": "arvore",
+  "P": "pinheiro",
+  "b": "arbusto",
+  "p": "pedra",
+  "M": "menir"
+ },
+ "linhas": [
+  "PPPPPPPPPPPPPPP=PPPPPPPPPPPPPP",
+  "P..............=.............P",
+  "P......P.......=.............P",
+  "P..............=...M...M.....P",
+  "P...P..........=.............P",
+  "P..............=.M.......M...P",
+  "P..............=M............P",
+  "P..............=.............P",
+  "P..............=.M.......M...P",
+  "P..A...........=.............P",
+  "A..............=...M...M.A...A",
+  "A..........p...=.............A",
+  "A.b............=...........b.A",
+  "A..............=.............A",
+  "TTTTTTTTTTTTTTTTTTTTTTTTTTTTTT",
+  "A..............=.............A",
+  "A....A.........=....b........A",
+  "A........b.....=.......A.....A",
+  "A..............=.............A",
+  "AAAAAAAAAAAAAAA=AAAAAAAAAAAAAA"
+ ],
+ "objetos": [
+  {
+   "tipo": "portal",
+   "x": 20,
+   "y": 6,
+   "dialogo": "mundo.dialogo.portal",
+   "nome": "Portal"
+  },
+  {
+   "tipo": "placa",
+   "x": 16,
+   "y": 16,
+   "nome": "Placa",
+   "texto": [
+    "Ao norte: o bosque e o lago de Walden.",
+    "Ao sul: a fazenda."
+   ]
+  }
+ ],
+ "saidas": [
+  {
+   "x": 15,
+   "y": 19,
+   "para": "fazenda",
+   "chegada": [
+    26,
+    1
+   ],
+   "olhar": "baixo"
+  },
+  {
+   "x": 15,
+   "y": 0,
+   "para": "walden",
+   "chegada": [
+    25,
+    34
+   ],
+   "olhar": "cima"
+  }
+ ],
+ "inicio": [
+  15,
+  17
+ ],
+ "mata": "pinheiro"
+}

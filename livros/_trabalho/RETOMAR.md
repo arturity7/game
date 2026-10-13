@@ -25,6 +25,7 @@
    - Feito também: efeitos de ferramenta e colheita, janelas acesas à noite, sons e música gerados por código (`ferramentas/som/gerar_sons.py`).
    - Feito também: tela de abertura, pose de usar ferramenta, enfeites na grama, casa por dentro (cama), cidade com mercado (loja), clínica (desmaio) e ferreiro fechado (D-072).
    - Feito (13/10/2026): motor de conversas, perguntas, missões, diário e conquistas (`docs/tecnico.md` §9) e o primeiro livro jogável (Epicuro: Jardim ao norte da cidade, três cartas, chave de Além da Névoa).
+   - Feito (13/10/2026): pesca (D-073); Colina do Portal e Walden em parte (Thoreau, lenhador, fundo do lago, peixes) (D-074).
    - Feito (13/10/2026): Tolstói em parte (sapataria de Simon na cidade, história de Michael, casaco de lã).
    - Feito (13/10/2026): Babilônia em parte (Arkad e Mathon no Mercado: poupança, décimo, muralha, lições).
    - Próximo: os outros livros, um por vez, seguindo `_MUNDO.md` (lugares na cidade primeiro: Mercado com Arkad e Mathon, sapataria de Simon; depois biomas em volta da fazenda); portal na Colina do Portal; animais, machado/árvores, ferreiro, rotina de moradores.

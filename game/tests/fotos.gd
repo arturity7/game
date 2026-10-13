@@ -120,6 +120,31 @@ func _rodar() -> void:
 	var dj: Diario = main.abrir_diario()
 	await _foto("12e_diario")
 	dj.fechar()
+	main.trocar_mapa("fazenda", Vector2i(30, 22), "direita")
+	await get_tree().create_timer(0.8).timeout
+	d.jogador["inventario"][9] = Inventario.novo_slot("vara_pesca", 1, Config.itens)
+	main.selecionar(9)
+	main.mundo.jogador.virar_para("direita")
+	main.usar(Vector2i(31, 22))
+	if main.pesca:
+		main.pesca._espera = 99.0
+		await _foto("14_pesca")
+		main.pesca._mordida = main.pesca._t
+		main.pesca._espera = 0.0
+		await get_tree().create_timer(0.05).timeout
+		await RenderingServer.frame_post_draw
+		get_viewport().get_texture().get_image().save_png(pasta.path_join("14b_mordida.png"))
+		main.pesca.cancelar()
+	main.trocar_mapa("colina", Vector2i(16, 9), "direita")
+	await get_tree().create_timer(0.8).timeout
+	main.mundo.atualizar_luz(10.0)
+	await _foto("15_colina")
+	main.trocar_mapa("walden", Vector2i(13, 10), "cima")
+	await get_tree().create_timer(0.8).timeout
+	main.mundo.atualizar_luz(10.0)
+	await _foto("15b_walden_cabana")
+	main.mundo.jogador.position = Vector2(27, 25) * 16.0 + Vector2(8, 8)
+	await _foto("15c_walden_lago")
 	main.trocar_mapa("sapataria", Vector2i(5, 6), "cima")
 	await get_tree().create_timer(0.8).timeout
 	main.mundo.atualizar_luz(10.0)

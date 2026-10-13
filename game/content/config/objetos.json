@@ -1,5 +1,5 @@
 {
-  "_sobre": "Objetos do mapa (desenhados com profundidade: quem está mais embaixo na tela fica na frente). 'sprites' = arquivos em assets/sprites/objetos/ (a variação sai da posição). 'pegada' = células ocupadas [largura, altura], contadas do canto de cima à esquerda; o sprite fica centrado na pegada e apoiado na base dela, mais o 'ajuste' em pixels. 'colisao' = [largura, altura] em pixels do bloqueio, apoiado na base (sem ela, a pegada toda). \"solido\": false = não bloqueia (enfeite). \"dormir\" = clicar com o botão direito nele faz dormir.",
+  "_sobre": "Objetos do mapa (desenhados com profundidade: quem está mais embaixo na tela fica na frente). 'sprites' = arquivos em assets/sprites/objetos/ (a variação sai da posição). 'pegada' = células ocupadas [largura, altura], contadas do canto de cima à esquerda; o sprite fica centrado na pegada e apoiado na base dela, mais o 'ajuste' em pixels. 'colisao' = [largura, altura] em pixels do bloqueio, apoiado na base (sem ela, a pegada toda). \"solido\": false = não bloqueia (enfeite). \"dormir\" = clicar com o botão direito nele faz dormir. Objetos com \"dialogo\" ou \"texto\" no mapa conversam ao clicar.",
   "casa": {"sprites": ["casa.png"], "pegada": [6, 3], "ajuste": [0, 6], "porta": [3, 2], "luzes": [[20, 71], [78, 71]], "noite": "casa_janelas.png"},
   "cama": {"sprites": ["cama.png"], "pegada": [2, 2], "ajuste": [0, 2], "dormir": true},
   "estante": {"sprites": ["estante.png"], "pegada": [2, 1], "ajuste": [0, 2]},
@@ -30,5 +30,12 @@
   "mesinha": {"sprites": ["mesinha.png"], "pegada": [2, 1], "ajuste": [0, 2], "colisao": [30, 10], "atende_atras": true},
   "sapataria": {"sprites": ["sapataria.png"], "pegada": [5, 3], "ajuste": [0, 6], "porta": [2, 2], "luzes": [[16, 72], [64, 72]], "noite": "sapataria_janelas.png"},
   "forno_russo": {"sprites": ["forno_russo.png"], "pegada": [2, 1], "ajuste": [0, 2], "colisao": [30, 12]},
-  "bancada": {"sprites": ["bancada.png"], "pegada": [2, 1], "ajuste": [0, 2], "colisao": [30, 10], "atende_atras": true}
+  "bancada": {"sprites": ["bancada.png"], "pegada": [2, 1], "ajuste": [0, 2], "colisao": [30, 10], "atende_atras": true},
+  "pinheiro": {"sprites": ["pinheiro_0.png", "pinheiro_1.png"], "pegada": [1, 1], "ajuste": [0, 3], "colisao": [10, 8]},
+  "cabana": {"sprites": ["cabana.png"], "pegada": [3, 2], "ajuste": [0, 4]},
+  "seixos": {"sprites": ["seixos.png"], "pegada": [1, 1], "ajuste": [0, 0], "solido": false},
+  "pilha_lenha": {"sprites": ["pilha_lenha.png"], "pegada": [2, 1], "ajuste": [0, 2], "colisao": [30, 10]},
+  "portal": {"sprites": ["portal.png"], "pegada": [3, 1], "ajuste": [0, 3], "colisao": [46, 12]},
+  "menir": {"sprites": ["menir.png"], "pegada": [1, 1], "ajuste": [0, 2], "colisao": [10, 8]},
+  "feijoeiro": {"sprites": ["feijoeiro.png"], "pegada": [1, 1], "ajuste": [0, 0], "solido": false}
 }

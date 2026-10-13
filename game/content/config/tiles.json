@@ -1,10 +1,11 @@
 {
-  "_sobre": "Tipos de chão. A grama é a base de tudo; 'enfeites' (arquivos em assets/sprites/objetos/) aparecem soltos na grama longe de caminhos e objetos, na proporção 'densidade_enfeites', e não bloqueiam (somem se a célula for arada). 'interior' = chão de interiores (o desenho vem do 'fundo' do mapa); 'solido' = bloqueia a passagem. Os outros são desenhados por cima em grade dupla (bordas arredondadas), na ordem de 'ordem', com a arte de assets/sprites/terreno/<terreno>. 'quadros' = quadros de animação (em linhas no PNG).",
+  "_sobre": "Tipos de chão. A grama é a base de tudo; 'enfeites' (arquivos em assets/sprites/objetos/) aparecem soltos na grama longe de caminhos e objetos, na proporção 'densidade_enfeites', e não bloqueiam (somem se a célula for arada). 'interior' = chão de interiores (o desenho vem do 'fundo' do mapa); 'solido' = bloqueia a passagem. 'tile' = desenho simples de uma célula (ex.: trilhos), por cima da grama. Os outros são desenhados por cima em grade dupla (bordas arredondadas), na ordem de 'ordem', com a arte de assets/sprites/terreno/<terreno>. 'quadros' = quadros de animação (em linhas no PNG).",
   "grama": {"base": true, "densidade_enfeites": 0.09, "enfeites": ["enfeite_mato_0.png", "enfeite_mato_1.png", "enfeite_mato_2.png", "enfeite_mato_0.png", "enfeite_mato_1.png", "enfeite_flores_0.png", "enfeite_flores_1.png", "enfeite_flores_2.png", "enfeite_flores_3.png", "enfeite_cogumelo.png", "enfeite_pedrinhas.png"]},
   "terra": {"terreno": "terra.png", "ordem": 1},
   "caminho": {"terreno": "caminho.png", "ordem": 2},
   "agua": {"terreno": "agua.png", "ordem": 3, "quadros": 3, "agua": true},
   "calcada": {"terreno": "calcada.png", "ordem": 4},
+  "trilho": {"tile": "trilho.png"},
   "piso": {"interior": true},
   "parede": {"interior": true, "solido": true}
 }

@@ -10,6 +10,7 @@ var _redesenhar_em := 0.0
 var _inicio: TelaInicial
 var _passeio := 0.0
 var _trocando := false        # true durante a passagem de um mapa para outro
+var pesca: Pesca = null       # linha na água (D-056)
 var _cortina: ColorRect       # tela preta da passagem
 
 
@@ -104,6 +105,8 @@ func _process(delta: float) -> void:
 	var d: GameData = GameState.dados
 	if d == null or mundo == null:
 		return
+	if pesca != null and Input.get_vector("mover_esquerda", "mover_direita", "mover_cima", "mover_baixo") != Vector2.ZERO:
+		pesca.cancelar()
 	if not em_jogo:
 		_passeio += delta
 		mundo.jogador.position = Vector2(24.0 * 16.0 + sin(_passeio * 0.07) * 13.0 * 16.0, 13.0 * 16.0)
@@ -205,6 +208,13 @@ func _acordar() -> void:
 func _unhandled_input(evento: InputEvent) -> void:
 	if not em_jogo or GameState.dados == null or mundo == null or get_tree().paused:
 		return
+	if pesca != null:
+		var puxa: bool = evento.is_action_pressed("interagir") or evento.is_action_pressed("avancar") \
+			or (evento is InputEventMouseButton and evento.pressed and evento.button_index == MOUSE_BUTTON_LEFT)
+		if puxa:
+			get_viewport().set_input_as_handled()
+			pesca.puxar()
+		return
 	for i in 10:
 		if evento.is_action_pressed("barra_%d" % (i + 1)):
 			selecionar(i)
@@ -273,7 +283,13 @@ func usar(c: Vector2i) -> void:
 	var feito := false
 	var esquerda := c.x < mundo.celula_de(mundo.jogador.position).x or mundo.jogador.direcao.x < 0
 	var icone := int(def.get("icone", 0))
+	if bool(def.get("sonda", false)):
+		sondar(c)
+		return
 	match str(s["id"]):
+		"vara_pesca":
+			pescar(c)
+			return
 		"enxada":
 			var tipo := mundo.mapa.tipo_em(c) if mundo.mapa.objeto_em(c).is_empty() else "objeto"
 			feito = Fazenda.arar(d, mapa, c, tipo, cfg)
@@ -343,6 +359,104 @@ func abrir_loja(id: String) -> Loja:
 	add_child(l)
 	l.abrir(id)
 	return l
+
+
+## Água ao alcance para jogar uma linha: a do mouse (até 4 células), a célula alvo ou a primeira
+## água à frente (de 3 para 1). Vector2i(-999, -999) se não houver.
+func agua_ao_alcance(c: Vector2i) -> Vector2i:
+	var pe := mundo.celula_de(mundo.jogador.position)
+	var sob_mouse := mundo.celula_de(mundo.get_global_mouse_position())
+	if mundo.eh_agua_celula(sob_mouse) and maxi(absi(sob_mouse.x - pe.x), absi(sob_mouse.y - pe.y)) <= 4:
+		return sob_mouse
+	if mundo.eh_agua_celula(c):
+		return c
+	if mundo.eh_agua_celula(pe):
+		return pe  # nadando: a própria célula
+	for dist in [3, 2, 1]:
+		var cel: Vector2i = pe + mundo.jogador.direcao * dist
+		if mundo.eh_agua_celula(cel):
+			return cel
+	return Vector2i(-999, -999)
+
+
+## Linha com pedra (livro Walden): mede a profundidade da água; no ponto mais fundo, a recompensa.
+func sondar(c: Vector2i) -> void:
+	var alvo := agua_ao_alcance(c)
+	if alvo.x == -999:
+		hud.avisar("Jogue a pedra na água.", 1.5)
+		return
+	mundo.jogador.olhar_para(alvo)
+	mundo.jogador.acao(0.3)
+	Efeitos.particulas(mundo, Vector2(alvo) * 16.0 + Vector2(8, 9), Color("#d4f0fb"), 6, 25.0)
+	Som.tocar("encher", -8.0)
+	var f: Dictionary = mundo.mapa.sondagem
+	if f.is_empty():
+		hud.avisar("A pedra bate no fundo logo, logo. É raso aqui.", 1.8)
+		return
+	var p: Array = f.get("ponto", [0, 0])
+	var metros := mundo.mapa.profundidade(alvo)
+	if alvo == Vector2i(int(p[0]), int(p[1])):
+		var flag := str(f.get("flag", ""))
+		if flag != "" and Progresso.tem_flag(GameState.dados, flag):
+			hud.avisar("%d metros. O ponto mais fundo, de novo." % metros, 2.0)
+			return
+		if flag != "":
+			Progresso.marcar(GameState.dados, flag)
+		var avisos := Dialogo.aplicar(GameState.dados, f.get("efeitos", []), Config.itens)
+		ler("", f.get("texto", ["%d metros! O ponto mais fundo." % metros]))
+		hud.avisar("  ".join(avisos), 3.0)
+		Som.tocar("salvar", 0.0, false)
+		return
+	hud.avisar("A pedra desce... %d metros." % metros, 1.8)
+
+
+## Joga a linha: na célula do mouse (se for água e estiver a até 4 células) ou na primeira água
+## à frente, de 3 para 1 célula de distância.
+func pescar(c: Vector2i) -> void:
+	if pesca != null:
+		return
+	var alvo := agua_ao_alcance(c)
+	if alvo.x == -999:
+		hud.avisar("Jogue a linha na água.", 1.5)
+		return
+	if mundo.eh_agua(mundo.jogador.position):
+		hud.avisar("Não dá para pescar nadando.", 1.5)
+		return
+	mundo.jogador.olhar_para(alvo)
+	mundo.jogador.acao(0.3)
+	mundo.jogador.parado = true
+	pesca = Pesca.new()
+	mundo.add_child(pesca)
+	var dirv := Vector2(mundo.jogador.direcao)
+	var cabo := mundo.jogador.position + dirv * 4.0 + Vector2(0, -10)
+	var mao := mundo.jogador.position + dirv * 14.0 + Vector2(0, -24)
+	pesca.comecar(mao, Vector2(alvo) * 16.0 + Vector2(8, 9), mundo.mapa.peixes, float(GameState.dados.mundo["hora"]), cabo)
+	pesca.acabou.connect(_fim_da_pesca)
+	Survival.tick(GameState.dados, {"fome_por_segundo": float(Config.balanceamento.get("fome_por_uso_ferramenta", 0.3))}, 1.0, false)
+
+
+func _fim_da_pesca(resultado: String, item: String) -> void:
+	var pos := pesca.alvo if pesca else mundo.jogador.position
+	pesca = null
+	if not dormindo:
+		mundo.jogador.parado = false
+	match resultado:
+		"pegou":
+			if item == "":
+				hud.avisar("Nada mordeu a isca.", 1.5)
+				return
+			var sobra := Inventario.adicionar(GameState.dados.jogador["inventario"], item, 1, Config.itens)
+			if sobra > 0:
+				hud.avisar("Inventário cheio: o peixe voltou para a água.", 2.0)
+				return
+			var def: Dictionary = Config.itens.get(item, {})
+			hud.avisar("Pescou: %s!" % str(def.get("nome", item)), 2.0)
+			Efeitos.colheita(mundo, mundo.celula_de(pos), int(def.get("icone", 0)))
+			Som.tocar("salvar", -2.0, false)
+		"cedo":
+			hud.avisar("Puxou cedo demais.", 1.2)
+		"escapou":
+			hud.avisar("O peixe escapou...", 1.2)
 
 
 ## Clique direito: fala com morador, colhe, dorme na cama ou come o item da barra.

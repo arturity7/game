@@ -1,5 +1,5 @@
 {
- "_sobre": "Mapa da fazenda. Cada caractere é uma célula de 16x16; a legenda diz o tipo de chão (tiles.json) ou o objeto (objetos.json) da célula. Objetos maiores que uma célula ficam em 'objetos' (x, y = canto de cima à esquerda da pegada). 'saidas' = células que levam a outro mapa (a porta da casa).",
+ "_sobre": "Mapa da fazenda. Cada caractere é uma célula de 16x16; a legenda diz o tipo de chão (tiles.json) ou o objeto (objetos.json) da célula. Objetos maiores que uma célula ficam em 'objetos' (x, y = canto de cima à esquerda da pegada). 'saidas' = células que levam a outro mapa (a porta da casa). 'peixes' = o que se pesca na água do mapa (peso = chance; noite/dia = só nesse período).",
  "id": "fazenda",
  "nome": "Fazenda",
  "legenda": {
@@ -13,22 +13,22 @@
   "p": "pedra"
  },
  "linhas": [
-  "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
-  "A..............................................A",
-  "A..........................bb...............A..A",
-  "A..................................A..........bA",
-  "A.........b....................................A",
-  "A...........................A..................A",
-  "A..............................................A",
-  "A......=......................p................A",
-  "A.b....=................................A......A",
-  "A.b....=...######.#######...................b..A",
-  "A......=...#tttttttttttt#......................A",
-  "A......=...#tttttttttttt#......................A",
-  "A..A...=...#tttttttttttt#.................p....A",
-  "A......=...#tttttttttttt#......................A",
-  "A......=...#tttttttttttt#...................A..A",
-  "A.A....=...######=#######......................A",
+  "AAAAAAAAAAAAAAAAAAAAAAAAAA=AAAAAAAAAAAAAAAAAAAAA",
+  "A.........................=....................A",
+  "A.........................=bb...............A..A",
+  "A.........................=........A..........bA",
+  "A.........b...............=....................A",
+  "A.........................=.A..................A",
+  "A.........................=....................A",
+  "A......=..................=...p................A",
+  "A.b....=..................=.............A......A",
+  "A.b....=...######.#######.=.................b..A",
+  "A......=...#tttttttttttt#.=....................A",
+  "A......=...#tttttttttttt#.=....................A",
+  "A..A...=...#tttttttttttt#.=...............p....A",
+  "A......=...#tttttttttttt#.=....................A",
+  "A......=...#tttttttttttt#.=.................A..A",
+  "A.A....=...######=#######.=....................A",
   "A......=========================================",
   "A......=.......................................A",
   "A......=.....b.................................A",
@@ -71,10 +71,35 @@
     12
    ],
    "olhar": "direita"
+  },
+  {
+   "x": 26,
+   "y": 0,
+   "para": "colina",
+   "chegada": [
+    15,
+    18
+   ],
+   "olhar": "cima"
   }
  ],
  "inicio": [
   7,
   8
+ ],
+ "peixes": [
+  {
+   "item": "perca",
+   "peso": 6
+  },
+  {
+   "item": "carpa",
+   "peso": 4
+  },
+  {
+   "item": "bagre",
+   "peso": 4,
+   "noite": true
+  }
  ]
 }

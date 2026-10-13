@@ -25,6 +25,8 @@ func _init() -> void:
 	_teste_epicuro_do_comeco_ao_fim(cfg)
 	_teste_babilonia(cfg)
 	_teste_tolstoi_sapataria(cfg)
+	_teste_pesca()
+	_teste_walden(cfg)
 	print("\n%d verificações, %d falha(s)" % [total, falhas])
 	quit(1 if falhas > 0 else 0)
 
@@ -175,7 +177,9 @@ func _teste_mapa_fazenda() -> void:
 	checar(bool(objetos[mm.tipo_em(Vector2i(6, 4))].get("atende_atras", false)), "mercado: balcão na frente dela")
 	checar(str(mm.saida_em(Vector2i(6, 9)).get("para", "")) == "cidade", "mercado: porta de volta")
 	var lojas := _defs("lojas")
-	var itens := _defs("itens")
+	var cfg_l := _config()
+	var itens: Dictionary = cfg_l.itens.duplicate()
+	cfg_l.free()
 	for id in lojas["mercado"]["vende"]:
 		checar(int(itens[id].get("preco", 0)) > 0, "loja: preço de " + str(id))
 	for id in lojas["mercado"]["compra"]:
@@ -514,4 +518,50 @@ func _teste_tolstoi_sapataria(cfg: Dictionary) -> void:
 	checar(not Dialogo.condicao(d, michael.get("se", {})), "tolstói: Michael some depois da revelação")
 	_conversar(c, d, "tolstoi.dialogo.simon")
 	checar(Inventario.contar(inv, "tolstoi.item.casaco_la") == 1 and Progresso.missao(d, "tolstoi.missao.tres_sorrisos") == "feita", "tolstói: Simon entrega o casaco de lã")
+	c.free()
+
+
+
+func _teste_pesca() -> void:
+	var tabela := [{"item": "perca", "peso": 1}, {"item": "bagre", "peso": 1, "noite": true}]
+	var rng := RandomNumberGenerator.new()
+	rng.seed = 7
+	var de_dia := {}
+	var de_noite := {}
+	for i in 200:
+		de_dia[Peixes.sortear(tabela, 12.0, rng)] = true
+		de_noite[Peixes.sortear(tabela, 22.0, rng)] = true
+	checar(de_dia.has("perca") and not de_dia.has("bagre"), "pesca: de dia, só os peixes do dia")
+	checar(de_noite.has("perca") and de_noite.has("bagre"), "pesca: à noite aparece o bagre")
+	checar(Peixes.sortear([], 12.0, rng) == "", "pesca: sem peixes, nada")
+	var c := _config()
+	var dir := DirAccess.open("res://content/mapas")
+	for f in dir.get_files():
+		if f.ends_with(".json"):
+			for p in _json("res://content/mapas/" + f).get("peixes", []):
+				checar(c.itens.has(str(p["item"])), "%s: peixe existe (%s)" % [f, p["item"]])
+	for id in c.lojas:
+		for k in ["vende", "compra"]:
+			for item in c.lojas[id].get(k, []):
+				checar(c.itens.has(str(item)), "loja %s: item existe (%s)" % [id, item])
+	c.free()
+
+
+
+func _teste_walden(cfg: Dictionary) -> void:
+	var c := _config()
+	var m := MapData.de_dict(_json("res://content/mapas/walden.json"), c.objetos)
+	var p: Array = m.sondagem["ponto"]
+	var centro := Vector2i(int(p[0]), int(p[1]))
+	checar(m.chao_em(centro) == "agua", "walden: o ponto mais fundo é água")
+	checar(m.profundidade(centro) == 31, "walden: 31 metros no ponto mais fundo")
+	checar(m.profundidade(centro + Vector2i(3, 0)) < 31 and m.profundidade(centro + Vector2i(3, 0)) > m.profundidade(centro + Vector2i(8, 0)), "walden: mais raso longe do centro")
+	var d := GameData.novo(cfg, "fazenda", Vector2.ZERO, c.itens)
+	_conversar_escolhendo(c, d, "walden.dialogo.thoreau", ["O lago tem fundo", "Até logo"])
+	checar(Inventario.contar(d.jogador["inventario"], "walden.item.linha_sonda") == 1 and Progresso.missao(d, "walden.missao.fundo") == "ativa", "walden: Thoreau dá a linha com pedra")
+	Dialogo.aplicar(d, m.sondagem["efeitos"], c.itens)
+	checar(Progresso.missao(d, "walden.missao.fundo") == "feita" and Inventario.contar(d.jogador["inventario"], "walden.item.arca_ferro") == 1, "walden: achar o fundo dá a arca")
+	var mc := MapData.de_dict(_json("res://content/mapas/colina.json"), c.objetos)
+	checar(mc.chao_em(Vector2i(5, 14)) == "trilho" and not mc.ocupada(Vector2i(15, 14)), "colina: trilhos e passagem no caminho")
+	checar(c.dialogos.has(str(mc.objeto_em(Vector2i(21, 6)).get("dialogo", ""))), "colina: o portal conversa")
 	c.free()

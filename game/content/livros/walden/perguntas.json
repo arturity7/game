@@ -1,0 +1,423 @@
+{
+ "_sobre": "Perguntas do livro Walden (formato em docs/tecnico.md §9). Fatos com cara de erro de tradução ficaram de fora (ficha §9).",
+ "walden.pergunta.ponto_fundo": {
+  "texto": "Segundo Thoreau, onde fica o ponto mais fundo de um lago?",
+  "opcoes": [
+   "Onde a linha do maior comprimento cruza a linha da maior largura",
+   "Sempre bem no meio de uma ilha",
+   "Perto da margem mais alta",
+   "Onde a água é mais escura"
+  ],
+  "certa": 0,
+  "nivel": "releitura",
+  "dica": "no capítulo 16, quando ele mede o lago no inverno",
+  "peso": "simples",
+  "ref": "Cap. 16"
+ },
+ "walden.pergunta.tempo": {
+  "texto": "Quanto tempo Thoreau morou no lago?",
+  "opcoes": [
+   "Dois anos e dois meses",
+   "Seis meses",
+   "Dez anos",
+   "Um verão só"
+  ],
+  "certa": 0,
+  "nivel": "memoria",
+  "peso": "simples",
+  "ref": "Cap. 1"
+ },
+ "walden.pergunta.mudanca": {
+  "texto": "Em que dia ele se mudou para a cabana?",
+  "opcoes": [
+   "4 de julho",
+   "1º de janeiro",
+   "25 de dezembro",
+   "7 de setembro"
+  ],
+  "certa": 0,
+  "nivel": "memoria",
+  "peso": "simples",
+  "ref": "Cap. 2"
+ },
+ "walden.pergunta.custo": {
+  "texto": "Quanto custou, mais ou menos, construir a casa?",
+  "opcoes": [
+   "Uns 28 dólares",
+   "Uns 500 dólares",
+   "Nada: ganhou de presente",
+   "Uns 3 dólares"
+  ],
+  "certa": 0,
+  "nivel": "memoria",
+  "peso": "simples",
+  "ref": "Cap. 1"
+ },
+ "walden.pergunta.necessidades": {
+  "texto": "Quais são as quatro necessidades da vida, para Thoreau?",
+  "opcoes": [
+   "Alimento, abrigo, roupa e combustível",
+   "Dinheiro, fama, terra e poder",
+   "Água, sal, pão e vinho",
+   "Livros, amigos, música e viagem"
+  ],
+  "certa": 0,
+  "nivel": "memoria",
+  "peso": "simples",
+  "ref": "Cap. 1"
+ },
+ "walden.pergunta.plantou": {
+  "texto": "O que ele mais plantou no campo perto da cabana?",
+  "opcoes": [
+   "Feijão",
+   "Trigo",
+   "Batata",
+   "Algodão"
+  ],
+  "certa": 0,
+  "nivel": "memoria",
+  "peso": "simples",
+  "ref": "Cap. 7"
+ },
+ "walden.pergunta.inimigo": {
+  "texto": "Qual era o maior inimigo do feijoal?",
+  "opcoes": [
+   "A marmota",
+   "A raposa",
+   "O corvo",
+   "O urso"
+  ],
+  "certa": 0,
+  "nivel": "memoria",
+  "peso": "simples",
+  "ref": "Cap. 7"
+ },
+ "walden.pergunta.cadeiras": {
+  "texto": "Para que serviam as três cadeiras da cabana?",
+  "opcoes": [
+   "Uma para a solidão, duas para a amizade, três para a sociedade",
+   "Uma para cada refeição do dia",
+   "Para os três irmãos dele",
+   "Eram só enfeite"
+  ],
+  "certa": 0,
+  "nivel": "memoria",
+  "peso": "simples",
+  "ref": "Cap. 6"
+ },
+ "walden.pergunta.machado": {
+  "texto": "Como Thoreau devolveu o machado emprestado?",
+  "opcoes": [
+   "Mais afiado do que veio",
+   "Quebrado",
+   "Pintado de novo",
+   "Nunca devolveu"
+  ],
+  "certa": 0,
+  "nivel": "memoria",
+  "peso": "simples",
+  "ref": "Cap. 1"
+ },
+ "walden.pergunta.bebida": {
+  "texto": "Qual era a única bebida do sábio, para Thoreau?",
+  "opcoes": [
+   "Água",
+   "Chá",
+   "Leite",
+   "Suco de maçã"
+  ],
+  "certa": 0,
+  "nivel": "memoria",
+  "peso": "simples",
+  "ref": "Cap. 11"
+ },
+ "walden.pergunta.profundidade": {
+  "texto": "Qual é, mais ou menos, a profundidade máxima do Walden?",
+  "opcoes": [
+   "Uns 31 metros",
+   "Uns 3 metros",
+   "Não tem fundo",
+   "Uns 300 metros"
+  ],
+  "certa": 0,
+  "nivel": "memoria",
+  "peso": "simples",
+  "ref": "Cap. 16"
+ },
+ "walden.pergunta.iliada": {
+  "texto": "Que livro ficava em cima da mesa dele?",
+  "opcoes": [
+   "A Ilíada",
+   "Um dicionário",
+   "Um livro de receitas",
+   "Um mapa da vila"
+  ],
+  "certa": 0,
+  "nivel": "memoria",
+  "peso": "simples",
+  "ref": "Cap. 3"
+ },
+ "walden.pergunta.preso": {
+  "texto": "Por que Thoreau foi preso por uma noite?",
+  "opcoes": [
+   "Porque não pagou um imposto",
+   "Porque roubou maçãs",
+   "Porque brigou na vila",
+   "Porque pescou sem licença"
+  ],
+  "certa": 0,
+  "nivel": "memoria",
+  "peso": "simples",
+  "ref": "Cap. 8"
+ },
+ "walden.pergunta.mobelha": {
+  "texto": "Qual ave ri e mergulha no jogo do lago?",
+  "opcoes": [
+   "A mobelha",
+   "O pato",
+   "A garça",
+   "A gaivota"
+  ],
+  "certa": 0,
+  "nivel": "memoria",
+  "peso": "simples",
+  "ref": "Cap. 12"
+ },
+ "walden.pergunta.cavalo_ferro": {
+  "texto": "O que Thoreau chama de \"Cavalo de Ferro\"?",
+  "opcoes": [
+   "A locomotiva",
+   "O arado",
+   "Um cavalo de verdade",
+   "O sino da igreja"
+  ],
+  "certa": 0,
+  "nivel": "memoria",
+  "peso": "simples",
+  "ref": "Caps. 4, 9"
+ },
+ "walden.pergunta.calcario": {
+  "texto": "O que ele jogou pela janela porque precisava ser espanado?",
+  "opcoes": [
+   "Três pedras de calcário",
+   "Um tapete velho",
+   "Uma cadeira",
+   "Uma pilha de livros"
+  ],
+  "certa": 0,
+  "nivel": "releitura",
+  "dica": "no capítulo 1",
+  "peso": "simples",
+  "ref": "Cap. 1"
+ },
+ "walden.pergunta.collins": {
+  "texto": "De quem ele comprou a cabana velha para aproveitar as tábuas?",
+  "opcoes": [
+   "De James Collins",
+   "De John Field",
+   "De Hugh Quoil",
+   "Do lenhador"
+  ],
+  "certa": 0,
+  "nivel": "releitura",
+  "dica": "no capítulo 1",
+  "peso": "simples",
+  "ref": "Cap. 1"
+ },
+ "walden.pergunta.enxada": {
+  "texto": "Quanto custou a enxada de Thoreau?",
+  "opcoes": [
+   "54 centavos",
+   "5 dólares",
+   "1 dólar",
+   "10 centavos"
+  ],
+  "certa": 0,
+  "nivel": "releitura",
+  "dica": "no capítulo 7",
+  "peso": "simples",
+  "ref": "Cap. 7"
+ },
+ "walden.pergunta.alqueires": {
+  "texto": "Quantos alqueires de feijão ele colheu?",
+  "opcoes": [
+   "Doze",
+   "Dois",
+   "Cem",
+   "Cinquenta"
+  ],
+  "certa": 0,
+  "nivel": "releitura",
+  "dica": "nos capítulos 1 e 7",
+  "peso": "simples",
+  "ref": "Caps. 1, 7"
+ },
+ "walden.pergunta.pao": {
+  "texto": "Que pão ele preferiu fazer?",
+  "opcoes": [
+   "De centeio com milho, sem fermento",
+   "De trigo com mel",
+   "De arroz",
+   "Ele não fazia pão"
+  ],
+  "certa": 0,
+  "nivel": "releitura",
+  "dica": "no capítulo 1",
+  "peso": "simples",
+  "ref": "Cap. 1"
+ },
+ "walden.pergunta.beldroega": {
+  "texto": "De que erva do milharal ele fez um jantar?",
+  "opcoes": [
+   "Beldroega",
+   "Hortelã",
+   "Urtiga",
+   "Alecrim"
+  ],
+  "certa": 0,
+  "nivel": "releitura",
+  "dica": "no capítulo 1",
+  "peso": "simples",
+  "ref": "Cap. 1"
+ },
+ "walden.pergunta.homero": {
+  "texto": "Qual foi a única coisa roubada da cabana?",
+  "opcoes": [
+   "Um volume de Homero",
+   "A flauta",
+   "O machado",
+   "Um pão"
+  ],
+  "certa": 0,
+  "nivel": "releitura",
+  "dica": "no capítulo 8",
+  "peso": "simples",
+  "ref": "Cap. 8"
+ },
+ "walden.pergunta.sapato": {
+  "texto": "O que ele foi buscar na vila no dia em que foi preso?",
+  "opcoes": [
+   "Um sapato no sapateiro",
+   "Farinha",
+   "Pregos",
+   "Uma carta"
+  ],
+  "certa": 0,
+  "nivel": "releitura",
+  "dica": "no capítulo 8",
+  "peso": "simples",
+  "ref": "Cap. 8"
+ },
+ "walden.pergunta.sonda": {
+  "texto": "Com o que ele mediu o fundo do lago?",
+  "opcoes": [
+   "Uma linha de pesca e uma pedra",
+   "Uma vara comprida",
+   "Um barco a remo e um remo",
+   "Ele mergulhou até o fundo"
+  ],
+  "certa": 0,
+  "nivel": "releitura",
+  "dica": "no capítulo 16",
+  "peso": "simples",
+  "ref": "Cap. 16"
+ },
+ "walden.pergunta.flauta": {
+  "texto": "O que atraía as percas à noite?",
+  "opcoes": [
+   "A flauta",
+   "Uma lanterna",
+   "Migalhas de pão",
+   "O canto das rãs"
+  ],
+  "certa": 0,
+  "nivel": "releitura",
+  "dica": "no capítulo 9",
+  "peso": "simples",
+  "ref": "Cap. 9"
+ },
+ "walden.pergunta.gansos": {
+  "texto": "Quantos gansos partiram juntos na primavera?",
+  "opcoes": [
+   "Vinte e nove",
+   "Três",
+   "Cem",
+   "Doze"
+  ],
+  "certa": 0,
+  "nivel": "releitura",
+  "dica": "no capítulo 17",
+  "peso": "simples",
+  "ref": "Cap. 17"
+ },
+ "walden.pergunta.saida": {
+  "texto": "Em que dia ele saiu de Walden?",
+  "opcoes": [
+   "6 de setembro de 1847",
+   "4 de julho de 1845",
+   "1º de janeiro de 1850",
+   "25 de dezembro de 1846"
+  ],
+  "certa": 0,
+  "nivel": "releitura",
+  "dica": "no fim do capítulo 17",
+  "peso": "simples",
+  "ref": "Cap. 17"
+ },
+ "walden.pergunta.hollowell": {
+  "texto": "Como se chamava a fazenda que ele quase comprou?",
+  "opcoes": [
+   "Hollowell",
+   "Baker Farm",
+   "Fair Haven",
+   "Brister"
+  ],
+  "certa": 0,
+  "nivel": "releitura",
+  "dica": "no capítulo 2",
+  "peso": "simples",
+  "ref": "Cap. 2"
+ },
+ "walden.pergunta.kourou": {
+  "texto": "O que fazia o artista de Kourou?",
+  "opcoes": [
+   "Um cajado",
+   "Um barco",
+   "Uma casa",
+   "Um relógio"
+  ],
+  "certa": 0,
+  "nivel": "releitura",
+  "dica": "no capítulo 18",
+  "peso": "simples",
+  "ref": "Cap. 18"
+ },
+ "walden.pergunta.balde": {
+  "texto": "O que o lenhador levava no balde de latão para o almoço?",
+  "opcoes": [
+   "Carne fria de marmota",
+   "Peixe frito",
+   "Sopa quente",
+   "Só pão"
+  ],
+  "certa": 0,
+  "nivel": "releitura",
+  "dica": "no capítulo 6",
+  "peso": "simples",
+  "ref": "Cap. 6"
+ },
+ "walden.pergunta.postes": {
+  "texto": "Quantos postes o lenhador instalava num dia?",
+  "opcoes": [
+   "Cinquenta",
+   "Cinco",
+   "Mil",
+   "Um"
+  ],
+  "certa": 0,
+  "nivel": "releitura",
+  "dica": "no capítulo 6",
+  "peso": "simples",
+  "ref": "Cap. 6"
+ }
+}

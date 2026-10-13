@@ -144,6 +144,181 @@ def placa():
     return contornar(img, ESCURO)
 
 
+# =============================== WALDEN E A COLINA DO PORTAL ===============================
+
+def pinheiro(variante=0):
+    """Pinheiro 32x56: copa em camadas triangulares, verde-escuro, com sombra e contorno."""
+    img = nova(32, 56)
+    _sombra(img, 16, 53, 10, 3)
+    for y in range(44, 54):
+        for x in range(14, 18):
+            put(img, x, y, cor("tronco", 3 if x < 16 else 1))
+    s = 700 + variante
+    camadas = [(4, 9), (12, 12), (21, 14), (30, 15)] if variante == 0 else [(2, 8), (10, 11), (19, 13), (28, 15)]
+    for k, (topo, meia) in enumerate(camadas):
+        alt = 16
+        for y in range(topo, min(topo + alt, 48)):
+            f = (y - topo) / alt
+            w = 1 + f * meia
+            for x in range(16 - int(w), 16 + int(w) + 1):
+                dx = (x - 16) / max(1, w)
+                i = 4 if dx < -0.35 else 3 if dx < 0.25 else 2
+                if y > topo + alt - 4:
+                    i -= 1
+                if hash01(x, y, s) > 0.9:
+                    i += 1
+                put(img, x, y, cor("folha", max(0, min(5, i - (1 if variante else 0)))))
+    contornar(img, hexc("#13230f"))
+    return img
+
+
+def cabana():
+    """Cabana de Thoreau 48x64 (pegada 3x2): tábuas, telhado de ripas, chaminé de tijolo na ponta."""
+    img = nova(48, 64)
+    _sombra(img, 24, 61, 25, 4, 90)
+    for y in range(30, 58):  # paredes de tábuas verticais
+        for x in range(3, 45):
+            i = 3 if (x - 3) % 5 else 1
+            if hash01(x // 5, y // 9, 81) > 0.8 and i == 3:
+                i = 4
+            put(img, x, y, cor("madeira", i))
+    for y in range(40, 58):  # porta
+        for x in range(20, 29):
+            put(img, x, y, cor("madeira", 2 if (x - 20) % 3 else 1))
+    put(img, 27, 49, cor("milho", 2))
+    for (jx) in (7, 34):  # janelas
+        for y in range(38, 48):
+            for x in range(jx, jx + 8):
+                borda = x in (jx, jx + 7) or y in (38, 47)
+                put(img, x, y, cor("madeira", 1) if borda else cor("vidro", 2 if y > 42 else 3))
+    for y in range(4, 32):  # telhado
+        k = (y - 4) / 28.0
+        x0 = int(round(8 - 8 * k)); x1 = 48 - x0
+        for x in range(x0, x1):
+            yy = (y - 4) % 4
+            i = 2 if yy == 3 else 3
+            if (x + (2 if ((y - 4) // 4) % 2 else 0)) % 6 == 0:
+                i = 2
+            put(img, x, y, cor("madeira", i))
+    for x in range(0, 48):
+        put(img, x, 31, cor("madeira", 1)); put(img, x, 30, cor("madeira", 2))
+    for y in range(0, 20):  # chaminé
+        for x in range(36, 42):
+            put(img, x, y, cor("tijolo", 3 if (y + (2 if x > 38 else 0)) % 4 else 1))
+    for y in range(57, 60):
+        for x in range(18, 31):
+            put(img, x, y, cor("pedra", 3))
+    return contornar(img, ESCURO)
+
+
+def seixos():
+    """Pedrinhas brancas e redondas da margem do Walden (não bloqueiam): cada uma com contorno próprio."""
+    img = nova(16, 16)
+    for (cx, cy, r) in ((4.5, 10.5, 1.9), (9.5, 12.0, 1.6), (11.5, 8.5, 1.3), (6.5, 6.5, 1.2)):
+        pedra = nova(16, 16)
+        for y in range(16):
+            for x in range(16):
+                d = math.hypot(x + 0.5 - cx, (y + 0.5 - cy) * 1.25)
+                if d <= r:
+                    put(pedra, x, y, cor("flor_br", 2 if y + 0.5 < cy else 1) if d < r - 0.4 or y + 0.5 < cy else cor("pedra", 4))
+        contornar(pedra, hexc("#7a7a84"))
+        m = pedra[:, :, 3] > 0
+        img[m] = pedra[m]
+    return img
+
+
+def pilha_lenha():
+    img = nova(32, 24)
+    _sombra(img, 16, 22, 15, 2, 90)
+    for fila in range(3):
+        for k in range(5 - fila):
+            cx = 5 + k * 5.5 + fila * 2.7
+            cy = 18 - fila * 5
+            for y in range(24):
+                for x in range(32):
+                    d = math.hypot(x + 0.5 - cx, y + 0.5 - cy)
+                    if d <= 2.6:
+                        put(img, x, y, cor("tronco", 4 if d > 1.8 else 3) if d > 1.0 else cor("madeira", 5))
+    return contornar(img, ESCURO)
+
+
+def portal(aceso=False):
+    """Arco de pedra da Colina do Portal 48x64 (pegada 3x1). Aceso: névoa azul brilhando dentro."""
+    img = nova(48, 64)
+    _sombra(img, 24, 61, 24, 3, 90)
+    for y in range(4, 60):
+        for x in range(2, 46):
+            dx = (x + 0.5 - 24) / 21.5
+            dy = (y + 0.5 - 30) / 26
+            fora = dx * dx + dy * dy <= 1 or y > 30
+            dx2 = (x + 0.5 - 24) / 14.5
+            dy2 = (y + 0.5 - 32) / 20
+            dentro = (dx2 * dx2 + dy2 * dy2 <= 1 or y > 32) and 10 <= x <= 37 and y < 60
+            if fora and not dentro and 2 <= x <= 45:
+                bloco = ((x // 7) + (y // 6)) % 2
+                i = 3 if bloco else 2
+                if (y % 6 == 0) or (x % 7 == 0):
+                    i = 1
+                if x < 6:
+                    i += 1
+                put(img, x, y, cor("pedra", i))
+            elif dentro:
+                if aceso:
+                    v = (math.sin(x * 0.4 + y * 0.25) + 1) / 2
+                    put(img, x, y, cor("agua", 4 + int(v * 2)))
+                else:
+                    put(img, x, y, (20, 16, 28, 140))
+    for (x, y) in ((24, 6), (23, 7), (25, 7)):  # pedra-chave
+        put(img, x, y, cor("milho", 2 if aceso else 1))
+    return contornar(img, hexc("#25252b"))
+
+
+def menir():
+    img = nova(16, 32)
+    _sombra(img, 8, 30, 6, 1.8, 90)
+    for y in range(6, 30):
+        w = 4 if y > 10 else 3
+        for x in range(8 - w, 8 + w):
+            i = 4 if x < 7 else 3 if x < 10 else 2
+            if hash01(x, y // 3, 94) > 0.85:
+                i -= 1
+            put(img, x, y, cor("pedra", i))
+    return contornar(img, hexc("#25252b"))
+
+
+def trilho():
+    """Tile 16x16 de trilho (dormentes de madeira e duas barras de ferro), na horizontal."""
+    img = nova(16, 16)
+    for x0 in (1, 9):  # dormentes
+        for y in range(2, 15):
+            for x in range(x0, x0 + 5):
+                put(img, x, y, cor("madeira", 2 if x in (x0, x0 + 4) else 3))
+    for yb in (4, 11):
+        for x in range(16):
+            put(img, x, yb, cor("metal", 3)); put(img, x, yb + 1, cor("metal", 1))
+    return img
+
+
+def feijoeiro():
+    from gerar_arte import cultura
+    return cultura("feijao", 3)
+
+
+def gerar_walden():
+    for v in range(2):
+        salvar(pinheiro(v), caminho("objetos", "pinheiro_%d.png" % v))
+    salvar(cabana(), caminho("objetos", "cabana.png"))
+    salvar(seixos(), caminho("objetos", "seixos.png"))
+    salvar(pilha_lenha(), caminho("objetos", "pilha_lenha.png"))
+    salvar(portal(False), caminho("objetos", "portal.png"))
+    salvar(portal(True), caminho("objetos", "portal_aceso.png"))
+    salvar(menir(), caminho("objetos", "menir.png"))
+    salvar(feijoeiro(), caminho("objetos", "feijoeiro.png"))
+    salvar(trilho(), caminho("terreno", "trilho.png"))
+    salvar(personagem("cabelo", "calca", "tunica_ocre", barba=True), caminho("personagens", "thoreau.png"))
+    salvar(personagem("cabelo_preto", "camisa_vinho", "calca"), caminho("personagens", "lenhador.png"))
+
+
 def gerar():
     salvar(personagem("cabelo_grisalho", "tunica_creme", barba=True), caminho("personagens", "epicuro.png"))
     salvar(personagem("cabelo", "tunica_azul"), caminho("personagens", "meneceu.png"))
@@ -158,5 +333,6 @@ def gerar():
     salvar(personagem("coracao", "tunica_azul", "tunica_azul"), caminho("personagens", "matryona.png"))
     salvar(personagem("cabelo_loiro", "camisa_branca", "tunica_creme"), caminho("personagens", "michael.png"))
     salvar(cevada(), caminho("objetos", "cevada.png"))
+    gerar_walden()
     salvar(mesa_comprida(), caminho("objetos", "mesa_comprida.png"))
     salvar(placa(), caminho("objetos", "placa.png"))

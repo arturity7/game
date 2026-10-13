@@ -956,9 +956,73 @@ def icones_itens():
             put(c, x, y, cor("flor_br", 2 if y < 4 else 1))
         for x in range(5, 11):
             put(c, x, 14, cor("flor_br", 1))
+    def vara(c):
+        for k in range(12):  # vara na diagonal
+            put(c, 2 + k, 14 - k, cor("madeira", 4 if k > 3 else 2))
+            if k < 4:
+                put(c, 3 + k, 14 - k, cor("madeira", 1))
+        for y in range(3, 12):  # linha
+            put(c, 14, y, cor("flor_br", 1))
+        put(c, 13, 12, cor("coracao", 2)); put(c, 14, 12, cor("coracao", 2)); put(c, 14, 13, cor("flor_br", 2))
+        put(c, 4, 11, cor("metal", 3)); put(c, 5, 11, cor("metal", 2))  # molinete
+    def peixe_icone(rampa, comprido=0, listras=False, bigode=False, brilho=None):
+        """Peixe deitado olhando para a esquerda: corpo oval, cauda em leque, olho e barbatana."""
+        def d(c):
+            rx = 4.6 + comprido * 0.5
+            ry = 3.0 if comprido < 4 else 1.8
+            cx, cy = 7.0 - comprido * 0.2, 8.0
+            for y in range(16):
+                for x in range(16):
+                    dx, dy = (x + 0.5 - cx) / rx, (y + 0.5 - cy) / ry
+                    if dx * dx + dy * dy <= 1:
+                        i = 3 if dy < -0.35 else 2 if dy < 0.45 else 1
+                        if listras and int(x) % 3 == 0 and dy < 0.5:
+                            i = max(0, i - 1)
+                        put(c, x, y, cor(rampa, i))
+            cauda = int(cx + rx)
+            if comprido < 4:
+                for k in range(4):
+                    for y in range(int(cy) - 1 - k, int(cy) + 1 + k):
+                        put(c, cauda + k, y, cor(rampa, 2 if y < cy else 1))
+            put(c, int(cx) - 1, int(cy) - 4 + (1 if comprido >= 4 else 0), cor(rampa, 3))  # barbatana
+            put(c, int(cx), int(cy) - 4 + (1 if comprido >= 4 else 0), cor(rampa, 2))
+            ox = int(cx - rx) + 2
+            put(c, ox, int(cy) - 1, cor("flor_br", 2)); put(c, ox, int(cy), hexc("#1e1420"))
+            if bigode:
+                put(c, ox - 2, int(cy) + 1, cor("pedra", 1)); put(c, ox - 3, int(cy) + 2, cor("pedra", 1))
+            if brilho:
+                for x in range(int(cx - rx) + 4, int(cx + rx) - 1, 2):
+                    put(c, x, int(cy) - 2, cor(brilho, 4))
+        return d
+    def sonda(c):
+        """Linha de pesca enrolada numa pedra (para medir o fundo)."""
+        for y in range(16):
+            for x in range(16):
+                if math.hypot(x + 0.5 - 8, (y + 0.5 - 11) * 1.2) <= 4:
+                    put(c, x, y, cor("pedra", 4 if y < 10 else 3 if x < 9 else 2))
+        for y in range(1, 8):
+            put(c, 8, y, cor("flor_br", 2))
+        for x in range(4, 13):
+            put(c, x, 10, cor("flor_br", 1)) if x % 2 else None
+        put(c, 7, 1, cor("flor_br", 2)); put(c, 9, 2, cor("flor_br", 2))
+    def arca(c):
+        """Arca de ferro pequena, com rebites."""
+        for y in range(5, 14):
+            for x in range(2, 14):
+                put(c, x, y, cor("metal", 3 if y < 9 else 2))
+        for x in range(2, 14):
+            put(c, x, 9, cor("metal", 1)); put(c, x, 5, cor("metal", 4))
+        for (x, y) in ((3, 7), (12, 7), (3, 12), (12, 12)):
+            put(c, x, y, cor("metal", 4))
+        for y in range(8, 11):
+            put(c, 8, y, cor("milho", 2)); put(c, 7, y, cor("milho", 3))
     lista = [_icone(enxada), _icone(regador), _pacote(("feijao", 1)), _icone(feijao),
              _pacote(("cenoura", 2)), _icone(cenoura), _pacote(("batata", 1)), _icone(batata),
-             _pacote(("milho", 2)), _icone(milho), _icone(carta), _icone(bolo), _icone(chave), _icone(casaco)]
+             _pacote(("milho", 2)), _icone(milho), _icone(carta), _icone(bolo), _icone(chave), _icone(casaco),
+             _icone(vara), _icone(peixe_icone("milho", listras=True)), _icone(peixe_icone("batata")), _icone(peixe_icone("pedra", bigode=True)),
+             _icone(peixe_icone("oliva", comprido=3, listras=True)), _icone(peixe_icone("cevada", comprido=3, brilho="folha")),
+             _icone(peixe_icone("metal", comprido=-2)), _icone(peixe_icone("calca", comprido=5)),
+             _icone(sonda), _icone(arca)]
     atlas = nova(16 * len(lista), 16)
     for i, ic in enumerate(lista):
         atlas[:, i * 16:(i + 1) * 16] = ic

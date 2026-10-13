@@ -1,0 +1,43 @@
+{
+ "_sobre": "Medalhas do livro Walden (ficha §13).",
+ "walden.conquista.fundo_firme": {
+  "nome": "Fundo firme",
+  "livro": "walden",
+  "descricao": "Mediu o ponto mais fundo do Walden."
+ },
+ "walden.conquista.arca_ferro": {
+  "nome": "A arca de ferro",
+  "livro": "walden",
+  "descricao": "Alcançou a arca de ferro da lenda."
+ },
+ "walden.conquista.machado": {
+  "nome": "Mais afiado do que veio",
+  "livro": "walden",
+  "descricao": "Devolveu o machado emprestado afiado."
+ },
+ "walden.conquista.vinte_oito": {
+  "nome": "Vinte e oito dólares",
+  "livro": "walden",
+  "descricao": "Construiu a cabana dentro do orçamento de Thoreau."
+ },
+ "walden.conquista.mobelha": {
+  "nome": "Riso no lago",
+  "livro": "walden",
+  "descricao": "Venceu o jogo da mobelha."
+ },
+ "walden.conquista.hector": {
+  "nome": "Héctor caiu",
+  "livro": "walden",
+  "descricao": "Derrotou a erva de penacho no feijoal."
+ },
+ "walden.conquista.tres_cadeiras": {
+  "nome": "Três cadeiras",
+  "livro": "walden",
+  "descricao": "Recebeu três visitantes em casa ao mesmo tempo."
+ },
+ "walden.conquista.tambor": {
+  "nome": "Tambor diferente",
+  "livro": "walden",
+  "descricao": "Passou um dia inteiro no bosque sem cumprir nenhuma missão."
+ }
+}

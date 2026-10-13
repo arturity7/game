@@ -1,0 +1,49 @@
+{
+ "_sobre": "Itens do livro Walden.",
+ "walden.item.lucio": {
+  "nome": "Lúcio",
+  "tipo": "comida",
+  "icone": 18,
+  "pilha": 99,
+  "fome": 8,
+  "venda": 30
+ },
+ "walden.item.lucio_dourado": {
+  "nome": "Lúcio dourado",
+  "tipo": "comida",
+  "icone": 19,
+  "pilha": 99,
+  "fome": 10,
+  "venda": 120
+ },
+ "walden.item.faneca": {
+  "nome": "Faneca",
+  "tipo": "comida",
+  "icone": 20,
+  "pilha": 99,
+  "fome": 4,
+  "venda": 12
+ },
+ "walden.item.enguia": {
+  "nome": "Enguia",
+  "tipo": "comida",
+  "icone": 21,
+  "pilha": 99,
+  "fome": 9,
+  "venda": 80
+ },
+ "walden.item.linha_sonda": {
+  "nome": "Linha com pedra",
+  "tipo": "ferramenta",
+  "icone": 22,
+  "pilha": 1,
+  "sonda": true
+ },
+ "walden.item.arca_ferro": {
+  "nome": "Arca de ferro",
+  "tipo": "tesouro",
+  "icone": 23,
+  "pilha": 1,
+  "venda": 150
+ }
+}

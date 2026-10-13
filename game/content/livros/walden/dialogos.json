@@ -1,0 +1,532 @@
+{
+ "_sobre": "Conversas do livro Walden (formato em scripts/core/dialogo.gd).",
+ "walden.dialogo.thoreau": {
+  "quem": "Thoreau",
+  "inicio": [
+   {
+    "se": {
+     "sem_flag": "walden.conheceu_thoreau"
+    },
+    "ir": "chegada"
+   },
+   {
+    "ir": "menu"
+   }
+  ],
+  "nos": {
+   "chegada": {
+    "fala": [
+     "Ah, visita! Sente-se. Tenho três cadeiras: uma para a solidão, duas para a amizade, três para a sociedade.",
+     "Vim morar no bosque para viver com calma e ver o que a vida tem a ensinar.",
+     "Dizem que você anda respondendo perguntas por aí. A Natureza não faz perguntas... mas eu faço algumas."
+    ],
+    "efeitos": [
+     {
+      "flag": "walden.conheceu_thoreau"
+     }
+    ],
+    "ir": "menu"
+   },
+   "menu": {
+    "fala": "O que traz você ao lago?",
+    "escolhas": [
+     {
+      "texto": "O lago tem fundo?",
+      "ir": "fundo",
+      "se": {
+       "sem_flag": "walden.ganhou_sonda"
+      }
+     },
+     {
+      "texto": "Achei o fundo!",
+      "ir": "achou",
+      "se": {
+       "flag": "walden.achou_fundo",
+       "sem_flag": "walden.contou_fundo"
+      }
+     },
+     {
+      "texto": "Me pergunta algo do livro?",
+      "ir": "quiz"
+     },
+     {
+      "texto": "Até logo.",
+      "ir": "fim"
+     }
+    ]
+   },
+   "fundo": {
+    "fala": [
+     "Na vila dizem que o Walden não tem fundo.",
+     "Eu medi com uma linha de pesca e uma pedra: tem, sim. Mas antes me diga:"
+    ],
+    "pergunta": "walden.pergunta.ponto_fundo",
+    "certo": "da_sonda",
+    "errado": "pense"
+   },
+   "da_sonda": {
+    "fala": [
+     "Isso. É lá que a água é mais funda.",
+     "Leve esta linha com pedra. Jogue na água como uma vara de pescar e conte os metros. Ache o ponto mais fundo."
+    ],
+    "efeitos": [
+     {
+      "flag": "walden.ganhou_sonda"
+     },
+     {
+      "dar_item": "walden.item.linha_sonda"
+     },
+     {
+      "missao": "walden.missao.fundo",
+      "estado": "ativa"
+     }
+    ],
+    "ir": "fim"
+   },
+   "pense": {
+    "fala": "Hum. Olhe bem o formato do lago e pense de novo.",
+    "ir": "menu"
+   },
+   "achou": {
+    "fala": [
+     "Trinta e um metros, não é? E ainda puxou a arca de ferro da lenda!",
+     "Guarde bem. Mas lembre: um homem é rico na proporção das coisas que consegue deixar em paz."
+    ],
+    "efeitos": [
+     {
+      "flag": "walden.contou_fundo"
+     }
+    ],
+    "ir": "menu"
+   },
+   "quiz": {
+    "ramos": [
+     {
+      "se": {
+       "nao_acertou": "walden.pergunta.tempo"
+      },
+      "ir": "q_tempo"
+     },
+     {
+      "se": {
+       "nao_acertou": "walden.pergunta.mudanca"
+      },
+      "ir": "q_mudanca"
+     },
+     {
+      "se": {
+       "nao_acertou": "walden.pergunta.custo"
+      },
+      "ir": "q_custo"
+     },
+     {
+      "se": {
+       "nao_acertou": "walden.pergunta.necessidades"
+      },
+      "ir": "q_necessidades"
+     },
+     {
+      "se": {
+       "nao_acertou": "walden.pergunta.plantou"
+      },
+      "ir": "q_plantou"
+     },
+     {
+      "se": {
+       "nao_acertou": "walden.pergunta.inimigo"
+      },
+      "ir": "q_inimigo"
+     },
+     {
+      "se": {
+       "nao_acertou": "walden.pergunta.cadeiras"
+      },
+      "ir": "q_cadeiras"
+     },
+     {
+      "se": {
+       "nao_acertou": "walden.pergunta.machado"
+      },
+      "ir": "q_machado"
+     },
+     {
+      "se": {
+       "nao_acertou": "walden.pergunta.bebida"
+      },
+      "ir": "q_bebida"
+     },
+     {
+      "se": {
+       "nao_acertou": "walden.pergunta.profundidade"
+      },
+      "ir": "q_profundidade"
+     },
+     {
+      "se": {
+       "nao_acertou": "walden.pergunta.iliada"
+      },
+      "ir": "q_iliada"
+     },
+     {
+      "se": {
+       "nao_acertou": "walden.pergunta.preso"
+      },
+      "ir": "q_preso"
+     },
+     {
+      "se": {
+       "nao_acertou": "walden.pergunta.mobelha"
+      },
+      "ir": "q_mobelha"
+     },
+     {
+      "se": {
+       "nao_acertou": "walden.pergunta.cavalo_ferro"
+      },
+      "ir": "q_cavalo_ferro"
+     },
+     {
+      "se": {
+       "nao_acertou": "walden.pergunta.calcario"
+      },
+      "ir": "q_calcario"
+     },
+     {
+      "se": {
+       "nao_acertou": "walden.pergunta.collins"
+      },
+      "ir": "q_collins"
+     },
+     {
+      "se": {
+       "nao_acertou": "walden.pergunta.enxada"
+      },
+      "ir": "q_enxada"
+     },
+     {
+      "se": {
+       "nao_acertou": "walden.pergunta.alqueires"
+      },
+      "ir": "q_alqueires"
+     },
+     {
+      "se": {
+       "nao_acertou": "walden.pergunta.pao"
+      },
+      "ir": "q_pao"
+     },
+     {
+      "se": {
+       "nao_acertou": "walden.pergunta.beldroega"
+      },
+      "ir": "q_beldroega"
+     },
+     {
+      "se": {
+       "nao_acertou": "walden.pergunta.homero"
+      },
+      "ir": "q_homero"
+     },
+     {
+      "se": {
+       "nao_acertou": "walden.pergunta.sapato"
+      },
+      "ir": "q_sapato"
+     },
+     {
+      "se": {
+       "nao_acertou": "walden.pergunta.sonda"
+      },
+      "ir": "q_sonda"
+     },
+     {
+      "se": {
+       "nao_acertou": "walden.pergunta.flauta"
+      },
+      "ir": "q_flauta"
+     },
+     {
+      "se": {
+       "nao_acertou": "walden.pergunta.gansos"
+      },
+      "ir": "q_gansos"
+     },
+     {
+      "se": {
+       "nao_acertou": "walden.pergunta.saida"
+      },
+      "ir": "q_saida"
+     },
+     {
+      "se": {
+       "nao_acertou": "walden.pergunta.hollowell"
+      },
+      "ir": "q_hollowell"
+     },
+     {
+      "se": {
+       "nao_acertou": "walden.pergunta.kourou"
+      },
+      "ir": "q_kourou"
+     },
+     {
+      "ir": "quiz_fim"
+     }
+    ]
+   },
+   "quiz_certo": {
+    "fala": "Muito bem! Leve um punhado de feijão para plantar.",
+    "efeitos": [
+     {
+      "dar_item": "semente_feijao",
+      "qtd": 2
+     }
+    ],
+    "escolhas": [
+     {
+      "texto": "Outra!",
+      "ir": "quiz"
+     },
+     {
+      "texto": "Chega por hoje.",
+      "ir": "fim"
+     }
+    ]
+   },
+   "quiz_errado": {
+    "fala": "Não... Simplifique, simplifique. E releia, se quiser.",
+    "ir": "fim"
+   },
+   "quiz_fim": {
+    "fala": "Você conhece este bosque melhor do que muita gente da vila.",
+    "ir": "fim"
+   },
+   "q_tempo": {
+    "pergunta": "walden.pergunta.tempo",
+    "certo": "quiz_certo",
+    "errado": "quiz_errado"
+   },
+   "q_mudanca": {
+    "pergunta": "walden.pergunta.mudanca",
+    "certo": "quiz_certo",
+    "errado": "quiz_errado"
+   },
+   "q_custo": {
+    "pergunta": "walden.pergunta.custo",
+    "certo": "quiz_certo",
+    "errado": "quiz_errado"
+   },
+   "q_necessidades": {
+    "pergunta": "walden.pergunta.necessidades",
+    "certo": "quiz_certo",
+    "errado": "quiz_errado"
+   },
+   "q_plantou": {
+    "pergunta": "walden.pergunta.plantou",
+    "certo": "quiz_certo",
+    "errado": "quiz_errado"
+   },
+   "q_inimigo": {
+    "pergunta": "walden.pergunta.inimigo",
+    "certo": "quiz_certo",
+    "errado": "quiz_errado"
+   },
+   "q_cadeiras": {
+    "pergunta": "walden.pergunta.cadeiras",
+    "certo": "quiz_certo",
+    "errado": "quiz_errado"
+   },
+   "q_machado": {
+    "pergunta": "walden.pergunta.machado",
+    "certo": "quiz_certo",
+    "errado": "quiz_errado"
+   },
+   "q_bebida": {
+    "pergunta": "walden.pergunta.bebida",
+    "certo": "quiz_certo",
+    "errado": "quiz_errado"
+   },
+   "q_profundidade": {
+    "pergunta": "walden.pergunta.profundidade",
+    "certo": "quiz_certo",
+    "errado": "quiz_errado"
+   },
+   "q_iliada": {
+    "pergunta": "walden.pergunta.iliada",
+    "certo": "quiz_certo",
+    "errado": "quiz_errado"
+   },
+   "q_preso": {
+    "pergunta": "walden.pergunta.preso",
+    "certo": "quiz_certo",
+    "errado": "quiz_errado"
+   },
+   "q_mobelha": {
+    "pergunta": "walden.pergunta.mobelha",
+    "certo": "quiz_certo",
+    "errado": "quiz_errado"
+   },
+   "q_cavalo_ferro": {
+    "pergunta": "walden.pergunta.cavalo_ferro",
+    "certo": "quiz_certo",
+    "errado": "quiz_errado"
+   },
+   "q_calcario": {
+    "pergunta": "walden.pergunta.calcario",
+    "certo": "quiz_certo",
+    "errado": "quiz_errado"
+   },
+   "q_collins": {
+    "pergunta": "walden.pergunta.collins",
+    "certo": "quiz_certo",
+    "errado": "quiz_errado"
+   },
+   "q_enxada": {
+    "pergunta": "walden.pergunta.enxada",
+    "certo": "quiz_certo",
+    "errado": "quiz_errado"
+   },
+   "q_alqueires": {
+    "pergunta": "walden.pergunta.alqueires",
+    "certo": "quiz_certo",
+    "errado": "quiz_errado"
+   },
+   "q_pao": {
+    "pergunta": "walden.pergunta.pao",
+    "certo": "quiz_certo",
+    "errado": "quiz_errado"
+   },
+   "q_beldroega": {
+    "pergunta": "walden.pergunta.beldroega",
+    "certo": "quiz_certo",
+    "errado": "quiz_errado"
+   },
+   "q_homero": {
+    "pergunta": "walden.pergunta.homero",
+    "certo": "quiz_certo",
+    "errado": "quiz_errado"
+   },
+   "q_sapato": {
+    "pergunta": "walden.pergunta.sapato",
+    "certo": "quiz_certo",
+    "errado": "quiz_errado"
+   },
+   "q_sonda": {
+    "pergunta": "walden.pergunta.sonda",
+    "certo": "quiz_certo",
+    "errado": "quiz_errado"
+   },
+   "q_flauta": {
+    "pergunta": "walden.pergunta.flauta",
+    "certo": "quiz_certo",
+    "errado": "quiz_errado"
+   },
+   "q_gansos": {
+    "pergunta": "walden.pergunta.gansos",
+    "certo": "quiz_certo",
+    "errado": "quiz_errado"
+   },
+   "q_saida": {
+    "pergunta": "walden.pergunta.saida",
+    "certo": "quiz_certo",
+    "errado": "quiz_errado"
+   },
+   "q_hollowell": {
+    "pergunta": "walden.pergunta.hollowell",
+    "certo": "quiz_certo",
+    "errado": "quiz_errado"
+   },
+   "q_kourou": {
+    "pergunta": "walden.pergunta.kourou",
+    "certo": "quiz_certo",
+    "errado": "quiz_errado"
+   }
+  }
+ },
+ "walden.dialogo.lenhador": {
+  "quem": "Lenhador",
+  "inicio": [
+   {
+    "ir": "oi"
+   }
+  ],
+  "nos": {
+   "oi": {
+    "fala": [
+     "Bom dia, bom dia! Ha-ha! Que dia bonito para cortar lenha!",
+     "Eu nunca fico cansado. Quer ver? Os passarinhos até pousam no meu braço enquanto eu almoço."
+    ],
+    "efeitos": [
+     {
+      "flag": "walden.conheceu_lenhador"
+     }
+    ],
+    "escolhas": [
+     {
+      "texto": "Me pergunta algo?",
+      "ir": "quiz"
+     },
+     {
+      "texto": "Até logo.",
+      "ir": "fim"
+     }
+    ]
+   },
+   "quiz": {
+    "ramos": [
+     {
+      "se": {
+       "nao_acertou": "walden.pergunta.balde"
+      },
+      "ir": "q_balde"
+     },
+     {
+      "se": {
+       "nao_acertou": "walden.pergunta.postes"
+      },
+      "ir": "q_postes"
+     },
+     {
+      "ir": "quiz_fim"
+     }
+    ]
+   },
+   "quiz_certo": {
+    "fala": "Ha-ha! Isso mesmo! Tome, pela boa memória.",
+    "efeitos": [
+     {
+      "dinheiro": 6
+     }
+    ],
+    "escolhas": [
+     {
+      "texto": "Outra!",
+      "ir": "quiz"
+     },
+     {
+      "texto": "Até logo.",
+      "ir": "fim"
+     }
+    ]
+   },
+   "quiz_errado": {
+    "fala": "Ha-ha! Não, não. Mas tudo bem, amanhã tem mais!",
+    "ir": "fim"
+   },
+   "quiz_fim": {
+    "fala": "Você sabe tudo de mim! Ha-ha!",
+    "ir": "fim"
+   },
+   "q_balde": {
+    "pergunta": "walden.pergunta.balde",
+    "certo": "quiz_certo",
+    "errado": "quiz_errado"
+   },
+   "q_postes": {
+    "pergunta": "walden.pergunta.postes",
+    "certo": "quiz_certo",
+    "errado": "quiz_errado"
+   }
+  }
+ }
+}

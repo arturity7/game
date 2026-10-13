@@ -107,6 +107,16 @@ func _montar_chao() -> void:
 	for y in range(-MARGEM - 1, mapa.altura + MARGEM):
 		for x in range(-MARGEM, mapa.largura + MARGEM):
 			grama.set_cell(Vector2i(x, y), 0, Vector2i(_variante_grama(x, y, n_grama), 0))
+	# tipos com desenho simples de uma célula (trilhos etc.)
+	for tipo in Config.tiles:
+		if typeof(Config.tiles[tipo]) != TYPE_DICTIONARY or not Config.tiles[tipo].has("tile"):
+			continue
+		var tex_s: Texture2D = load(SPRITES + "terreno/" + str(Config.tiles[tipo]["tile"]))
+		var simples := _camada(tex_s, 1, Vector2.ZERO, "Tile_" + tipo)
+		for y in mapa.altura:
+			for x in mapa.largura:
+				if mapa.chao_em(Vector2i(x, y)) == tipo:
+					simples.set_cell(Vector2i(x, y), 0, Vector2i(0, 0))
 	for tipo in _terrenos_em_ordem():
 		var def: Dictionary = Config.tiles[tipo]
 		var tex: Texture2D = load(SPRITES + "terreno/" + str(def["terreno"]))
@@ -386,7 +396,7 @@ func _criar_enfeites() -> void:
 
 ## Mata fechada fora do mapa (só desenho): esconde a borda e deixa ver a copa das árvores da beira.
 func _criar_mata_em_volta() -> void:
-	var def: Dictionary = Config.objetos.get("arvore", {})
+	var def: Dictionary = Config.objetos.get(mapa.mata, Config.objetos.get("arvore", {}))
 	var lista: Array = def.get("sprites", [])
 	if lista.is_empty():
 		return

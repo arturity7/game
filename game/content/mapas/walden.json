@@ -1,0 +1,175 @@
+{
+ "_sobre": "O bosque e o lago de Walden (livro Walden): mata de pinheiros em volta de um lago fundo e transparente, com a cabana de Thoreau, o feijoal e a margem de pedrinhas brancas. Área com spoilers do livro. 'sondagem' = o fundo do lago, medido com a linha com pedra: profundidade máxima no 'ponto', e os efeitos de achá-lo.",
+ "id": "walden",
+ "nome": "Lago Walden",
+ "livro": "walden",
+ "legenda": {
+  ".": "grama",
+  "=": "caminho",
+  "~": "agua",
+  "t": "terra",
+  "f": "feijoeiro@terra",
+  "s": "seixos",
+  "P": "pinheiro",
+  "A": "arvore",
+  "b": "arbusto"
+ },
+ "linhas": [
+  "PPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPP",
+  "PPP.P.P.P.P.P.P.P.P.P.P.P.P.P.P.P.P.P.P.P.P.P.P.PP",
+  "P.P.A...P.....P..P...P..PP.PA.....P...PP........PP",
+  "PP...................P...PP..P.A.AP.PAP..P.b...P.P",
+  "P.....A.............P.....PP.P.APP..PPP...A...AAPP",
+  "PPP...A..........APP.PP...PP..PP.P...P..PA....AA.P",
+  "P.PP..............P..AP...P..APPPP..APP.PA.PPP..PP",
+  "PP...A..A..........PPPPP...P.APPP...PP...P.PP.b..P",
+  "P..PP.A.....=.......................P.PPP..A....PP",
+  "PP..........=..........s...s...s......P...PAP....P",
+  "P..ftftftf..=.....s..~~~~~~~~~~~~.s.....PP..PP.PPP",
+  "PP.ttttttt..=....s~~~~~~~~~~~~~~~~~~.s..APA.P....P",
+  "P..ftftftf..=...s~~~~~~~~~~~~~~~~~~~~....A...P..PP",
+  "PP.ttttttt..=..s~~~~~~~~~~~~~~~~~~~~~~.s.P...P.P.P",
+  "P..ftftftf..=.s~~~~~~~~~~~~~~~~~~~~~~~~...P..P.PPP",
+  "PP..........=..~~~~~~~~~~~~~~~~~~~~~~~~..PAAPA...P",
+  "P...P.......=..~~~~~~~~~~~~~~~~~~~~~~~~....PP...PP",
+  "PP........P.=..~~~~~~~~~~~~~~~~~~~~~~~~s..P....P.P",
+  "P...PA......=.s.~~~~~~~~~~~~~~~~~~~~~~s..bP...A.PP",
+  "PPPP..P.....=....~~~~~~~~~~~~~~~~~~~~s....P..PPA.P",
+  "P.PAA...P...=...s.~~~~~~~~~~~~~~~~~~s.....P.A.AAPP",
+  "PP..P.PA....=......s.~~~~~~~~~~~~..s...P....PPAP.P",
+  "P...P.......=.........s...s...s........P.P.A..A.PP",
+  "PP..A...PP..=............=............A.......PP.P",
+  "P......PPP..==============.AA......PA....P.A..P.PP",
+  "PP....PPPP...............=...P..P................P",
+  "P........P.AP.PP..P......=..PAP.P..P...A........PP",
+  "PP.PA.P.PP.....AP.P..P...=......P.PP.A.........P.P",
+  "P.PPPP...P...P...A.......=.P..P.P.........P.....PP",
+  "PP.P....PP....A.......A..=..P.P...............P..P",
+  "P......P.APP....PP.P.PAP.=......P.........P....APP",
+  "PP....P..PPP.....PP......=.P.PA..P.PA....P...AP..P",
+  "P.AAA.P.A.P.P.P.AP.APPP..=..P...P.......PP.P.P..PP",
+  "PP...P.A.P...PP.PAP..A.A.=.P..........PPPPA.PP...P",
+  "P........................=......................PP",
+  "PPPPPPPPPPPPPPPPPPPPPPPPP=PPPPPPPPPPPPPPPPPPPPPPPP"
+ ],
+ "objetos": [
+  {
+   "tipo": "cabana",
+   "x": 11,
+   "y": 5
+  },
+  {
+   "tipo": "pilha_lenha",
+   "x": 15,
+   "y": 6
+  },
+  {
+   "tipo": "banco",
+   "x": 9,
+   "y": 7
+  },
+  {
+   "tipo": "placa",
+   "x": 26,
+   "y": 31,
+   "nome": "Placa",
+   "texto": [
+    "Lago Walden.",
+    "Dizem na vila que ele não tem fundo."
+   ]
+  }
+ ],
+ "npcs": [
+  {
+   "id": "walden.npc.thoreau",
+   "nome": "Thoreau",
+   "sprite": "thoreau.png",
+   "x": 13,
+   "y": 8,
+   "olhar": "baixo",
+   "dialogo": "walden.dialogo.thoreau"
+  },
+  {
+   "id": "walden.npc.lenhador",
+   "nome": "Lenhador",
+   "sprite": "lenhador.png",
+   "x": 43,
+   "y": 27,
+   "olhar": "esquerda",
+   "dialogo": "walden.dialogo.lenhador"
+  }
+ ],
+ "peixes": [
+  {
+   "item": "perca",
+   "peso": 5
+  },
+  {
+   "item": "walden.item.lucio",
+   "peso": 3
+  },
+  {
+   "item": "walden.item.faneca",
+   "peso": 4
+  },
+  {
+   "item": "bagre",
+   "peso": 3,
+   "noite": true
+  },
+  {
+   "item": "walden.item.lucio_dourado",
+   "peso": 0.4
+  },
+  {
+   "item": "walden.item.enguia",
+   "peso": 0.3,
+   "noite": true
+  }
+ ],
+ "sondagem": {
+  "ponto": [
+   27,
+   16
+  ],
+  "maximo": 31,
+  "raio": 13,
+  "flag": "walden.achou_fundo",
+  "efeitos": [
+   {
+    "missao": "walden.missao.fundo",
+    "estado": "feita"
+   },
+   {
+    "conquista": "walden.conquista.fundo_firme"
+   },
+   {
+    "dar_item": "walden.item.arca_ferro"
+   },
+   {
+    "conquista": "walden.conquista.arca_ferro"
+   }
+  ],
+  "texto": [
+   "A pedra desce, desce... 31 metros. É o ponto mais fundo do Walden!",
+   "E a linha volta presa em alguma coisa pesada: a arca de ferro da lenda!"
+  ]
+ },
+ "saidas": [
+  {
+   "x": 25,
+   "y": 35,
+   "para": "colina",
+   "chegada": [
+    15,
+    1
+   ],
+   "olhar": "baixo"
+  }
+ ],
+ "inicio": [
+  25,
+  33
+ ],
+ "mata": "pinheiro"
+}

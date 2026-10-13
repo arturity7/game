@@ -106,5 +106,15 @@
  "inicio": [
   12,
   16
+ ],
+ "peixes": [
+  {
+   "item": "perca",
+   "peso": 5
+  },
+  {
+   "item": "carpa",
+   "peso": 2
+  }
  ]
 }

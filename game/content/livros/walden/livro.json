@@ -1,0 +1,10 @@
+{
+ "id": "walden",
+ "titulo": "Walden",
+ "autor": "Henry David Thoreau",
+ "ficha": "livros/walden.md",
+ "lugares": [
+  "walden"
+ ],
+ "_sobre": "Conteúdo do livro no jogo (área com spoilers). Por enquanto: o bosque e o lago, Thoreau, o lenhador, os peixes e o fundo do lago."
+}
