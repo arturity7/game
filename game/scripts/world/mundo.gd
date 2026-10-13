@@ -31,6 +31,8 @@ var _canteiros_desenhados := {}
 var _npcs := {}             # id -> [StaticBody2D, dados do mapa]
 var luzes: Array = []       # luzes (PointLight2D) e janelas acesas (Sprite2D) que aparecem à noite
 var _textura_luz: Texture2D
+var ambiente: Ambiente      # borboletas, folhas e vaga-lumes (só ao ar livre)
+var _copas := PackedVector2Array()
 
 
 func montar(id_mapa: String) -> void:
@@ -76,6 +78,10 @@ func montar(id_mapa: String) -> void:
 	if not mapa.interior:
 		_criar_enfeites()
 		_criar_mata_em_volta()
+		ambiente = Ambiente.new()
+		ambiente.name = "Ambiente"
+		ambiente.arvores = _copas
+		add_child(ambiente)
 	jogador = Jogador.new()
 	jogador.name = "Jogador"
 	jogador.mundo = self
@@ -107,6 +113,18 @@ func _montar_chao() -> void:
 	for y in range(-MARGEM - 1, mapa.altura + MARGEM):
 		for x in range(-MARGEM, mapa.largura + MARGEM):
 			grama.set_cell(Vector2i(x, y), 0, Vector2i(_variante_grama(x, y, n_grama), 0))
+	# manchas de grama mais escura/clara (só desenho), em formas grandes e suaves
+	for m in Config.tiles.get("grama", {}).get("manchas", []):
+		var tex_m: Texture2D = load(SPRITES + "terreno/" + str(m["terreno"]))
+		var camada_m := _camada(tex_m, 1, Vector2(-TAM / 2.0, -TAM / 2.0), "Mancha_" + str(m["terreno"]).get_basename())
+		var esc := float(m.get("escala", 7.0))
+		var sem := int(m.get("semente", 1))
+		var lim := float(m.get("limiar", 0.65))
+		var abaixo := bool(m.get("abaixo", false))
+		var pred_m := func(c: Vector2i) -> bool: return (ruido_suave(c.x, c.y, esc, sem) < lim) if abaixo else (ruido_suave(c.x, c.y, esc, sem) > lim)
+		for dy in range(-MARGEM - 1, mapa.altura + MARGEM + 1):
+			for dx in range(-MARGEM, mapa.largura + MARGEM + 1):
+				_pintar_dupla(camada_m, Vector2i(dx, dy), pred_m)
 	# tipos com desenho simples de uma célula (trilhos etc.)
 	for tipo in Config.tiles:
 		if typeof(Config.tiles[tipo]) != TYPE_DICTIONARY or not Config.tiles[tipo].has("tile"):
@@ -134,6 +152,23 @@ static func ruido(x: int, y: int, s: int) -> float:
 	h = ((h ^ (h >> 13)) * 1274126177) & 0x7fffffff
 	h = h ^ (h >> 16)
 	return float(h & 0xffff) / 65535.0
+
+
+## Ruído suave (0..1) em duas oitavas: manchas grandes e arredondadas que mudam devagar no mapa.
+static func ruido_suave(x: int, y: int, escala: float, s: int) -> float:
+	return 0.65 * _valor(x / escala, y / escala, s) + 0.35 * _valor(x / (escala * 0.4), y / (escala * 0.4), s + 101)
+
+
+static func _valor(gx: float, gy: float, s: int) -> float:
+	var x0 := floori(gx)
+	var y0 := floori(gy)
+	var fx := gx - x0
+	var fy := gy - y0
+	var sx := fx * fx * (3.0 - 2.0 * fx)
+	var sy := fy * fy * (3.0 - 2.0 * fy)
+	var cima := lerpf(ruido(x0, y0, s), ruido(x0 + 1, y0, s), sx)
+	var baixo := lerpf(ruido(x0, y0 + 1, s), ruido(x0 + 1, y0 + 1, s), sx)
+	return lerpf(cima, baixo, sy)
 
 
 ## Grama: quase sempre lisa; às vezes com tufos; raramente com flores (em manchas).
@@ -306,6 +341,8 @@ func _criar_objetos() -> void:
 			var aj: Array = def.get("ajuste", [0, 0])
 			spr.texture = tex
 			spr.offset = Vector2(-tex.get_width() / 2.0 + float(aj[0]), -tex.get_height() + float(aj[1]))
+			if bool(def.get("folhas", false)):
+				_copas.append(base + Vector2(0, -tex.get_height() * 0.62))
 		if spr != null:
 			corpo.add_child(spr)
 		if def.has("noite") and spr != null:
@@ -394,6 +431,22 @@ func _criar_enfeites() -> void:
 			enfeites["%d,%d" % [x, y]] = spr
 
 
+## Mato e flores balançam quando alguém passa por cima (só desenho).
+func balancar_enfeite(c: Vector2i, lado: float) -> void:
+	var spr: Sprite2D = enfeites.get("%d,%d" % [c.x, c.y])
+	if spr == null or not spr.visible:
+		return
+	var nome := spr.texture.resource_path.get_file()
+	if "pedrinhas" in nome or "cogumelo" in nome:
+		return
+	var tw := spr.create_tween()
+	tw.tween_property(spr, "skew", 0.45 * lado, 0.07)
+	tw.tween_property(spr, "skew", -0.25 * lado, 0.12)
+	tw.tween_property(spr, "skew", 0.1 * lado, 0.12)
+	tw.tween_property(spr, "skew", 0.0, 0.12)
+	Som.tocar("mato", -14.0)
+
+
 ## Mata fechada fora do mapa (só desenho): esconde a borda e deixa ver a copa das árvores da beira.
 func _criar_mata_em_volta() -> void:
 	var def: Dictionary = Config.objetos.get(mapa.mata, Config.objetos.get("arvore", {}))
@@ -415,6 +468,8 @@ func _criar_mata_em_volta() -> void:
 			spr.position = Vector2(x * TAM + TAM / 2.0 + (ruido(x, y, 6) - 0.5) * 6.0, (y + 1) * TAM)
 			spr.offset = Vector2(-tex.get_width() / 2.0 + float(aj[0]), -tex.get_height() + float(aj[1]))
 			profundidade.add_child(spr)
+			if bool(def.get("folhas", false)) and ruido(x, y, 8) < 0.3:
+				_copas.append(spr.position + Vector2(0, -tex.get_height() * 0.62))
 
 
 ## Cerca liga com as vizinhas: N=1, L=2, S=4, O=8 (ordem das colunas em cerca.png).
@@ -451,6 +506,8 @@ func bloqueada(c: Vector2i) -> bool:
 
 func atualizar_luz(hora: float) -> void:
 	luz.color = Survival.cor_do_ceu(hora)
+	if ambiente != null:
+		ambiente.hora = hora
 	if mapa.interior:
 		# dentro de casa: claro de dia; à noite, luz quente de lampião
 		var c := Survival.cor_do_ceu(hora)

@@ -103,9 +103,10 @@ def get(img, x, y):
     return TRANSP
 
 def contornar(img, c=CONTORNO, diagonais=False):
-    """Põe contorno de 1 px em volta de tudo que é opaco."""
+    """Põe contorno de 1 px em volta de tudo que é opaco (sombras semitransparentes não ganham
+    contorno: o contorno do objeto passa por cima delas)."""
     h, w = img.shape[:2]
-    alfa = img[:, :, 3] > 0
+    alfa = img[:, :, 3] == 255
     viz = np.zeros_like(alfa)
     viz[1:, :] |= alfa[:-1, :]
     viz[:-1, :] |= alfa[1:, :]

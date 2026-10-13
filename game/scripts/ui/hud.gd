@@ -14,6 +14,7 @@ var _aviso_tempo := 0.0
 
 
 func _ready() -> void:
+	layer = 3   # acima da camada dos vaga-lumes (Ambiente)
 	_painel = Control.new()
 	_painel.set_anchors_preset(Control.PRESET_FULL_RECT)
 	_painel.mouse_filter = Control.MOUSE_FILTER_IGNORE

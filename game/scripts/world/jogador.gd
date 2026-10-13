@@ -18,6 +18,7 @@ var direcao := Vector2i(0, 1)
 var _lado := "baixo"
 var _tempo_passo := 0.0
 var _acao := 0.0          # segundos restantes da pose de usar ferramenta
+var _celula := Vector2i(-999, -999)
 
 
 func _ready() -> void:
@@ -60,6 +61,12 @@ func _physics_process(delta: float) -> void:
 		_tempo_passo = 0.0
 	move_and_slide()
 	_atualizar_quadro()
+	if mundo != null:
+		var c := mundo.celula_de(global_position)
+		if c != _celula:
+			_celula = c
+			if andando:
+				mundo.balancar_enfeite(c, signf(velocity.x) if velocity.x != 0.0 else 1.0)
 
 
 func _virar(dir: Vector2) -> void:

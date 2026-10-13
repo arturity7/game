@@ -101,6 +101,16 @@ def passo(semente):
     return x * e
 
 
+def mato():
+    """Farfalhar curto de folhas (passar pelo mato)."""
+    global rng
+    rng = np.random.default_rng(41)
+    n = ruido(0.18)
+    alto = n - passa_baixa(n, 1800)          # só o chiado agudo
+    e = np.exp(-((t_(0.18) - 0.05) / 0.045) ** 2)
+    return passa_baixa(alto, 7000) * e
+
+
 def enxada():
     n = ruido(0.16)
     x = passa_baixa(n, 700) * np.exp(-t_(0.16) * 28) * 1.3
@@ -297,4 +307,5 @@ if __name__ == "__main__":
     salvar("salvar", salvar_jogo(), 0.45)
     salvar("musica_fazenda", musica_fazenda(), 0.7)
     para_ogg("musica_fazenda")
+    salvar("mato", mato(), 0.35)
     print("ok")

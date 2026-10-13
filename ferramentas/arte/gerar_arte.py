@@ -62,6 +62,33 @@ def grama():
     return atlas
 
 
+def grama_tom(escura=True):
+    """Manchas grandes de grama mais escura ou mais clara (grade dupla), por baixo de tudo.
+    Quebram o verde liso como no chão do Stardew; a borda é pontilhada para sumir aos poucos."""
+    base = hexc("#599c3a") if escura else hexc("#71b444")
+    risco = cor("grama", 2) if escura else cor("grama", 4)
+    brilho = cor("grama", 4) if escura else cor("grama", 5)
+    def pintar(img, x, y, s, wx, wy, q, m):
+        if s > 0:
+            return
+        if s > -1.6 and (wx + wy) % 2 == 0:
+            return            # borda pontilhada
+        if s > -3.0 and (wx + wy) % 4 == 1 and wy % 2 == 1:
+            return
+        c = base
+        h = hash01(wx, wy, 61 if escura else 62)
+        if h > 0.93:
+            c = risco
+        elif h < 0.03:
+            c = brilho
+        put(img, x, y, c)
+        # folhinhas: risco curto de 2 px
+        if hash01(wx, wy, 63 if escura else 64) > 0.95 and y > 0:
+            put(img, x, y, risco)
+            put(img, x, y - 1, risco)
+    return tiles_dual(pintar, variantes=2, raio=6.0, ruido=1.4, semente=17 if escura else 19)
+
+
 def terra_campo():
     def pintar(img, x, y, s, wx, wy, q, m):
         if s <= 0:
@@ -1283,6 +1310,8 @@ def previa_terreno(mapa_json, saida, escala=3):
 
 def gerar_terreno():
     salvar(grama(), caminho("terreno", "grama.png"))
+    salvar(grama_tom(True), caminho("terreno", "grama_escura.png"))
+    salvar(grama_tom(False), caminho("terreno", "grama_clara.png"))
     salvar(terra_campo(), caminho("terreno", "terra.png"))
     salvar(caminho_terra(), caminho("terreno", "caminho.png"))
     salvar(agua(), caminho("terreno", "agua.png"))

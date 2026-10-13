@@ -1,11 +1,63 @@
 {
-  "_sobre": "Tipos de chão. A grama é a base de tudo; 'enfeites' (arquivos em assets/sprites/objetos/) aparecem soltos na grama longe de caminhos e objetos, na proporção 'densidade_enfeites', e não bloqueiam (somem se a célula for arada). 'interior' = chão de interiores (o desenho vem do 'fundo' do mapa); 'solido' = bloqueia a passagem. 'tile' = desenho simples de uma célula (ex.: trilhos), por cima da grama. Os outros são desenhados por cima em grade dupla (bordas arredondadas), na ordem de 'ordem', com a arte de assets/sprites/terreno/<terreno>. 'quadros' = quadros de animação (em linhas no PNG).",
-  "grama": {"base": true, "densidade_enfeites": 0.09, "enfeites": ["enfeite_mato_0.png", "enfeite_mato_1.png", "enfeite_mato_2.png", "enfeite_mato_0.png", "enfeite_mato_1.png", "enfeite_flores_0.png", "enfeite_flores_1.png", "enfeite_flores_2.png", "enfeite_flores_3.png", "enfeite_cogumelo.png", "enfeite_pedrinhas.png"]},
-  "terra": {"terreno": "terra.png", "ordem": 1},
-  "caminho": {"terreno": "caminho.png", "ordem": 2},
-  "agua": {"terreno": "agua.png", "ordem": 3, "quadros": 3, "agua": true},
-  "calcada": {"terreno": "calcada.png", "ordem": 4},
-  "trilho": {"tile": "trilho.png"},
-  "piso": {"interior": true},
-  "parede": {"interior": true, "solido": true}
+  "_sobre": "Tipos de chão. A grama é a base de tudo; 'enfeites' (arquivos em assets/sprites/objetos/) aparecem soltos na grama longe de caminhos e objetos, na proporção 'densidade_enfeites', e não bloqueiam (somem se a célula for arada). 'interior' = chão de interiores (o desenho vem do 'fundo' do mapa); 'solido' = bloqueia a passagem. 'tile' = desenho simples de uma célula (ex.: trilhos), por cima da grama. Os outros são desenhados por cima em grade dupla (bordas arredondadas), na ordem de 'ordem', com a arte de assets/sprites/terreno/<terreno>. 'quadros' = quadros de animação (em linhas no PNG). 'manchas' (na grama) = manchas grandes de grama mais escura ou mais clara, só de enfeite: aparecem onde um ruído suave (escala em células, semente) passa do 'limiar' (ou fica abaixo dele, com 'abaixo').",
+  "grama": {
+    "base": true,
+    "densidade_enfeites": 0.09,
+    "enfeites": [
+      "enfeite_mato_0.png",
+      "enfeite_mato_1.png",
+      "enfeite_mato_2.png",
+      "enfeite_mato_0.png",
+      "enfeite_mato_1.png",
+      "enfeite_flores_0.png",
+      "enfeite_flores_1.png",
+      "enfeite_flores_2.png",
+      "enfeite_flores_3.png",
+      "enfeite_cogumelo.png",
+      "enfeite_pedrinhas.png"
+    ],
+    "manchas": [
+      {
+        "terreno": "grama_escura.png",
+        "escala": 6.0,
+        "semente": 7,
+        "limiar": 0.6
+      },
+      {
+        "terreno": "grama_clara.png",
+        "escala": 5.0,
+        "semente": 13,
+        "limiar": 0.36,
+        "abaixo": true
+      }
+    ]
+  },
+  "terra": {
+    "terreno": "terra.png",
+    "ordem": 1
+  },
+  "caminho": {
+    "terreno": "caminho.png",
+    "ordem": 2
+  },
+  "agua": {
+    "terreno": "agua.png",
+    "ordem": 3,
+    "quadros": 3,
+    "agua": true
+  },
+  "calcada": {
+    "terreno": "calcada.png",
+    "ordem": 4
+  },
+  "trilho": {
+    "tile": "trilho.png"
+  },
+  "piso": {
+    "interior": true
+  },
+  "parede": {
+    "interior": true,
+    "solido": true
+  }
 }
